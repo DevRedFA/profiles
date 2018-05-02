@@ -1,6 +1,1265 @@
-2018-04-16 00:11:50,956 INFO  [Thread-3] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@30c15d8b: startup date [Sun Apr 15 21:39:17 MSK 2018]; root of context hierarchy
-2018-04-16 00:11:50,992 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
-2018-04-16 00:11:50,992 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
-2018-04-16 00:11:50,998 INFO  [Thread-3] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2018-04-16 00:11:50,999 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
-2018-04-16 00:11:51,002 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 12:55:22,202 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 6695 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 12:55:22,331 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 12:55:22,455 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5bf0d49: startup date [Wed May 02 12:55:22 MSK 2018]; root of context hierarchy
+2018-05-02 12:55:23,499 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 12:55:23,863 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a1c4a5f8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 12:55:24,214 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 12:55:24,246 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 12:55:24,246 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 12:55:24,260 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 12:55:24,386 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 12:55:24,386 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1932 ms
+2018-05-02 12:55:24,478 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 12:55:24,478 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 12:55:24,596 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 12:55:24,596 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 12:55:24,596 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 12:55:24,596 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 12:55:24,597 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 12:55:24,654 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 12:55:24,655 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 12:55:24,656 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 12:55:24,659 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 12:55:24,659 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 12:55:24,659 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 12:55:24,659 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 12:55:24,916 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 12:55:25,123 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 12:55:25,169 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 12:55:25,185 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 12:55:25,273 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 12:55:25,275 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 12:55:25,347 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 12:55:25,475 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 12:55:25,708 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.OrderTypeEntity, at table: orders, for columns: [org.hibernate.mapping.Column(order_type)]
+2018-05-02 12:55:25,709 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 12:55:25,715 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 12:55:25,718 INFO  [main] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2018-05-02 12:55:25,755 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-02 12:55:25,760 ERROR [main] org.springframework.boot.SpringApplication : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.OrderTypeEntity, at table: orders, for columns: [org.hibernate.mapping.Column(order_type)]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+	at com.isedykh.profiles.ProfilesApplication.main(ProfilesApplication.java:10)
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.OrderTypeEntity, at table: orders, for columns: [org.hibernate.mapping.Column(order_type)]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:402)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1761)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1698)
+	... 16 common frames omitted
+Caused by: org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.OrderTypeEntity, at table: orders, for columns: [org.hibernate.mapping.Column(order_type)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:456)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:423)
+	at org.hibernate.mapping.Property.isValid(Property.java:226)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:597)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:265)
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:329)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:459)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390)
+	... 20 common frames omitted
+2018-05-02 12:57:10,339 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 6827 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 12:57:10,342 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 12:57:10,499 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1d296da: startup date [Wed May 02 12:57:10 MSK 2018]; root of context hierarchy
+2018-05-02 12:57:11,573 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 12:57:11,926 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f8db67cd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 12:57:12,194 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 12:57:12,219 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 12:57:12,220 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 12:57:12,228 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 12:57:12,305 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 12:57:12,305 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1806 ms
+2018-05-02 12:57:12,395 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 12:57:12,396 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 12:57:12,409 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 12:57:12,409 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 12:57:12,409 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 12:57:12,409 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 12:57:12,409 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 12:57:12,534 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 12:57:12,536 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 12:57:12,537 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 12:57:12,539 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 12:57:12,540 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 12:57:12,540 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 12:57:12,540 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 12:57:12,699 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 12:57:12,828 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 12:57:12,870 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 12:57:12,887 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 12:57:12,967 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 12:57:12,968 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 12:57:13,002 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 12:57:13,105 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 12:57:13,335 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.OrderTypeEntity, at table: orders, for columns: [org.hibernate.mapping.Column(order_type)]
+2018-05-02 12:57:13,335 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 12:57:13,341 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 12:57:13,347 INFO  [main] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2018-05-02 12:57:13,360 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-02 12:57:13,365 ERROR [main] org.springframework.boot.SpringApplication : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.OrderTypeEntity, at table: orders, for columns: [org.hibernate.mapping.Column(order_type)]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+	at com.isedykh.profiles.ProfilesApplication.main(ProfilesApplication.java:10)
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.OrderTypeEntity, at table: orders, for columns: [org.hibernate.mapping.Column(order_type)]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:402)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1761)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1698)
+	... 16 common frames omitted
+Caused by: org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.OrderTypeEntity, at table: orders, for columns: [org.hibernate.mapping.Column(order_type)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:456)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:423)
+	at org.hibernate.mapping.Property.isValid(Property.java:226)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:597)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:265)
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:329)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:459)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390)
+	... 20 common frames omitted
+2018-05-02 13:15:14,766 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 7483 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 13:15:14,773 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 13:15:14,899 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:15:14 MSK 2018]; root of context hierarchy
+2018-05-02 13:15:16,013 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 13:15:16,384 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$886f9078] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 13:15:16,655 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 13:15:16,682 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 13:15:16,682 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 13:15:16,691 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 13:15:16,795 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 13:15:16,795 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1897 ms
+2018-05-02 13:15:16,866 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 13:15:16,866 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:15:16,880 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 13:15:16,881 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 13:15:16,881 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 13:15:16,881 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 13:15:16,881 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 13:15:17,003 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 13:15:17,005 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:15:17,005 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 13:15:17,008 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 13:15:17,008 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 13:15:17,008 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 13:15:17,008 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 13:15:17,156 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 13:15:17,276 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 13:15:17,314 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:15:17,330 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 13:15:17,400 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 13:15:17,401 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 13:15:17,432 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 13:15:17,539 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 13:15:18,205 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:15:18,262 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 13:15:18,266 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 4 ms.
+2018-05-02 13:15:18,695 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:15:18,968 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:15:14 MSK 2018]; root of context hierarchy
+2018-05-02 13:15:19,006 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 13:15:19,047 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 13:15:19,049 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 13:15:19,079 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:15:19,079 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:15:19,130 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 13:15:19,134 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 13:15:19,141 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@569348e1}
+2018-05-02 13:15:19,142 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 13:15:19,406 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 13:15:19,408 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 13:15:19,414 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 13:15:19,466 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 13:15:19,469 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.369 seconds (JVM running for 5.802)
+2018-05-02 13:15:19,546 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-02 13:15:19,551 ERROR [main] org.springframework.boot.SpringApplication : Application run failed
+java.lang.IllegalStateException: Failed to execute ApplicationRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:791)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:778)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+	at com.isedykh.profiles.ProfilesApplication.main(ProfilesApplication.java:10)
+Caused by: org.springframework.orm.jpa.JpaSystemException: could not serialize; nested exception is org.hibernate.type.SerializationException: could not serialize
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:314)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:225)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:527)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:153)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy99.save(Unknown Source)
+	at com.isedykh.profiles.DataInitializer.run(DataInitializer.java:43)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:788)
+	... 5 common frames omitted
+Caused by: org.hibernate.type.SerializationException: could not serialize
+	at org.hibernate.internal.util.SerializationHelper.serialize(SerializationHelper.java:119)
+	at org.hibernate.internal.util.SerializationHelper.serialize(SerializationHelper.java:144)
+	at org.hibernate.internal.util.SerializationHelper.clone(SerializationHelper.java:75)
+	at org.hibernate.type.descriptor.java.SerializableTypeDescriptor$SerializableMutabilityPlan.deepCopyNotNull(SerializableTypeDescriptor.java:42)
+	at org.hibernate.type.descriptor.java.SerializableTypeDescriptor$SerializableMutabilityPlan.deepCopyNotNull(SerializableTypeDescriptor.java:31)
+	at org.hibernate.type.descriptor.java.MutableMutabilityPlan.deepCopy(MutableMutabilityPlan.java:35)
+	at org.hibernate.type.AbstractStandardBasicType.deepCopy(AbstractStandardBasicType.java:312)
+	at org.hibernate.type.AbstractStandardBasicType.getReplacement(AbstractStandardBasicType.java:82)
+	at org.hibernate.type.AbstractStandardBasicType.replace(AbstractStandardBasicType.java:367)
+	at org.hibernate.type.TypeHelper.replace(TypeHelper.java:194)
+	at org.hibernate.event.internal.DefaultMergeEventListener.copyValues(DefaultMergeEventListener.java:431)
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsTransient(DefaultMergeEventListener.java:233)
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsDetached(DefaultMergeEventListener.java:301)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:170)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:69)
+	at org.hibernate.internal.SessionImpl.fireMerge(SessionImpl.java:883)
+	at org.hibernate.internal.SessionImpl.merge(SessionImpl.java:869)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:304)
+	at com.sun.proxy.$Proxy93.merge(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:493)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:377)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:200)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:629)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:593)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:578)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:59)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	... 16 common frames omitted
+Caused by: java.io.NotSerializableException: com.isedykh.profiles.dao.entity.TermEntity
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at java.util.HashMap.internalWriteEntries(HashMap.java:1789)
+	at java.util.HashMap.writeObject(HashMap.java:1363)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1128)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1496)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at org.hibernate.internal.util.SerializationHelper.serialize(SerializationHelper.java:115)
+	... 56 common frames omitted
+2018-05-02 13:15:19,555 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:15:14 MSK 2018]; root of context hierarchy
+2018-05-02 13:15:19,556 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 13:15:19,557 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 13:15:19,559 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:15:19,559 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 13:15:19,561 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 13:15:47,602 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 7576 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 13:15:47,605 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 13:15:47,690 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:15:47 MSK 2018]; root of context hierarchy
+2018-05-02 13:15:48,760 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 13:15:49,144 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$16a6eb4b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 13:15:49,431 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 13:15:49,459 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 13:15:49,459 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 13:15:49,470 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 13:15:49,570 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 13:15:49,570 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1881 ms
+2018-05-02 13:15:49,650 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 13:15:49,650 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:15:49,732 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 13:15:49,733 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 13:15:49,733 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 13:15:49,733 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 13:15:49,733 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 13:15:49,792 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 13:15:49,794 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:15:49,794 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 13:15:49,797 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 13:15:49,797 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 13:15:49,797 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 13:15:49,797 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 13:15:49,933 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 13:15:50,051 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 13:15:50,091 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:15:50,106 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 13:15:50,168 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 13:15:50,169 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 13:15:50,203 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 13:15:50,305 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 13:15:50,961 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:15:51,021 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 13:15:51,025 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 4 ms.
+2018-05-02 13:15:51,446 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:15:51,705 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:15:47 MSK 2018]; root of context hierarchy
+2018-05-02 13:15:51,742 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 13:15:51,779 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 13:15:51,780 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 13:15:51,809 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:15:51,809 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:15:51,864 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 13:15:51,868 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 13:15:51,875 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@6568f998}
+2018-05-02 13:15:51,876 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 13:15:52,125 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 13:15:52,127 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 13:15:52,133 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 13:15:52,167 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 13:15:52,170 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.248 seconds (JVM running for 5.67)
+2018-05-02 13:16:37,536 INFO  [Thread-3] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:15:47 MSK 2018]; root of context hierarchy
+2018-05-02 13:16:37,539 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 13:16:37,540 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 13:16:37,544 INFO  [Thread-3] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:16:37,545 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 13:16:37,548 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 13:16:40,504 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 7684 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 13:16:40,509 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 13:16:40,629 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:16:40 MSK 2018]; root of context hierarchy
+2018-05-02 13:16:41,389 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 13:16:41,761 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4b19dada] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 13:16:42,050 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 13:16:42,076 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 13:16:42,077 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 13:16:42,086 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 13:16:42,187 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 13:16:42,188 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1559 ms
+2018-05-02 13:16:42,260 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 13:16:42,260 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:16:42,273 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 13:16:42,273 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 13:16:42,273 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 13:16:42,273 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 13:16:42,273 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 13:16:42,403 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 13:16:42,405 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:16:42,406 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 13:16:42,408 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 13:16:42,409 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 13:16:42,409 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 13:16:42,409 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 13:16:42,566 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 13:16:42,681 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 13:16:42,720 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:16:42,734 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 13:16:42,800 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 13:16:42,802 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 13:16:42,834 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 13:16:42,938 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 13:16:43,589 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:16:43,649 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 13:16:43,653 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 4 ms.
+2018-05-02 13:16:44,047 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:16:44,293 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:16:40 MSK 2018]; root of context hierarchy
+2018-05-02 13:16:44,331 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 13:16:44,368 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 13:16:44,369 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 13:16:44,398 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:16:44,398 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:16:44,451 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 13:16:44,455 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 13:16:44,462 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@5f0f70c7}
+2018-05-02 13:16:44,463 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 13:16:44,732 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 13:16:44,734 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 13:16:44,740 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 13:16:44,772 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 13:16:44,774 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.103 seconds (JVM running for 5.529)
+2018-05-02 13:17:48,382 INFO  [Thread-3] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:16:40 MSK 2018]; root of context hierarchy
+2018-05-02 13:17:48,385 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 13:17:48,385 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 13:17:48,395 INFO  [Thread-3] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:17:48,396 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 13:17:48,400 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 13:17:51,328 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 7803 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 13:17:51,333 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 13:17:51,408 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5b7a5baa: startup date [Wed May 02 13:17:51 MSK 2018]; root of context hierarchy
+2018-05-02 13:17:52,510 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 13:17:52,864 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$dd34cf8a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 13:17:53,156 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 13:17:53,182 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 13:17:53,182 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 13:17:53,192 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 13:17:53,284 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 13:17:53,284 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1876 ms
+2018-05-02 13:17:53,360 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 13:17:53,360 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:17:53,374 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 13:17:53,374 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 13:17:53,375 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 13:17:53,375 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 13:17:53,375 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 13:17:53,508 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 13:17:53,510 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:17:53,510 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 13:17:53,513 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 13:17:53,513 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 13:17:53,513 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 13:17:53,513 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 13:17:53,655 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 13:17:53,777 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 13:17:53,816 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:17:53,832 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 13:17:53,916 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 13:17:53,917 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 13:17:53,953 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 13:17:54,065 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 13:17:54,754 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:17:54,815 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 13:17:54,820 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 4 ms.
+2018-05-02 13:17:55,237 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:17:55,505 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5b7a5baa: startup date [Wed May 02 13:17:51 MSK 2018]; root of context hierarchy
+2018-05-02 13:17:55,545 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 13:17:55,584 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 13:17:55,585 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 13:17:55,614 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:17:55,614 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:17:55,666 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 13:17:55,670 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 13:17:55,676 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@3111631d}
+2018-05-02 13:17:55,677 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 13:17:55,963 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 13:17:55,965 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 13:17:55,971 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 13:17:56,002 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 13:17:56,005 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.309 seconds (JVM running for 5.736)
+2018-05-02 13:18:32,345 INFO  [Thread-3] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5b7a5baa: startup date [Wed May 02 13:17:51 MSK 2018]; root of context hierarchy
+2018-05-02 13:18:32,350 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 13:18:32,352 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 13:18:32,356 INFO  [Thread-3] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:18:32,357 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 13:18:32,360 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 13:18:35,200 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 7896 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 13:18:35,203 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 13:18:35,272 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:18:35 MSK 2018]; root of context hierarchy
+2018-05-02 13:18:36,245 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 13:18:36,600 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$929d7a2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 13:18:36,894 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 13:18:36,922 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 13:18:36,923 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 13:18:36,932 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 13:18:37,032 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 13:18:37,032 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1760 ms
+2018-05-02 13:18:37,108 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 13:18:37,108 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:18:37,120 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 13:18:37,121 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 13:18:37,121 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 13:18:37,121 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 13:18:37,121 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 13:18:37,243 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 13:18:37,245 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:18:37,245 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 13:18:37,247 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 13:18:37,248 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 13:18:37,248 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 13:18:37,248 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 13:18:37,385 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 13:18:37,498 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 13:18:37,535 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:18:37,551 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 13:18:37,614 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 13:18:37,615 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 13:18:37,649 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 13:18:37,755 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 13:18:38,423 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:18:38,495 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 13:18:38,499 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 4 ms.
+2018-05-02 13:18:38,890 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:18:39,146 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:18:35 MSK 2018]; root of context hierarchy
+2018-05-02 13:18:39,201 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 13:18:39,241 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 13:18:39,242 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 13:18:39,270 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:18:39,270 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:18:39,319 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 13:18:39,323 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 13:18:39,330 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@35fa450f}
+2018-05-02 13:18:39,331 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 13:18:39,578 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 13:18:39,580 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 13:18:39,586 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 13:18:39,621 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 13:18:39,623 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.132 seconds (JVM running for 5.546)
+2018-05-02 13:18:39,711 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-02 13:18:39,717 ERROR [main] org.springframework.boot.SpringApplication : Application run failed
+java.lang.IllegalStateException: Failed to execute ApplicationRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:791)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:778)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+	at com.isedykh.profiles.ProfilesApplication.main(ProfilesApplication.java:10)
+Caused by: org.springframework.orm.jpa.JpaSystemException: could not serialize; nested exception is org.hibernate.type.SerializationException: could not serialize
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:314)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:225)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:527)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:153)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy99.save(Unknown Source)
+	at com.isedykh.profiles.DataInitializer.run(DataInitializer.java:42)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:788)
+	... 5 common frames omitted
+Caused by: org.hibernate.type.SerializationException: could not serialize
+	at org.hibernate.internal.util.SerializationHelper.serialize(SerializationHelper.java:119)
+	at org.hibernate.internal.util.SerializationHelper.serialize(SerializationHelper.java:144)
+	at org.hibernate.internal.util.SerializationHelper.clone(SerializationHelper.java:75)
+	at org.hibernate.type.descriptor.java.SerializableTypeDescriptor$SerializableMutabilityPlan.deepCopyNotNull(SerializableTypeDescriptor.java:42)
+	at org.hibernate.type.descriptor.java.SerializableTypeDescriptor$SerializableMutabilityPlan.deepCopyNotNull(SerializableTypeDescriptor.java:31)
+	at org.hibernate.type.descriptor.java.MutableMutabilityPlan.deepCopy(MutableMutabilityPlan.java:35)
+	at org.hibernate.type.AbstractStandardBasicType.deepCopy(AbstractStandardBasicType.java:312)
+	at org.hibernate.type.AbstractStandardBasicType.getReplacement(AbstractStandardBasicType.java:82)
+	at org.hibernate.type.AbstractStandardBasicType.replace(AbstractStandardBasicType.java:367)
+	at org.hibernate.type.TypeHelper.replace(TypeHelper.java:194)
+	at org.hibernate.event.internal.DefaultMergeEventListener.copyValues(DefaultMergeEventListener.java:431)
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsTransient(DefaultMergeEventListener.java:233)
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsDetached(DefaultMergeEventListener.java:301)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:170)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:69)
+	at org.hibernate.internal.SessionImpl.fireMerge(SessionImpl.java:883)
+	at org.hibernate.internal.SessionImpl.merge(SessionImpl.java:869)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:304)
+	at com.sun.proxy.$Proxy93.merge(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:493)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:377)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:200)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:629)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:593)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:578)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:59)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	... 16 common frames omitted
+Caused by: java.io.NotSerializableException: com.isedykh.profiles.dao.entity.TermEntity
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at java.util.HashMap.internalWriteEntries(HashMap.java:1789)
+	at java.util.HashMap.writeObject(HashMap.java:1363)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1128)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1496)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at org.hibernate.internal.util.SerializationHelper.serialize(SerializationHelper.java:115)
+	... 56 common frames omitted
+2018-05-02 13:18:39,719 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:18:35 MSK 2018]; root of context hierarchy
+2018-05-02 13:18:39,721 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 13:18:39,721 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 13:18:39,724 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:18:39,724 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 13:18:39,728 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 13:21:15,226 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 8068 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 13:21:15,230 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 13:21:15,339 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:21:15 MSK 2018]; root of context hierarchy
+2018-05-02 13:21:16,297 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 13:21:16,643 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fa80b3a7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 13:21:16,945 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 13:21:16,971 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 13:21:16,972 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 13:21:16,982 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 13:21:17,076 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 13:21:17,077 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1738 ms
+2018-05-02 13:21:17,148 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 13:21:17,148 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:21:17,163 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 13:21:17,163 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 13:21:17,163 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 13:21:17,163 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 13:21:17,163 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 13:21:17,296 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 13:21:17,297 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:21:17,298 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 13:21:17,300 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 13:21:17,300 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 13:21:17,301 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 13:21:17,301 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 13:21:17,441 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 13:21:17,551 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 13:21:17,589 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:21:17,605 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 13:21:17,674 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 13:21:17,676 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 13:21:17,712 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 13:21:17,818 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 13:21:18,481 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:21:18,538 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 13:21:18,543 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 4 ms.
+2018-05-02 13:21:18,943 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:21:19,196 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:21:15 MSK 2018]; root of context hierarchy
+2018-05-02 13:21:19,233 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 13:21:19,269 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 13:21:19,270 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 13:21:19,298 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:21:19,298 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:21:19,347 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 13:21:19,351 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 13:21:19,358 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@37314843}
+2018-05-02 13:21:19,359 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 13:21:19,605 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 13:21:19,608 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 13:21:19,613 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 13:21:19,646 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 13:21:19,650 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.088 seconds (JVM running for 5.521)
+2018-05-02 13:21:41,490 INFO  [Thread-3] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:21:15 MSK 2018]; root of context hierarchy
+2018-05-02 13:21:41,495 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 13:21:41,496 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 13:21:41,501 INFO  [Thread-3] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:21:41,503 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 13:21:41,511 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 13:21:44,497 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 8176 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 13:21:44,514 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 13:21:44,606 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:21:44 MSK 2018]; root of context hierarchy
+2018-05-02 13:21:45,557 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 13:21:45,910 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$92326afd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 13:21:46,181 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 13:21:46,206 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 13:21:46,207 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 13:21:46,215 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 13:21:46,311 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 13:21:46,312 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1706 ms
+2018-05-02 13:21:46,386 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 13:21:46,387 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:21:46,402 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 13:21:46,404 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 13:21:46,404 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 13:21:46,404 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 13:21:46,404 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 13:21:46,566 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 13:21:46,568 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:21:46,569 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 13:21:46,572 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 13:21:46,572 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 13:21:46,572 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 13:21:46,572 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 13:21:46,803 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 13:21:46,914 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 13:21:46,953 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:21:46,969 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 13:21:47,042 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 13:21:47,043 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 13:21:47,096 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 13:21:47,200 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 13:21:47,894 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:21:47,953 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 13:21:47,957 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 4 ms.
+2018-05-02 13:21:48,384 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:21:48,672 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:21:44 MSK 2018]; root of context hierarchy
+2018-05-02 13:21:48,713 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 13:21:48,754 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 13:21:48,755 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 13:21:48,785 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:21:48,785 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:21:48,838 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 13:21:48,842 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 13:21:48,847 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@26275b46}
+2018-05-02 13:21:48,849 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 13:21:49,126 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 13:21:49,128 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 13:21:49,134 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 13:21:49,160 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 13:21:49,163 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.455 seconds (JVM running for 5.879)
+2018-05-02 13:49:59,951 INFO  [Thread-3] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:21:44 MSK 2018]; root of context hierarchy
+2018-05-02 13:49:59,954 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 13:49:59,955 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 13:49:59,968 INFO  [Thread-3] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:49:59,969 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 13:49:59,978 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 13:50:02,960 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 8856 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 13:50:02,967 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 13:50:03,081 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:50:03 MSK 2018]; root of context hierarchy
+2018-05-02 13:50:03,955 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 13:50:04,374 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a1d99cc7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 13:50:04,640 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 13:50:04,665 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 13:50:04,665 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 13:50:04,674 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 13:50:04,772 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 13:50:04,773 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1692 ms
+2018-05-02 13:50:04,843 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 13:50:04,843 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:50:04,857 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 13:50:04,857 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 13:50:04,857 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 13:50:04,857 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 13:50:04,857 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 13:50:04,991 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 13:50:04,993 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 13:50:04,993 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 13:50:04,996 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 13:50:04,996 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 13:50:04,996 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 13:50:04,996 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 13:50:05,143 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 13:50:05,278 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 13:50:05,319 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:50:05,335 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 13:50:05,406 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 13:50:05,407 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 13:50:05,442 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 13:50:05,548 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 13:50:06,204 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:50:06,262 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 13:50:06,266 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 4 ms.
+2018-05-02 13:50:06,684 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:50:06,934 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:50:03 MSK 2018]; root of context hierarchy
+2018-05-02 13:50:06,976 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 13:50:07,015 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 13:50:07,016 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 13:50:07,044 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:50:07,044 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 13:50:07,100 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 13:50:07,104 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 13:50:07,112 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@4ea1aa52}
+2018-05-02 13:50:07,113 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 13:50:07,406 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 13:50:07,408 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 13:50:07,413 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 13:50:07,458 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 13:50:07,461 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.264 seconds (JVM running for 5.71)
+2018-05-02 13:50:07,546 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-02 13:50:07,551 ERROR [main] org.springframework.boot.SpringApplication : Application run failed
+java.lang.IllegalStateException: Failed to execute ApplicationRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:791)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:778)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+	at com.isedykh.profiles.ProfilesApplication.main(ProfilesApplication.java:10)
+Caused by: org.springframework.orm.jpa.JpaSystemException: could not serialize; nested exception is org.hibernate.type.SerializationException: could not serialize
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:314)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:225)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:527)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:153)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy99.save(Unknown Source)
+	at com.isedykh.profiles.DataInitializer.run(DataInitializer.java:57)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:788)
+	... 5 common frames omitted
+Caused by: org.hibernate.type.SerializationException: could not serialize
+	at org.hibernate.internal.util.SerializationHelper.serialize(SerializationHelper.java:119)
+	at org.hibernate.internal.util.SerializationHelper.serialize(SerializationHelper.java:144)
+	at org.hibernate.internal.util.SerializationHelper.clone(SerializationHelper.java:75)
+	at org.hibernate.type.descriptor.java.SerializableTypeDescriptor$SerializableMutabilityPlan.deepCopyNotNull(SerializableTypeDescriptor.java:42)
+	at org.hibernate.type.descriptor.java.SerializableTypeDescriptor$SerializableMutabilityPlan.deepCopyNotNull(SerializableTypeDescriptor.java:31)
+	at org.hibernate.type.descriptor.java.MutableMutabilityPlan.deepCopy(MutableMutabilityPlan.java:35)
+	at org.hibernate.type.AbstractStandardBasicType.deepCopy(AbstractStandardBasicType.java:312)
+	at org.hibernate.type.AbstractStandardBasicType.getReplacement(AbstractStandardBasicType.java:82)
+	at org.hibernate.type.AbstractStandardBasicType.replace(AbstractStandardBasicType.java:367)
+	at org.hibernate.type.TypeHelper.replace(TypeHelper.java:194)
+	at org.hibernate.event.internal.DefaultMergeEventListener.copyValues(DefaultMergeEventListener.java:431)
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsTransient(DefaultMergeEventListener.java:233)
+	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsDetached(DefaultMergeEventListener.java:301)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:170)
+	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:69)
+	at org.hibernate.internal.SessionImpl.fireMerge(SessionImpl.java:883)
+	at org.hibernate.internal.SessionImpl.merge(SessionImpl.java:869)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:304)
+	at com.sun.proxy.$Proxy93.merge(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:493)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:377)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:200)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:629)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:593)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:578)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:59)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	... 16 common frames omitted
+Caused by: java.io.NotSerializableException: com.isedykh.profiles.dao.entity.TermEntity
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at java.util.HashMap.internalWriteEntries(HashMap.java:1789)
+	at java.util.HashMap.writeObject(HashMap.java:1363)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1128)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1496)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at org.hibernate.internal.util.SerializationHelper.serialize(SerializationHelper.java:115)
+	... 56 common frames omitted
+2018-05-02 13:50:07,556 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 13:50:03 MSK 2018]; root of context hierarchy
+2018-05-02 13:50:07,558 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 13:50:07,558 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 13:50:07,561 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 13:50:07,561 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 13:50:07,564 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 14:00:40,617 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 9753 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 14:00:40,643 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 14:00:40,741 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@13c9d689: startup date [Wed May 02 14:00:40 MSK 2018]; root of context hierarchy
+2018-05-02 14:00:41,731 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 14:00:42,090 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8f17572a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 14:00:42,367 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 14:00:42,394 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 14:00:42,394 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 14:00:42,404 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 14:00:42,505 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 14:00:42,505 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1764 ms
+2018-05-02 14:00:42,607 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 14:00:42,607 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:00:42,626 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 14:00:42,627 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 14:00:42,627 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 14:00:42,627 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 14:00:42,627 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 14:00:42,765 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 14:00:42,767 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:00:42,767 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 14:00:42,771 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 14:00:42,771 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 14:00:42,771 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 14:00:42,771 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 14:00:42,922 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 14:00:43,047 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 14:00:43,093 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 14:00:43,109 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 14:00:43,180 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 14:00:43,181 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 14:00:43,215 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 14:00:43,321 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 14:00:43,520 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: @OneToOne or @ManyToOne on com.isedykh.profiles.dao.entity.ThingEntity.prices references an unknown entity: java.util.HashMap
+2018-05-02 14:00:43,520 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 14:00:43,522 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 14:00:43,525 INFO  [main] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2018-05-02 14:00:43,538 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-02 14:00:43,543 ERROR [main] org.springframework.boot.SpringApplication : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: @OneToOne or @ManyToOne on com.isedykh.profiles.dao.entity.ThingEntity.prices references an unknown entity: java.util.HashMap
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+	at com.isedykh.profiles.ProfilesApplication.main(ProfilesApplication.java:10)
+Caused by: org.hibernate.AnnotationException: @OneToOne or @ManyToOne on com.isedykh.profiles.dao.entity.ThingEntity.prices references an unknown entity: java.util.HashMap
+	at org.hibernate.cfg.ToOneFkSecondPass.doSecondPass(ToOneFkSecondPass.java:97)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processEndOfQueue(InFlightMetadataCollectorImpl.java:1766)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processFkSecondPassesInOrder(InFlightMetadataCollectorImpl.java:1710)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1597)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:278)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1761)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1698)
+	... 16 common frames omitted
+2018-05-02 14:09:42,584 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 10404 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 14:09:42,589 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 14:09:42,675 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@557caf28: startup date [Wed May 02 14:09:42 MSK 2018]; root of context hierarchy
+2018-05-02 14:09:44,137 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 14:09:44,503 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a33d2c23] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 14:09:44,778 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 14:09:44,802 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 14:09:44,802 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 14:09:44,810 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 14:09:44,906 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 14:09:44,906 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 2231 ms
+2018-05-02 14:09:44,976 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 14:09:44,977 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:09:45,054 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 14:09:45,055 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 14:09:45,055 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 14:09:45,055 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 14:09:45,055 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 14:09:45,115 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 14:09:45,116 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:09:45,117 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 14:09:45,119 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 14:09:45,120 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 14:09:45,120 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 14:09:45,120 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 14:09:45,261 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 14:09:45,387 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 14:09:45,425 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 14:09:45,440 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 14:09:45,504 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 14:09:45,505 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 14:09:45,537 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 14:09:45,642 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 14:09:45,857 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.TermEntity, at table: prices, for columns: [org.hibernate.mapping.Column(term)]
+2018-05-02 14:09:45,858 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 14:09:45,860 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 14:09:45,863 INFO  [main] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2018-05-02 14:09:45,876 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-02 14:09:45,880 ERROR [main] org.springframework.boot.SpringApplication : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.TermEntity, at table: prices, for columns: [org.hibernate.mapping.Column(term)]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+	at com.isedykh.profiles.ProfilesApplication.main(ProfilesApplication.java:10)
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.TermEntity, at table: prices, for columns: [org.hibernate.mapping.Column(term)]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:402)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1761)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1698)
+	... 16 common frames omitted
+Caused by: org.hibernate.MappingException: Could not determine type for: com.isedykh.profiles.dao.entity.TermEntity, at table: prices, for columns: [org.hibernate.mapping.Column(term)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:456)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:423)
+	at org.hibernate.mapping.Property.isValid(Property.java:226)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:597)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:265)
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:329)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:459)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:892)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390)
+	... 20 common frames omitted
+2018-05-02 14:11:00,846 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 10503 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 14:11:00,850 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 14:11:01,010 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 14:11:01 MSK 2018]; root of context hierarchy
+2018-05-02 14:11:01,991 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 14:11:02,355 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$716a3cd3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 14:11:02,647 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 14:11:02,674 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 14:11:02,674 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 14:11:02,683 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 14:11:02,784 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 14:11:02,784 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1774 ms
+2018-05-02 14:11:02,859 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 14:11:02,860 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:11:02,873 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 14:11:02,873 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 14:11:02,873 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 14:11:02,873 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 14:11:02,874 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 14:11:03,004 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 14:11:03,006 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:11:03,006 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 14:11:03,009 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 14:11:03,009 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 14:11:03,009 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 14:11:03,009 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 14:11:03,151 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 14:11:03,271 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 14:11:03,310 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 14:11:03,326 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 14:11:03,401 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 14:11:03,403 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 14:11:03,440 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 14:11:03,544 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 14:11:03,743 WARN  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: @Column(s) not allowed on a @ManyToOne property: com.isedykh.profiles.dao.entity.PriceEntity.term
+2018-05-02 14:11:03,744 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 14:11:03,749 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 14:11:03,752 INFO  [main] org.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2018-05-02 14:11:03,765 INFO  [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-02 14:11:03,770 ERROR [main] org.springframework.boot.SpringApplication : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: @Column(s) not allowed on a @ManyToOne property: com.isedykh.profiles.dao.entity.PriceEntity.term
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+	at com.isedykh.profiles.ProfilesApplication.main(ProfilesApplication.java:10)
+Caused by: org.hibernate.AnnotationException: @Column(s) not allowed on a @ManyToOne property: com.isedykh.profiles.dao.entity.PriceEntity.term
+	at org.hibernate.cfg.AnnotationBinder.processElementAnnotations(AnnotationBinder.java:1759)
+	at org.hibernate.cfg.AnnotationBinder.processIdPropertiesIfNotAlready(AnnotationBinder.java:924)
+	at org.hibernate.cfg.AnnotationBinder.bindClass(AnnotationBinder.java:751)
+	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.processEntityHierarchies(AnnotationMetadataSourceProcessorImpl.java:249)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess$1.processEntityHierarchies(MetadataBuildingProcess.java:222)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:265)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1761)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1698)
+	... 16 common frames omitted
+2018-05-02 14:11:27,740 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 10571 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 14:11:27,743 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 14:11:27,845 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@13c9d689: startup date [Wed May 02 14:11:27 MSK 2018]; root of context hierarchy
+2018-05-02 14:11:28,778 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 14:11:29,145 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b2a98a3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 14:11:29,436 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 14:11:29,461 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 14:11:29,461 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 14:11:29,469 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 14:11:29,563 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 14:11:29,563 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1718 ms
+2018-05-02 14:11:29,635 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 14:11:29,635 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:11:29,649 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 14:11:29,649 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 14:11:29,649 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 14:11:29,650 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 14:11:29,650 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 14:11:29,770 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 14:11:29,772 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:11:29,772 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 14:11:29,775 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 14:11:29,775 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 14:11:29,775 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 14:11:29,775 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 14:11:29,920 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 14:11:30,039 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 14:11:30,077 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 14:11:30,094 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 14:11:30,160 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 14:11:30,161 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 14:11:30,196 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 14:11:30,307 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 14:11:30,988 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 14:11:31,048 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 14:11:31,052 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 4 ms.
+2018-05-02 14:11:31,475 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 14:11:31,750 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@13c9d689: startup date [Wed May 02 14:11:27 MSK 2018]; root of context hierarchy
+2018-05-02 14:11:31,792 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 14:11:31,831 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 14:11:31,832 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 14:11:31,864 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 14:11:31,864 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 14:11:31,918 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 14:11:31,923 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 14:11:31,929 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@23ad2d17}
+2018-05-02 14:11:31,931 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 14:11:32,202 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 14:11:32,204 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 14:11:32,210 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 14:11:32,246 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 14:11:32,249 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.214 seconds (JVM running for 5.623)
+2018-05-02 14:18:58,555 INFO  [Thread-3] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@13c9d689: startup date [Wed May 02 14:11:27 MSK 2018]; root of context hierarchy
+2018-05-02 14:18:58,566 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 14:18:58,567 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 14:18:58,575 INFO  [Thread-3] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 14:18:58,576 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 14:18:58,590 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2018-05-02 14:19:01,846 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ivan-Z68AP-D3 with PID 10929 (/home/ivan/IdeaProjects/profiles/out/production/classes started by ivan in /home/ivan/IdeaProjects/profiles)
+2018-05-02 14:19:01,849 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2,test
+2018-05-02 14:19:01,959 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 14:19:01 MSK 2018]; root of context hierarchy
+2018-05-02 14:19:02,986 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-02 14:19:03,340 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6ccd0337] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-02 14:19:03,623 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-02 14:19:03,652 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-02 14:19:03,652 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-02 14:19:03,663 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2018-05-02 14:19:03,769 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-02 14:19:03,770 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1811 ms
+2018-05-02 14:19:03,848 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-02 14:19:03,848 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:19:03,862 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-02 14:19:03,862 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-02 14:19:03,862 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-02 14:19:03,862 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-02 14:19:03,862 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-02 14:19:04,002 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-02 14:19:04,004 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-02 14:19:04,005 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-02 14:19:04,007 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-02 14:19:04,007 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-02 14:19:04,007 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-02 14:19:04,007 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-02 14:19:04,164 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-02 14:19:04,275 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-02 14:19:04,313 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-02 14:19:04,329 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-02 14:19:04,402 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-02 14:19:04,403 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-02 14:19:04,437 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-02 14:19:04,542 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-02 14:19:05,205 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 14:19:05,262 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-02 14:19:05,266 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 3 ms.
+2018-05-02 14:19:05,708 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 14:19:05,964 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 14:19:01 MSK 2018]; root of context hierarchy
+2018-05-02 14:19:06,003 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-02 14:19:06,039 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-02 14:19:06,040 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-02 14:19:06,073 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 14:19:06,073 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-02 14:19:06,128 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-02 14:19:06,132 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-02 14:19:06,161 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@14457a95}
+2018-05-02 14:19:06,162 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-02 14:19:06,408 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-02 14:19:06,410 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-02 14:19:06,416 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-02 14:19:06,450 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-02 14:19:06,453 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 5.267 seconds (JVM running for 5.68)
+2018-05-02 14:20:55,925 INFO  [Thread-3] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62379589: startup date [Wed May 02 14:19:01 MSK 2018]; root of context hierarchy
+2018-05-02 14:20:55,927 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans on shutdown
+2018-05-02 14:20:55,928 INFO  [Thread-3] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Unregistering JMX-exposed beans
+2018-05-02 14:20:55,943 INFO  [Thread-3] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-02 14:20:55,944 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2018-05-02 14:20:55,947 INFO  [Thread-3] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
