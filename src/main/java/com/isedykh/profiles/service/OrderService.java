@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface OrderService {
 
-    List<Order> getPersonOrderHistory(Person person);
+    Order findById(long id);
+
+    List<Order> getPersonOrderHistory(Client client);
 
     List<Order> getPersonOrderHistory(long personId);
 

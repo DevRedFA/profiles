@@ -5,9 +5,7 @@ package com.isedykh.profiles.ui;
 //import com.basakpie.view.ErrorView;
 //import com.basakpie.view.UserView;
 
-import com.isedykh.profiles.view.AccessDeniedView;
-import com.isedykh.profiles.view.CommonView;
-import com.isedykh.profiles.view.ErrorView;
+import com.isedykh.profiles.view.*;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewDisplay;
@@ -23,7 +21,6 @@ import org.springframework.context.ApplicationContext;
 //import org.vaadin.spring.security.VaadinSecurity;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
 
 @Theme("Demo")
 @SpringUI(path = "/")
@@ -51,7 +48,9 @@ public class MyMainUI extends UI implements ViewDisplay {
         getPage().setTitle("Procaton storage client");
         final CssLayout navigationBar = new CssLayout();
         navigationBar.addStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
-        navigationBar.addComponent(createNavigationButton("Common View", CommonView.VIEW_NAME));
+        navigationBar.addComponent(createNavigationButton("Things", ThingsView.VIEW_NAME));
+        navigationBar.addComponent(createNavigationButton("Clients", ClientsView.VIEW_NAME));
+        navigationBar.addComponent(createNavigationButton("Orders", OrdersView.VIEW_NAME));
 //		navigationBar.addComponent(new Button("Logout", e -> vaadinSecurity.logout()));
 
         final VerticalLayout root = new VerticalLayout();

@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Data
-@ToString(exclude = "person")
+@ToString(exclude = "client")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -42,10 +42,10 @@ public class OrderEntity {
     private ThingEntity thing;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id",
+    @JoinColumn(name = "client_id",
             referencedColumnName = "id",
             nullable = false)
-    private PersonEntity person;
+    private ClientEntity client;
 
     @Column(nullable = false)
     private int price;

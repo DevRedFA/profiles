@@ -6,7 +6,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class Thing {
+public class Thing implements Identifiable{
+
+    private long id;
 
     private String name;
 

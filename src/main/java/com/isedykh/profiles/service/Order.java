@@ -2,23 +2,22 @@ package com.isedykh.profiles.service;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
-public class Order {
+public class Order implements Identifiable {
+
+    private long id;
 
     private Date begin;
 
     private Date end;
 
-    private OrderType orderType;
-
-    private Status status;
+    private OrderStatus status;
 
     private Thing thing;
 
-    private Person person;
+    private Client client;
 
     private int price;
 

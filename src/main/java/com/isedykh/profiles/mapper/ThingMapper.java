@@ -15,23 +15,24 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ThingMapper {
 
-    Thing ThingEntityToThing(ThingEntity ThingEntity);
+    Thing thingEntityToThing(ThingEntity thingEntity);
 
-    ThingEntity ThingToThingEntity(Thing Thing);
+    ThingEntity thingToThingEntity(Thing thing);
 
-    List<Thing> ThingEntitiesToThings(List<ThingEntity> ThingEntities);
+    List<Thing> thingEntitiesToThings(List<ThingEntity> thingEntities);
 
-    List<ThingEntity> ThingsToThingEntities(List<Thing> Thing);
+    List<ThingEntity> thingsToThingEntities(List<Thing> thing);
 
 
     //shitty decision, but now have no better idea
-    default ThingDto ThingToThingDto(Thing thing) {
+    default ThingDto thingToThingDto(Thing thing) {
 
         List<Price> prices = thing.getPrices();
         final Price[] day = new Price[1];
         final Price[] week = new Price[1];
         final Price[] twoWeeks = new Price[1];
         final Price[] month = new Price[1];
+        // FIXME: 04.05.2018 change to public static constants in some class
         prices.forEach(s -> {
             if (s.getTerm().equals(new Term("DAY"))) {
                 day[0] = s;
@@ -39,7 +40,7 @@ public interface ThingMapper {
             if (s.getTerm().equals(new Term("WEEK"))) {
                 week[0] = s;
             }
-            if (s.getTerm().equals(new Term("TWO_WEEKS"))) {
+            if (s.getTerm().equals(new Term("TWO WEEKS"))) {
                 twoWeeks[0] = s;
             }
             if (s.getTerm().equals(new Term("MONTH"))) {
@@ -49,6 +50,7 @@ public interface ThingMapper {
 
         return ThingDto.builder().name(thing.getName())
                 .deposit(thing.getDeposit())
+                .id(thing.getId())
                 .pathToPhoto(thing.getPathToPhoto())
                 .photo(thing.getPhoto())
                 .purchaseDate(thing.getPurchaseDate())

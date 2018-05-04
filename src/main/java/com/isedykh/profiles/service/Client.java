@@ -6,9 +6,11 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class Person {
+public class Client implements Identifiable {
 
-    private String Name;
+    private long id;
+
+    private String name;
 
     private long phone;
 

@@ -1,20 +1,26 @@
 package com.isedykh.profiles.service;
 
 import com.isedykh.profiles.dao.repository.PersonEntityRepository;
+import lombok.RequiredArgsConstructor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {PersonServiceImpl.class})
-public class PersonServiceImplTest {
+@ActiveProfiles("test")
+//@DataJpaTest
+@SpringBootTest
+@RequiredArgsConstructor
+//@ContextConfiguration(classes = {ClientServiceImpl.class, PersonEntityRepository.class})
+public class ClientServiceImplIT {
 
-    private PersonService personService;
+    @Autowired
+    private ClientService clientService;
 
-    @MockBean
+    @Autowired
     private PersonEntityRepository personEntityRepository;
 
     @Test

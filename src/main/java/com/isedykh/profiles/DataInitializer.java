@@ -3,7 +3,6 @@ package com.isedykh.profiles;
 import com.isedykh.profiles.dao.entity.*;
 import com.isedykh.profiles.dao.repository.*;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,7 +44,7 @@ public class DataInitializer implements ApplicationRunner {
 
         TermEntity day = termEntityRepository.save(new TermEntity(1, "DAY"));
         TermEntity week = termEntityRepository.save(new TermEntity(2, "WEEK"));
-        TermEntity twoWeeks = termEntityRepository.save(new TermEntity(3, "TWO_WEEKS"));
+        TermEntity twoWeeks = termEntityRepository.save(new TermEntity(3, "TWO WEEKS"));
         TermEntity month = termEntityRepository.save(new TermEntity(4, "MONTH"));
 
         //init thingStatus
@@ -89,8 +87,8 @@ public class DataInitializer implements ApplicationRunner {
         booked = orderStatusEntityRepository.save(booked);
 
 
-        //init Person
-        PersonEntity person = new PersonEntity(3, "name 3", 3333333333L, 44444444444L, "address 3",
+        //init Client
+        ClientEntity person = new ClientEntity(3, "name 3", 3333333333L, 44444444444L, "address 3",
                 4, "children comments 3", "mail3@mail.com", "contack link 3", Collections.emptyList());
         person = personEntityRepository.save(person);
 
@@ -104,5 +102,6 @@ public class DataInitializer implements ApplicationRunner {
         Thread.sleep(100);
 
         // TODO: 5/3/18 new view: detal for thing page
+        // FIXME: 04.05.2018 nullable params in client and others entities
     }
 }

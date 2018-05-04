@@ -12,12 +12,12 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ThingTypeMapper {
 
-    ThingType ThingTypeEntityToThingType(ThingTypeEntity ThingTypeEntity);
+    ThingType thingTypeEntityToThingType(ThingTypeEntity ThingTypeEntity);
 
-    ThingTypeEntity ThingTypeToThingTypeEntity(ThingType ThingType);
+    ThingTypeEntity thingTypeToThingTypeEntity(ThingType ThingType);
 
-    List<ThingType> ThingTypeEntitiesToThingTypes(List<ThingTypeEntity> ThingTypeEntities);
+    List<ThingType> thingTypeEntitiesToThingTypes(List<ThingTypeEntity> ThingTypeEntities);
 
-    List<ThingTypeEntity> ThingTypesToThingTypeEntities(List<ThingType> ThingType);
+    List<ThingTypeEntity> thingTypesToThingTypeEntities(List<ThingType> ThingType);
 
 }

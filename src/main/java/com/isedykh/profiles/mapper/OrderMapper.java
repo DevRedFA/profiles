@@ -3,6 +3,7 @@ package com.isedykh.profiles.mapper;
 import com.isedykh.profiles.dao.entity.OrderEntity;
 import com.isedykh.profiles.service.Order;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +13,13 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrderMapper {
 
-    Order OrderEntityToOrder(OrderEntity OrderEntity);
+    @Mapping(target = "client", ignore = true)
+    Order orderEntityToOrder(OrderEntity orderEntity);
 
-    OrderEntity OrderToOrderEntity(Order Order);
+    OrderEntity orderToOrderEntity(Order order);
 
-    List<Order> OrderEntitiesToOrders(List<OrderEntity> OrderEntities);
+    List<Order> orderEntitiesToOrders(List<OrderEntity> orderEntities);
 
-    List<OrderEntity> OrdersToOrderEntities(List<Order> Order);
+    List<OrderEntity> ordersToOrderEntities(List<Order> order);
 
 }

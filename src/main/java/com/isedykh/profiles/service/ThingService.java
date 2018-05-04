@@ -4,9 +4,13 @@ import java.util.List;
 
 public interface ThingService {
 
-    List<Thing> getAll();
+    List<Thing> findAll();
 
-    List<Thing> getAllThingPersonGet(Person person);
+    Thing getById(long id);
+
+    List<Thing> getAllThingsByType(ThingType type);
+
+    List<Thing> getAllThingPersonGet(Client client);
 
     List<Thing> getAllThingPersonGet(long personId);
 

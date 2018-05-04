@@ -8,7 +8,9 @@ import java.util.List;
 
 @Data
 @Builder
-public class ThingDto {
+public class ThingDto implements Identifiable{
+
+    private long id;
 
     private String name;
 

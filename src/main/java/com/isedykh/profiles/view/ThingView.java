@@ -1,54 +1,92 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.mapper.ThingMapper;
+import com.isedykh.profiles.service.Price;
+import com.isedykh.profiles.service.Thing;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @SpringView(name = ThingView.VIEW_NAME)
 public class ThingView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "thing";
 
-    private ThingService thingService;
+    @Autowired
+    private final ThingService thingService;
 
-    private ThingMapper thingMapper;
+    @Autowired
+    private final ThingMapper thingMapper;
+
+    private Thing thing;
+
+    private TextField name = new TextField("Name");
+
+    private TextField type = new TextField("Type");
+
+    private TextField status = new TextField("Status");
+
+    private TextField purchasePrice = new TextField("Purchase price");
+
+    private TextField purchaseDate = new TextField("Purchase date");
+
+    private TextField deposit = new TextField("Deposit");
+
+    VerticalLayout verticalLayout = new VerticalLayout();
+
+    HorizontalLayout horizontalLayout = new HorizontalLayout();
+
+    Grid<Price> pricesGrind = new Grid<>();
 
     @PostConstruct
     public void init() {
-        addComponent(new Label("All things"));
-
-        List<ThingDto> thingList = thingMapper.ThingsToThingDtos(thingService.getAll());
-        Grid<ThingDto> grid = new Grid<>();
-        grid.setSizeFull();
-        grid.setItems(thingList);
-        grid.addColumn(ThingDto::getName).setCaption("Name");
-        grid.addColumn(s -> s.getType().getName()).setCaption("Type");
-        grid.addColumn(ThingDto::getDeposit).setCaption("Deposit");
-        grid.addColumn(s -> s.getStatus().getName()).setCaption("Status");
-        grid.addColumn(ThingDto::getPriceForDay).setCaption("Day");
-        grid.addColumn(ThingDto::getPriceForWeek).setCaption("Week");
-        grid.addColumn(ThingDto::getPriceForTwoWeeks).setCaption("Two weeks");
-        grid.addColumn(ThingDto::getPriceForMonth).setCaption("Month");
-
-        addComponent(grid);
-        setExpandRatio(grid, 1f);
+        addComponent(new Label("Detail thing view"));
+        verticalLayout.addComponent(name);
+        verticalLayout.addComponent(type);
+        verticalLayout.addComponent(status);
+        verticalLayout.addComponent(purchasePrice);
+        verticalLayout.addComponent(purchaseDate);
+        verticalLayout.addComponent(pricesGrind);
+        pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
+        horizontalLayout.addComponent(verticalLayout);
+        addComponent(horizontalLayout);
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
+        if (event.getParameters() != null) {
+            if (event.getParameters().contains("new")) {
+                thing = new Thing();
+                name.setValue("");
 
+            } else {
+                int id = Integer.parseInt(event.getParameters());
+                try {
+                    thing = thingService.getById(id);
+                } catch (Exception e) {
+                    Notification.show("Thing with such id not found");
+                }
+
+            }
+        }
+        name.setValue(thing.getName());
+        type.setValue(thing.getType().getName());
+        status.setValue(thing.getStatus().getName());
+        purchasePrice.setValue(String.valueOf(thing.getPurchasePrice()));
+        purchaseDate.setValue(thing.getPurchaseDate().toString());
+        deposit.setValue(String.valueOf(thing.getDeposit()));
+
+        pricesGrind.setItems(thing.getPrices());
+        pricesGrind.addColumn(s -> s.getTerm().getName()).setCaption("Terms");
+        pricesGrind.addColumn(Price::getPrice).setCaption("Price");
     }
-
-
 }
