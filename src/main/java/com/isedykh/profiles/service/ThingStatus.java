@@ -3,7 +3,7 @@ package com.isedykh.profiles.service;
 import lombok.Data;
 
 @Data
-public class ThingType {
+public class ThingStatus {
 
     private String name;
 }

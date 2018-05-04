@@ -2,33 +2,37 @@ package com.isedykh.profiles;
 
 import com.isedykh.profiles.dao.entity.*;
 import com.isedykh.profiles.dao.repository.*;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class DataInitializer implements ApplicationRunner {
 
-    @Autowired
     private ThingTypeEntityRepository thingTypeEntityRepository;
 
-    @Autowired
     private ThingEntityRepository thingEntityRepository;
 
-    @Autowired
     private TermEntityRepository termEntityRepository;
 
-    @Autowired
     private PriceEntityRepository priceEntityRepository;
 
-    @Autowired
-    private StatusEntityRepository statusEntityRepository;
+    private OrderStatusEntityRepository orderStatusEntityRepository;
 
-    @Autowired
-    private OrderTypeEntityRepository orderTypeEntityRepository;
+    private ThingStatusEntityRepository thingStatusEntityRepository;
+
+    private PersonEntityRepository personEntityRepository;
+
+    private OrderEntityRepository orderEntityRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -38,43 +42,67 @@ public class DataInitializer implements ApplicationRunner {
         thingTypeEntityRepository.save(new ThingTypeEntity(2, "SLEEPBAG"));
         thingTypeEntityRepository.save(new ThingTypeEntity(3, "CHILD_CARRIER"));
 
-        //init Things
+        //init Term
 
         TermEntity day = termEntityRepository.save(new TermEntity(1, "DAY"));
         TermEntity week = termEntityRepository.save(new TermEntity(2, "WEEK"));
         TermEntity twoWeeks = termEntityRepository.save(new TermEntity(3, "TWO_WEEKS"));
         TermEntity month = termEntityRepository.save(new TermEntity(4, "MONTH"));
 
+        //init thingStatus
+        ThingStatusEntity repairedThing = new ThingStatusEntity(1, "REPAIRED");
+        ThingStatusEntity rentedThing = new ThingStatusEntity(2, "RENTED");
+        ThingStatusEntity bookedThing = new ThingStatusEntity(2, "BOOKED");
+        ThingStatusEntity freeThing = new ThingStatusEntity(2, "FREE");
+
+        repairedThing = thingStatusEntityRepository.save(repairedThing);
+        rentedThing = thingStatusEntityRepository.save(rentedThing);
+        bookedThing = thingStatusEntityRepository.save(bookedThing);
+        freeThing = thingStatusEntityRepository.save(freeThing);
+
+
         //init Thing
         ThingEntity thing = new ThingEntity(1, "Thing 1",
-                1000, LocalDate.now(), null, "c:/pathToPhoto", ergo, 300);
+                1000, LocalDate.now(), null, "c:/pathToPhoto", ergo, freeThing, Collections.EMPTY_LIST, 300);
         thing = thingEntityRepository.save(thing);
 
         //init Prices
         PriceEntity priceDay = new PriceEntity(1, day, 100, thing);
         PriceEntity priceWeek = new PriceEntity(2, week, 300, thing);
         PriceEntity priceTwoWeeks = new PriceEntity(3, twoWeeks, 500, thing);
+        PriceEntity priceMonth = new PriceEntity(4, month, 1000, thing);
 
         priceEntityRepository.save(priceDay);
         priceEntityRepository.save(priceWeek);
         priceEntityRepository.save(priceTwoWeeks);
+        priceEntityRepository.save(priceMonth);
 
-        //init Status
-        StatusEntity booked = new StatusEntity(1, "BOOKED");
-        StatusEntity rented = new StatusEntity(2, "RENTED");
-        StatusEntity free = new StatusEntity(3, "FREE");
+        //init OrderStatus
+        OrderStatusEntity rejected = new OrderStatusEntity(1, "REJECTED");
+        OrderStatusEntity rented = new OrderStatusEntity(2, "RENTED");
+        OrderStatusEntity closed = new OrderStatusEntity(3, "CLOSED");
+        OrderStatusEntity booked = new OrderStatusEntity(3, "BOOKED");
 
-        booked = statusEntityRepository.save(booked);
-        rented = statusEntityRepository.save(rented);
-        free = statusEntityRepository.save(free);
+        rejected = orderStatusEntityRepository.save(rejected);
+        rented = orderStatusEntityRepository.save(rented);
+        closed = orderStatusEntityRepository.save(closed);
+        booked = orderStatusEntityRepository.save(booked);
 
-        //init OrderTypes
-        OrderTypeEntity bookedOrder = new OrderTypeEntity(1, "BOOKED");
-        OrderTypeEntity payed = new OrderTypeEntity(2, "PAYED");
 
-        bookedOrder = orderTypeEntityRepository.save(bookedOrder);
-        payed = orderTypeEntityRepository.save(payed);
+        //init Person
+        PersonEntity person = new PersonEntity(3, "name 3", 3333333333L, 44444444444L, "address 3",
+                4, "children comments 3", "mail3@mail.com", "contack link 3", Collections.emptyList());
+        person = personEntityRepository.save(person);
 
-        // FIXME: 5/2/18 Try to save order and person, if ok - show some orders in common view.
+        //init Order
+        OrderEntity order = new OrderEntity(1, "Order comments 2", new Timestamp(System.currentTimeMillis()),
+                new Timestamp(System.currentTimeMillis() + 10000L), booked, thing, person, 1000);
+        OrderEntity save = orderEntityRepository.save(order);
+
+
+        Optional<ThingEntity> byId = thingEntityRepository.findById(1L);
+        Thread.sleep(100);
+
+        // TODO: 5/3/18 new view: detal for thing page
     }
 }

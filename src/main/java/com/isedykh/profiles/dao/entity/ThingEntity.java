@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 
 @Data
 @Entity
@@ -36,10 +37,21 @@ public class ThingEntity {
     private String pathToPhoto;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "thing_id",
+    @JoinColumn(name = "type_id",
             referencedColumnName = "id",
             nullable = false)
     private ThingTypeEntity type;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_id",
+            referencedColumnName = "id",
+            nullable = false)
+    private ThingStatusEntity status;
+
+
+    @OneToMany(mappedBy = "thing", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PriceEntity> prices;
+
 
     @Column(nullable = false)
     private int deposit;

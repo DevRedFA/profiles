@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "statuses", schema = "public")
-public class StatusEntity {
+@Table(name = "order_statuses", schema = "public")
+public class OrderStatusEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

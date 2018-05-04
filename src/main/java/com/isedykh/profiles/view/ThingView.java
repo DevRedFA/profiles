@@ -1,8 +1,6 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.mapper.ThingMapper;
-import com.isedykh.profiles.service.Term;
-import com.isedykh.profiles.service.Thing;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingService;
 import com.vaadin.navigator.View;
@@ -14,15 +12,13 @@ import com.vaadin.ui.VerticalLayout;
 import lombok.AllArgsConstructor;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @AllArgsConstructor
-@SpringView(name = CommonView.VIEW_NAME)
-public class CommonView extends VerticalLayout implements View {
+@SpringView(name = ThingView.VIEW_NAME)
+public class ThingView extends VerticalLayout implements View {
 
-    public static final String VIEW_NAME = "common";
+    public static final String VIEW_NAME = "thing";
 
     private ThingService thingService;
 

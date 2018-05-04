@@ -1,12 +1,18 @@
 package com.isedykh.profiles.dao.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Data
+@ToString(exclude = "person")
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "orders", schema = "public")
 public class OrderEntity {
 
@@ -24,21 +30,17 @@ public class OrderEntity {
     private Timestamp end;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_type_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private OrderTypeEntity orderType;
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id",
             referencedColumnName = "id",
             nullable = false)
-    private StatusEntity status;
+    private OrderStatusEntity status;
 
-//    @NonNull
-//    @Column(name = "thing", nullable = false)
-//    private ThingEntity thing;
-//
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "thing_id",
+            referencedColumnName = "id",
+            nullable = false)
+    private ThingEntity thing;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id",
             referencedColumnName = "id",
@@ -47,7 +49,4 @@ public class OrderEntity {
 
     @Column(nullable = false)
     private int price;
-
-
-
 }

@@ -14,7 +14,6 @@ public class Person {
 
     private long phoneSecond;
 
-
     private String address;
 
     private int childrenNumber;
