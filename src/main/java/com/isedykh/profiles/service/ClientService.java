@@ -1,5 +1,6 @@
 package com.isedykh.profiles.service;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -8,18 +9,18 @@ public interface ClientService {
 
     List<Client> findAll();
 
-    List<Client>  findAll(Pageable pageable);
+    Page<Client>  findAll(Pageable pageable);
 
-    Client savePerson(Client client);
+    Client saveClient(Client client);
 
-    Client updatePerson(Client client);
+    Client updateClient(Client client);
 
-    void deletePerson(Client client);
+    void deleteClient(Client client);
 
     // TODO: 4/12/18 Think about full text search instead
-    List<Client> findPersonByName(String string);
+    List<Client> findClientByName(String string);
 
-    List<Client> findPersonByPhone(long string);
+    List<Client> findClientByPhone(long string);
 
     Client findById(long id);
 

@@ -29,11 +29,8 @@ public class OrderEntity {
     @Column(nullable = false)
     private Timestamp end;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "status_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private OrderStatusEntity status;
+    @Enumerated(EnumType.ORDINAL)
+    private OrderStatus status;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "thing_id",

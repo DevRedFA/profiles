@@ -1,6 +1,6 @@
 package com.isedykh.profiles.service;
 
-import com.isedykh.profiles.dao.repository.PersonEntityRepository;
+import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +21,7 @@ public class ClientServiceImplIT {
     private ClientService clientService;
 
     @Autowired
-    private PersonEntityRepository personEntityRepository;
+    private ClientEntityRepository clientEntityRepository;
 
     @Test
     public void savePerson(){

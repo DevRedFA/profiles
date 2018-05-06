@@ -1,5 +1,6 @@
 package com.isedykh.profiles.view;
 
+import com.isedykh.profiles.dao.entity.OrderStatus;
 import com.isedykh.profiles.mapper.OrderMapper;
 import com.isedykh.profiles.service.Order;
 import com.isedykh.profiles.service.OrderService;
@@ -28,11 +29,11 @@ public class OrderView extends VerticalLayout implements View {
 
     private TextField idField = new TextField("Id");
 
-    private TextField status = new TextField("Status");
+    private ComboBox<OrderStatus> status = new ComboBox<>("Status");
 
-    private TextField begin = new TextField("Begin");
+    private DateField begin = new DateField("Begin");
 
-    private TextField end = new TextField("End");
+    private DateField end = new DateField("End");
 
     private TextField client = new TextField("Client");
 
@@ -40,7 +41,7 @@ public class OrderView extends VerticalLayout implements View {
 
     private TextField price = new TextField("Price");
 
-    private TextField comments = new TextField("Comments");
+    private TextArea comments = new TextArea("Comments");
 
     VerticalLayout verticalLayout = new VerticalLayout();
 
@@ -58,9 +59,10 @@ public class OrderView extends VerticalLayout implements View {
         verticalLayout.addComponent(client);
         verticalLayout.addComponent(thing);
         verticalLayout.addComponent(price);
-        verticalLayout.addComponent(comments);
 
         horizontalLayout.addComponent(verticalLayout);
+        horizontalLayout.addComponent(comments);
+
 
         addComponent(new Label("Detail order view"));
         addComponent(horizontalLayout);
@@ -84,10 +86,12 @@ public class OrderView extends VerticalLayout implements View {
             }
         }
         idField.setValue(String.valueOf(order.getId()));
-        // TODO: 04.05.2018 change to choosing bar
-        status.setValue(String.valueOf(order.getStatus().getName()));
-        begin.setValue(String.valueOf(order.getBegin()));
-        end.setValue(String.valueOf(order.getEnd()));
+
+        status.setItems(OrderStatus.values());
+        status.setSelectedItem(order.getStatus());
+
+        begin.setValue(order.getBegin());
+        end.setValue(order.getEnd());
         // TODO: 04.05.2018 add fast link to client
         client.setValue(order.getClient().getName());
         // TODO: 04.05.2018 add fast link to thing

@@ -1,5 +1,8 @@
 package com.isedykh.profiles.view;
 
+import com.isedykh.profiles.dao.entity.OrderStatus;
+import com.isedykh.profiles.dao.entity.ThingStatus;
+import com.isedykh.profiles.dao.entity.ThingType;
 import com.isedykh.profiles.mapper.ThingMapper;
 import com.isedykh.profiles.service.Price;
 import com.isedykh.profiles.service.Thing;
@@ -14,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @SpringView(name = ThingView.VIEW_NAME)
@@ -31,13 +35,13 @@ public class ThingView extends VerticalLayout implements View {
 
     private TextField name = new TextField("Name");
 
-    private TextField type = new TextField("Type");
+    private ComboBox<ThingType> type = new ComboBox<>("Type");
 
-    private TextField status = new TextField("Status");
+    private ComboBox<ThingStatus> status = new ComboBox<>("Status");
 
     private TextField purchasePrice = new TextField("Purchase price");
 
-    private TextField purchaseDate = new TextField("Purchase date");
+    private DateField purchaseDate = new DateField("Purchase date");
 
     private TextField deposit = new TextField("Deposit");
 
@@ -55,9 +59,9 @@ public class ThingView extends VerticalLayout implements View {
         verticalLayout.addComponent(status);
         verticalLayout.addComponent(purchasePrice);
         verticalLayout.addComponent(purchaseDate);
-        verticalLayout.addComponent(pricesGrind);
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
         horizontalLayout.addComponent(verticalLayout);
+        horizontalLayout.addComponent(pricesGrind);
         addComponent(horizontalLayout);
     }
 
@@ -79,14 +83,20 @@ public class ThingView extends VerticalLayout implements View {
             }
         }
         name.setValue(thing.getName());
-        type.setValue(thing.getType().getName());
-        status.setValue(thing.getStatus().getName());
+
+        type.setItems(ThingType.values());
+        type.setSelectedItem(thing.getType());
+
+        status.setItems(ThingStatus.values());
+        status.setSelectedItem(thing.getStatus());
+
         purchasePrice.setValue(String.valueOf(thing.getPurchasePrice()));
-        purchaseDate.setValue(thing.getPurchaseDate().toString());
+        purchaseDate.setValue(thing.getPurchaseDate());
         deposit.setValue(String.valueOf(thing.getDeposit()));
 
         pricesGrind.setItems(thing.getPrices());
-        pricesGrind.addColumn(s -> s.getTerm().getName()).setCaption("Terms");
+        pricesGrind.addColumn(Price::getTerm).setCaption("Terms");
         pricesGrind.addColumn(Price::getPrice).setCaption("Price");
+        pricesGrind.setHeightByRows(4);
     }
 }

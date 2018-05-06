@@ -1,6 +1,6 @@
 package com.isedykh.profiles.service;
 
-import com.isedykh.profiles.dao.repository.PersonEntityRepository;
+import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,7 +14,7 @@ public class ClientServiceImplTest {
     private ClientService clientService;
 
     @MockBean
-    private PersonEntityRepository personEntityRepository;
+    private ClientEntityRepository clientEntityRepository;
 
     @Test
     public void savePerson(){

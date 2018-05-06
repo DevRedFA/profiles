@@ -1,21 +1,18 @@
 package com.isedykh.profiles.view;
 
-import com.isedykh.profiles.mapper.ThingMapper;
-import com.isedykh.profiles.service.Identifiable;
-import com.isedykh.profiles.service.Thing;
-import com.isedykh.profiles.service.ThingDto;
-import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.mapper.OrderMapper;
+import com.isedykh.profiles.service.*;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 import java.util.Set;
-
-import static com.isedykh.profiles.common.Utils.initTailMenu;
+import java.util.concurrent.atomic.AtomicReference;
 
 @AllArgsConstructor
 @SpringView(name = OrdersView.VIEW_NAME)
@@ -23,34 +20,31 @@ public class OrdersView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "orders";
 
-    private ThingService thingService;
-
-    private ThingMapper thingMapper;
+    private OrderService orderService;
 
     @PostConstruct
     public void init() {
-        addComponent(new Label("All things"));
 
-        List<Thing> all = thingService.findAll();
-        List<ThingDto> thingList = thingMapper.ThingsToThingDtos(all);
-        Grid<ThingDto> orderGrid = new Grid<>();
+        AtomicReference<Page<Order>> orderPage = new AtomicReference<>(orderService.findAll(PageRequest.of(0, 17)));
+        Grid<Order> orderGrid = new Grid<>();
         orderGrid.setSizeFull();
         orderGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
-        orderGrid.setItems(thingList);
-        orderGrid.addColumn(ThingDto::getName).setCaption("Name");
-        orderGrid.addColumn(s -> s.getType().getName()).setCaption("Type");
-        orderGrid.addColumn(ThingDto::getDeposit).setCaption("Deposit");
-        orderGrid.addColumn(s -> s.getStatus().getName()).setCaption("Status");
-        orderGrid.addColumn(ThingDto::getPriceForDay).setCaption("Day");
-        orderGrid.addColumn(ThingDto::getPriceForWeek).setCaption("Week");
-        orderGrid.addColumn(ThingDto::getPriceForTwoWeeks).setCaption("Two weeks");
-        orderGrid.addColumn(ThingDto::getPriceForMonth).setCaption("Month");
+        orderGrid.setItems(orderPage.get().getContent());
+        orderGrid.addColumn(Order::getId).setCaption("Id");
+        orderGrid.addColumn(s -> s.getThing().getName()).setCaption("Thing");
+        orderGrid.addColumn(s -> s.getClient().getName()).setCaption("Client");
+        orderGrid.addColumn(Order::getPrice).setCaption("Price");
+        orderGrid.addColumn(Order::getStatus).setCaption("Status");
+        orderGrid.addColumn(Order::getBegin).setCaption("Begin");
+        orderGrid.addColumn(Order::getEnd).setCaption("End");
+        orderGrid.addColumn(Order::getComments).setCaption("Comments");
+        orderGrid.setHeightByRows(17);
         addComponent(orderGrid);
         setExpandRatio(orderGrid, 1f);
         orderGrid.addItemClickListener(clickEvent -> {
             if (clickEvent.getMouseEventDetails().isDoubleClick()) {
-                ThingDto thingDto = clickEvent.getItem();
-                String s = ThingView.VIEW_NAME + "/" + thingDto.getId();
+                Order order = clickEvent.getItem();
+                String s = OrderView.VIEW_NAME + "/" + order.getId();
                 getUI().getNavigator().navigateTo(s);
             }
         });
@@ -67,6 +61,22 @@ public class OrdersView extends VerticalLayout implements View {
         buttons.addComponent(buttonDetails);
         buttons.addComponent(buttonNew);
         buttons.addComponent(buttonNext);
+
+        buttonPrivious.setEnabled(false);
+
+        buttonNext.addClickListener(clickEvent -> {
+            orderPage.set(orderService.findAll(orderPage.get().nextPageable()));
+            orderGrid.setItems(orderPage.get().getContent());
+            buttonNext.setEnabled(!orderPage.get().isLast());
+            buttonPrivious.setEnabled(true);
+        });
+
+        buttonPrivious.addClickListener(clickEvent -> {
+            orderPage.set(orderService.findAll(orderPage.get().previousPageable()));
+            orderGrid.setItems(orderPage.get().getContent());
+            buttonPrivious.setEnabled(!orderPage.get().isFirst());
+            buttonNext.setEnabled(true);
+        });
 
         buttonNew.addClickListener(clickEvent -> {
             String state = getUI().getNavigator().getState();
@@ -88,13 +98,9 @@ public class OrdersView extends VerticalLayout implements View {
         });
 
         addComponent(buttons);
-
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
     }
-
-
 }

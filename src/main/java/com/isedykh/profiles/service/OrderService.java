@@ -1,18 +1,23 @@
 package com.isedykh.profiles.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 public interface OrderService {
 
     Order findById(long id);
 
-    List<Order> getPersonOrderHistory(Client client);
+    List<Order> getClientOrderHistory(Client client);
 
-    List<Order> getPersonOrderHistory(long personId);
+    List<Order> getClientOrderHistory(long personId);
+
+    Page<Order> findAll(Pageable pageable);
 
     Order updateOrder(Order order);
 
-    boolean deleteOrder(Order order);
+    void deleteOrder(Order order);
 
     Order createOrder(Order order);
 }

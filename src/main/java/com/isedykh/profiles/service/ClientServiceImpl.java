@@ -1,9 +1,11 @@
 package com.isedykh.profiles.service;
 
 import com.isedykh.profiles.dao.entity.ClientEntity;
-import com.isedykh.profiles.dao.repository.PersonEntityRepository;
+import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.mapper.ClientMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -15,51 +17,53 @@ import java.util.List;
 @AllArgsConstructor
 public class ClientServiceImpl implements ClientService {
 
-    private PersonEntityRepository personEntityRepository;
+    private ClientEntityRepository clientEntityRepository;
 
     private ClientMapper clientMapper;
 
     @Override
     public List<Client> findAll() {
-        return clientMapper.personEntitiesToPersons(personEntityRepository.findAll());
+        return clientMapper.clientEntitiesToClients(clientEntityRepository.findAll());
     }
 
     @Override
-    public List<Client> findAll(Pageable pageable) {
-        return null;
+    public Page<Client> findAll(Pageable pageable) {
+        Page<ClientEntity> all = clientEntityRepository.findAll(pageable);
+        List<Client> clients = clientMapper.clientEntitiesToClients(all.getContent());
+        return new PageImpl<>(clients, all.getPageable(), all.getTotalElements());
     }
 
     @Override
-    public Client savePerson(Client client) {
-        ClientEntity save = personEntityRepository.save(clientMapper.personToPersonEntity(client));
-        return clientMapper.personEntityToPerson(save);
+    public Client saveClient(Client client) {
+        ClientEntity save = clientEntityRepository.save(clientMapper.clientToClientEntity(client));
+        return clientMapper.clientEntityToClient(save);
     }
 
     @Override
-    public Client updatePerson(Client client) {
-        ClientEntity save = personEntityRepository.save(clientMapper.personToPersonEntity(client));
-        return clientMapper.personEntityToPerson(save);
+    public Client updateClient(Client client) {
+        ClientEntity save = clientEntityRepository.save(clientMapper.clientToClientEntity(client));
+        return clientMapper.clientEntityToClient(save);
     }
 
     @Override
-    public void deletePerson(Client client) {
-        personEntityRepository.delete(clientMapper.personToPersonEntity(client));
+    public void deleteClient(Client client) {
+        clientEntityRepository.delete(clientMapper.clientToClientEntity(client));
     }
 
     @Override
-    public List<Client> findPersonByName(String name) {
-        List<ClientEntity> allByName = personEntityRepository.findAllByName(name);
-        return clientMapper.personEntitiesToPersons(allByName);
+    public List<Client> findClientByName(String name) {
+        List<ClientEntity> allByName = clientEntityRepository.findAllByName(name);
+        return clientMapper.clientEntitiesToClients(allByName);
     }
 
     @Override
-    public List<Client> findPersonByPhone(long phone) {
-        List<ClientEntity> allByPhone = personEntityRepository.findAllByPhoneOrPhoneSecond(phone, phone);
-        return clientMapper.personEntitiesToPersons(allByPhone);
+    public List<Client> findClientByPhone(long phone) {
+        List<ClientEntity> allByPhone = clientEntityRepository.findAllByPhoneOrPhoneSecond(phone, phone);
+        return clientMapper.clientEntitiesToClients(allByPhone);
     }
 
     @Override
     public Client findById(long id) {
-        return clientMapper.personEntityToPerson(personEntityRepository.getOne(id));
+        return clientMapper.clientEntityToClient(clientEntityRepository.getOne(id));
     }
 }

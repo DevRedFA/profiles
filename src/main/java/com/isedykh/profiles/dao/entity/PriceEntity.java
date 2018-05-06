@@ -20,11 +20,14 @@ public class PriceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "term_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private TermEntity term;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "term_id",
+//            referencedColumnName = "id",
+//            nullable = false)
+//    private TermEntity term;
+
+    @Enumerated(EnumType.ORDINAL)
+    private Term term;
 
     //1 penny step
     @Column(nullable = false)

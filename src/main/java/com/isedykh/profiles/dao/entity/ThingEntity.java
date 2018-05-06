@@ -36,22 +36,14 @@ public class ThingEntity {
     @Column(nullable = false)
     private String pathToPhoto;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "type_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private ThingTypeEntity type;
+    @Enumerated(EnumType.STRING)
+    private ThingType type;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "status_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private ThingStatusEntity status;
-
+    @Enumerated(EnumType.STRING)
+    private ThingStatus status;
 
     @OneToMany(mappedBy = "thing", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PriceEntity> prices;
-
 
     @Column(nullable = false)
     private int deposit;

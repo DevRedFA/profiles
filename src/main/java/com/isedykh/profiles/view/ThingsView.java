@@ -1,19 +1,19 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.mapper.ThingMapper;
-import com.isedykh.profiles.service.Identifiable;
-import com.isedykh.profiles.service.Thing;
-import com.isedykh.profiles.service.ThingDto;
-import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.*;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.initTailMenu;
 
@@ -25,26 +25,23 @@ public class ThingsView extends VerticalLayout implements View {
 
     private ThingService thingService;
 
-    private ThingMapper thingMapper;
-
     @PostConstruct
     public void init() {
-        addComponent(new Label("All things"));
 
-        List<Thing> all = thingService.findAll();
-        List<ThingDto> thingList = thingMapper.ThingsToThingDtos(all);
+        AtomicReference<Page<ThingDto>> thingPage = new AtomicReference<>(thingService.findAllToDto(PageRequest.of(0, 17)));
         Grid<ThingDto> thingsGrid = new Grid<>();
         thingsGrid.setSizeFull();
         thingsGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
-        thingsGrid.setItems(thingList);
+        thingsGrid.setItems(thingPage.get().getContent());
         thingsGrid.addColumn(ThingDto::getName).setCaption("Name");
-        thingsGrid.addColumn(s -> s.getType().getName()).setCaption("Type");
+        thingsGrid.addColumn(ThingDto::getType).setCaption("Type");
         thingsGrid.addColumn(ThingDto::getDeposit).setCaption("Deposit");
-        thingsGrid.addColumn(s -> s.getStatus().getName()).setCaption("Status");
+        thingsGrid.addColumn(ThingDto::getStatus).setCaption("Status");
         thingsGrid.addColumn(ThingDto::getPriceForDay).setCaption("Day");
         thingsGrid.addColumn(ThingDto::getPriceForWeek).setCaption("Week");
         thingsGrid.addColumn(ThingDto::getPriceForTwoWeeks).setCaption("Two weeks");
         thingsGrid.addColumn(ThingDto::getPriceForMonth).setCaption("Month");
+        thingsGrid.setHeightByRows(17);
         addComponent(thingsGrid);
         setExpandRatio(thingsGrid, 1f);
         thingsGrid.addItemClickListener(clickEvent -> {
@@ -69,6 +66,23 @@ public class ThingsView extends VerticalLayout implements View {
         buttons.addComponent(buttonDetails);
         buttons.addComponent(buttonNew);
         buttons.addComponent(buttonNext);
+
+        buttonPrivious.setEnabled(false);
+
+        buttonNext.addClickListener(clickEvent -> {
+            thingPage.set(thingService.findAllToDto(thingPage.get().nextPageable()));
+            thingsGrid.setItems(thingPage.get().getContent());
+            buttonNext.setEnabled(!thingPage.get().isLast());
+            buttonPrivious.setEnabled(true);
+        });
+
+        buttonPrivious.addClickListener(clickEvent -> {
+            thingPage.set(thingService.findAllToDto(thingPage.get().previousPageable()));
+            thingsGrid.setItems(thingPage.get().getContent());
+            buttonPrivious.setEnabled(!thingPage.get().isFirst());
+            buttonNext.setEnabled(true);
+        });
+
 
         buttonNew.addClickListener(clickEvent -> {
             String state = getUI().getNavigator().getState();

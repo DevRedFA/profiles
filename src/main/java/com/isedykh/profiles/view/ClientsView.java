@@ -7,10 +7,13 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.initTailMenu;
 
@@ -22,22 +25,19 @@ public class ClientsView extends VerticalLayout implements View {
 
     private ClientService clientService;
 
-    private ThingMapper thingMapper;
-
     @PostConstruct
     public void init() {
-        addComponent(new Label("All clients"));
-
-        List<Client> clients = clientService.findAll();
+        AtomicReference<Page<Client>> clientPage = new AtomicReference<>(clientService.findAll(PageRequest.of(0, 17)));
         Grid<Client> clientGrid = new Grid<>();
         clientGrid.setSizeFull();
-        clientGrid.setItems(clients);
+        clientGrid.setItems(clientPage.get().getContent());
         clientGrid.addColumn(Client::getName).setCaption("Name");
         clientGrid.addColumn(Client::getPhone).setCaption("Phone");
         clientGrid.addColumn(Client::getPhoneSecond).setCaption("Second phone");
         clientGrid.addColumn(Client::getEmail).setCaption("Email");
         clientGrid.addColumn(Client::getContactLink).setCaption("Contact link");
         clientGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
+        clientGrid.setHeightByRows(17);
         addComponent(clientGrid);
         setExpandRatio(clientGrid, 1f);
         clientGrid.addItemClickListener(clickEvent -> {
@@ -60,6 +60,23 @@ public class ClientsView extends VerticalLayout implements View {
         buttons.addComponent(buttonDetails);
         buttons.addComponent(buttonNew);
         buttons.addComponent(buttonNext);
+
+        buttonPrivious.setEnabled(false);
+
+
+        buttonNext.addClickListener(clickEvent -> {
+            clientPage.set(clientService.findAll(clientPage.get().nextPageable()));
+            clientGrid.setItems(clientPage.get().getContent());
+            buttonNext.setEnabled(!clientPage.get().isLast());
+            buttonPrivious.setEnabled(true);
+        });
+
+        buttonPrivious.addClickListener(clickEvent -> {
+            clientPage.set(clientService.findAll(clientPage.get().previousPageable()));
+            clientGrid.setItems(clientPage.get().getContent());
+            buttonPrivious.setEnabled(!clientPage.get().isFirst());
+            buttonNext.setEnabled(true);
+        });
 
         buttonNew.addClickListener(clickEvent -> {
             String state = getUI().getNavigator().getState();
@@ -88,7 +105,6 @@ public class ClientsView extends VerticalLayout implements View {
 
 
     }
-
 
 
 }

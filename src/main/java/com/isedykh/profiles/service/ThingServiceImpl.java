@@ -1,15 +1,19 @@
 package com.isedykh.profiles.service;
 
 import com.isedykh.profiles.dao.entity.ThingEntity;
+import com.isedykh.profiles.dao.entity.ThingType;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.mapper.ThingMapper;
-import com.isedykh.profiles.mapper.ThingTypeMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -20,7 +24,6 @@ public class ThingServiceImpl implements ThingService {
 
     private final ThingMapper thingMapper;
 
-    private final ThingTypeMapper thingTypeMapper;
 
     @Override
     public List<Thing> findAll() {
@@ -36,7 +39,7 @@ public class ThingServiceImpl implements ThingService {
 
     @Override
     public List<Thing> getAllThingsByType(ThingType type) {
-        return thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(thingTypeMapper.thingTypeToThingTypeEntity(type)));
+        return thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(type));
     }
 
     @Override
@@ -47,6 +50,21 @@ public class ThingServiceImpl implements ThingService {
     @Override
     public List<Thing> getAllThingPersonGet(long personId) {
         return null;
+    }
+
+    @Override
+    public Page<Thing> findAll(Pageable pageable) {
+        Page<ThingEntity> all = thingEntityRepository.findAll(pageable);
+        List<Thing> things = thingMapper.thingEntitiesToThings(all.getContent());
+        return new PageImpl<>(things, all.getPageable(), all.getTotalElements());
+    }
+
+    @Override
+    public Page<ThingDto> findAllToDto(Pageable pageable) {
+        Page<ThingEntity> all = thingEntityRepository.findAll(pageable);
+        List<Thing> things = thingMapper.thingEntitiesToThings(all.getContent());
+        List<ThingDto> thingDtos = things.stream().map(thingMapper::thingToThingDto).collect(Collectors.toList());
+        return new PageImpl<>(thingDtos, all.getPageable(), all.getTotalElements());
     }
 
     @Override

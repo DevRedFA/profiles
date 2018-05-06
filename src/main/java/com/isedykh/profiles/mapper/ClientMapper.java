@@ -9,20 +9,25 @@ import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 import org.mapstruct.Mapper;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Component
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ClientMapper {
 
-    Client personEntityToPerson(ClientEntity clientEntity);
+    Client clientEntityToClient(ClientEntity clientEntity);
 
-    ClientEntity personToPersonEntity(Client client);
+    ClientEntity clientToClientEntity(Client client);
 
-    List<Client> personEntitiesToPersons(List<ClientEntity> personEntities);
+    List<Client> clientEntitiesToClients(List<ClientEntity> clientEntities);
 
-    List<ClientEntity> personsToPersonEntities(List<Client> clients);
+    List<ClientEntity> clientsToClientEntities(List<Client> clients);
 
     @Mapping(target = "client", ignore = true)
     Order orderEntityToOrder(OrderEntity orderEntity);
+
+    default java.sql.Timestamp map(java.time.LocalDate value) {
+        return Timestamp.valueOf(value.atStartOfDay());
+    }
 }

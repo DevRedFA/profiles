@@ -39,6 +39,8 @@ public class ClientView extends VerticalLayout implements View {
 
     private TextField contactLink = new TextField("Contact link");
 
+    private TextArea childrenComments = new TextArea("Children comments");
+
     VerticalLayout verticalLayout = new VerticalLayout();
 
     HorizontalLayout horizontalLayout = new HorizontalLayout();
@@ -57,6 +59,7 @@ public class ClientView extends VerticalLayout implements View {
         verticalLayout.addComponent(childrenNumber);
 
         horizontalLayout.addComponent(verticalLayout);
+        horizontalLayout.addComponent(childrenComments);
 
         addComponent(new Label("Detail client view"));
         addComponent(horizontalLayout);
@@ -91,10 +94,11 @@ public class ClientView extends VerticalLayout implements View {
         contactLink.setValue(String.valueOf(client.getContactLink()));
         address.setValue(String.valueOf(client.getAddress()));
         childrenNumber.setValue(String.valueOf(client.getChildrenNumber()));
+        childrenComments.setValue(client.getChildrenComments());
 
         ordersGrid.setItems(client.getOrders());
         ordersGrid.addColumn(s -> s.getThing().getName()).setCaption("Thing");
-        ordersGrid.addColumn(s -> s.getStatus().getName()).setCaption("Status");
+        ordersGrid.addColumn(Order::getStatus).setCaption("Status");
         ordersGrid.addColumn(Order::getPrice).setCaption("Price");
         ordersGrid.addColumn(Order::getBegin).setCaption("Begin");
         ordersGrid.addColumn(Order::getEnd).setCaption("End");

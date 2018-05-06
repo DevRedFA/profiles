@@ -1,5 +1,6 @@
 package com.isedykh.profiles.service;
 
+import com.isedykh.profiles.dao.entity.Term;
 import lombok.Data;
 
 @Data

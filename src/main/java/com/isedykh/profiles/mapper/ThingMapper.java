@@ -1,8 +1,8 @@
 package com.isedykh.profiles.mapper;
 
+import com.isedykh.profiles.dao.entity.Term;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.service.Price;
-import com.isedykh.profiles.service.Term;
 import com.isedykh.profiles.service.Thing;
 import com.isedykh.profiles.service.ThingDto;
 import org.mapstruct.Mapper;
@@ -23,7 +23,7 @@ public interface ThingMapper {
 
     List<ThingEntity> thingsToThingEntities(List<Thing> thing);
 
-
+    List<ThingDto> ThingsToThingDtos(List<Thing> things);
     //shitty decision, but now have no better idea
     default ThingDto thingToThingDto(Thing thing) {
 
@@ -32,18 +32,18 @@ public interface ThingMapper {
         final Price[] week = new Price[1];
         final Price[] twoWeeks = new Price[1];
         final Price[] month = new Price[1];
-        // FIXME: 04.05.2018 change to public static constants in some class
+
         prices.forEach(s -> {
-            if (s.getTerm().equals(new Term("DAY"))) {
+            if (s.getTerm().equals(Term.DAY)) {
                 day[0] = s;
             }
-            if (s.getTerm().equals(new Term("WEEK"))) {
+            if (s.getTerm().equals(Term.WEEK)) {
                 week[0] = s;
             }
-            if (s.getTerm().equals(new Term("TWO WEEKS"))) {
+            if (s.getTerm().equals(Term.TWO_WEEKS)) {
                 twoWeeks[0] = s;
             }
-            if (s.getTerm().equals(new Term("MONTH"))) {
+            if (s.getTerm().equals(Term.MONTH)) {
                 month[0] = s;
             }
         });
@@ -63,7 +63,4 @@ public interface ThingMapper {
                 .priceForMonth(month[0].getPrice())
                 .build();
     }
-
-    List<ThingDto> ThingsToThingDtos(List<Thing> things);
-
 }
