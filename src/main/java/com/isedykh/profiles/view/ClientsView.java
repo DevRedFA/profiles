@@ -6,10 +6,7 @@ import com.isedykh.profiles.service.ClientService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +16,7 @@ import javax.annotation.PostConstruct;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.detailsClickListenerSupplier;
+import static com.isedykh.profiles.common.Utils.getDeleteClickListener;
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 
 @AllArgsConstructor
@@ -52,11 +50,14 @@ public class ClientsView extends VerticalLayout implements View {
         Button buttonPrevious = new Button("Previous");
         Button buttonDetails = new Button("Details");
         Button buttonNew = new Button("New");
-
+        Button buttonDelete = new Button("Delete");
         buttons.addComponent(buttonPrevious);
         buttons.addComponent(buttonDetails);
         buttons.addComponent(buttonNew);
         buttons.addComponent(buttonNext);
+        buttons.addComponent(buttonDelete);
+        buttons.setSizeFull();
+        buttons.setComponentAlignment(buttonDelete, Alignment.MIDDLE_RIGHT);
 
         buttonPrevious.setEnabled(false);
 
@@ -66,7 +67,11 @@ public class ClientsView extends VerticalLayout implements View {
 
         buttonNew.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
 
-        buttonDetails.addClickListener(clickEvent -> detailsClickListenerSupplier.accept(clientGrid, this::getUI));
+        buttonDetails.addClickListener(clickEvent -> Utils.detailsClickListenerSupplier.accept(clientGrid, this::getUI));
+
+
+        // TODO: 07.05.2018 add reset of grid 
+        buttonDelete.addClickListener(getDeleteClickListener(clientGrid, clientService));
 
         addComponent(buttons);
     }

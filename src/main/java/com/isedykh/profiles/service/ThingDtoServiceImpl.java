@@ -15,4 +15,9 @@ public class ThingDtoServiceImpl implements ThingDtoService {
     public Page<ThingDto> findAll(Pageable pageable) {
         return thingService.findAllToDto(pageable);
     }
+
+    @Override
+    public void delete(ThingDto thingDto) {
+
+    }
 }

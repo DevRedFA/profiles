@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface ThingService extends PageableService<Thing> {
+public interface ThingService extends CrudService<Thing> {
 
     List<Thing> findAll();
 
@@ -22,10 +22,7 @@ public interface ThingService extends PageableService<Thing> {
 
     Page<ThingDto> findAllToDto(Pageable pageable);
 
-    Thing saveThing(Thing thing);
+    Thing save(Thing thing);
 
-    Thing updateThing(Thing thing);
-
-    boolean deleteThing(Thing thing);
-
+    Thing update(Thing thing);
 }

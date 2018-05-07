@@ -10,6 +10,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 @RequiredArgsConstructor
 @SpringView(name = ClientView.VIEW_NAME)
@@ -41,6 +45,8 @@ public class ClientView extends VerticalLayout implements View {
 
     private TextArea childrenComments = new TextArea("Children comments");
 
+    private Button save = new Button("Save");
+
     VerticalLayout verticalLayout = new VerticalLayout();
 
     HorizontalLayout horizontalLayout = new HorizontalLayout();
@@ -57,6 +63,7 @@ public class ClientView extends VerticalLayout implements View {
         verticalLayout.addComponent(contactLink);
         verticalLayout.addComponent(address);
         verticalLayout.addComponent(childrenNumber);
+        verticalLayout.addComponent(save);
 
         horizontalLayout.addComponent(verticalLayout);
         horizontalLayout.addComponent(childrenComments);
@@ -75,8 +82,6 @@ public class ClientView extends VerticalLayout implements View {
         if (event.getParameters() != null) {
             if (event.getParameters().contains("new")) {
                 client = new Client();
-                name.setValue("");
-
             } else {
                 int id = Integer.parseInt(event.getParameters());
                 try {
@@ -84,19 +89,35 @@ public class ClientView extends VerticalLayout implements View {
                 } catch (Exception e) {
                     Notification.show("Client with such id not found");
                 }
-
             }
         }
-        name.setValue(client.getName());
-        phone.setValue(String.valueOf(client.getPhone()));
-        phoneSecond.setValue(String.valueOf(client.getPhoneSecond()));
-        email.setValue(client.getEmail());
-        contactLink.setValue(String.valueOf(client.getContactLink()));
-        address.setValue(String.valueOf(client.getAddress()));
-        childrenNumber.setValue(String.valueOf(client.getChildrenNumber()));
-        childrenComments.setValue(client.getChildrenComments());
 
-        ordersGrid.setItems(client.getOrders());
+//        name.setValue(client.getName());
+        setFieldIfNotNull(client::getName, name::setValue, s -> s);
+
+//        phone.setValue(String.valueOf(client.getPhone()));
+        setFieldIfNotNull(client::getPhone, phone::setValue, String::valueOf);
+
+//        phoneSecond.setValue(String.valueOf(client.getPhoneSecond()));
+        setFieldIfNotNull(client::getPhoneSecond, phoneSecond::setValue, String::valueOf);
+
+//        email.setValue(client.getEmail());
+        setFieldIfNotNull(client::getEmail, email::setValue, s -> s);
+
+//        contactLink.setValue(String.valueOf(client.getContactLink()));
+        setFieldIfNotNull(client::getContactLink, contactLink::setValue, String::valueOf);
+
+//        address.setValue(String.valueOf(client.getAddress()));
+        setFieldIfNotNull(client::getAddress, address::setValue, s -> s);
+
+//        childrenNumber.setValue(String.valueOf(client.getChildrenNumber()));
+        setFieldIfNotNull(client::getChildrenNumber, childrenNumber::setValue, String::valueOf);
+
+//        childrenComments.setValue(client.getChildrenComments());
+        setFieldIfNotNull(client::getChildrenComments, childrenComments::setValue, s -> s);
+
+        ordersGrid.setItems(client.getOrders() != null ? client.getOrders() : Collections.emptyList());
+
         ordersGrid.addColumn(s -> s.getThing().getName()).setCaption("Thing");
         ordersGrid.addColumn(Order::getStatus).setCaption("Status");
         ordersGrid.addColumn(Order::getPrice).setCaption("Price");
@@ -105,6 +126,22 @@ public class ClientView extends VerticalLayout implements View {
         ordersGrid.addColumn(Order::getComments).setCaption("Comments");
 
         ordersGrid.addItemClickListener(this::constructClickListener);
+
+        save.addClickListener(clickEvent -> {
+            client.setName(name.getValue());
+            try {
+                client.setPhone(Long.parseLong(phone.getValue()));
+                client.setPhoneSecond(Long.parseLong(phoneSecond.getValue()));
+                client.setEmail(email.getValue());
+                client.setContactLink(contactLink.getValue());
+                client.setAddress(address.getValue());
+                client.setChildrenNumber(Integer.parseInt(childrenNumber.getValue()));
+                client.setChildrenComments(childrenComments.getValue());
+                clientService.saveClient(client);
+            } catch (NumberFormatException e) {
+                Notification.show("Bad format of phone/second phone");
+            }
+        });
     }
 
     public void constructClickListener(Grid.ItemClick<? extends Identifiable> clickEvent) {
@@ -112,6 +149,13 @@ public class ClientView extends VerticalLayout implements View {
             Identifiable order = clickEvent.getItem();
             String s = OrderView.VIEW_NAME + "/" + order.getId();
             getUI().getNavigator().navigateTo(s);
+        }
+    }
+
+    private <T, R> void setFieldIfNotNull(Supplier<T> condition, Consumer<R> field, Function<T, R> converter) {
+        T t = condition.get();
+        if (t != null) {
+            field.accept(converter.apply(t));
         }
     }
 }

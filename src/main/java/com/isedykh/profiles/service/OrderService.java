@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface OrderService extends PageableService<Order> {
+public interface OrderService extends CrudService<Order> {
 
     Order findById(long id);
 

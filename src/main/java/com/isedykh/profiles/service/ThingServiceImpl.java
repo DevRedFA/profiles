@@ -60,6 +60,12 @@ public class ThingServiceImpl implements ThingService {
     }
 
     @Override
+    public void delete(Thing thing) {
+        ThingEntity thingEntity = thingMapper.thingToThingEntity(thing);
+        thingEntityRepository.delete(thingEntity);
+    }
+
+    @Override
     public Page<ThingDto> findAllToDto(Pageable pageable) {
         Page<ThingEntity> all = thingEntityRepository.findAll(pageable);
         List<Thing> things = thingMapper.thingEntitiesToThings(all.getContent());
@@ -68,17 +74,13 @@ public class ThingServiceImpl implements ThingService {
     }
 
     @Override
-    public Thing saveThing(Thing thing) {
+    public Thing save(Thing thing) {
         return null;
     }
 
     @Override
-    public Thing updateThing(Thing thing) {
+    public Thing update(Thing thing) {
         return null;
     }
 
-    @Override
-    public boolean deleteThing(Thing thing) {
-        return false;
-    }
 }
