@@ -104,14 +104,6 @@ public class ClientView extends VerticalLayout implements View {
         ordersGrid.addColumn(Order::getEnd).setCaption("End");
         ordersGrid.addColumn(Order::getComments).setCaption("Comments");
 
-//        ordersGrid.addItemClickListener(clickEvent -> {
-//            if (clickEvent.getMouseEventDetails().isDoubleClick()) {
-//                Identifiable order = clickEvent.getItem();
-//                String s = OrderView.VIEW_NAME + "/" + order.getId();
-//                getUI().getNavigator().navigateTo(s);
-//            }
-//        });
-
         ordersGrid.addItemClickListener(this::constructClickListener);
     }
 

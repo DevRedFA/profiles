@@ -45,13 +45,8 @@ public class OrdersView extends VerticalLayout implements View {
         orderGrid.setHeightByRows(17);
         addComponent(orderGrid);
         setExpandRatio(orderGrid, 1f);
-        orderGrid.addItemClickListener(clickEvent -> {
-            if (clickEvent.getMouseEventDetails().isDoubleClick()) {
-                Order order = clickEvent.getItem();
-                String s = OrderView.VIEW_NAME + "/" + order.getId();
-                getUI().getNavigator().navigateTo(s);
-            }
-        });
+
+        orderGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
 
         HorizontalLayout buttons = new HorizontalLayout();
         Button buttonNext = new Button("Next");

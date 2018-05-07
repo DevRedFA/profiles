@@ -3,22 +3,20 @@ package com.isedykh.profiles.view;
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.Client;
 import com.isedykh.profiles.service.ClientService;
-import com.isedykh.profiles.service.Identifiable;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.VerticalLayout;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import static com.isedykh.profiles.common.Utils.detailsClickListenerSupplier;
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
@@ -46,13 +44,8 @@ public class ClientsView extends VerticalLayout implements View {
         clientGrid.setHeightByRows(17);
         addComponent(clientGrid);
         setExpandRatio(clientGrid, 1f);
-        clientGrid.addItemClickListener(clickEvent -> {
-            if (clickEvent.getMouseEventDetails().isDoubleClick()) {
-                Client client = clickEvent.getItem();
-                String s = ClientView.VIEW_NAME + "/" + client.getId();
-                getUI().getNavigator().navigateTo(s);
-            }
-        });
+
+        clientGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
 
         HorizontalLayout buttons = new HorizontalLayout();
         Button buttonNext = new Button("Next");

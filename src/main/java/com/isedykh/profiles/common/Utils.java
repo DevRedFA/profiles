@@ -1,10 +1,11 @@
 package com.isedykh.profiles.common;
 
-import com.isedykh.profiles.service.Client;
 import com.isedykh.profiles.service.Identifiable;
 import com.isedykh.profiles.service.PageableService;
-import com.isedykh.profiles.view.OrderView;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,26 +18,47 @@ import java.util.function.Supplier;
 
 public class Utils {
 
-    public static BiConsumer<Grid<? extends Identifiable>, Supplier<UI>> detailsClickListenerSupplier = (grid, uiSupplier) -> {
+    private Utils() {
+    }
+
+    private static final BiConsumer<Identifiable, Supplier<UI>>
+            baseClickListenerSupplier = (identifiable, uiSupplier) -> {
+        String state = uiSupplier.get().getNavigator().getState();
+        String s = state.substring(0, state.length() - 1) + "/" + identifiable.getId();
+        uiSupplier.get().getNavigator().navigateTo(s);
+    };
+
+    public static final BiConsumer<Grid<? extends Identifiable>, Supplier<UI>>
+            detailsClickListenerSupplier = (grid, uiSupplier) -> {
         Set selectedItems = grid.getSelectedItems();
         if (selectedItems.size() == 1) {
-            Object[] objects = selectedItems.toArray();
-            Identifiable obj = Identifiable.class.cast(objects[0]);
-            String state = uiSupplier.get().getNavigator().getState();
-            String s = state.substring(0, state.length() - 1) + "/" + obj.getId();
-            uiSupplier.get().getNavigator().navigateTo(s);
+            Identifiable obj = Identifiable.class.cast(selectedItems.toArray()[0]);
+            baseClickListenerSupplier.accept(obj, uiSupplier);
         } else {
             Notification.show("Please select one option");
         }
     };
 
-    public static Consumer<Supplier<UI>> newClickListenerSupplier = uiSupplier -> {
+    public static final BiConsumer<Grid.ItemClick<? extends Identifiable>, Supplier<UI>>
+            detailsDoubleClickListenerSupplier = (clickEvent, uiSupplier) -> {
+        if (clickEvent.getMouseEventDetails().isDoubleClick()) {
+            Identifiable obj = clickEvent.getItem();
+            baseClickListenerSupplier.accept(obj, uiSupplier);
+        }
+    };
+
+    public static final Consumer<Supplier<UI>> newClickListenerSupplier = uiSupplier -> {
         String state = uiSupplier.get().getNavigator().getState();
         String s = state.substring(0, state.length() - 1) + "/new";
         uiSupplier.get().getNavigator().navigateTo(s);
     };
 
-    public static <T> Button.ClickListener getPageChangeClickListener(AtomicReference<Page<T>> page, Function<Page<T>, Pageable> nextPageable, Grid<T> grid, Button buttonNext, Button buttonPrevious, PageableService<T> pageableService) {
+    public static <T> Button.ClickListener getPageChangeClickListener(AtomicReference<Page<T>> page,
+                                                                      Function<Page<T>, Pageable> nextPageable,
+                                                                      Grid<T> grid,
+                                                                      Button buttonNext,
+                                                                      Button buttonPrevious,
+                                                                      PageableService<T> pageableService) {
         return clickEvent -> {
             page.set(pageableService.findAll(nextPageable.apply(page.get())));
             grid.setItems(page.get().getContent());

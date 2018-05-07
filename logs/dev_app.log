@@ -1506,3 +1506,488 @@ java.lang.NullPointerException: value cannot be null
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
+2018-05-07 14:53:24,593 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ntb-oakboro with PID 10164 (C:\Users\Ivan.Sedykh\IdeaProjects\profiles\out\production\classes started by Ivan.Sedykh in C:\Users\Ivan.Sedykh\IdeaProjects\profiles)
+2018-05-07 14:53:24,593 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2
+2018-05-07 14:53:24,656 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5c669da8: startup date [Mon May 07 14:53:24 MSK 2018]; root of context hierarchy
+2018-05-07 14:53:25,621 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-07 14:53:26,126 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a41b4923] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-07 14:53:26,693 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-07 14:53:26,740 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-07 14:53:26,740 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-07 14:53:26,755 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_172\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Users\Ivan.Sedykh\AppData\Local\Microsoft\WindowsApps;;.]
+2018-05-07 14:53:26,935 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-07 14:53:26,935 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 2279 ms
+2018-05-07 14:53:27,060 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-07 14:53:27,060 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-07 14:53:27,075 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-07 14:53:27,075 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-07 14:53:27,075 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-07 14:53:27,075 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-07 14:53:27,075 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-07 14:53:27,169 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-07 14:53:27,169 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-07 14:53:27,169 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-07 14:53:27,169 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-07 14:53:27,169 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-07 14:53:27,169 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-07 14:53:27,169 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-07 14:53:27,341 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-07 14:53:27,511 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-07 14:53:27,565 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-07 14:53:27,591 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-07 14:53:27,673 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-07 14:53:27,673 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-07 14:53:27,720 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-07 14:53:27,884 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-07 14:53:28,794 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-07 14:53:28,887 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-07 14:53:28,887 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 0 ms.
+2018-05-07 14:53:29,551 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-07 14:53:29,863 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5c669da8: startup date [Mon May 07 14:53:24 MSK 2018]; root of context hierarchy
+2018-05-07 14:53:29,910 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-07 14:53:29,957 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-07 14:53:29,957 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-07 14:53:30,004 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-07 14:53:30,004 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-07 14:53:30,082 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-07 14:53:30,098 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-07 14:53:30,098 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@af04f09}
+2018-05-07 14:53:30,113 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-07 14:53:30,721 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-07 14:53:30,721 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-07 14:53:30,737 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-07 14:53:30,784 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-07 14:53:30,784 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 6.691 seconds (JVM running for 8.56)
+2018-05-07 14:53:31,865 WARN  [http-nio-8080-exec-2] com.vaadin.server.DefaultDeploymentConfiguration : 
+=================================================================
+Vaadin is running in DEBUG MODE.
+Add productionMode=true to web.xml to disable debug features.
+To show debug window, add ?debug to your application URL.
+=================================================================
+2018-05-07 14:53:31,916 INFO  [http-nio-8080-exec-2] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-05-07 14:53:31,917 INFO  [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcherServlet': initialization started
+2018-05-07 14:53:31,946 INFO  [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcherServlet': initialization completed in 29 ms
+2018-05-07 14:53:34,135 INFO  [http-nio-8080-exec-5] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator : HHH000397: Using ASTQueryTranslatorFactory
+2018-05-07 14:56:45,945 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ntb-oakboro with PID 9380 (C:\Users\Ivan.Sedykh\IdeaProjects\profiles\out\production\classes started by Ivan.Sedykh in C:\Users\Ivan.Sedykh\IdeaProjects\profiles)
+2018-05-07 14:56:45,945 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2
+2018-05-07 14:56:46,007 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5c669da8: startup date [Mon May 07 14:56:46 MSK 2018]; root of context hierarchy
+2018-05-07 14:56:46,961 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-07 14:56:47,463 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$634f6306] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-07 14:56:48,009 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-07 14:56:48,056 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-07 14:56:48,056 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-07 14:56:48,072 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_172\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Users\Ivan.Sedykh\AppData\Local\Microsoft\WindowsApps;;.]
+2018-05-07 14:56:48,259 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-07 14:56:48,259 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 2252 ms
+2018-05-07 14:56:48,384 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-07 14:56:48,384 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-07 14:56:48,400 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-07 14:56:48,400 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-07 14:56:48,400 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-07 14:56:48,400 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-07 14:56:48,400 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-07 14:56:48,478 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-07 14:56:48,478 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-07 14:56:48,478 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-07 14:56:48,493 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-07 14:56:48,493 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-07 14:56:48,493 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-07 14:56:48,493 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-07 14:56:48,655 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-07 14:56:48,825 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-07 14:56:48,871 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-07 14:56:48,903 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-07 14:56:48,996 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-07 14:56:48,996 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-07 14:56:49,040 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-07 14:56:49,212 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-07 14:56:50,133 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-07 14:56:50,211 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-07 14:56:50,211 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 0 ms.
+2018-05-07 14:56:50,857 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-07 14:56:51,154 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5c669da8: startup date [Mon May 07 14:56:46 MSK 2018]; root of context hierarchy
+2018-05-07 14:56:51,200 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-07 14:56:51,247 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-07 14:56:51,247 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-07 14:56:51,279 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-07 14:56:51,279 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-07 14:56:51,341 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-07 14:56:51,341 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-07 14:56:51,357 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@1ab85862}
+2018-05-07 14:56:51,357 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-07 14:56:51,906 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-07 14:56:51,906 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-07 14:56:51,906 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-07 14:56:51,953 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-07 14:56:51,953 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 6.525 seconds (JVM running for 8.584)
+2018-05-07 14:57:06,448 INFO  [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-05-07 14:57:06,449 INFO  [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcherServlet': initialization started
+2018-05-07 14:57:06,474 INFO  [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcherServlet': initialization completed in 25 ms
+2018-05-07 14:57:06,503 WARN  [http-nio-8080-exec-1] com.vaadin.server.DefaultDeploymentConfiguration : 
+=================================================================
+Vaadin is running in DEBUG MODE.
+Add productionMode=true to web.xml to disable debug features.
+To show debug window, add ?debug to your application URL.
+=================================================================
+2018-05-07 14:57:08,338 INFO  [http-nio-8080-exec-6] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator : HHH000397: Using ASTQueryTranslatorFactory
+2018-05-07 15:52:42,848 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=20m23s393ms965µs445ns).
+2018-05-07 17:09:46,314 INFO  [main] com.isedykh.profiles.ProfilesApplication : Starting ProfilesApplication on ntb-oakboro with PID 7084 (C:\Users\Ivan.Sedykh\IdeaProjects\profiles\out\production\classes started by Ivan.Sedykh in C:\Users\Ivan.Sedykh\IdeaProjects\profiles)
+2018-05-07 17:09:46,317 INFO  [main] com.isedykh.profiles.ProfilesApplication : The following profiles are active: H2
+2018-05-07 17:09:46,374 INFO  [main] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5c669da8: startup date [Mon May 07 17:09:46 MSK 2018]; root of context hierarchy
+2018-05-07 17:09:47,474 WARN  [main] org.springframework.context.annotation.ConfigurationClassPostProcessor : Cannot enhance @Configuration bean definition 'com.vaadin.spring.VaadinConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-07 17:09:48,037 INFO  [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$528b7fd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-07 17:09:48,685 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2018-05-07 17:09:48,716 INFO  [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2018-05-07 17:09:48,716 INFO  [main] org.apache.catalina.core.StandardEngine : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-05-07 17:09:48,739 INFO  [localhost-startStop-1] org.apache.catalina.core.AprLifecycleListener : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_172\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Users\Ivan.Sedykh\AppData\Local\Microsoft\WindowsApps;;.]
+2018-05-07 17:09:48,907 INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2018-05-07 17:09:48,907 INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 2533 ms
+2018-05-07 17:09:49,033 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet
+2018-05-07 17:09:49,033 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Servlet will be mapped to URLs [/vaadinServlet/*, /VAADIN/*]
+2018-05-07 17:09:49,058 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Setting servlet init parameters
+2018-05-07 17:09:49,059 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [productionMode] = [false]
+2018-05-07 17:09:49,059 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [resourceCacheTime] = [3600]
+2018-05-07 17:09:49,060 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [heartbeatInterval] = [300]
+2018-05-07 17:09:49,060 INFO  [localhost-startStop-1] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Set servlet init parameter [closeIdleSessions] = [false]
+2018-05-07 17:09:49,148 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet dispatcherServlet mapped to [/]
+2018-05-07 17:09:49,148 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet springVaadinServlet mapped to [/vaadinServlet/*, /VAADIN/*]
+2018-05-07 17:09:49,148 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean : Servlet webServlet mapped to [/console/*]
+2018-05-07 17:09:49,148 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-07 17:09:49,148 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-07 17:09:49,148 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-07 17:09:49,163 INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-07 17:09:49,450 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2018-05-07 17:09:49,653 INFO  [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2018-05-07 17:09:49,716 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-07 17:09:49,747 INFO  [main] org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-07 17:09:49,841 INFO  [main] org.hibernate.Version : HHH000412: Hibernate Core {5.2.16.Final}
+2018-05-07 17:09:49,841 INFO  [main] org.hibernate.cfg.Environment : HHH000206: hibernate.properties not found
+2018-05-07 17:09:49,888 INFO  [main] org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-07 17:09:50,075 INFO  [main] org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2018-05-07 17:09:51,028 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-07 17:09:51,123 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executing SQL script from class path resource [data-test.sql]
+2018-05-07 17:09:51,123 INFO  [main] org.springframework.jdbc.datasource.init.ScriptUtils : Executed SQL script from class path resource [data-test.sql] in 0 ms.
+2018-05-07 17:09:51,967 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-07 17:09:52,296 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5c669da8: startup date [Mon May 07 17:09:46 MSK 2018]; root of context hierarchy
+2018-05-07 17:09:52,337 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2018-05-07 17:09:52,384 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-07 17:09:52,384 INFO  [main] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-07 17:09:52,431 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-07 17:09:52,431 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-07 17:09:52,493 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Checking the application context for Vaadin UI mappings
+2018-05-07 17:09:52,493 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Registering Vaadin servlet of type [com.vaadin.spring.server.SpringVaadinServlet]
+2018-05-07 17:09:52,509 INFO  [main] com.vaadin.spring.boot.internal.VaadinServletConfiguration : Forwarding @SpringUI URLs from {/=org.springframework.web.servlet.mvc.ServletForwardingController@4822ab4d}
+2018-05-07 17:09:52,509 INFO  [main] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ServletForwardingController]
+2018-05-07 17:09:53,173 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Registering beans for JMX exposure on startup
+2018-05-07 17:09:53,173 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-05-07 17:09:53,188 INFO  [main] org.springframework.jmx.export.annotation.AnnotationMBeanExporter : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-05-07 17:09:53,235 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+2018-05-07 17:09:53,251 INFO  [main] com.isedykh.profiles.ProfilesApplication : Started ProfilesApplication in 7.503 seconds (JVM running for 9.442)
+2018-05-07 17:10:03,701 INFO  [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-05-07 17:10:03,702 INFO  [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcherServlet': initialization started
+2018-05-07 17:10:03,728 INFO  [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet : FrameworkServlet 'dispatcherServlet': initialization completed in 25 ms
+2018-05-07 17:10:03,759 WARN  [http-nio-8080-exec-1] com.vaadin.server.DefaultDeploymentConfiguration : 
+=================================================================
+Vaadin is running in DEBUG MODE.
+Add productionMode=true to web.xml to disable debug features.
+To show debug window, add ?debug to your application URL.
+=================================================================
+2018-05-07 17:10:06,168 INFO  [http-nio-8080-exec-1] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator : HHH000397: Using ASTQueryTranslatorFactory
+2018-05-07 17:10:15,710 ERROR [http-nio-8080-exec-3] com.vaadin.server.DefaultErrorHandler : 
+java.lang.NullPointerException: value cannot be null
+	at java.util.Objects.requireNonNull(Objects.java:228)
+	at com.vaadin.ui.AbstractTextField.setValue(AbstractTextField.java:97)
+	at com.isedykh.profiles.view.ThingView.enter(ThingView.java:85)
+	at com.vaadin.navigator.Navigator.performNavigateTo(Navigator.java:778)
+	at com.vaadin.navigator.Navigator.lambda$navigateTo$9a874efd$1(Navigator.java:702)
+	at com.vaadin.navigator.ViewBeforeLeaveEvent.navigate(ViewBeforeLeaveEvent.java:54)
+	at com.vaadin.navigator.View.beforeLeave(View.java:79)
+	at com.vaadin.navigator.Navigator.runAfterLeaveConfirmation(Navigator.java:730)
+	at com.vaadin.navigator.Navigator.navigateTo(Navigator.java:701)
+	at com.vaadin.navigator.Navigator.navigateTo(Navigator.java:678)
+	at com.isedykh.profiles.common.Utils.lambda$static$3(Utils.java:53)
+	at com.isedykh.profiles.view.ThingsView.lambda$init$61446b05$1(ThingsView.java:69)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.vaadin.event.ListenerMethod.receiveEvent(ListenerMethod.java:499)
+	at com.vaadin.event.EventRouter.fireEvent(EventRouter.java:273)
+	at com.vaadin.event.EventRouter.fireEvent(EventRouter.java:237)
+	at com.vaadin.server.AbstractClientConnector.fireEvent(AbstractClientConnector.java:1014)
+	at com.vaadin.ui.Button.fireClick(Button.java:384)
+	at com.vaadin.ui.Button$1.click(Button.java:57)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.vaadin.server.ServerRpcManager.applyInvocation(ServerRpcManager.java:155)
+	at com.vaadin.server.ServerRpcManager.applyInvocation(ServerRpcManager.java:116)
+	at com.vaadin.server.communication.ServerRpcHandler.handleInvocation(ServerRpcHandler.java:445)
+	at com.vaadin.server.communication.ServerRpcHandler.handleInvocations(ServerRpcHandler.java:410)
+	at com.vaadin.server.communication.ServerRpcHandler.handleRpc(ServerRpcHandler.java:274)
+	at com.vaadin.server.communication.UidlRequestHandler.synchronizedHandleRequest(UidlRequestHandler.java:90)
+	at com.vaadin.server.SynchronizedRequestHandler.handleRequest(SynchronizedRequestHandler.java:40)
+	at com.vaadin.server.VaadinService.handleRequest(VaadinService.java:1601)
+	at com.vaadin.server.VaadinServlet.service(VaadinServlet.java:445)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2018-05-07 17:10:24,271 ERROR [http-nio-8080-exec-3] com.vaadin.server.DefaultErrorHandler : 
+java.lang.NullPointerException: value cannot be null
+	at java.util.Objects.requireNonNull(Objects.java:228)
+	at com.vaadin.ui.AbstractTextField.setValue(AbstractTextField.java:97)
+	at com.isedykh.profiles.view.ClientView.enter(ClientView.java:90)
+	at com.vaadin.navigator.Navigator.performNavigateTo(Navigator.java:778)
+	at com.vaadin.navigator.Navigator.lambda$navigateTo$9a874efd$1(Navigator.java:702)
+	at com.vaadin.navigator.ViewBeforeLeaveEvent.navigate(ViewBeforeLeaveEvent.java:54)
+	at com.vaadin.navigator.View.beforeLeave(View.java:79)
+	at com.vaadin.navigator.Navigator.runAfterLeaveConfirmation(Navigator.java:730)
+	at com.vaadin.navigator.Navigator.navigateTo(Navigator.java:701)
+	at com.vaadin.navigator.Navigator.navigateTo(Navigator.java:678)
+	at com.isedykh.profiles.common.Utils.lambda$static$3(Utils.java:53)
+	at com.isedykh.profiles.view.ClientsView.lambda$init$61446b05$1(ClientsView.java:69)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.vaadin.event.ListenerMethod.receiveEvent(ListenerMethod.java:499)
+	at com.vaadin.event.EventRouter.fireEvent(EventRouter.java:273)
+	at com.vaadin.event.EventRouter.fireEvent(EventRouter.java:237)
+	at com.vaadin.server.AbstractClientConnector.fireEvent(AbstractClientConnector.java:1014)
+	at com.vaadin.ui.Button.fireClick(Button.java:384)
+	at com.vaadin.ui.Button$1.click(Button.java:57)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.vaadin.server.ServerRpcManager.applyInvocation(ServerRpcManager.java:155)
+	at com.vaadin.server.ServerRpcManager.applyInvocation(ServerRpcManager.java:116)
+	at com.vaadin.server.communication.ServerRpcHandler.handleInvocation(ServerRpcHandler.java:445)
+	at com.vaadin.server.communication.ServerRpcHandler.handleInvocations(ServerRpcHandler.java:410)
+	at com.vaadin.server.communication.ServerRpcHandler.handleRpc(ServerRpcHandler.java:274)
+	at com.vaadin.server.communication.UidlRequestHandler.synchronizedHandleRequest(UidlRequestHandler.java:90)
+	at com.vaadin.server.SynchronizedRequestHandler.handleRequest(SynchronizedRequestHandler.java:40)
+	at com.vaadin.server.VaadinService.handleRequest(VaadinService.java:1601)
+	at com.vaadin.server.VaadinServlet.service(VaadinServlet.java:445)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2018-05-07 17:10:38,995 ERROR [http-nio-8080-exec-2] com.vaadin.server.DefaultErrorHandler : 
+java.lang.NullPointerException: null
+	at com.isedykh.profiles.view.OrderView.enter(OrderView.java:96)
+	at com.vaadin.navigator.Navigator.performNavigateTo(Navigator.java:778)
+	at com.vaadin.navigator.Navigator.lambda$navigateTo$9a874efd$1(Navigator.java:702)
+	at com.vaadin.navigator.ViewBeforeLeaveEvent.navigate(ViewBeforeLeaveEvent.java:54)
+	at com.vaadin.navigator.View.beforeLeave(View.java:79)
+	at com.vaadin.navigator.Navigator.runAfterLeaveConfirmation(Navigator.java:730)
+	at com.vaadin.navigator.Navigator.navigateTo(Navigator.java:701)
+	at com.vaadin.navigator.Navigator.navigateTo(Navigator.java:678)
+	at com.isedykh.profiles.common.Utils.lambda$static$3(Utils.java:53)
+	at com.isedykh.profiles.view.OrdersView.lambda$init$61446b05$1(OrdersView.java:68)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.vaadin.event.ListenerMethod.receiveEvent(ListenerMethod.java:499)
+	at com.vaadin.event.EventRouter.fireEvent(EventRouter.java:273)
+	at com.vaadin.event.EventRouter.fireEvent(EventRouter.java:237)
+	at com.vaadin.server.AbstractClientConnector.fireEvent(AbstractClientConnector.java:1014)
+	at com.vaadin.ui.Button.fireClick(Button.java:384)
+	at com.vaadin.ui.Button$1.click(Button.java:57)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.vaadin.server.ServerRpcManager.applyInvocation(ServerRpcManager.java:155)
+	at com.vaadin.server.ServerRpcManager.applyInvocation(ServerRpcManager.java:116)
+	at com.vaadin.server.communication.ServerRpcHandler.handleInvocation(ServerRpcHandler.java:445)
+	at com.vaadin.server.communication.ServerRpcHandler.handleInvocations(ServerRpcHandler.java:410)
+	at com.vaadin.server.communication.ServerRpcHandler.handleRpc(ServerRpcHandler.java:274)
+	at com.vaadin.server.communication.UidlRequestHandler.synchronizedHandleRequest(UidlRequestHandler.java:90)
+	at com.vaadin.server.SynchronizedRequestHandler.handleRequest(SynchronizedRequestHandler.java:40)
+	at com.vaadin.server.VaadinService.handleRequest(VaadinService.java:1601)
+	at com.vaadin.server.VaadinServlet.service(VaadinServlet.java:445)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2018-05-07 17:10:41,285 ERROR [http-nio-8080-exec-6] com.vaadin.server.DefaultErrorHandler : 
+java.lang.NullPointerException: null
+	at com.isedykh.profiles.view.OrderView.enter(OrderView.java:96)
+	at com.vaadin.navigator.Navigator.performNavigateTo(Navigator.java:778)
+	at com.vaadin.navigator.Navigator.lambda$navigateTo$9a874efd$1(Navigator.java:702)
+	at com.vaadin.navigator.ViewBeforeLeaveEvent.navigate(ViewBeforeLeaveEvent.java:54)
+	at com.vaadin.navigator.View.beforeLeave(View.java:79)
+	at com.vaadin.navigator.Navigator.runAfterLeaveConfirmation(Navigator.java:730)
+	at com.vaadin.navigator.Navigator.navigateTo(Navigator.java:701)
+	at com.vaadin.navigator.Navigator.navigateTo(Navigator.java:678)
+	at com.isedykh.profiles.common.Utils.lambda$static$3(Utils.java:53)
+	at com.isedykh.profiles.view.OrdersView.lambda$init$61446b05$1(OrdersView.java:68)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.vaadin.event.ListenerMethod.receiveEvent(ListenerMethod.java:499)
+	at com.vaadin.event.EventRouter.fireEvent(EventRouter.java:273)
+	at com.vaadin.event.EventRouter.fireEvent(EventRouter.java:237)
+	at com.vaadin.server.AbstractClientConnector.fireEvent(AbstractClientConnector.java:1014)
+	at com.vaadin.ui.Button.fireClick(Button.java:384)
+	at com.vaadin.ui.Button$1.click(Button.java:57)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.vaadin.server.ServerRpcManager.applyInvocation(ServerRpcManager.java:155)
+	at com.vaadin.server.ServerRpcManager.applyInvocation(ServerRpcManager.java:116)
+	at com.vaadin.server.communication.ServerRpcHandler.handleInvocation(ServerRpcHandler.java:445)
+	at com.vaadin.server.communication.ServerRpcHandler.handleInvocations(ServerRpcHandler.java:410)
+	at com.vaadin.server.communication.ServerRpcHandler.handleRpc(ServerRpcHandler.java:274)
+	at com.vaadin.server.communication.UidlRequestHandler.synchronizedHandleRequest(UidlRequestHandler.java:90)
+	at com.vaadin.server.SynchronizedRequestHandler.handleRequest(SynchronizedRequestHandler.java:40)
+	at com.vaadin.server.VaadinService.handleRequest(VaadinService.java:1601)
+	at com.vaadin.server.VaadinServlet.service(VaadinServlet.java:445)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)

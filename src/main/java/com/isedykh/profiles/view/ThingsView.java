@@ -46,13 +46,8 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.setHeightByRows(17);
         addComponent(thingsGrid);
         setExpandRatio(thingsGrid, 1f);
-        thingsGrid.addItemClickListener(clickEvent -> {
-            if (clickEvent.getMouseEventDetails().isDoubleClick()) {
-                ThingDto thingDto = clickEvent.getItem();
-                String s = ThingView.VIEW_NAME + "/" + thingDto.getId();
-                getUI().getNavigator().navigateTo(s);
-            }
-        });
+
+        thingsGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
 
         HorizontalLayout buttons = new HorizontalLayout();
         Button buttonNext = new Button("Next");
