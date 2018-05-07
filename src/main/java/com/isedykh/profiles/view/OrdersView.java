@@ -9,10 +9,13 @@ import com.vaadin.ui.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 
 @AllArgsConstructor
 @SpringView(name = OrdersView.VIEW_NAME)
@@ -53,30 +56,20 @@ public class OrdersView extends VerticalLayout implements View {
 
         HorizontalLayout buttons = new HorizontalLayout();
         Button buttonNext = new Button("Next");
-        Button buttonPrivious = new Button("Previous");
+        Button buttonPrevious = new Button("Previous");
         Button buttonDetails = new Button("Details");
         Button buttonNew = new Button("New");
 
-        buttons.addComponent(buttonPrivious);
+        buttons.addComponent(buttonPrevious);
         buttons.addComponent(buttonDetails);
         buttons.addComponent(buttonNew);
         buttons.addComponent(buttonNext);
 
-        buttonPrivious.setEnabled(false);
+        buttonPrevious.setEnabled(false);
 
-        buttonNext.addClickListener(clickEvent -> {
-            orderPage.set(orderService.findAll(orderPage.get().nextPageable()));
-            orderGrid.setItems(orderPage.get().getContent());
-            buttonNext.setEnabled(!orderPage.get().isLast());
-            buttonPrivious.setEnabled(true);
-        });
+        buttonNext.addClickListener(getPageChangeClickListener(orderPage, Slice::nextPageable, orderGrid, buttonNext, buttonPrevious, orderService));
 
-        buttonPrivious.addClickListener(clickEvent -> {
-            orderPage.set(orderService.findAll(orderPage.get().previousPageable()));
-            orderGrid.setItems(orderPage.get().getContent());
-            buttonPrivious.setEnabled(!orderPage.get().isFirst());
-            buttonNext.setEnabled(true);
-        });
+        buttonPrevious.addClickListener(getPageChangeClickListener(orderPage, Slice::previousPageable, orderGrid, buttonNext, buttonPrevious, orderService));
 
         buttonNew.addClickListener(clickEvent -> {
             String state = getUI().getNavigator().getState();

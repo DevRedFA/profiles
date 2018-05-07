@@ -1,7 +1,8 @@
 package com.isedykh.profiles.view;
 
-import com.isedykh.profiles.mapper.ThingMapper;
-import com.isedykh.profiles.service.*;
+import com.isedykh.profiles.service.Identifiable;
+import com.isedykh.profiles.service.ThingDto;
+import com.isedykh.profiles.service.ThingDtoService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -9,13 +10,13 @@ import com.vaadin.ui.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.isedykh.profiles.common.Utils.initTailMenu;
+import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 
 @AllArgsConstructor
 @SpringView(name = ThingsView.VIEW_NAME)
@@ -23,12 +24,12 @@ public class ThingsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "things";
 
-    private ThingService thingService;
+    private ThingDtoService thingService;
 
     @PostConstruct
     public void init() {
 
-        AtomicReference<Page<ThingDto>> thingPage = new AtomicReference<>(thingService.findAllToDto(PageRequest.of(0, 17)));
+        AtomicReference<Page<ThingDto>> thingPage = new AtomicReference<>(thingService.findAll(PageRequest.of(0, 17)));
         Grid<ThingDto> thingsGrid = new Grid<>();
         thingsGrid.setSizeFull();
         thingsGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
@@ -58,31 +59,20 @@ public class ThingsView extends VerticalLayout implements View {
 
         HorizontalLayout buttons = new HorizontalLayout();
         Button buttonNext = new Button("Next");
-        Button buttonPrivious = new Button("Previous");
+        Button buttonPrevious = new Button("Previous");
         Button buttonDetails = new Button("Details");
         Button buttonNew = new Button("New");
 
-        buttons.addComponent(buttonPrivious);
+        buttons.addComponent(buttonPrevious);
         buttons.addComponent(buttonDetails);
         buttons.addComponent(buttonNew);
         buttons.addComponent(buttonNext);
 
-        buttonPrivious.setEnabled(false);
+        buttonPrevious.setEnabled(false);
 
-        buttonNext.addClickListener(clickEvent -> {
-            thingPage.set(thingService.findAllToDto(thingPage.get().nextPageable()));
-            thingsGrid.setItems(thingPage.get().getContent());
-            buttonNext.setEnabled(!thingPage.get().isLast());
-            buttonPrivious.setEnabled(true);
-        });
+        buttonNext.addClickListener(getPageChangeClickListener(thingPage, Slice::nextPageable, thingsGrid, buttonNext, buttonPrevious, thingService));
 
-        buttonPrivious.addClickListener(clickEvent -> {
-            thingPage.set(thingService.findAllToDto(thingPage.get().previousPageable()));
-            thingsGrid.setItems(thingPage.get().getContent());
-            buttonPrivious.setEnabled(!thingPage.get().isFirst());
-            buttonNext.setEnabled(true);
-        });
-
+        buttonPrevious.addClickListener(getPageChangeClickListener(thingPage, Slice::previousPageable, thingsGrid, buttonNext, buttonPrevious, thingService));
 
         buttonNew.addClickListener(clickEvent -> {
             String state = getUI().getNavigator().getState();

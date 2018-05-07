@@ -9,12 +9,16 @@ import com.vaadin.ui.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
+import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 import static com.isedykh.profiles.common.Utils.initTailMenu;
 
 @AllArgsConstructor
@@ -52,31 +56,20 @@ public class ClientsView extends VerticalLayout implements View {
 
         HorizontalLayout buttons = new HorizontalLayout();
         Button buttonNext = new Button("Next");
-        Button buttonPrivious = new Button("Previous");
+        Button buttonPrevious = new Button("Previous");
         Button buttonDetails = new Button("Details");
         Button buttonNew = new Button("New");
 
-        buttons.addComponent(buttonPrivious);
+        buttons.addComponent(buttonPrevious);
         buttons.addComponent(buttonDetails);
         buttons.addComponent(buttonNew);
         buttons.addComponent(buttonNext);
 
-        buttonPrivious.setEnabled(false);
+        buttonPrevious.setEnabled(false);
 
+        buttonNext.addClickListener(getPageChangeClickListener(clientPage, Slice::nextPageable, clientGrid, buttonNext, buttonPrevious, clientService));
 
-        buttonNext.addClickListener(clickEvent -> {
-            clientPage.set(clientService.findAll(clientPage.get().nextPageable()));
-            clientGrid.setItems(clientPage.get().getContent());
-            buttonNext.setEnabled(!clientPage.get().isLast());
-            buttonPrivious.setEnabled(true);
-        });
-
-        buttonPrivious.addClickListener(clickEvent -> {
-            clientPage.set(clientService.findAll(clientPage.get().previousPageable()));
-            clientGrid.setItems(clientPage.get().getContent());
-            buttonPrivious.setEnabled(!clientPage.get().isFirst());
-            buttonNext.setEnabled(true);
-        });
+        buttonPrevious.addClickListener(getPageChangeClickListener(clientPage, Slice::previousPageable, clientGrid, buttonNext, buttonPrevious, clientService));
 
         buttonNew.addClickListener(clickEvent -> {
             String state = getUI().getNavigator().getState();
@@ -99,6 +92,7 @@ public class ClientsView extends VerticalLayout implements View {
 
         addComponent(buttons);
     }
+
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {

@@ -5,11 +5,11 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface ClientService {
+public interface ClientService extends PageableService<Client> {
 
     List<Client> findAll();
 
-    Page<Client>  findAll(Pageable pageable);
+    Page<Client> findAll(Pageable pageable);
 
     Client saveClient(Client client);
 
