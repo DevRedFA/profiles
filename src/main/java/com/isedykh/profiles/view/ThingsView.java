@@ -1,5 +1,6 @@
 package com.isedykh.profiles.view;
 
+import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.Identifiable;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingDtoService;
@@ -53,10 +54,6 @@ public class ThingsView extends VerticalLayout implements View {
             }
         });
 
-
-//        addComponent(initTailMenu(thingsGrid,getUI()));
-
-
         HorizontalLayout buttons = new HorizontalLayout();
         Button buttonNext = new Button("Next");
         Button buttonPrevious = new Button("Previous");
@@ -74,24 +71,9 @@ public class ThingsView extends VerticalLayout implements View {
 
         buttonPrevious.addClickListener(getPageChangeClickListener(thingPage, Slice::previousPageable, thingsGrid, buttonNext, buttonPrevious, thingService));
 
-        buttonNew.addClickListener(clickEvent -> {
-            String state = getUI().getNavigator().getState();
-            String s = state.substring(0, state.length() - 1) + "/new";
-            getUI().getNavigator().navigateTo(s);
-        });
+        buttonNew.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
 
-        buttonDetails.addClickListener(clickEvent -> {
-            Set selectedItems = thingsGrid.getSelectedItems();
-            if (selectedItems.size() == 1) {
-                Object[] objects = selectedItems.toArray();
-                Identifiable obj = Identifiable.class.cast(objects[0]);
-                String state = getUI().getNavigator().getState();
-                String s = state.substring(0, state.length() - 1) + "/" + obj.getId();
-                getUI().getNavigator().navigateTo(s);
-            } else {
-                Notification.show("Please select one option");
-            }
-        });
+        buttonDetails.addClickListener(clickEvent -> Utils.detailsClickListenerSupplier.accept(thingsGrid, this::getUI));
 
         addComponent(buttons);
     }
