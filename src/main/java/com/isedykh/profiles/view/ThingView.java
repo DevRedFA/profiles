@@ -1,24 +1,19 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.dao.entity.OrderStatus;
 import com.isedykh.profiles.dao.entity.ThingStatus;
 import com.isedykh.profiles.dao.entity.ThingType;
-import com.isedykh.profiles.mapper.ThingMapper;
 import com.isedykh.profiles.service.Price;
 import com.isedykh.profiles.service.Thing;
-import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @SpringView(name = ThingView.VIEW_NAME)

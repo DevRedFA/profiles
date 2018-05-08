@@ -53,6 +53,12 @@ public class ThingServiceImpl implements ThingService {
     }
 
     @Override
+    public List<Thing> findAllByName(String name) {
+        List<ThingEntity> allByName = thingEntityRepository.findAllByName(name);
+        return thingMapper.thingEntitiesToThings(allByName);
+    }
+
+    @Override
     public List<Thing> getAllThingPersonGet(long clientId) {
         List<OrderEntity> orderEntities = orderEntityRepository.findAllByClientId(clientId);
         List<ThingEntity> thingEntities = orderEntities.stream().map(OrderEntity::getThing).distinct().collect(Collectors.toList());

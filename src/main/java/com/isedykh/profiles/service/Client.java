@@ -2,6 +2,7 @@ package com.isedykh.profiles.service;
 
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -17,6 +18,11 @@ public class Client implements Identifiable {
     private long phoneSecond;
 
     private String address;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 
     private int childrenNumber;
 

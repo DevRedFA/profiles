@@ -21,7 +21,7 @@ public class Order implements Identifiable {
 
     private Client client;
 
-    private int price;
+    private Price price;
 
     private String comments;
 }

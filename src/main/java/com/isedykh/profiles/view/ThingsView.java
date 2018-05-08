@@ -1,7 +1,6 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.service.Identifiable;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingDtoService;
 import com.vaadin.navigator.View;
@@ -14,7 +13,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
@@ -81,6 +79,4 @@ public class ThingsView extends VerticalLayout implements View {
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
     }
-
-
 }

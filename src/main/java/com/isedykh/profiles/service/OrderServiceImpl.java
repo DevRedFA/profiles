@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order create(Order order) {
+    public Order save(Order order) {
         OrderEntity orderEntity = orderMapper.orderToOrderEntity(order);
         return orderMapper.orderEntityToOrder(orderEntityRepository.save(orderEntity));
     }

@@ -1,9 +1,10 @@
 package com.isedykh.profiles;
 
 import com.isedykh.profiles.dao.entity.*;
-import com.isedykh.profiles.dao.repository.*;
-import com.isedykh.profiles.service.Client;
-import com.isedykh.profiles.service.Thing;
+import com.isedykh.profiles.dao.repository.ClientEntityRepository;
+import com.isedykh.profiles.dao.repository.OrderEntityRepository;
+import com.isedykh.profiles.dao.repository.PriceEntityRepository;
+import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -14,7 +15,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -29,14 +29,14 @@ public class DataInitializer implements ApplicationRunner {
     private OrderEntityRepository orderEntityRepository;
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
 
 
         //init Thing
         List<ThingEntity> listThing = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
             listThing.add(new ThingEntity(i, "Thing " + i,
-                    i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i, ThingType.ERGO, ThingStatus.FREE, Collections.EMPTY_LIST, i));
+                    i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i, ThingType.ERGO, ThingStatus.FREE, Collections.emptyList(), i));
         }
         thingEntityRepository.saveAll(listThing);
 
@@ -51,7 +51,7 @@ public class DataInitializer implements ApplicationRunner {
             priceEntityRepository.save(priceWeek);
             priceEntityRepository.save(priceTwoWeeks);
             priceEntityRepository.save(priceMonth);
-        };
+        }
 
         //init Client
         List<ClientEntity> listClient = new ArrayList<>();

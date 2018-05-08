@@ -1,8 +1,8 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.mapper.OrderMapper;
-import com.isedykh.profiles.service.*;
+import com.isedykh.profiles.service.Order;
+import com.isedykh.profiles.service.OrderService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -13,7 +13,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;

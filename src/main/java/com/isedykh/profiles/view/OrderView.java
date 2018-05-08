@@ -3,10 +3,7 @@ package com.isedykh.profiles.view;
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.OrderStatus;
 import com.isedykh.profiles.mapper.OrderMapper;
-import com.isedykh.profiles.service.Client;
-import com.isedykh.profiles.service.Order;
-import com.isedykh.profiles.service.OrderService;
-import com.isedykh.profiles.service.Thing;
+import com.isedykh.profiles.service.*;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -15,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @RequiredArgsConstructor
 @SpringView(name = OrderView.VIEW_NAME)
@@ -26,7 +24,10 @@ public class OrderView extends VerticalLayout implements View {
     private final OrderService orderService;
 
     @Autowired
-    private final OrderMapper orderMapper;
+    private final ClientService clientService;
+
+    @Autowired
+    private final ThingService thingService;
 
     private Order order;
 
@@ -46,11 +47,11 @@ public class OrderView extends VerticalLayout implements View {
 
     private TextArea comments = new TextArea("Comments");
 
-    VerticalLayout verticalLayout = new VerticalLayout();
+    private VerticalLayout verticalLayout = new VerticalLayout();
 
-    HorizontalLayout horizontalLayout = new HorizontalLayout();
+    private HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-    Grid<Order> ordersGrid = new Grid<>();
+    private Button save = new Button("Save");
 
     @PostConstruct
     public void init() {
@@ -62,6 +63,7 @@ public class OrderView extends VerticalLayout implements View {
         verticalLayout.addComponent(client);
         verticalLayout.addComponent(thing);
         verticalLayout.addComponent(price);
+        verticalLayout.addComponent(save);
 
         horizontalLayout.addComponent(verticalLayout);
         horizontalLayout.addComponent(comments);
@@ -87,8 +89,8 @@ public class OrderView extends VerticalLayout implements View {
         }
 
         Utils.setFieldIfNotNull(order::getId, idField::setValue, String::valueOf);
-        Utils.setFieldIfNotNull(order::getBegin, begin::setValue,  s -> s);
-        Utils.setFieldIfNotNull(order::getEnd, end::setValue,  s -> s);
+        Utils.setFieldIfNotNull(order::getBegin, begin::setValue, s -> s);
+        Utils.setFieldIfNotNull(order::getEnd, end::setValue, s -> s);
         Utils.setFieldIfNotNull(order::getStatus, status::setSelectedItem, s -> s);
         Utils.setFieldIfNotNull(OrderStatus::values, status::setItems, s -> s);
         Utils.setFieldIfNotNull(order::getPrice, price::setValue, String::valueOf);
@@ -101,5 +103,41 @@ public class OrderView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(order::getThing, thing::setValue, Thing::getName);
 
         status.setSelectedItem(order.getStatus());
+
+        client.addValueChangeListener(changedListener -> {
+            String value = changedListener.getValue();
+            List<Client> clientByName = clientService.findClientByName(value);
+            if (clientByName.isEmpty()) {
+                Notification.show("Client not found");
+            }
+            if (clientByName.size() != 1) {
+                Notification.show("Several clients found");
+            }
+            order.setClient(clientByName.get(0));
+        });
+
+        thing.addValueChangeListener(changedListener -> {
+            String value = changedListener.getValue();
+            List<Thing> allByName = thingService.findAllByName(value);
+            if (allByName.isEmpty()) {
+                Notification.show("Client not found");
+            }
+            if (allByName.size() != 1) {
+                Notification.show("Several clients found");
+            }
+            order.setThing(allByName.get(0));
+        });
+
+
+        save.addClickListener(clickEvent -> {
+            order.setId(Long.parseLong(idField.getValue()));
+            order.setBegin(begin.getValue());
+            order.setEnd(end.getValue());
+            order.setStatus(status.getSelectedItem().get());
+            // FIXME: 08.05.2018 Change cents to rubles
+            order.setPrice(Integer.parseInt(price.getValue()));
+            order.setComments(comments.getValue());
+            orderService.save(order);
+        });
     }
 }

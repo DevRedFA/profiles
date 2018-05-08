@@ -16,6 +16,8 @@ public interface ThingService extends CrudService<Thing> {
 
     List<Thing> getAllThingPersonGet(Client client);
 
+    List<Thing> findAllByName(String name);
+
     List<Thing> getAllThingPersonGet(long personId);
 
     Page<Thing> findAll(Pageable pageable);

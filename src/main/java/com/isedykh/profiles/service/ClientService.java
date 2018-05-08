@@ -11,11 +11,11 @@ public interface ClientService extends CrudService<Client> {
 
     Page<Client> findAll(Pageable pageable);
 
-    Client saveClient(Client client);
+    Client save(Client client);
 
-    Client updateClient(Client client);
+    Client update(Client client);
 
-    void deleteClient(Client client);
+    void delete(Client client);
 
     // TODO: 4/12/18 Think about full text search instead
     List<Client> findClientByName(String string);

@@ -44,6 +44,12 @@ public class OrderEntity {
             nullable = false)
     private ClientEntity client;
 
-    @Column(nullable = false)
-    private int price;
+//    @Column(nullable = false)
+//    private int price;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "price_id",
+            referencedColumnName = "id",
+            nullable = false)
+    private PriceEntity price;
 }

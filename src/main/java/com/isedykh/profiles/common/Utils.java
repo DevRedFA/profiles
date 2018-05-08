@@ -64,6 +64,7 @@ public class Utils {
         };
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> Button.ClickListener getDeleteClickListener(Grid<T> grid,
                                                                   CrudService<T> crudService) {
         return clickEvent -> {

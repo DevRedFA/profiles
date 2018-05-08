@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import java.util.Collections;
 
 @RequiredArgsConstructor
 @SpringView(name = ClientView.VIEW_NAME)
@@ -126,7 +125,7 @@ public class ClientView extends VerticalLayout implements View {
                 client.setAddress(address.getValue());
                 client.setChildrenNumber(Integer.parseInt(childrenNumber.getValue()));
                 client.setChildrenComments(childrenComments.getValue());
-                clientService.saveClient(client);
+                clientService.save(client);
             } catch (NumberFormatException e) {
                 Notification.show("Bad format of phone/second phone");
             }

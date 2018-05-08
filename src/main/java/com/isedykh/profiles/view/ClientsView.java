@@ -15,10 +15,9 @@ import org.springframework.data.domain.Slice;
 import javax.annotation.PostConstruct;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.isedykh.profiles.common.Utils.detailsClickListenerSupplier;
 import static com.isedykh.profiles.common.Utils.getDeleteClickListener;
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
-
+//@Secured({"ROLE_ADMIN"})
 @AllArgsConstructor
 @SpringView(name = ClientsView.VIEW_NAME)
 public class ClientsView extends VerticalLayout implements View {
@@ -80,8 +79,5 @@ public class ClientsView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-
     }
-
-
 }

@@ -19,5 +19,5 @@ public interface OrderService extends CrudService<Order> {
 
     void delete(Order order);
 
-    Order create(Order order);
+    Order save(Order order);
 }

@@ -40,21 +40,16 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client saveClient(Client client) {
+    public Client save(Client client) {
         ClientEntity entity = clientMapper.clientToClientEntity(client);
         ClientEntity save = clientEntityRepository.save(entity);
         return clientMapper.clientEntityToClient(save);
     }
 
     @Override
-    public Client updateClient(Client client) {
+    public Client update(Client client) {
         ClientEntity save = clientEntityRepository.save(clientMapper.clientToClientEntity(client));
         return clientMapper.clientEntityToClient(save);
-    }
-
-    @Override
-    public void deleteClient(Client client) {
-        clientEntityRepository.delete(clientMapper.clientToClientEntity(client));
     }
 
     @Override
