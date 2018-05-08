@@ -21,7 +21,7 @@ public interface ClientMapper {
     ClientEntity clientToClientEntity(Client client, Object obj);
 
     default ClientEntity clientToClientEntity(Client client) {
-        ClientEntity clientEntity = clientToClientEntity(client, null);
+        ClientEntity clientEntity = this.clientToClientEntity(client, new Object());
         if (clientEntity.getOrders() != null) {
             clientEntity.getOrders().forEach(s -> s.setClient(clientEntity));
         }
