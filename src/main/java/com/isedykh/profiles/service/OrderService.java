@@ -15,9 +15,9 @@ public interface OrderService extends CrudService<Order> {
 
     Page<Order> findAll(Pageable pageable);
 
-    Order updateOrder(Order order);
+    Order update(Order order);
 
-    void deleteOrder(Order order);
+    void delete(Order order);
 
-    Order createOrder(Order order);
+    Order create(Order order);
 }

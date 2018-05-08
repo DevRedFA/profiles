@@ -1,7 +1,9 @@
 package com.isedykh.profiles.service;
 
+import com.isedykh.profiles.dao.entity.OrderEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.dao.entity.ThingType;
+import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.mapper.ThingMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +24,9 @@ public class ThingServiceImpl implements ThingService {
 
     private final ThingEntityRepository thingEntityRepository;
 
-    private final ThingMapper thingMapper;
+    private final OrderEntityRepository orderEntityRepository;
 
+    private final ThingMapper thingMapper;
 
     @Override
     public List<Thing> findAll() {
@@ -44,12 +47,16 @@ public class ThingServiceImpl implements ThingService {
 
     @Override
     public List<Thing> getAllThingPersonGet(Client client) {
-        return null;
+        List<OrderEntity> orderEntities = orderEntityRepository.findAllByClientId(client.getId());
+        List<ThingEntity> thingEntities = orderEntities.stream().map(OrderEntity::getThing).distinct().collect(Collectors.toList());
+        return thingMapper.thingEntitiesToThings(thingEntities);
     }
 
     @Override
-    public List<Thing> getAllThingPersonGet(long personId) {
-        return null;
+    public List<Thing> getAllThingPersonGet(long clientId) {
+        List<OrderEntity> orderEntities = orderEntityRepository.findAllByClientId(clientId);
+        List<ThingEntity> thingEntities = orderEntities.stream().map(OrderEntity::getThing).distinct().collect(Collectors.toList());
+        return thingMapper.thingEntitiesToThings(thingEntities);
     }
 
     @Override
@@ -75,12 +82,15 @@ public class ThingServiceImpl implements ThingService {
 
     @Override
     public Thing save(Thing thing) {
-        return null;
+        ThingEntity thingEntity = thingMapper.thingToThingEntity(thing);
+        ThingEntity save = thingEntityRepository.save(thingEntity);
+        return thingMapper.thingEntityToThing(save);
     }
 
     @Override
     public Thing update(Thing thing) {
-        return null;
+        ThingEntity thingEntity = thingMapper.thingToThingEntity(thing);
+        ThingEntity save = thingEntityRepository.save(thingEntity);
+        return thingMapper.thingEntityToThing(save);
     }
-
 }

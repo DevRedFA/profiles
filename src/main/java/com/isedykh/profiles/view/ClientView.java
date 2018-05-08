@@ -1,7 +1,10 @@
 package com.isedykh.profiles.view;
 
-import com.isedykh.profiles.mapper.ClientMapper;
-import com.isedykh.profiles.service.*;
+import com.isedykh.profiles.common.Utils;
+import com.isedykh.profiles.service.Client;
+import com.isedykh.profiles.service.ClientService;
+import com.isedykh.profiles.service.Identifiable;
+import com.isedykh.profiles.service.Order;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -11,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.util.Collections;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 @RequiredArgsConstructor
 @SpringView(name = ClientView.VIEW_NAME)
@@ -23,9 +23,6 @@ public class ClientView extends VerticalLayout implements View {
 
     @Autowired
     private final ClientService clientService;
-
-    @Autowired
-    private final ClientMapper clientMapper;
 
     private Client client;
 
@@ -47,11 +44,11 @@ public class ClientView extends VerticalLayout implements View {
 
     private Button save = new Button("Save");
 
-    VerticalLayout verticalLayout = new VerticalLayout();
+    private VerticalLayout verticalLayout = new VerticalLayout();
 
-    HorizontalLayout horizontalLayout = new HorizontalLayout();
+    private HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-    Grid<Order> ordersGrid = new Grid<>();
+    private Grid<Order> ordersGrid = new Grid<>();
 
     @PostConstruct
     public void init() {
@@ -92,31 +89,23 @@ public class ClientView extends VerticalLayout implements View {
             }
         }
 
-//        name.setValue(client.getName());
-        setFieldIfNotNull(client::getName, name::setValue, s -> s);
+        Utils.setFieldIfNotNull(client::getName, name::setValue, s -> s);
 
-//        phone.setValue(String.valueOf(client.getPhone()));
-        setFieldIfNotNull(client::getPhone, phone::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(client::getPhone, phone::setValue, String::valueOf);
 
-//        phoneSecond.setValue(String.valueOf(client.getPhoneSecond()));
-        setFieldIfNotNull(client::getPhoneSecond, phoneSecond::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(client::getPhoneSecond, phoneSecond::setValue, String::valueOf);
 
-//        email.setValue(client.getEmail());
-        setFieldIfNotNull(client::getEmail, email::setValue, s -> s);
+        Utils.setFieldIfNotNull(client::getEmail, email::setValue, s -> s);
 
-//        contactLink.setValue(String.valueOf(client.getContactLink()));
-        setFieldIfNotNull(client::getContactLink, contactLink::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(client::getContactLink, contactLink::setValue, String::valueOf);
 
-//        address.setValue(String.valueOf(client.getAddress()));
-        setFieldIfNotNull(client::getAddress, address::setValue, s -> s);
+        Utils.setFieldIfNotNull(client::getAddress, address::setValue, s -> s);
 
-//        childrenNumber.setValue(String.valueOf(client.getChildrenNumber()));
-        setFieldIfNotNull(client::getChildrenNumber, childrenNumber::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(client::getChildrenNumber, childrenNumber::setValue, String::valueOf);
 
-//        childrenComments.setValue(client.getChildrenComments());
-        setFieldIfNotNull(client::getChildrenComments, childrenComments::setValue, s -> s);
+        Utils.setFieldIfNotNull(client::getChildrenComments, childrenComments::setValue, s -> s);
 
-        ordersGrid.setItems(client.getOrders() != null ? client.getOrders() : Collections.emptyList());
+        Utils.setFieldIfNotNull(client::getOrders, ordersGrid::setItems, s -> s);
 
         ordersGrid.addColumn(s -> s.getThing().getName()).setCaption("Thing");
         ordersGrid.addColumn(Order::getStatus).setCaption("Status");
@@ -152,10 +141,5 @@ public class ClientView extends VerticalLayout implements View {
         }
     }
 
-    private <T, R> void setFieldIfNotNull(Supplier<T> condition, Consumer<R> field, Function<T, R> converter) {
-        T t = condition.get();
-        if (t != null) {
-            field.accept(converter.apply(t));
-        }
-    }
+
 }

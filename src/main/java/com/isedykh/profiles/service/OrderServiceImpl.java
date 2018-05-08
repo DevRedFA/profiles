@@ -46,22 +46,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void delete(Order order) {
-
+        orderEntityRepository.delete(orderMapper.orderToOrderEntity(order));
     }
 
     @Override
-    public Order updateOrder(Order order) {
+    public Order update(Order order) {
         OrderEntity orderEntity = orderMapper.orderToOrderEntity(order);
         return orderMapper.orderEntityToOrder(orderEntityRepository.save(orderEntity));
     }
 
     @Override
-    public void deleteOrder(Order order) {
-        orderEntityRepository.delete(orderMapper.orderToOrderEntity(order));
-    }
-
-    @Override
-    public Order createOrder(Order order) {
+    public Order create(Order order) {
         OrderEntity orderEntity = orderMapper.orderToOrderEntity(order);
         return orderMapper.orderEntityToOrder(orderEntityRepository.save(orderEntity));
     }

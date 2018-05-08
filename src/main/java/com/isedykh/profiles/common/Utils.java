@@ -73,4 +73,11 @@ public class Utils {
             }
         };
     }
+
+    public static <T, R> void setFieldIfNotNull(Supplier<T> condition, Consumer<R> field, Function<T, R> converter) {
+        T t = condition.get();
+        if (t != null) {
+            field.accept(converter.apply(t));
+        }
+    }
 }

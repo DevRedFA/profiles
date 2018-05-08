@@ -1,5 +1,6 @@
 package com.isedykh.profiles.view;
 
+import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.OrderStatus;
 import com.isedykh.profiles.dao.entity.ThingStatus;
 import com.isedykh.profiles.dao.entity.ThingType;
@@ -28,9 +29,6 @@ public class ThingView extends VerticalLayout implements View {
     @Autowired
     private final ThingService thingService;
 
-    @Autowired
-    private final ThingMapper thingMapper;
-
     private Thing thing;
 
     private TextField name = new TextField("Name");
@@ -45,11 +43,11 @@ public class ThingView extends VerticalLayout implements View {
 
     private TextField deposit = new TextField("Deposit");
 
-    VerticalLayout verticalLayout = new VerticalLayout();
+    private VerticalLayout verticalLayout = new VerticalLayout();
 
-    HorizontalLayout horizontalLayout = new HorizontalLayout();
+    private HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-    Grid<Price> pricesGrind = new Grid<>();
+    private Grid<Price> pricesGrind = new Grid<>();
 
     @PostConstruct
     public void init() {
@@ -70,8 +68,6 @@ public class ThingView extends VerticalLayout implements View {
         if (event.getParameters() != null) {
             if (event.getParameters().contains("new")) {
                 thing = new Thing();
-                name.setValue("");
-
             } else {
                 int id = Integer.parseInt(event.getParameters());
                 try {
@@ -79,22 +75,22 @@ public class ThingView extends VerticalLayout implements View {
                 } catch (Exception e) {
                     Notification.show("Thing with such id not found");
                 }
-
             }
         }
-        name.setValue(thing.getName());
 
-        type.setItems(ThingType.values());
-        type.setSelectedItem(thing.getType());
+        Utils.setFieldIfNotNull(thing::getName, name::setValue, s -> s);
+        Utils.setFieldIfNotNull(thing::getPurchasePrice, purchasePrice::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(thing::getDeposit, deposit::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(thing::getPurchaseDate, purchaseDate::setValue, s -> s);
 
-        status.setItems(ThingStatus.values());
-        status.setSelectedItem(thing.getStatus());
+        Utils.setFieldIfNotNull(ThingType::values, type::setItems, s -> s);
+        Utils.setFieldIfNotNull(thing::getType, type::setSelectedItem, s -> s);
 
-        purchasePrice.setValue(String.valueOf(thing.getPurchasePrice()));
-        purchaseDate.setValue(thing.getPurchaseDate());
-        deposit.setValue(String.valueOf(thing.getDeposit()));
+        Utils.setFieldIfNotNull(ThingStatus::values, status::setItems, s -> s);
+        Utils.setFieldIfNotNull(thing::getStatus, status::setSelectedItem, s -> s);
 
-        pricesGrind.setItems(thing.getPrices());
+        Utils.setFieldIfNotNull(thing::getPrices, pricesGrind::setItems, s -> s);
+
         pricesGrind.addColumn(Price::getTerm).setCaption("Terms");
         pricesGrind.addColumn(Price::getPrice).setCaption("Price");
         pricesGrind.setHeightByRows(4);

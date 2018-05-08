@@ -1,9 +1,12 @@
 package com.isedykh.profiles.view;
 
+import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.OrderStatus;
 import com.isedykh.profiles.mapper.OrderMapper;
+import com.isedykh.profiles.service.Client;
 import com.isedykh.profiles.service.Order;
 import com.isedykh.profiles.service.OrderService;
+import com.isedykh.profiles.service.Thing;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -73,8 +76,6 @@ public class OrderView extends VerticalLayout implements View {
         if (event.getParameters() != null) {
             if (event.getParameters().contains("new")) {
                 order = new Order();
-                idField.setValue("");
-
             } else {
                 int id = Integer.parseInt(event.getParameters());
                 try {
@@ -82,23 +83,23 @@ public class OrderView extends VerticalLayout implements View {
                 } catch (Exception e) {
                     Notification.show("Client with such idField not found");
                 }
-
             }
         }
-        idField.setValue(String.valueOf(order.getId()));
 
-        status.setItems(OrderStatus.values());
-        status.setSelectedItem(order.getStatus());
+        Utils.setFieldIfNotNull(order::getId, idField::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(order::getBegin, begin::setValue,  s -> s);
+        Utils.setFieldIfNotNull(order::getEnd, end::setValue,  s -> s);
+        Utils.setFieldIfNotNull(order::getStatus, status::setSelectedItem, s -> s);
+        Utils.setFieldIfNotNull(OrderStatus::values, status::setItems, s -> s);
+        Utils.setFieldIfNotNull(order::getPrice, price::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(order::getComments, comments::setValue, s -> s);
 
-        begin.setValue(order.getBegin());
-        end.setValue(order.getEnd());
         // TODO: 04.05.2018 add fast link to client
-        client.setValue(order.getClient().getName());
+        Utils.setFieldIfNotNull(order::getClient, client::setValue, Client::getName);
+
         // TODO: 04.05.2018 add fast link to thing
-        thing.setValue(order.getThing().getName());
-        price.setValue(String.valueOf(order.getPrice()));
-        comments.setValue(order.getComments());
+        Utils.setFieldIfNotNull(order::getThing, thing::setValue, Thing::getName);
 
-
+        status.setSelectedItem(order.getStatus());
     }
 }
