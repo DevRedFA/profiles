@@ -18,10 +18,10 @@ public interface ClientMapper {
 
     Client clientEntityToClient(ClientEntity clientEntity);
 
-    ClientEntity clientToClientEntity(Client client);
+    ClientEntity clientToClientEntity(Client client, Object obj);
 
-    default ClientEntity clientToClientEntity(Client client, Object obj) {
-        ClientEntity clientEntity = clientToClientEntity(client);
+    default ClientEntity clientToClientEntity(Client client) {
+        ClientEntity clientEntity = clientToClientEntity(client, null);
         if (clientEntity.getOrders() != null) {
             clientEntity.getOrders().forEach(s -> s.setClient(clientEntity));
         }

@@ -69,7 +69,6 @@ public class ClientsView extends VerticalLayout implements View {
 
         buttonDetails.addClickListener(clickEvent -> Utils.detailsClickListenerSupplier.accept(clientGrid, this::getUI));
 
-
         // TODO: 07.05.2018 add reset of grid 
         buttonDelete.addClickListener(getDeleteClickListener(clientGrid, clientService));
 
