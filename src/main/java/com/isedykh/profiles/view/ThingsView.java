@@ -50,16 +50,20 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
 
         HorizontalLayout buttons = new HorizontalLayout();
+        HorizontalLayout leftButtons = new HorizontalLayout();
         Button buttonNext = new Button("Next");
         Button buttonPrevious = new Button("Previous");
         Button buttonDetails = new Button("Details");
         Button buttonNew = new Button("New");
-
-        buttons.addComponent(buttonPrevious);
-        buttons.addComponent(buttonDetails);
-        buttons.addComponent(buttonNew);
-        buttons.addComponent(buttonNext);
-
+        Button buttonDelete = new Button("Delete");
+        leftButtons.addComponent(buttonPrevious);
+        leftButtons.addComponent(buttonDetails);
+        leftButtons.addComponent(buttonNew);
+        leftButtons.addComponent(buttonNext);
+        buttons.addComponent(leftButtons);
+        buttons.addComponent(buttonDelete);
+        buttons.setSizeFull();
+        buttons.setComponentAlignment(buttonDelete, Alignment.MIDDLE_RIGHT);
         buttonPrevious.setEnabled(false);
 
         buttonNext.addClickListener(getPageChangeClickListener(thingPage, Slice::nextPageable, thingsGrid, buttonNext, buttonPrevious, thingService));
