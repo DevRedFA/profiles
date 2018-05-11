@@ -38,6 +38,8 @@ public class ThingView extends VerticalLayout implements View {
 
     private TextField deposit = new TextField("Deposit");
 
+    private TextField comments = new TextField("Comments");
+
     private VerticalLayout verticalLayout = new VerticalLayout();
 
     private HorizontalLayout horizontalLayout = new HorizontalLayout();
@@ -54,6 +56,7 @@ public class ThingView extends VerticalLayout implements View {
         verticalLayout.addComponent(purchaseDate);
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
         horizontalLayout.addComponent(verticalLayout);
+        horizontalLayout.addComponent(comments);
         horizontalLayout.addComponent(pricesGrind);
         addComponent(horizontalLayout);
     }
@@ -77,6 +80,7 @@ public class ThingView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(thing::getPurchasePrice, purchasePrice::setValue, String::valueOf);
         Utils.setFieldIfNotNull(thing::getDeposit, deposit::setValue, String::valueOf);
         Utils.setFieldIfNotNull(thing::getPurchaseDate, purchaseDate::setValue, s -> s);
+        Utils.setFieldIfNotNull(thing::getComments, comments::setValue, s -> s);
 
         Utils.setFieldIfNotNull(ThingType::values, type::setItems, s -> s);
         Utils.setFieldIfNotNull(thing::getType, type::setSelectedItem, s -> s);

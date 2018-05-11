@@ -13,5 +13,5 @@ public interface OrderEntityRepository extends JpaRepository<OrderEntity, Long> 
 
     List<OrderEntity> findAllByClientId(long clientId);
 
-//    Page<OrderEntity> findAll(Pageable pagable);
+    List<OrderEntity> findAllByThingId(long thingId);
 }

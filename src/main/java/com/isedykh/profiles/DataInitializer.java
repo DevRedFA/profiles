@@ -10,6 +10,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class DataInitializer implements ApplicationRunner {
 
@@ -36,7 +38,7 @@ public class DataInitializer implements ApplicationRunner {
         List<ThingEntity> listThing = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
             listThing.add(new ThingEntity(i, "Thing " + i,
-                    i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i, ThingType.ERGO, ThingStatus.FREE, Collections.emptyList(), i));
+                    i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i, ThingType.ERGO, ThingStatus.FREE, Collections.emptyList(), i, "comments "+ i));
         }
         thingEntityRepository.saveAll(listThing);
 
@@ -65,7 +67,7 @@ public class DataInitializer implements ApplicationRunner {
         List<OrderEntity> orderEntities = new ArrayList<>();
         for (int i = 0; i < 25; i++) {
             orderEntities.add(new OrderEntity(i, "Order comments " + i, new Timestamp(System.currentTimeMillis()),
-                    new Timestamp(System.currentTimeMillis() + 10000L), OrderStatus.BOOKED, listThing.get(i), listClient.get(i), i));
+                    new Timestamp(System.currentTimeMillis() + 10000L), OrderStatus.BOOKED, listThing.get(i), listClient.get(i), listThing.get(i).getPrices().get(0)));
         }
         orderEntityRepository.saveAll(orderEntities);
 

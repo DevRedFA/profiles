@@ -135,7 +135,7 @@ public class OrderView extends VerticalLayout implements View {
             order.setEnd(end.getValue());
             order.setStatus(status.getSelectedItem().get());
             // FIXME: 08.05.2018 Change cents to rubles
-            order.setPrice(Integer.parseInt(price.getValue()));
+//            order.setPrice(price);
             order.setComments(comments.getValue());
             orderService.save(order);
         });

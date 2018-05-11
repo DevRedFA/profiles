@@ -4,6 +4,7 @@ import com.isedykh.profiles.dao.entity.ThingType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ThingService extends CrudService<Thing> {
@@ -13,6 +14,8 @@ public interface ThingService extends CrudService<Thing> {
     Thing getById(long id);
 
     List<Thing> getAllThingsByType(ThingType type);
+
+    List<Thing> getAllThingsByTypeFreeBetween(ThingType type, LocalDate start, LocalDate to);
 
     List<Thing> getAllThingPersonGet(Client client);
 

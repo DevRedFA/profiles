@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class Thing implements Identifiable{
+public class Thing implements Identifiable {
 
     private long id;
 
@@ -30,5 +30,5 @@ public class Thing implements Identifiable{
 
     private int deposit;
 
-    // TODO: 5/6/18 add comments field?
+    private String comments;
 }

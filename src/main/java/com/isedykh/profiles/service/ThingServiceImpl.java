@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,6 +45,21 @@ public class ThingServiceImpl implements ThingService {
     @Override
     public List<Thing> getAllThingsByType(ThingType type) {
         return thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(type));
+    }
+
+    @Override
+    public List<Thing> getAllThingsByTypeFreeBetween(ThingType type, LocalDate begin, LocalDate end) {
+        List<Thing> things = thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(type));
+        // TODO: 11.05.2018 rework from n+1 db requests to 1 request.
+        return things.stream().filter(
+                thing -> {
+                    long count = orderEntityRepository.findAllByThingId(
+                            thing.getId()).stream()
+                            .filter(ord -> ord.getBegin().after(Timestamp.valueOf(begin.atStartOfDay())))
+                            .filter(ord -> ord.getEnd().before(Timestamp.valueOf(end.atStartOfDay())))
+                            .count();
+                    return count != 0;
+                }).collect(Collectors.toList());
     }
 
     @Override

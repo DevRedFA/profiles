@@ -1,8 +1,12 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
+import com.isedykh.profiles.dao.entity.ThingType;
+import com.isedykh.profiles.mapper.ThingMapper;
+import com.isedykh.profiles.service.Thing;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingDtoService;
+import com.isedykh.profiles.service.ThingService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -13,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
@@ -24,6 +29,8 @@ public class ThingsView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "things";
 
     private ThingDtoService thingService;
+
+    private  ThingMapper thingMapper;
 
     @PostConstruct
     public void init() {
@@ -44,6 +51,18 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.setHeightByRows(17);
         addComponent(thingsGrid);
         setExpandRatio(thingsGrid, 1f);
+
+        Button buttonSearch = new Button("Search");
+        DateField begin = new DateField("Begin");
+        DateField end = new DateField("End");
+        ComboBox<ThingType> type = new ComboBox<>("Type");
+        Utils.setFieldIfNotNull(ThingType::values, type::setItems, s -> s);
+
+        buttonSearch.addClickListener(clickEvent ->{
+            List<ThingDto> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), end.getValue());
+            thingsGrid.setItems(allThingsByTypeFreeBetween);
+
+        });
 
         thingsGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
 

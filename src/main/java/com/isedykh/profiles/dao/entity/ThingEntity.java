@@ -48,4 +48,8 @@ public class ThingEntity {
     @Column(nullable = false)
     private int deposit;
 
+//    @OneToMany(mappedBy = "thing", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private List<OrderEntity> orders;
+
+    private String comments;
 }
