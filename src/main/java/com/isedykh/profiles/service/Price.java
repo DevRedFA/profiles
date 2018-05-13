@@ -10,4 +10,9 @@ public class Price {
 
     //1 penny step
     private Integer price;
+
+    @Override
+    public String toString() {
+        return term + ", " + price;
+    }
 }

@@ -2,6 +2,7 @@ package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.OrderStatus;
+import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.mapper.OrderMapper;
 import com.isedykh.profiles.service.*;
 import com.vaadin.navigator.View;
@@ -43,7 +44,7 @@ public class OrderView extends VerticalLayout implements View {
 
     private TextField thing = new TextField("Thing");
 
-    private TextField price = new TextField("Price");
+    private ComboBox<Price> price = new ComboBox<>("Price");
 
     private TextArea comments = new TextArea("Comments");
 
@@ -90,10 +91,11 @@ public class OrderView extends VerticalLayout implements View {
 
         Utils.setFieldIfNotNull(order::getId, idField::setValue, String::valueOf);
         Utils.setFieldIfNotNull(order::getBegin, begin::setValue, s -> s);
-        Utils.setFieldIfNotNull(order::getEnd, end::setValue, s -> s);
+        Utils.setFieldIfNotNull(order::getStop, end::setValue, s -> s);
         Utils.setFieldIfNotNull(order::getStatus, status::setSelectedItem, s -> s);
         Utils.setFieldIfNotNull(OrderStatus::values, status::setItems, s -> s);
-        Utils.setFieldIfNotNull(order::getPrice, price::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(order::getPrice, price::setSelectedItem, s -> s);
+        Utils.setFieldIfNotNull(order::getThing, price::setItems, Thing::getPrices);
         Utils.setFieldIfNotNull(order::getComments, comments::setValue, s -> s);
 
         // TODO: 04.05.2018 add fast link to client
@@ -101,8 +103,6 @@ public class OrderView extends VerticalLayout implements View {
 
         // TODO: 04.05.2018 add fast link to thing
         Utils.setFieldIfNotNull(order::getThing, thing::setValue, Thing::getName);
-
-        status.setSelectedItem(order.getStatus());
 
         client.addValueChangeListener(changedListener -> {
             String value = changedListener.getValue();
@@ -132,10 +132,11 @@ public class OrderView extends VerticalLayout implements View {
         save.addClickListener(clickEvent -> {
             order.setId(Long.parseLong(idField.getValue()));
             order.setBegin(begin.getValue());
-            order.setEnd(end.getValue());
-            order.setStatus(status.getSelectedItem().get());
+            order.setStop(end.getValue());
+
+            order.setStatus(status.getSelectedItem().isPresent() ? status.getSelectedItem().get() : order.getStatus());
             // FIXME: 08.05.2018 Change cents to rubles
-//            order.setPrice(price);
+            order.setPrice(price.getSelectedItem().isPresent() ? price.getSelectedItem().get() : order.getPrice());
             order.setComments(comments.getValue());
             orderService.save(order);
         });

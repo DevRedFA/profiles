@@ -39,7 +39,7 @@ public class OrdersView extends VerticalLayout implements View {
         orderGrid.addColumn(Order::getPrice).setCaption("Price");
         orderGrid.addColumn(Order::getStatus).setCaption("Status");
         orderGrid.addColumn(Order::getBegin).setCaption("Begin");
-        orderGrid.addColumn(Order::getEnd).setCaption("End");
+        orderGrid.addColumn(Order::getStop).setCaption("End");
         orderGrid.addColumn(Order::getComments).setCaption("Comments");
         orderGrid.setHeightByRows(17);
         addComponent(orderGrid);

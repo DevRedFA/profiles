@@ -56,7 +56,7 @@ public class ThingServiceImpl implements ThingService {
                     long count = orderEntityRepository.findAllByThingId(
                             thing.getId()).stream()
                             .filter(ord -> ord.getBegin().after(Timestamp.valueOf(begin.atStartOfDay())))
-                            .filter(ord -> ord.getEnd().before(Timestamp.valueOf(end.atStartOfDay())))
+                            .filter(ord -> ord.getStop().before(Timestamp.valueOf(end.atStartOfDay())))
                             .count();
                     return count != 0;
                 }).collect(Collectors.toList());

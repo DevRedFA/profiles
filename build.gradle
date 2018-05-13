@@ -34,8 +34,8 @@ ext {
 
 dependencies {
 	compile('org.projectlombok:lombok')
-	compile('com.h2database:h2')
-	//	runtime('org.postgresql:postgresql')
+//	compile('com.h2database:h2')
+	runtime('org.postgresql:postgresql')
 
 	compile('org.mapstruct:mapstruct-processor:1.2.0.Final')
 	compile('org.mapstruct:mapstruct:1.2.0.Final')

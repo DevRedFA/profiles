@@ -42,14 +42,15 @@ public class ThingEntity {
     @Enumerated(EnumType.STRING)
     private ThingStatus status;
 
-    @OneToMany(mappedBy = "thing", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "thing",cascade=CascadeType.MERGE,  fetch = FetchType.EAGER)
     private List<PriceEntity> prices;
 
     @Column(nullable = false)
     private int deposit;
 
-//    @OneToMany(mappedBy = "thing", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private List<OrderEntity> orders;
+    @OneToMany(mappedBy = "thing", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private List<OrderEntity> orders;
 
+    @Column(length = 1024)
     private String comments;
 }

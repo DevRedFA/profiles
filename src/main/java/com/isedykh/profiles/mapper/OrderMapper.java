@@ -10,6 +10,7 @@ import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -17,7 +18,18 @@ import java.util.List;
 public interface OrderMapper {
 
 
-    Order orderEntityToOrder(OrderEntity orderEntity);
+    default Order orderEntityToOrder(OrderEntity orderEntity) {
+        Client client = clientEntityToClient(orderEntity.getClient());
+        List<Order> orders = this.orderEntitiesToOrders(orderEntity.getClient().getOrders(), new Object());
+        client.setOrders(new ArrayList<>(orders));
+        orders.forEach(s -> s.setClient(client));
+        orders.removeIf(s -> s.getId() != orderEntity.getId());
+        return orders.get(0);
+    }
+
+    @Mapping(target = "client", ignore = true)
+    Order orderEntityToOrder(OrderEntity orderEntity, Object obj);
+
 
     @Mapping(target = "orders", ignore = true)
     Client clientEntityToClient(ClientEntity clientEntity);
@@ -25,6 +37,14 @@ public interface OrderMapper {
     OrderEntity orderToOrderEntity(Order order);
 
     List<Order> orderEntitiesToOrders(List<OrderEntity> orderEntities);
+
+    default List<Order> orderEntitiesToOrders(List<OrderEntity> orderEntities, Object object) {
+        ArrayList<Order> orders = new ArrayList<>();
+        orderEntities.forEach(s -> orders.add(this.orderEntityToOrder(s, object)));
+        return orders;
+    }
+
+    ;
 
     List<OrderEntity> ordersToOrderEntities(List<Order> order);
 

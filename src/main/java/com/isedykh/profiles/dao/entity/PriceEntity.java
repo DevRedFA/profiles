@@ -20,12 +20,6 @@ public class PriceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "term_id",
-//            referencedColumnName = "id",
-//            nullable = false)
-//    private TermEntity term;
-
     @Enumerated(EnumType.ORDINAL)
     private Term term;
 
@@ -33,7 +27,7 @@ public class PriceEntity {
     @Column(nullable = false)
     private Integer price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinColumn(name = "thing_id",
             referencedColumnName = "id",
             nullable = false)

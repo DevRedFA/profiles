@@ -14,31 +14,33 @@ logging:
 ###
 spring:
   profiles:
-    active: H2
-  datasource:
-    data: classpath:data-test.sql
-    url: jdbc:h2:mem:profiles;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    platform: h2
-    username: sa
-    password:
-    driverClassName: org.h2.Driver
+    active: Postgresql
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
         show_sql: false
         use_sql_comments: false
-        format_sql: true
+        format_sql: false
+    database: postgresql
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: test
+    driverClassName: org.postgresql.Driver
 
 ###
 #   H2 Settings: console enabled for debugging
 ###
-  h2:
-    console:
-      enabled: true
-      path: /console
-      settings:
-        trace: false
-        web-allow-others: false
+#  h2:
+#    console:
+#      enabled: true
+#      path: /console
+#      settings:
+#        trace: false
+#        web-allow-others: false

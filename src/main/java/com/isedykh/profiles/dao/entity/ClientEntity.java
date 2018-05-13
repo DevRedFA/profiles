@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "persons", schema = "public")
+@Table(name = "clients", schema = "public")
 public class ClientEntity {
 
     @Id
@@ -37,6 +37,6 @@ public class ClientEntity {
 
     private String contactLink;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<OrderEntity> orders;
 }

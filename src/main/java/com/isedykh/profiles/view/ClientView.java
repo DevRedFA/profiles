@@ -110,7 +110,7 @@ public class ClientView extends VerticalLayout implements View {
         ordersGrid.addColumn(Order::getStatus).setCaption("Status");
         ordersGrid.addColumn(Order::getPrice).setCaption("Price");
         ordersGrid.addColumn(Order::getBegin).setCaption("Begin");
-        ordersGrid.addColumn(Order::getEnd).setCaption("End");
+        ordersGrid.addColumn(Order::getStop).setCaption("End");
         ordersGrid.addColumn(Order::getComments).setCaption("Comments");
 
         ordersGrid.addItemClickListener(this::constructClickListener);

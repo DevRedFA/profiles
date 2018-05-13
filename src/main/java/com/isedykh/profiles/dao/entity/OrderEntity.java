@@ -27,27 +27,24 @@ public class OrderEntity {
     private Timestamp begin;
 
     @Column(nullable = false)
-    private Timestamp end;
+    private Timestamp stop;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinColumn(name = "thing_id",
             referencedColumnName = "id",
             nullable = false)
     private ThingEntity thing;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinColumn(name = "client_id",
             referencedColumnName = "id",
             nullable = false)
     private ClientEntity client;
 
-//    @Column(nullable = false)
-//    private int price;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinColumn(name = "price_id",
             referencedColumnName = "id",
             nullable = false)

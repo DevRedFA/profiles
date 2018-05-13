@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-@Transactional
+//@Transactional
 @AllArgsConstructor
 public class DataInitializer implements ApplicationRunner {
 
@@ -31,45 +31,27 @@ public class DataInitializer implements ApplicationRunner {
     private OrderEntityRepository orderEntityRepository;
 
     @Override
+//    @Transactional
     public void run(ApplicationArguments args) {
 
 
         //init Thing
-        List<ThingEntity> listThing = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
-            listThing.add(new ThingEntity(i, "Thing " + i,
-                    i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i, ThingType.ERGO, ThingStatus.FREE, Collections.emptyList(), i, "comments "+ i));
-        }
-        thingEntityRepository.saveAll(listThing);
+        List<ThingEntity> listThing = getThingEntities();
+
+
+        listThing = updateThings();
 
         //init Prices
-        for (int i = 0; i < 25; i++) {
-            PriceEntity priceDay = new PriceEntity(1 + i*4, Term.DAY, i, listThing.get(i));
-            PriceEntity priceWeek = new PriceEntity(2+ i*4, Term.WEEK, i*100, listThing.get(i));
-            PriceEntity priceTwoWeeks = new PriceEntity(3+ i*4, Term.TWO_WEEKS, i*10000, listThing.get(i));
-            PriceEntity priceMonth = new PriceEntity(4+ i*4, Term.MONTH, i*1000000, listThing.get(i));
-
-            priceEntityRepository.save(priceDay);
-            priceEntityRepository.save(priceWeek);
-            priceEntityRepository.save(priceTwoWeeks);
-            priceEntityRepository.save(priceMonth);
-        }
+        initPrices(listThing);
 
         //init Client
-        List<ClientEntity> listClient = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
-            listClient.add(new ClientEntity(i, "name " + i, i, i, "address " + i,
-                    i, "children comments " + i, "mail" + i + "@mail.com", "contack link " + i, Collections.emptyList()));
-        }
-        clientEntityRepository.saveAll(listClient);
+        List<ClientEntity> listClient = getClientEntities();
+
+        listThing = updateThings();
+
 
         //init Order
-        List<OrderEntity> orderEntities = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
-            orderEntities.add(new OrderEntity(i, "Order comments " + i, new Timestamp(System.currentTimeMillis()),
-                    new Timestamp(System.currentTimeMillis() + 10000L), OrderStatus.BOOKED, listThing.get(i), listClient.get(i), listThing.get(i).getPrices().get(0)));
-        }
-        orderEntityRepository.saveAll(orderEntities);
+        List<OrderEntity> orderEntities = getOrderEntities(listThing, listClient);
 
         // FIXME: 04.05.2018 nullable params in client and others entities
         // TODO: 5/6/18 Creating and modifying entities.
@@ -79,5 +61,87 @@ public class DataInitializer implements ApplicationRunner {
         // TODO: 5/6/18 change things/users/orders to tabs?
         // TODO: 5/6/18 declarative validation in registration form
 
+
+        // TODO: 5/13/18 FIX THIS
+        /*at java.sql.Timestamp.valueOf(Timestamp.java:557)
+	at com.isedykh.profiles.mapper.OrderMapper.map(OrderMapper.java:52)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.orderToOrderEntity(OrderMapperImpl.java:83)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.ordersToOrderEntities(OrderMapperImpl.java:115)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.clientToClientEntity(OrderMapperImpl.java:262)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.orderToOrderEntity(OrderMapperImpl.java:87)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.ordersToOrderEntities(OrderMapperImpl.java:115)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.clientToClientEntity(OrderMapperImpl.java:262)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.orderToOrderEntity(OrderMapperImpl.java:87)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.ordersToOrderEntities(OrderMapperImpl.java:115)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.clientToClientEntity(OrderMapperImpl.java:262)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.orderToOrderEntity(OrderMapperImpl.java:87)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.ordersToOrderEntities(OrderMapperImpl.java:115)
+	at com.isedykh.profiles.mapper.OrderMapperImpl.clientToClientEntity(OrderMapperImpl.java:262) */
+
+    }
+
+    @Transactional
+    public List<ThingEntity> updateThings() {
+        List<ThingEntity> listThing;
+//        listThing = new ArrayList<>();
+//        for (int i = 1; i < 25; i++) {
+//            listThing.add(thingEntityRepository.getOne((long) i));
+//        }
+        return thingEntityRepository.findAll();
+    }
+
+    @Transactional
+    public List<ThingEntity> getThingEntities() {
+        List<ThingEntity> listThing = new ArrayList<>();
+        for (int i = 1; i < 26; i++) {
+            listThing.add(new ThingEntity(i, "Thing " + i,
+                    i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i,
+                    ThingType.ERGO, ThingStatus.FREE, Collections.emptyList(), i, Collections.emptyList(), "comments " + i));
+        }
+        thingEntityRepository.saveAll(listThing);
+        return listThing;
+    }
+
+    @Transactional
+    public void initPrices(List<ThingEntity> listThing) {
+        for (int i = 0; i < 25; i++) {
+            PriceEntity priceDay = new PriceEntity(1 + i * 4, Term.DAY, i, listThing.get(i));
+            PriceEntity priceWeek = new PriceEntity(2 + i * 4, Term.WEEK, i * 100, listThing.get(i));
+            PriceEntity priceTwoWeeks = new PriceEntity(3 + i * 4, Term.TWO_WEEKS, i * 10000, listThing.get(i));
+            PriceEntity priceMonth = new PriceEntity(4 + i * 4, Term.MONTH, i * 1000000, listThing.get(i));
+
+            priceDay = priceEntityRepository.save(priceDay);
+            priceWeek = priceEntityRepository.save(priceWeek);
+            priceTwoWeeks = priceEntityRepository.save(priceTwoWeeks);
+            priceMonth = priceEntityRepository.save(priceMonth);
+
+//            listThing.get(i).getPrices().add(priceDay);
+//            listThing.get(i).getPrices().add(priceWeek);
+//            listThing.get(i).getPrices().add(priceTwoWeeks);
+//            listThing.get(i).getPrices().add(priceMonth);
+        }
+    }
+
+    @Transactional
+    public List<ClientEntity> getClientEntities() {
+        List<ClientEntity> listClient = new ArrayList<>();
+        for (int i = 1; i < 26; i++) {
+            listClient.add(new ClientEntity(i, "name " + i, i, i, "address " + i,
+                    i, "children comments " + i, "mail" + i + "@mail.com", "contack link " + i, Collections.emptyList()));
+        }
+        return clientEntityRepository.saveAll(listClient);
+    }
+
+    @Transactional
+    public List<OrderEntity> getOrderEntities(List<ThingEntity> listThing, List<ClientEntity> listClient) {
+        List<OrderEntity> orderEntities = new ArrayList<>();
+        for (int i = 0; i < 25; i++) {
+            OrderEntity e = new OrderEntity(i, "Order comments " + i, new Timestamp(System.currentTimeMillis()),
+                    new Timestamp(System.currentTimeMillis() + 10000L), OrderStatus.BOOKED, listThing.get(i), listClient.get(i), listThing.get(i).getPrices().get(0));
+            listClient.get(i).getOrders().add(e);
+            orderEntities.add(e);
+        }
+        orderEntityRepository.saveAll(orderEntities);
+        return orderEntities;
     }
 }
