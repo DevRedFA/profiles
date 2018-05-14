@@ -9,11 +9,7 @@ public interface OrderService extends CrudService<Order> {
 
     Order findById(long id);
 
-    List<Order> getClientOrderHistory(Client client);
-
     List<Order> getThingOrderHistory(Thing thing);
-
-    List<Order> getClientOrderHistory(long personId);
 
     Page<Order> findAll(Pageable pageable);
 

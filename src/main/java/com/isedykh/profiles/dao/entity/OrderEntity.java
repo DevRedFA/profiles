@@ -37,12 +37,6 @@ public class OrderEntity {
     private ThingEntity thing;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "client_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private ClientEntity client;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "price_id",
             referencedColumnName = "id",
             nullable = false)

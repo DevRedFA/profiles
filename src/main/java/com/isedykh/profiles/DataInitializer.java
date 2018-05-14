@@ -72,7 +72,7 @@ public class DataInitializer implements ApplicationRunner {
         for (int i = 1; i < 26; i++) {
             listThing.add(new ThingEntity((long) i, "Thing " + i,
                     i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i,
-                    ThingType.ERGO, ThingStatus.FREE, Collections.emptyList(), i, Collections.emptyList(), "comments " + i));
+                    ThingType.ERGO, ThingStatus.FREE, Collections.emptyList(), i, "comments " + i));
         }
         thingEntityRepository.saveAll(listThing);
         return listThing;
@@ -81,15 +81,20 @@ public class DataInitializer implements ApplicationRunner {
     @Transactional
     public void initPrices(List<ThingEntity> listThing) {
         for (int i = 1; i < 26; i++) {
-            PriceEntity priceDay = new PriceEntity((long) (1 + i * 4), Term.DAY, i, listThing.get(i-1));
-            PriceEntity priceWeek = new PriceEntity((long) (2 + i * 4), Term.WEEK, i * 100, listThing.get(i-1));
-            PriceEntity priceTwoWeeks = new PriceEntity((long) (3 + i * 4), Term.TWO_WEEKS, i * 10000, listThing.get(i-1));
-            PriceEntity priceMonth = new PriceEntity((long) (4 + i * 4), Term.MONTH, i * 1000000, listThing.get(i-1));
+            PriceEntity priceDay = new PriceEntity((long) (1 + i * 4), Term.DAY, i);
+            PriceEntity priceWeek = new PriceEntity((long) (2 + i * 4), Term.WEEK, i * 100);
+            PriceEntity priceTwoWeeks = new PriceEntity((long) (3 + i * 4), Term.TWO_WEEKS, i * 10000);
+            PriceEntity priceMonth = new PriceEntity((long) (4 + i * 4), Term.MONTH, i * 1000000);
 
-            priceEntityRepository.save(priceDay);
-            priceEntityRepository.save(priceWeek);
-            priceEntityRepository.save(priceTwoWeeks);
-            priceEntityRepository.save(priceMonth);
+            PriceEntity save = priceEntityRepository.save(priceDay);
+            PriceEntity save1 = priceEntityRepository.save(priceWeek);
+            PriceEntity save2 = priceEntityRepository.save(priceTwoWeeks);
+            PriceEntity save3 = priceEntityRepository.save(priceMonth);
+            listThing.get(i - 1).getPrices().add(save);
+            listThing.get(i - 1).getPrices().add(save1);
+            listThing.get(i - 1).getPrices().add(save2);
+            listThing.get(i - 1).getPrices().add(save3);
+            thingEntityRepository.saveAll(listThing);
         }
     }
 
@@ -110,12 +115,12 @@ public class DataInitializer implements ApplicationRunner {
             ThingEntity thing = listThing.get(i - 1);
             ClientEntity client = listClient.get(i - 1);
             OrderEntity e = new OrderEntity((long) i, "Order comments " + i, new Timestamp(System.currentTimeMillis()),
-                    new Timestamp(System.currentTimeMillis() + 10000L), OrderStatus.BOOKED, thing, client, thing.getPrices().get(0));
+                    new Timestamp(System.currentTimeMillis() + 10000L), OrderStatus.BOOKED, thing, thing.getPrices().get(0));
             client.getOrders().add(e);
-            thing.getOrders().add(e);
             orderEntities.add(e);
         }
         orderEntityRepository.saveAll(orderEntities);
+        clientEntityRepository.saveAll(listClient);
         return orderEntities;
     }
 }

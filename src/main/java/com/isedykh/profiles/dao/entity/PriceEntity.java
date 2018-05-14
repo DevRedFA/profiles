@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@ToString(exclude = "thing")
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "prices", schema = "public")
@@ -26,10 +25,4 @@ public class PriceEntity {
     //1 penny step
     @Column(nullable = false)
     private Integer priceValue;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "thing_id",
-            referencedColumnName = "id",
-            nullable = false)
-    private ThingEntity thing;
 }

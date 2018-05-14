@@ -101,7 +101,6 @@ public class OrderView extends VerticalLayout implements View {
         clientGrid.addItemClickListener(clickListener -> {
             if (clickListener.getMouseEventDetails().isDoubleClick()) {
                 Client client = clickListener.getItem();
-                order.setClient(client);
                 clientFiled.setValue(client.getName());
             }
         });
@@ -144,7 +143,8 @@ public class OrderView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(order::getComments, comments::setValue, s -> s);
 
         // TODO: 04.05.2018 add fast link to clientFiled
-        Utils.setFieldIfNotNull(order::getClient, clientFiled::setValue, Client::getName);
+        Client byOrder = clientService.findByOrder(order);
+        Utils.setFieldIfNotNull(byOrder::getName, clientFiled::setValue, s -> s);
 
         // TODO: 04.05.2018 add fast link to thingField
         Utils.setFieldIfNotNull(order::getThing, thingField::setValue, Thing::getName);

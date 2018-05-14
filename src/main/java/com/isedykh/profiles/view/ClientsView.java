@@ -61,6 +61,7 @@ public class ClientsView extends VerticalLayout implements View {
         buttons.setComponentAlignment(buttonDelete, Alignment.MIDDLE_RIGHT);
         buttonPrevious.setEnabled(false);
 
+        // FIXME: 14.05.2018 broken next button
         buttonNext.addClickListener(getPageChangeClickListener(clientPage, Slice::nextPageable, clientGrid, buttonNext, buttonPrevious, clientService));
 
         buttonPrevious.addClickListener(getPageChangeClickListener(clientPage, Slice::previousPageable, clientGrid, buttonNext, buttonPrevious, clientService));

@@ -42,14 +42,12 @@ public class ThingEntity {
     @Enumerated(EnumType.STRING)
     private ThingStatus status;
 
-    @OneToMany(mappedBy = "thing",cascade={CascadeType.PERSIST, CascadeType.REFRESH},  fetch = FetchType.EAGER)
+    @OneToMany(cascade={CascadeType.PERSIST, CascadeType.REFRESH},  fetch = FetchType.EAGER)
+    @JoinColumn(name = "price_id")
     private List<PriceEntity> prices;
 
     @Column(nullable = false)
     private int deposit;
-
-    @OneToMany(mappedBy = "thing", cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    private List<OrderEntity> orders;
 
     @Column(length = 1024)
     private String comments;

@@ -3,7 +3,6 @@ package com.isedykh.profiles.service;
 import com.isedykh.profiles.dao.entity.OrderEntity;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.mapper.OrderMapper;
-import com.isedykh.profiles.mapper.UnionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,19 +26,10 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.orderEntityToOrder(orderEntityRepository.getOne(id));
     }
 
-    @Override
-    public List<Order> getClientOrderHistory(Client client) {
-        return orderMapper.orderEntitiesToOrders(orderEntityRepository.findAllByClientId(client.getId()));
-    }
 
     @Override
     public List<Order> getThingOrderHistory(Thing thing) {
         return orderMapper.orderEntitiesToOrders(orderEntityRepository.findAllByThingId(thing.getId()));
-    }
-
-    @Override
-    public List<Order> getClientOrderHistory(long clientId) {
-        return orderMapper.orderEntitiesToOrders(orderEntityRepository.findAllByClientId(clientId));
     }
 
     @Override

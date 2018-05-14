@@ -10,7 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -65,7 +67,19 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client findByOrder(Order order) {
+        return clientMapper.clientEntityToClient(clientEntityRepository.findByOrdersIdIn(order.getId()));
+    }
+
+    @Override
+    public List<Client> findByOrders(List<Order> orders) {
+        List<Long> collect = orders.stream().map(Order::getId).collect(Collectors.toList());
+        return clientMapper.clientEntitiesToClients(clientEntityRepository.findAllByOrdersIdIn(collect));
+    }
+
+    @Override
     public Client findById(long id) {
-        return clientMapper.clientEntityToClient(clientEntityRepository.getOne(id));
+        ClientEntity one = clientEntityRepository.getOne(id);
+        return clientMapper.clientEntityToClient(one);
     }
 }

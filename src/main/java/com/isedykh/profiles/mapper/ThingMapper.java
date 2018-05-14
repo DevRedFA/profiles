@@ -1,13 +1,11 @@
 package com.isedykh.profiles.mapper;
 
-import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.dao.entity.Term;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.service.Price;
 import com.isedykh.profiles.service.Thing;
 import com.isedykh.profiles.service.ThingDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
@@ -18,25 +16,11 @@ import java.util.List;
 public interface ThingMapper {
 
 
-    default Thing thingEntityToThing(ThingEntity thingEntity) {
-        Thing thing = thingEntityToThing(thingEntity, new Object());
-        List<Price> prices = priceEntitiesToPrices(thingEntity.getPrices());
-        prices.forEach(s -> s.setThing(thing));
-        thing.setPrices(prices);
-        return thing;
-    }
-
-    @Mapping(target = "prices", ignore = true)
-    Thing thingEntityToThing(ThingEntity thingEntity, Object object);
+    Thing thingEntityToThing(ThingEntity thingEntity);
 
     ThingEntity thingToThingEntity(Thing thing);
 
     List<Thing> thingEntitiesToThings(List<ThingEntity> thingEntities);
-
-    @Mapping(target = "thing", ignore = true)
-    Price priceEntityToPrice(PriceEntity priceEntity);
-
-    List<Price> priceEntitiesToPrices(List<PriceEntity> priceEntity);
 
     List<ThingEntity> thingsToThingEntities(List<Thing> thing);
 

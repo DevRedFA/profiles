@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
-@EqualsAndHashCode(exclude = {"id", "client"})
+@EqualsAndHashCode(exclude = {"id"})
 public class Order implements Identifiable {
 
     private Long id;
@@ -20,8 +19,6 @@ public class Order implements Identifiable {
     private OrderStatus status;
 
     private Thing thing;
-
-    private Client client;
 
     private Price price;
 
