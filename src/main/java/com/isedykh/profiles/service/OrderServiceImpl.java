@@ -3,6 +3,7 @@ package com.isedykh.profiles.service;
 import com.isedykh.profiles.dao.entity.OrderEntity;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.mapper.OrderMapper;
+import com.isedykh.profiles.mapper.UnionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

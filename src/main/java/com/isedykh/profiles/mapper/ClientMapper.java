@@ -2,8 +2,10 @@ package com.isedykh.profiles.mapper;
 
 import com.isedykh.profiles.dao.entity.OrderEntity;
 import com.isedykh.profiles.dao.entity.ClientEntity;
+import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.service.Client;
 import com.isedykh.profiles.service.Order;
+import com.isedykh.profiles.service.Price;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -34,6 +36,9 @@ public interface ClientMapper {
 
     @Mapping(target = "client", ignore = true)
     Order orderEntityToOrder(OrderEntity orderEntity);
+
+    @Mapping(target = "thing", ignore = true)
+    Price priceEntityToPrice(PriceEntity priceEntity);
 
     default java.sql.Timestamp map(java.time.LocalDate value) {
         return Timestamp.valueOf(value.atStartOfDay());

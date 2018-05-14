@@ -1,11 +1,13 @@
 package com.isedykh.profiles.mapper;
 
+import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.dao.entity.Term;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.service.Price;
 import com.isedykh.profiles.service.Thing;
 import com.isedykh.profiles.service.ThingDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
@@ -15,15 +17,31 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ThingMapper {
 
-    Thing thingEntityToThing(ThingEntity thingEntity);
+
+    default Thing thingEntityToThing(ThingEntity thingEntity) {
+        Thing thing = thingEntityToThing(thingEntity, new Object());
+        List<Price> prices = priceEntitiesToPrices(thingEntity.getPrices());
+        prices.forEach(s -> s.setThing(thing));
+        thing.setPrices(prices);
+        return thing;
+    }
+
+    @Mapping(target = "prices", ignore = true)
+    Thing thingEntityToThing(ThingEntity thingEntity, Object object);
 
     ThingEntity thingToThingEntity(Thing thing);
 
     List<Thing> thingEntitiesToThings(List<ThingEntity> thingEntities);
 
+    @Mapping(target = "thing", ignore = true)
+    Price priceEntityToPrice(PriceEntity priceEntity);
+
+    List<Price> priceEntitiesToPrices(List<PriceEntity> priceEntity);
+
     List<ThingEntity> thingsToThingEntities(List<Thing> thing);
 
-    List<ThingDto> ThingsToThingDtos(List<Thing> things);
+    List<ThingDto> thingsToThingDtos(List<Thing> things);
+
     //shitty decision, but now have no better idea
     default ThingDto thingToThingDto(Thing thing) {
 
@@ -57,10 +75,10 @@ public interface ThingMapper {
                 .purchasePrice(thing.getPurchasePrice())
                 .type(thing.getType())
                 .status(thing.getStatus())
-                .priceForDay(day[0].getPrice())
-                .priceForWeek(week[0].getPrice())
-                .priceForTwoWeeks(twoWeeks[0].getPrice())
-                .priceForMonth(month[0].getPrice())
+                .priceForDay(day[0].getPriceValue())
+                .priceForWeek(week[0].getPriceValue())
+                .priceForTwoWeeks(twoWeeks[0].getPriceValue())
+                .priceForMonth(month[0].getPriceValue())
                 .build();
     }
 }

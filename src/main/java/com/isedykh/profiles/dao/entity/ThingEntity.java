@@ -19,7 +19,7 @@ public class ThingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -42,13 +42,13 @@ public class ThingEntity {
     @Enumerated(EnumType.STRING)
     private ThingStatus status;
 
-    @OneToMany(mappedBy = "thing",cascade=CascadeType.MERGE,  fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "thing",cascade={CascadeType.PERSIST, CascadeType.REFRESH},  fetch = FetchType.EAGER)
     private List<PriceEntity> prices;
 
     @Column(nullable = false)
     private int deposit;
 
-    @OneToMany(mappedBy = "thing", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "thing", cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     private List<OrderEntity> orders;
 
     @Column(length = 1024)

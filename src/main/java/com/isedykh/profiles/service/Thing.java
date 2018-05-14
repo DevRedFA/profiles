@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class Thing implements Identifiable {
 
-    private long id;
+    private Long id;
 
     private String name;
 

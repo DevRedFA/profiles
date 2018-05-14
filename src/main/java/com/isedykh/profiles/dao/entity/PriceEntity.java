@@ -18,16 +18,16 @@ public class PriceEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Enumerated(EnumType.ORDINAL)
     private Term term;
 
     //1 penny step
     @Column(nullable = false)
-    private Integer price;
+    private Integer priceValue;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "thing_id",
             referencedColumnName = "id",
             nullable = false)

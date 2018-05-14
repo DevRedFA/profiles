@@ -8,10 +8,10 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Data
-@EqualsAndHashCode(exclude = "client")
+@EqualsAndHashCode(exclude = {"id", "client"})
 public class Order implements Identifiable {
 
-    private long id;
+    private Long id;
 
     private LocalDate begin;
 

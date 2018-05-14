@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 public class ThingDto implements Identifiable{
 
-    private long id;
+    private Long id;
 
     private String name;
 

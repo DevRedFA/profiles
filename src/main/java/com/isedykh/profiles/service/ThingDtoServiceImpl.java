@@ -25,7 +25,7 @@ public class ThingDtoServiceImpl implements ThingDtoService {
 
     @Override
     public List<ThingDto> getAllThingsByTypeFreeBetween(ThingType type, LocalDate begin, LocalDate end) {
-        return thingMapper.ThingsToThingDtos(thingService.getAllThingsByTypeFreeBetween(type, begin, end));
+        return thingMapper.thingsToThingDtos(thingService.getAllThingsByTypeFreeBetween(type, begin, end));
     }
 
     @Override

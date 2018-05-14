@@ -32,7 +32,7 @@ public class ThingView extends VerticalLayout implements View {
 
     private ComboBox<ThingStatus> status = new ComboBox<>("Status");
 
-    private TextField purchasePrice = new TextField("Purchase price");
+    private TextField purchasePrice = new TextField("Purchase priceValue");
 
     private DateField purchaseDate = new DateField("Purchase date");
 
@@ -91,7 +91,7 @@ public class ThingView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(thing::getPrices, pricesGrind::setItems, s -> s);
 
         pricesGrind.addColumn(Price::getTerm).setCaption("Terms");
-        pricesGrind.addColumn(Price::getPrice).setCaption("Price");
+        pricesGrind.addColumn(Price::getPriceValue).setCaption("Price");
         pricesGrind.setHeightByRows(4);
     }
 }

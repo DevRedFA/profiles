@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class Client implements Identifiable {
 
-    private long id;
+    private Long id;
 
     private String name;
 
