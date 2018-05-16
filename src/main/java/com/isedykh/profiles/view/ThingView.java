@@ -48,6 +48,8 @@ public class ThingView extends VerticalLayout implements View {
 
     private Button buttonAddOrder = new Button("New order");
 
+    private Button saveThing = new Button("Save thing");
+
     @PostConstruct
     public void init() {
         addComponent(new Label("Detail thing view"));
@@ -68,6 +70,10 @@ public class ThingView extends VerticalLayout implements View {
             getUI().getNavigator().navigateTo(s);
         });
 
+        saveThing.addClickListener(event -> {
+            // TODO: 16.05.2018 Save thing algorithm
+        });
+        
     }
 
     @Override
