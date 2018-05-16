@@ -131,6 +131,7 @@ public class ClientView extends VerticalLayout implements View {
                 client.setChildrenNumber(Integer.parseInt(childrenNumber.getValue()));
                 client.setChildrenComments(childrenComments.getValue());
                 clientService.save(client);
+                getUI().getNavigator().navigateTo(ThingsView.VIEW_NAME + "/message: Client saved");
             } catch (NumberFormatException e) {
                 Notification.show("Bad format of phone/second phone");
             }
