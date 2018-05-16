@@ -1,7 +1,11 @@
 package com.isedykh.profiles.service;
 
 import com.isedykh.profiles.dao.entity.OrderEntity;
+import com.isedykh.profiles.dao.entity.PriceEntity;
+import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
+import com.isedykh.profiles.dao.repository.PriceEntityRepository;
+import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +23,12 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderEntityRepository orderEntityRepository;
 
+    private final PriceEntityRepository priceEntityRepository;
+
+    private final ThingEntityRepository thingEntityRepository;
+
+    private final ClientEntityRepository clientEntityRepository;
+
     private final OrderMapper orderMapper;
 
     @Override
@@ -30,6 +40,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getThingOrderHistory(Thing thing) {
         return orderMapper.orderEntitiesToOrders(orderEntityRepository.findAllByThingId(thing.getId()));
+    }
+
+    @Override
+    public List<Order> getClientOrderHistory(Client client) {
+        return orderMapper.orderEntitiesToOrders(orderEntityRepository.findAllByClientId(client.getId()));
     }
 
     @Override
@@ -53,6 +68,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order save(Order order) {
         OrderEntity orderEntity = orderMapper.orderToOrderEntity(order);
+        orderEntity.setPrice(priceEntityRepository.save(orderEntity.getPrice()));
+        orderEntity.setThing(thingEntityRepository.save(orderEntity.getThing()));
+        orderEntity.setClient(clientEntityRepository.save(orderEntity.getClient()));
         return orderMapper.orderEntityToOrder(orderEntityRepository.save(orderEntity));
     }
 }

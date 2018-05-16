@@ -45,7 +45,8 @@ public class ClientServiceImpl implements ClientService {
     public Client save(Client client) {
         ClientEntity entity = clientMapper.clientToClientEntity(client);
         ClientEntity save = clientEntityRepository.save(entity);
-        return clientMapper.clientEntityToClient(save);
+//        final Client client1 = clientMapper.clientEntityToClient(save);
+        return client;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> findClientByName(String name) {
-        List<ClientEntity> allByName = clientEntityRepository.findAllByName(name);
+        List<ClientEntity> allByName = clientEntityRepository.findAllByNameContaining(name);
         return clientMapper.clientEntitiesToClients(allByName);
     }
 
@@ -66,16 +67,16 @@ public class ClientServiceImpl implements ClientService {
         return clientMapper.clientEntitiesToClients(allByPhone);
     }
 
-    @Override
-    public Client findByOrder(Order order) {
-        return clientMapper.clientEntityToClient(clientEntityRepository.findByOrdersIdIn(order.getId()));
-    }
+//    @Override
+//    public Client findByOrder(Order order) {
+//        return clientMapper.clientEntityToClient(clientEntityRepository.findByOrdersIdIn(order.getId()));
+//    }
 
-    @Override
-    public List<Client> findByOrders(List<Order> orders) {
-        List<Long> collect = orders.stream().map(Order::getId).collect(Collectors.toList());
-        return clientMapper.clientEntitiesToClients(clientEntityRepository.findAllByOrdersIdIn(collect));
-    }
+//    @Override
+//    public List<Client> findByOrders(List<Order> orders) {
+//        List<Long> collect = orders.stream().map(Order::getId).collect(Collectors.toList());
+//        return clientMapper.clientEntitiesToClients(clientEntityRepository.findAllByOrdersIdIn(collect));
+//    }
 
     @Override
     public Client findById(long id) {

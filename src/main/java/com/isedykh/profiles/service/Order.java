@@ -20,6 +20,8 @@ public class Order implements Identifiable {
 
     private Thing thing;
 
+    private Client client;
+
     private Price price;
 
     private String comments;

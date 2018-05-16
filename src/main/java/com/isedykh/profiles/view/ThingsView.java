@@ -3,10 +3,8 @@ package com.isedykh.profiles.view;
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.ThingType;
 import com.isedykh.profiles.mapper.ThingMapper;
-import com.isedykh.profiles.service.Thing;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingDtoService;
-import com.isedykh.profiles.service.ThingService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -27,16 +25,40 @@ import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 public class ThingsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "things";
+    public static final int PAGE_SIZE = 16;
+
 
     private ThingDtoService thingService;
 
-    private  ThingMapper thingMapper;
+    private ThingMapper thingMapper;
 
     @PostConstruct
     public void init() {
 
-        AtomicReference<Page<ThingDto>> thingPage = new AtomicReference<>(thingService.findAll(PageRequest.of(0, 17)));
+        HorizontalLayout searchPanel = new HorizontalLayout();
+
+        Button buttonSearch = new Button("Search");
+        DateField begin = new DateField("Begin");
+        DateField stop = new DateField("End");
+        ComboBox<ThingType> type = new ComboBox<>("Type");
+        Utils.setFieldIfNotNull(ThingType::values, type::setItems, s -> s);
+
+        searchPanel.addComponent(type);
+        searchPanel.addComponent(begin);
+        searchPanel.addComponent(stop);
+        searchPanel.addComponent(buttonSearch);
+        searchPanel.setComponentAlignment(buttonSearch, Alignment.BOTTOM_LEFT);
+        addComponent(searchPanel);
+
+        AtomicReference<Page<ThingDto>> thingPage = new AtomicReference<>(thingService.findAll(PageRequest.of(0, PAGE_SIZE)));
         Grid<ThingDto> thingsGrid = new Grid<>();
+
+        buttonSearch.addClickListener(clickEvent -> {
+            List<ThingDto> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), stop.getValue());
+            thingsGrid.setItems(allThingsByTypeFreeBetween);
+
+        });
+
         thingsGrid.setSizeFull();
         thingsGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
         thingsGrid.setItems(thingPage.get().getContent());
@@ -48,18 +70,13 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.addColumn(ThingDto::getPriceForWeek).setCaption("Week");
         thingsGrid.addColumn(ThingDto::getPriceForTwoWeeks).setCaption("Two weeks");
         thingsGrid.addColumn(ThingDto::getPriceForMonth).setCaption("Month");
-        thingsGrid.setHeightByRows(17);
+        thingsGrid.setHeightByRows(PAGE_SIZE);
         addComponent(thingsGrid);
         setExpandRatio(thingsGrid, 1f);
 
-        Button buttonSearch = new Button("Search");
-        DateField begin = new DateField("Begin");
-        DateField end = new DateField("End");
-        ComboBox<ThingType> type = new ComboBox<>("Type");
-        Utils.setFieldIfNotNull(ThingType::values, type::setItems, s -> s);
 
-        buttonSearch.addClickListener(clickEvent ->{
-            List<ThingDto> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), end.getValue());
+        buttonSearch.addClickListener(clickEvent -> {
+            List<ThingDto> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), stop.getValue());
             thingsGrid.setItems(allThingsByTypeFreeBetween);
 
         });
@@ -71,11 +88,13 @@ public class ThingsView extends VerticalLayout implements View {
         Button buttonNext = new Button("Next");
         Button buttonPrevious = new Button("Previous");
         Button buttonDetails = new Button("Details");
-        Button buttonNew = new Button("New");
+        Button buttonNewThing = new Button("New thing");
+        Button buttonNewOrder = new Button("New order");
         Button buttonDelete = new Button("Delete");
         leftButtons.addComponent(buttonPrevious);
         leftButtons.addComponent(buttonDetails);
-        leftButtons.addComponent(buttonNew);
+        leftButtons.addComponent(buttonNewThing);
+        leftButtons.addComponent(buttonNewOrder);
         leftButtons.addComponent(buttonNext);
         buttons.addComponent(leftButtons);
         buttons.addComponent(buttonDelete);
@@ -87,7 +106,14 @@ public class ThingsView extends VerticalLayout implements View {
 
         buttonPrevious.addClickListener(getPageChangeClickListener(thingPage, Slice::previousPageable, thingsGrid, buttonNext, buttonPrevious, thingService));
 
-        buttonNew.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
+        buttonNewThing.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
+
+        buttonNewOrder.addClickListener(clickEvent -> {
+            String s = OrderView.VIEW_NAME + "/new/"
+                    + thingsGrid.getSelectedItems().toArray(new ThingDto[0])[0].getId()
+                    + "/" + begin.getValue() + "/" +  stop.getValue();
+            getUI().getNavigator().navigateTo(s);
+        });
 
         buttonDetails.addClickListener(clickEvent -> Utils.detailsClickListenerSupplier.accept(thingsGrid, this::getUI));
 

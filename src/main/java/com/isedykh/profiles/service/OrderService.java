@@ -11,6 +11,8 @@ public interface OrderService extends CrudService<Order> {
 
     List<Order> getThingOrderHistory(Thing thing);
 
+    List<Order> getClientOrderHistory(Client client);
+
     Page<Order> findAll(Pageable pageable);
 
     Order update(Order order);

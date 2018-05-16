@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 
 @RequiredArgsConstructor
 @SpringView(name = OrderView.VIEW_NAME)
@@ -57,6 +58,8 @@ public class OrderView extends VerticalLayout implements View {
 
     private Button save = new Button("Save");
 
+    Client client;
+
     @PostConstruct
     public void init() {
 
@@ -100,8 +103,9 @@ public class OrderView extends VerticalLayout implements View {
 
         clientGrid.addItemClickListener(clickListener -> {
             if (clickListener.getMouseEventDetails().isDoubleClick()) {
-                Client client = clickListener.getItem();
+                client = clickListener.getItem();
                 clientFiled.setValue(client.getName());
+                order.setClient(client);
             }
         });
 
@@ -120,13 +124,27 @@ public class OrderView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
+
+        Client byOrder;
+
         if (event.getParameters() != null) {
+            String[] msgs = event.getParameters().split("/");
             if (event.getParameters().contains("new")) {
                 order = new Order();
+                if (msgs.length > 1) {
+                    order.setThing(thingService.getById(Long.parseLong(msgs[1])));
+                }
+                if (msgs.length > 2) {
+                    order.setBegin(LocalDate.parse(msgs[2]));
+                    order.setStop(LocalDate.parse(msgs[3]));
+                }
             } else {
                 int id = Integer.parseInt(event.getParameters());
                 try {
                     order = orderService.findById(id);
+                    client = order.getClient();
+                    // TODO: 04.05.2018 add fast link to clientFiled
+
                 } catch (Exception e) {
                     Notification.show("Client with such idField not found");
                 }
@@ -142,9 +160,9 @@ public class OrderView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(order::getThing, price::setItems, Thing::getPrices);
         Utils.setFieldIfNotNull(order::getComments, comments::setValue, s -> s);
 
-        // TODO: 04.05.2018 add fast link to clientFiled
-        Client byOrder = clientService.findByOrder(order);
-        Utils.setFieldIfNotNull(byOrder::getName, clientFiled::setValue, s -> s);
+        if (client != null) {
+            Utils.setFieldIfNotNull(client::getName, clientFiled::setValue, s -> s);
+        }
 
         // TODO: 04.05.2018 add fast link to thingField
         Utils.setFieldIfNotNull(order::getThing, thingField::setValue, Thing::getName);
@@ -153,12 +171,13 @@ public class OrderView extends VerticalLayout implements View {
 //            order.setId(Long.parseLong(idField.getValue()));
             order.setBegin(begin.getValue());
             order.setStop(end.getValue());
-
             order.setStatus(status.getSelectedItem().isPresent() ? status.getSelectedItem().get() : order.getStatus());
             // FIXME: 08.05.2018 Change cents to rubles
             order.setPrice(price.getSelectedItem().isPresent() ? price.getSelectedItem().get() : order.getPrice());
             order.setComments(comments.getValue());
+//            client.addOrder(order);
             orderService.save(order);
+//            clientService.save(client);
         });
     }
 }

@@ -13,22 +13,28 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 import static com.isedykh.profiles.common.Utils.getDeleteClickListener;
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
+
 //@Secured({"ROLE_ADMIN"})
 @AllArgsConstructor
 @SpringView(name = ClientsView.VIEW_NAME)
 public class ClientsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "clients";
+    public static final int PAGE_SIZE = 16;
 
     private ClientService clientService;
 
     @PostConstruct
     public void init() {
-        AtomicReference<Page<Client>> clientPage = new AtomicReference<>(clientService.findAll(PageRequest.of(0, 17)));
+
+        AtomicReference<Page<Client>> clientPage = new AtomicReference<>(clientService.findAll(PageRequest.of(0, PAGE_SIZE)));
         Grid<Client> clientGrid = new Grid<>();
         clientGrid.setSizeFull();
         clientGrid.setItems(clientPage.get().getContent());
@@ -38,11 +44,21 @@ public class ClientsView extends VerticalLayout implements View {
         clientGrid.addColumn(Client::getEmail).setCaption("Email");
         clientGrid.addColumn(Client::getContactLink).setCaption("Contact link");
         clientGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
-        clientGrid.setHeightByRows(17);
-        addComponent(clientGrid);
-        setExpandRatio(clientGrid, 1f);
+        clientGrid.setHeightByRows(PAGE_SIZE);
 
-        clientGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
+        HorizontalLayout searchPanel = new HorizontalLayout();
+
+
+        ComboBox<String> nameFilter = new ComboBox<>("Name");
+        nameFilter.setPageLength(20);
+
+        TextField nameField = new TextField("Name");
+
+        Button buttonSearch = new Button("Search");
+        searchPanel.addComponent(nameFilter);
+        searchPanel.addComponent(nameField);
+        searchPanel.addComponent(buttonSearch);
+        searchPanel.setComponentAlignment(buttonSearch, Alignment.BOTTOM_LEFT);
 
         HorizontalLayout buttons = new HorizontalLayout();
         HorizontalLayout leftButtons = new HorizontalLayout();
@@ -51,6 +67,7 @@ public class ClientsView extends VerticalLayout implements View {
         Button buttonDetails = new Button("Details");
         Button buttonNew = new Button("New");
         Button buttonDelete = new Button("Delete");
+
         leftButtons.addComponent(buttonPrevious);
         leftButtons.addComponent(buttonDetails);
         leftButtons.addComponent(buttonNew);
@@ -61,19 +78,75 @@ public class ClientsView extends VerticalLayout implements View {
         buttons.setComponentAlignment(buttonDelete, Alignment.MIDDLE_RIGHT);
         buttonPrevious.setEnabled(false);
 
-        // FIXME: 14.05.2018 broken next button
-        buttonNext.addClickListener(getPageChangeClickListener(clientPage, Slice::nextPageable, clientGrid, buttonNext, buttonPrevious, clientService));
+        nameFilter.addValueChangeListener(event -> {
+            String name = event.getValue();
+            List<Client> clientByName = new ArrayList<>();
+            if (name != null && !name.isEmpty()) {
+                clientByName.addAll(clientService.findClientByName(name));
 
-        buttonPrevious.addClickListener(getPageChangeClickListener(clientPage, Slice::previousPageable, clientGrid, buttonNext, buttonPrevious, clientService));
+            } else {
+                Page<Client> all = clientService.findAll(PageRequest.of(0, PAGE_SIZE));
+                clientByName.addAll(all.getContent());
+                buttonNext.setEnabled(!all.isLast());
+                buttonPrevious.setEnabled(!all.isFirst());
+            }
+            clientGrid.setItems(clientByName);
+        });
+
+        List<Client> content = clientPage.get().getContent();
+        nameFilter.setItems(content.stream().
+
+                map(Client::getName).
+
+                collect(Collectors.toList()));
+
+        clientGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
+
+        buttonSearch.addClickListener(event ->
+
+        {
+            String value = nameField.getValue();
+            List<Client> clientByName = new ArrayList<>();
+            if (!value.isEmpty()) {
+                clientByName.addAll(clientService.findClientByName(value));
+            } else {
+                Page<Client> all = clientService.findAll(PageRequest.of(0, PAGE_SIZE));
+                clientByName.addAll(all.getContent());
+                buttonNext.setEnabled(!all.isLast());
+                buttonPrevious.setEnabled(!all.isFirst());
+            }
+            clientGrid.setItems(clientByName);
+            nameFilter.setItems(clientByName.stream().map(Client::getName));
+        });
+
+        // FIXME: 14.05.2018 broken next button
+        buttonNext.addClickListener(
+
+                getPageChangeClickListener(clientPage, Slice::nextPageable, clientGrid,
+                        buttonNext, buttonPrevious, clientService, nameFilter, Client::getName));
+
+        buttonPrevious.addClickListener(
+
+                getPageChangeClickListener(clientPage, Slice::previousPageable, clientGrid,
+                        buttonNext, buttonPrevious, clientService, nameFilter, Client::getName));
 
         buttonNew.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
 
         buttonDetails.addClickListener(clickEvent -> Utils.detailsClickListenerSupplier.accept(clientGrid, this::getUI));
 
-        // TODO: 07.05.2018 add reset of grid 
-        buttonDelete.addClickListener(getDeleteClickListener(clientGrid, clientService));
+        // TODO: 07.05.2018 add reset of grid
+        buttonDelete.addClickListener(
+
+                getDeleteClickListener(clientGrid, clientService));
+
+        addComponent(searchPanel);
+
+        addComponent(clientGrid);
 
         addComponent(buttons);
+
+        setExpandRatio(clientGrid, 1f);
+
     }
 
 

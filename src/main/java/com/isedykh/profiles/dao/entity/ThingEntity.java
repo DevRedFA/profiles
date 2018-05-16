@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 
 @Data
@@ -43,7 +41,7 @@ public class ThingEntity {
     private ThingStatus status;
 
     @OneToMany(cascade={CascadeType.PERSIST, CascadeType.REFRESH},  fetch = FetchType.EAGER)
-    @JoinColumn(name = "price_id")
+    @JoinColumn(name = "thing_id")
     private List<PriceEntity> prices;
 
     @Column(nullable = false)

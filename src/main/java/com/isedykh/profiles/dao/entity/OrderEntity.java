@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Data
-@ToString(exclude = {"client", "thing"})
+@ToString(exclude = {"thing"})
 @Entity
 @EqualsAndHashCode(exclude = "id")
 @NoArgsConstructor
@@ -29,6 +29,12 @@ public class OrderEntity {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id",
+            referencedColumnName = "id",
+            nullable = false)
+    private ClientEntity client;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "thing_id",

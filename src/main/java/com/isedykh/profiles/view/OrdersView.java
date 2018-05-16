@@ -25,6 +25,7 @@ import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 public class OrdersView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "orders";
+    public static final int PAGE_SIZE = 17;
 
     private OrderService orderService;
 
@@ -33,7 +34,7 @@ public class OrdersView extends VerticalLayout implements View {
     @PostConstruct
     public void init() {
 
-        AtomicReference<Page<Order>> orderPage = new AtomicReference<>(orderService.findAll(PageRequest.of(0, 17)));
+        AtomicReference<Page<Order>> orderPage = new AtomicReference<>(orderService.findAll(PageRequest.of(0, PAGE_SIZE)));
 //        List<Client> byOrders = clientService.findByOrders(orderPage.get().getContent());
         Grid<Order> orderGrid = new Grid<>();
         orderGrid.setSizeFull();
@@ -46,7 +47,7 @@ public class OrdersView extends VerticalLayout implements View {
         orderGrid.addColumn(Order::getBegin).setCaption("Begin");
         orderGrid.addColumn(Order::getStop).setCaption("End");
         orderGrid.addColumn(Order::getComments).setCaption("Comments");
-        orderGrid.setHeightByRows(17);
+        orderGrid.setHeightByRows(PAGE_SIZE);
         addComponent(orderGrid);
         setExpandRatio(orderGrid, 1f);
 

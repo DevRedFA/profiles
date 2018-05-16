@@ -46,6 +46,8 @@ public class ThingView extends VerticalLayout implements View {
 
     private Grid<Price> pricesGrind = new Grid<>();
 
+    private Button buttonAddOrder = new Button("New order");
+
     @PostConstruct
     public void init() {
         addComponent(new Label("Detail thing view"));
@@ -54,11 +56,18 @@ public class ThingView extends VerticalLayout implements View {
         verticalLayout.addComponent(status);
         verticalLayout.addComponent(purchasePrice);
         verticalLayout.addComponent(purchaseDate);
+        verticalLayout.addComponent(buttonAddOrder);
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
         horizontalLayout.addComponent(verticalLayout);
         horizontalLayout.addComponent(comments);
         horizontalLayout.addComponent(pricesGrind);
         addComponent(horizontalLayout);
+
+        buttonAddOrder.addClickListener(event -> {
+            String s = OrderView.VIEW_NAME + "/new/" + thing.getId();
+            getUI().getNavigator().navigateTo(s);
+        });
+
     }
 
     @Override

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,15 +52,29 @@ public class ThingServiceImpl implements ThingService {
     public List<Thing> getAllThingsByTypeFreeBetween(ThingType type, LocalDate begin, LocalDate end) {
         List<Thing> things = thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(type));
         // TODO: 11.05.2018 rework from n+1 db requests to 1 request.
-        return things.stream().filter(
+        if (begin == null) {
+            begin = LocalDate.of(2100, 1, 1);
+        }
+        if (end == null) {
+            end = LocalDate.of(2100, 1, 2);
+        }
+        Timestamp endTimestamp = Timestamp.valueOf(end.atStartOfDay());
+        Timestamp beginTimestamp = Timestamp.valueOf(begin.atStartOfDay());
+
+        List<Thing> collect = things.stream().filter(
                 thing -> {
                     long count = orderEntityRepository.findAllByThingId(
                             thing.getId()).stream()
-                            .filter(ord -> ord.getBegin().after(Timestamp.valueOf(begin.atStartOfDay())))
-                            .filter(ord -> ord.getStop().before(Timestamp.valueOf(end.atStartOfDay())))
+//                            .filter(ord -> ((ord.getBegin().after(endTimestamp) &&
+//                                    ord.getBegin().after(beginTimestamp)) ||
+//                                    (ord.getStop().before(beginTimestamp) &&
+//                                            ord.getStop().before(endTimestamp))))
+                            .filter(ord -> (ord.getBegin().after(endTimestamp)
+                                    || ord.getStop().before(beginTimestamp)))
                             .count();
                     return count != 0;
                 }).collect(Collectors.toList());
+        return collect;
     }
 
     @Override

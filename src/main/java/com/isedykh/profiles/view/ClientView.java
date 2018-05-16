@@ -1,10 +1,8 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.service.Client;
-import com.isedykh.profiles.service.ClientService;
-import com.isedykh.profiles.service.Identifiable;
-import com.isedykh.profiles.service.Order;
+import com.isedykh.profiles.dao.entity.OrderStatus;
+import com.isedykh.profiles.service.*;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -13,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @RequiredArgsConstructor
 @SpringView(name = ClientView.VIEW_NAME)
@@ -22,6 +21,9 @@ public class ClientView extends VerticalLayout implements View {
 
     @Autowired
     private final ClientService clientService;
+
+    @Autowired
+    private final OrderService orderService;
 
     private Client client;
 
@@ -82,29 +84,32 @@ public class ClientView extends VerticalLayout implements View {
                 int id = Integer.parseInt(event.getParameters());
                 try {
                     client = clientService.findById(id);
+                    Utils.setFieldIfNotNull(client::getName, name::setValue, s -> s);
+
+                    Utils.setFieldIfNotNull(client::getPhone, phone::setValue, String::valueOf);
+
+                    Utils.setFieldIfNotNull(client::getPhoneSecond, phoneSecond::setValue, String::valueOf);
+
+                    Utils.setFieldIfNotNull(client::getEmail, email::setValue, s -> s);
+
+                    Utils.setFieldIfNotNull(client::getContactLink, contactLink::setValue, String::valueOf);
+
+                    Utils.setFieldIfNotNull(client::getAddress, address::setValue, s -> s);
+
+                    Utils.setFieldIfNotNull(client::getChildrenNumber, childrenNumber::setValue, String::valueOf);
+
+                    Utils.setFieldIfNotNull(client::getChildrenComments, childrenComments::setValue, s -> s);
+
+                    List<Order> clientOrderHistory = orderService.getClientOrderHistory(client);
+
+                    Utils.setFieldIfNotNull(clientOrderHistory::stream, ordersGrid::setItems, s -> s);
+
                 } catch (Exception e) {
                     Notification.show("Client with such id not found");
                 }
             }
         }
 
-        Utils.setFieldIfNotNull(client::getName, name::setValue, s -> s);
-
-        Utils.setFieldIfNotNull(client::getPhone, phone::setValue, String::valueOf);
-
-        Utils.setFieldIfNotNull(client::getPhoneSecond, phoneSecond::setValue, String::valueOf);
-
-        Utils.setFieldIfNotNull(client::getEmail, email::setValue, s -> s);
-
-        Utils.setFieldIfNotNull(client::getContactLink, contactLink::setValue, String::valueOf);
-
-        Utils.setFieldIfNotNull(client::getAddress, address::setValue, s -> s);
-
-        Utils.setFieldIfNotNull(client::getChildrenNumber, childrenNumber::setValue, String::valueOf);
-
-        Utils.setFieldIfNotNull(client::getChildrenComments, childrenComments::setValue, s -> s);
-
-        Utils.setFieldIfNotNull(client::getOrders, ordersGrid::setItems, s -> s);
 
         ordersGrid.addColumn(s -> s.getThing().getName()).setCaption("Thing");
         ordersGrid.addColumn(Order::getStatus).setCaption("Status");

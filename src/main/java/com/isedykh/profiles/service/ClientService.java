@@ -22,9 +22,9 @@ public interface ClientService extends CrudService<Client> {
 
     List<Client> findClientByPhone(long string);
 
-    Client findByOrder(Order order);
+//    Client findByOrder(Order order);
 
-    List<Client> findByOrders(List<Order> orders);
+//    List<Client> findByOrders(List<Order> orders);
 
     Client findById(long id);
 

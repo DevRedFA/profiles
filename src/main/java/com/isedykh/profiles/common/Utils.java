@@ -2,16 +2,14 @@ package com.isedykh.profiles.common;
 
 import com.isedykh.profiles.service.Identifiable;
 import com.isedykh.profiles.service.CrudService;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.UI;
+import com.vaadin.ui.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.*;
+import java.util.stream.Collectors;
 
 public class Utils {
 
@@ -55,12 +53,31 @@ public class Utils {
                                                                       Grid<T> grid,
                                                                       Button buttonNext,
                                                                       Button buttonPrevious,
-                                                                      CrudService<T> crudService) {
+                                                                      CrudService<T> crudService,
+                                                                      ComboBox<String> nameFilter,
+                                                                      Function<T, String> comboBoxTransfer
+    ) {
         return clickEvent -> {
             page.set(crudService.findAll(changePageFunction.apply(page.get())));
             grid.setItems(page.get().getContent());
             buttonPrevious.setEnabled(!page.get().isFirst());
-            buttonNext.setEnabled(true);
+            buttonNext.setEnabled(!page.get().isLast());
+            nameFilter.setItems(page.get().getContent().stream().map(comboBoxTransfer));
+        };
+    }
+
+    public static <T> Button.ClickListener getPageChangeClickListener(AtomicReference<Page<T>> page,
+                                                                      Function<Page<T>, Pageable> changePageFunction,
+                                                                      Grid<T> grid,
+                                                                      Button buttonNext,
+                                                                      Button buttonPrevious,
+                                                                      CrudService<T> crudService
+    ) {
+        return clickEvent -> {
+            page.set(crudService.findAll(changePageFunction.apply(page.get())));
+            grid.setItems(page.get().getContent());
+            buttonPrevious.setEnabled(!page.get().isFirst());
+            buttonNext.setEnabled(!page.get().isLast());
         };
     }
 
@@ -76,9 +93,11 @@ public class Utils {
     }
 
     public static <T, R> void setFieldIfNotNull(Supplier<T> condition, Consumer<R> field, Function<T, R> converter) {
-        T t = condition.get();
-        if (t != null) {
-            field.accept(converter.apply(t));
+        if (condition != null) {
+            T t = condition.get();
+            if (t != null) {
+                field.accept(converter.apply(t));
+            }
         }
     }
 }

@@ -37,7 +37,7 @@ public class ClientEntity {
 
     private String contactLink;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
-    private List<OrderEntity> orders;
+//    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "client_id")
+//    private List<OrderEntity> orders;
 }

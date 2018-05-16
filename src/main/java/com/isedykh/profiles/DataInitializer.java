@@ -103,7 +103,7 @@ public class DataInitializer implements ApplicationRunner {
         List<ClientEntity> listClient = new ArrayList<>();
         for (int i = 1; i < 26; i++) {
             listClient.add(new ClientEntity((long) i, "name " + i, i, i, "address " + i,
-                    i, "children comments " + i, "mail" + i + "@mail.com", "contack link " + i, Collections.emptyList()));
+                    i, "children comments " + i, "mail" + i + "@mail.com", "contack link " + i));
         }
         return clientEntityRepository.saveAll(listClient);
     }
@@ -114,9 +114,9 @@ public class DataInitializer implements ApplicationRunner {
         for (int i = 1; i < 26; i++) {
             ThingEntity thing = listThing.get(i - 1);
             ClientEntity client = listClient.get(i - 1);
-            OrderEntity e = new OrderEntity((long) i, "Order comments " + i, new Timestamp(System.currentTimeMillis()),
-                    new Timestamp(System.currentTimeMillis() + 10000L), OrderStatus.BOOKED, thing, thing.getPrices().get(0));
-            client.getOrders().add(e);
+            OrderEntity e = new OrderEntity((long) i, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(i).atStartOfDay()),
+                    Timestamp.valueOf(LocalDate.now().plusDays(i + 5).atStartOfDay()), OrderStatus.BOOKED, client, thing, thing.getPrices().get(0));
+//            client.getOrders().add(e);
             orderEntities.add(e);
         }
         orderEntityRepository.saveAll(orderEntities);
