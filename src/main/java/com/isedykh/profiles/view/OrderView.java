@@ -125,8 +125,6 @@ public class OrderView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-        Client byOrder;
-
         if (event.getParameters() != null) {
             String[] msgs = event.getParameters().split("/");
             if (event.getParameters().contains("new")) {
@@ -175,9 +173,7 @@ public class OrderView extends VerticalLayout implements View {
             // FIXME: 08.05.2018 Change cents to rubles
             order.setPrice(price.getSelectedItem().isPresent() ? price.getSelectedItem().get() : order.getPrice());
             order.setComments(comments.getValue());
-//            client.addOrder(order);
             orderService.save(order);
-//            clientService.save(client);
         });
     }
 }

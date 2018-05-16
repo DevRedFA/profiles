@@ -1,6 +1,5 @@
 package com.isedykh.profiles.service;
 
-import com.isedykh.profiles.dao.entity.OrderEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.dao.entity.ThingType;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,26 +59,15 @@ public class ThingServiceImpl implements ThingService {
         Timestamp endTimestamp = Timestamp.valueOf(end.atStartOfDay());
         Timestamp beginTimestamp = Timestamp.valueOf(begin.atStartOfDay());
 
-        List<Thing> collect = things.stream().filter(
-                thing -> {
-                    long count = orderEntityRepository.findAllByThingId(
-                            thing.getId()).stream()
-//                            .filter(ord -> ((ord.getBegin().after(endTimestamp) &&
-//                                    ord.getBegin().after(beginTimestamp)) ||
-//                                    (ord.getStop().before(beginTimestamp) &&
-//                                            ord.getStop().before(endTimestamp))))
-                            .filter(ord -> (ord.getBegin().after(endTimestamp)
-                                    || ord.getStop().before(beginTimestamp)))
-                            .count();
-                    return count != 0;
-                }).collect(Collectors.toList());
-        return collect;
-    }
-
-    @Override
-    public List<Thing> findAllByName(String name) {
-        List<ThingEntity> allByName = thingEntityRepository.findAllByName(name);
-        return thingMapper.thingEntitiesToThings(allByName);
+        return things.stream()
+                .filter(thing ->
+                        orderEntityRepository.findAllByThingId(
+                                thing.getId())
+                                .stream()
+                                .anyMatch(ord ->
+                                        (ord.getBegin().after(endTimestamp)
+                                                || ord.getStop().before(beginTimestamp))))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -106,13 +93,6 @@ public class ThingServiceImpl implements ThingService {
 
     @Override
     public Thing save(Thing thing) {
-        ThingEntity thingEntity = thingMapper.thingToThingEntity(thing);
-        ThingEntity save = thingEntityRepository.save(thingEntity);
-        return thingMapper.thingEntityToThing(save);
-    }
-
-    @Override
-    public Thing update(Thing thing) {
         ThingEntity thingEntity = thingMapper.thingToThingEntity(thing);
         ThingEntity save = thingEntityRepository.save(thingEntity);
         return thingMapper.thingEntityToThing(save);

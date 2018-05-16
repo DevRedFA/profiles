@@ -27,7 +27,7 @@ import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 public class ClientsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "clients";
-    public static final int PAGE_SIZE = 16;
+    private static final int PAGE_SIZE = 16;
 
     private ClientService clientService;
 
@@ -119,25 +119,18 @@ public class ClientsView extends VerticalLayout implements View {
             nameFilter.setItems(clientByName.stream().map(Client::getName));
         });
 
-        // FIXME: 14.05.2018 broken next button
-        buttonNext.addClickListener(
+        buttonNext.addClickListener(getPageChangeClickListener(clientPage, Slice::nextPageable, clientGrid,
+                buttonNext, buttonPrevious, clientService, nameFilter, Client::getName));
 
-                getPageChangeClickListener(clientPage, Slice::nextPageable, clientGrid,
-                        buttonNext, buttonPrevious, clientService, nameFilter, Client::getName));
-
-        buttonPrevious.addClickListener(
-
-                getPageChangeClickListener(clientPage, Slice::previousPageable, clientGrid,
-                        buttonNext, buttonPrevious, clientService, nameFilter, Client::getName));
+        buttonPrevious.addClickListener(getPageChangeClickListener(clientPage, Slice::previousPageable, clientGrid,
+                buttonNext, buttonPrevious, clientService, nameFilter, Client::getName));
 
         buttonNew.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
 
         buttonDetails.addClickListener(clickEvent -> Utils.detailsClickListenerSupplier.accept(clientGrid, this::getUI));
 
         // TODO: 07.05.2018 add reset of grid
-        buttonDelete.addClickListener(
-
-                getDeleteClickListener(clientGrid, clientService));
+        buttonDelete.addClickListener(getDeleteClickListener(clientGrid, clientService));
 
         addComponent(searchPanel);
 

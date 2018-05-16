@@ -2,10 +2,6 @@ package com.isedykh.profiles.service;
 
 
 import lombok.Data;
-import lombok.ToString;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 public class Client implements Identifiable {
@@ -32,13 +28,4 @@ public class Client implements Identifiable {
     private String email;
 
     private String contactLink;
-
-//    private List<Order> orders;
-//
-//    public void addOrder(Order order) {
-//        if (orders == null) {
-//            orders = new ArrayList<>();
-//        }
-//        orders.add(order);
-//    }
 }

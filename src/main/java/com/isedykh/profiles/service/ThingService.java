@@ -17,14 +17,9 @@ public interface ThingService extends CrudService<Thing> {
 
     List<Thing> getAllThingsByTypeFreeBetween(ThingType type, LocalDate start, LocalDate to);
 
-    List<Thing> findAllByName(String name);
-
-
     Page<Thing> findAll(Pageable pageable);
 
     Page<ThingDto> findAllToDto(Pageable pageable);
 
     Thing save(Thing thing);
-
-    Thing update(Thing thing);
 }

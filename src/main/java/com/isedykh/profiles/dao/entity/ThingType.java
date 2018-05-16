@@ -1,5 +1,5 @@
 package com.isedykh.profiles.dao.entity;
 
 public enum ThingType {
-    ERGO, SLEEPBAG, CHILD_CARRIER;
+    ERGO, SLEEP_BAG, CHILD_CARRIER;
 }

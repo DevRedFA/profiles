@@ -1,7 +1,6 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.service.Client;
 import com.isedykh.profiles.service.ClientService;
 import com.isedykh.profiles.service.Order;
 import com.isedykh.profiles.service.OrderService;
@@ -15,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
@@ -35,7 +33,6 @@ public class OrdersView extends VerticalLayout implements View {
     public void init() {
 
         AtomicReference<Page<Order>> orderPage = new AtomicReference<>(orderService.findAll(PageRequest.of(0, PAGE_SIZE)));
-//        List<Client> byOrders = clientService.findByOrders(orderPage.get().getContent());
         Grid<Order> orderGrid = new Grid<>();
         orderGrid.setSizeFull();
         orderGrid.setSelectionMode(Grid.SelectionMode.SINGLE);

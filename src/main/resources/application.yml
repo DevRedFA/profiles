@@ -33,14 +33,3 @@ spring:
     username: postgres
     password: test
     driverClassName: org.postgresql.Driver
-
-###
-#   H2 Settings: console enabled for debugging
-###
-#  h2:
-#    console:
-#      enabled: true
-#      path: /console
-#      settings:
-#        trace: false
-#        web-allow-others: false

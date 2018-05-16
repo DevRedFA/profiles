@@ -1,15 +1,17 @@
 package com.isedykh.profiles.common;
 
-import com.isedykh.profiles.service.Identifiable;
 import com.isedykh.profiles.service.CrudService;
+import com.isedykh.profiles.service.Identifiable;
 import com.vaadin.ui.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.*;
-import java.util.stream.Collectors;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class Utils {
 

@@ -54,7 +54,6 @@ public class DataInitializer implements ApplicationRunner {
         // FIXME: 04.05.2018 nullable params in client and others entities
         // TODO: 5/6/18 Creating and modifying entities.
         // TODO: 5/6/18 images to things profiles
-        // TODO: 5/6/18 filtering in greeds!
         // TODO: 5/6/18 drag n drop images
         // TODO: 5/6/18 change things/users/orders to tabs?
         // TODO: 5/6/18 declarative validation in registration form
@@ -115,8 +114,7 @@ public class DataInitializer implements ApplicationRunner {
             ThingEntity thing = listThing.get(i - 1);
             ClientEntity client = listClient.get(i - 1);
             OrderEntity e = new OrderEntity((long) i, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(i).atStartOfDay()),
-                    Timestamp.valueOf(LocalDate.now().plusDays(i + 5).atStartOfDay()), OrderStatus.BOOKED, client, thing, thing.getPrices().get(0));
-//            client.getOrders().add(e);
+                    Timestamp.valueOf(LocalDate.now().plusDays(5 + i).atStartOfDay()), OrderStatus.BOOKED, client, thing, thing.getPrices().get(0));
             orderEntities.add(e);
         }
         orderEntityRepository.saveAll(orderEntities);

@@ -2,7 +2,6 @@ package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.ThingType;
-import com.isedykh.profiles.mapper.ThingMapper;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingDtoService;
 import com.vaadin.navigator.View;
@@ -25,12 +24,10 @@ import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 public class ThingsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "things";
-    public static final int PAGE_SIZE = 16;
+    private static final int PAGE_SIZE = 16;
 
 
     private ThingDtoService thingService;
-
-    private ThingMapper thingMapper;
 
     @PostConstruct
     public void init() {

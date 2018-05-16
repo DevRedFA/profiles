@@ -10,9 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -49,12 +47,6 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client update(Client client) {
-        ClientEntity save = clientEntityRepository.save(clientMapper.clientToClientEntity(client));
-        return clientMapper.clientEntityToClient(save);
-    }
-
-    @Override
     public List<Client> findClientByName(String name) {
         List<ClientEntity> allByName = clientEntityRepository.findAllByNameContaining(name);
         return clientMapper.clientEntitiesToClients(allByName);
@@ -65,17 +57,6 @@ public class ClientServiceImpl implements ClientService {
         List<ClientEntity> allByPhone = clientEntityRepository.findAllByPhoneOrPhoneSecond(phone, phone);
         return clientMapper.clientEntitiesToClients(allByPhone);
     }
-
-//    @Override
-//    public Client findByOrder(Order order) {
-//        return clientMapper.clientEntityToClient(clientEntityRepository.findByOrdersIdIn(order.getId()));
-//    }
-
-//    @Override
-//    public List<Client> findByOrders(List<Order> orders) {
-//        List<Long> collect = orders.stream().map(Order::getId).collect(Collectors.toList());
-//        return clientMapper.clientEntitiesToClients(clientEntityRepository.findAllByOrdersIdIn(collect));
-//    }
 
     @Override
     public Client findById(long id) {

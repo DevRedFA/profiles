@@ -1,7 +1,6 @@
 package com.isedykh.profiles.service;
 
 import com.isedykh.profiles.dao.entity.OrderEntity;
-import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.PriceEntityRepository;
