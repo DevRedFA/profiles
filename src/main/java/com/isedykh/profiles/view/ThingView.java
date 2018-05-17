@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @SpringView(name = ThingView.VIEW_NAME)
@@ -58,11 +60,12 @@ public class ThingView extends VerticalLayout implements View {
         verticalLayout.addComponent(status);
         verticalLayout.addComponent(purchasePrice);
         verticalLayout.addComponent(purchaseDate);
-        verticalLayout.addComponent(buttonAddOrder);
+        verticalLayout.addComponent(saveThing);
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
         horizontalLayout.addComponent(verticalLayout);
         horizontalLayout.addComponent(comments);
         horizontalLayout.addComponent(pricesGrind);
+        horizontalLayout.addComponent(buttonAddOrder);
         addComponent(horizontalLayout);
 
         buttonAddOrder.addClickListener(event -> {
@@ -72,8 +75,21 @@ public class ThingView extends VerticalLayout implements View {
 
         saveThing.addClickListener(event -> {
             // TODO: 16.05.2018 Save thing algorithm
+            thing.setName(name.getValue());
+            thing.setDeposit(Integer.parseInt(deposit.getValue()));
+            thing.setPurchaseDate(purchaseDate.getValue());
+            Optional<ThingType> selectedItem = type.getSelectedItem();
+            if (selectedItem.isPresent()) {
+                thing.setType(selectedItem.get());
+            } else {
+                Notification.show("Choose thing type");
+            }
+            status.getSelectedItem().ifPresent(thingStatus -> thing.setStatus(thingStatus));
+            thing.setComments(comments.getValue());
+
+            thingService.save(thing);
         });
-        
+
     }
 
     @Override
@@ -81,6 +97,11 @@ public class ThingView extends VerticalLayout implements View {
         if (event.getParameters() != null) {
             if (event.getParameters().contains("new")) {
                 thing = new Thing();
+                thing.setStatus(ThingStatus.FREE);
+                status.setSelectedItem(ThingStatus.FREE);
+
+                thing.setPurchaseDate(LocalDate.now());
+                purchaseDate.setValue(LocalDate.now());
             } else {
                 int id = Integer.parseInt(event.getParameters());
                 try {

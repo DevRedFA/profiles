@@ -1,5 +1,6 @@
 package com.isedykh.profiles.mapper;
 
+import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.Term;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.service.Price;
@@ -50,7 +51,7 @@ public interface ThingMapper {
             }
         });
 
-        return ThingDto.builder().name(thing.getName())
+        ThingDto.ThingDtoBuilder builder = ThingDto.builder().name(thing.getName())
                 .deposit(thing.getDeposit())
                 .id(thing.getId())
                 .pathToPhoto(thing.getPathToPhoto())
@@ -58,11 +59,13 @@ public interface ThingMapper {
                 .purchaseDate(thing.getPurchaseDate())
                 .purchasePrice(thing.getPurchasePrice())
                 .type(thing.getType())
-                .status(thing.getStatus())
-                .priceForDay(day[0].getPriceValue())
-                .priceForWeek(week[0].getPriceValue())
-                .priceForTwoWeeks(twoWeeks[0].getPriceValue())
-                .priceForMonth(month[0].getPriceValue())
-                .build();
+                .status(thing.getStatus());
+
+        Utils.setFieldIfNotNull(day[0]::getPriceValue, builder::priceForDay, s -> s);
+        Utils.setFieldIfNotNull(week[0]::getPriceValue, builder::priceForWeek, s -> s);
+        Utils.setFieldIfNotNull(twoWeeks[0]::getPriceValue, builder::priceForTwoWeeks, s -> s);
+        Utils.setFieldIfNotNull(month[0]::getPriceValue, builder::priceForMonth, s -> s);
+
+        return builder.build();
     }
 }
