@@ -2,13 +2,14 @@ package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.ThingType;
+import com.isedykh.profiles.service.Client;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingDtoService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -19,7 +20,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @SpringView(name = ThingsView.VIEW_NAME)
 public class ThingsView extends VerticalLayout implements View {
 
@@ -27,7 +28,7 @@ public class ThingsView extends VerticalLayout implements View {
     private static final int PAGE_SIZE = 16;
 
 
-    private ThingDtoService thingService;
+    private final ThingDtoService thingService;
 
     @PostConstruct
     public void init() {
@@ -78,7 +79,7 @@ public class ThingsView extends VerticalLayout implements View {
 
         });
 
-        thingsGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
+        thingsGrid.addItemClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, ThingView.VIEW_NAME));
 
         HorizontalLayout buttons = new HorizontalLayout();
         HorizontalLayout leftButtons = new HorizontalLayout();
@@ -108,18 +109,18 @@ public class ThingsView extends VerticalLayout implements View {
         buttonNewOrder.addClickListener(clickEvent -> {
             String s = OrderView.VIEW_NAME + "/new/"
                     + thingsGrid.getSelectedItems().toArray(new ThingDto[0])[0].getId()
-                    + "/" + begin.getValue() + "/" +  stop.getValue();
+                    + "/" + begin.getValue() + "/" + stop.getValue();
             getUI().getNavigator().navigateTo(s);
         });
 
-        buttonDetails.addClickListener(clickEvent -> Utils.detailsClickListenerSupplier.accept(thingsGrid, this::getUI));
+        buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(thingsGrid, this::getUI, ThingView.VIEW_NAME));
 
         addComponent(buttons);
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        if (event.getParameters() != null) {
+        if (event.getParameters() != null && !event.getParameters().isEmpty()) {
             Notification.show(event.getParameters());
         }
     }

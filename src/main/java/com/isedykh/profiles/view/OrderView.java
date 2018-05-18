@@ -174,6 +174,7 @@ public class OrderView extends VerticalLayout implements View {
             order.setPrice(price.getSelectedItem().isPresent() ? price.getSelectedItem().get() : order.getPrice());
             order.setComments(comments.getValue());
             orderService.save(order);
+            getUI().getNavigator().navigateTo(OrdersView.VIEW_NAME);
         });
     }
 }

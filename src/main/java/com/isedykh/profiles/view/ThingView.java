@@ -1,6 +1,7 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
+import com.isedykh.profiles.dao.entity.Term;
 import com.isedykh.profiles.dao.entity.ThingStatus;
 import com.isedykh.profiles.dao.entity.ThingType;
 import com.isedykh.profiles.service.Price;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -28,13 +31,15 @@ public class ThingView extends VerticalLayout implements View {
 
     private Thing thing;
 
+    List<Price> prices;
+
     private TextField name = new TextField("Name");
 
     private ComboBox<ThingType> type = new ComboBox<>("Type");
 
     private ComboBox<ThingStatus> status = new ComboBox<>("Status");
 
-    private TextField purchasePrice = new TextField("Purchase priceValue");
+    private TextField purchasePrice = new TextField("Purchase price");
 
     private DateField purchaseDate = new DateField("Purchase date");
 
@@ -62,6 +67,7 @@ public class ThingView extends VerticalLayout implements View {
         verticalLayout.addComponent(purchaseDate);
         verticalLayout.addComponent(saveThing);
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
+        pricesGrind.getEditor().setEnabled(true);
         horizontalLayout.addComponent(verticalLayout);
         horizontalLayout.addComponent(comments);
         horizontalLayout.addComponent(pricesGrind);
@@ -73,8 +79,22 @@ public class ThingView extends VerticalLayout implements View {
             getUI().getNavigator().navigateTo(s);
         });
 
+        purchasePrice.addValueChangeListener(event -> {
+            try {
+                int i = Integer.parseInt(event.getValue()) * 100;
+                prices = new ArrayList<>();
+                prices.add(new Price(null, Term.DAY, (int) (i * Price.DAY_COEFFICIENT / 100)));
+                prices.add(new Price(null, Term.WEEK, (int) (i * Price.WEEK_COEFFICIENT / 100)));
+                prices.add(new Price(null, Term.TWO_WEEKS, (int) (i * Price.TWO_WEEKS_COEFFICIENT / 100)));
+                prices.add(new Price(null, Term.MONTH, (int) (i * Price.MONTH_COEFFICIENT / 100)));
+                pricesGrind.setItems(prices);
+                thing.setPrices(prices);
+                thing.setPurchasePrice(i);
+            } catch (NumberFormatException ignored) {
+            }
+        });
+
         saveThing.addClickListener(event -> {
-            // TODO: 16.05.2018 Save thing algorithm
             thing.setName(name.getValue());
             thing.setDeposit(Integer.parseInt(deposit.getValue()));
             thing.setPurchaseDate(purchaseDate.getValue());
@@ -102,6 +122,14 @@ public class ThingView extends VerticalLayout implements View {
 
                 thing.setPurchaseDate(LocalDate.now());
                 purchaseDate.setValue(LocalDate.now());
+
+
+                prices = new ArrayList<>();
+                prices.add(new Price(null, Term.DAY, 0));
+                prices.add(new Price(null, Term.WEEK, 0));
+                prices.add(new Price(null, Term.TWO_WEEKS, 0));
+                prices.add(new Price(null, Term.MONTH, 0));
+                pricesGrind.setItems(prices);
             } else {
                 int id = Integer.parseInt(event.getParameters());
                 try {

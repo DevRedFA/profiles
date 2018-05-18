@@ -80,7 +80,7 @@ public class OrdersView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        if (event.getParameters() != null) {
+        if (event.getParameters() != null && !event.getParameters().isEmpty()) {
             Notification.show(event.getParameters());
         }
     }

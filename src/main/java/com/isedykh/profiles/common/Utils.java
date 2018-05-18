@@ -44,6 +44,23 @@ public class Utils {
         }
     };
 
+    public static void getDetailsDoubleClickListenerSupplier(Grid.ItemClick<? extends Identifiable> clickEvent, Supplier<UI> uiSupplier, String to) {
+        if (clickEvent.getMouseEventDetails().isDoubleClick()) {
+            Identifiable identifiable = clickEvent.getItem();
+            String s = to + "/" + identifiable.getId();
+            uiSupplier.get().getNavigator().navigateTo(s);
+        }
+    }
+
+    public static void getDetailsDoubleClickListenerSupplier(Grid<? extends Identifiable> grid, Supplier<UI> uiSupplier, String to) {
+        Set selectedItems = grid.getSelectedItems();
+        if (selectedItems.size() == 1) {
+            Identifiable identifiable = Identifiable.class.cast(selectedItems.toArray()[0]);
+            String s = to + "/" + identifiable.getId();
+            uiSupplier.get().getNavigator().navigateTo(s);
+        }
+    }
+
     public static final Consumer<Supplier<UI>> newClickListenerSupplier = uiSupplier -> {
         String state = uiSupplier.get().getNavigator().getState();
         String s = state.substring(0, state.length() - 1) + "/new";
