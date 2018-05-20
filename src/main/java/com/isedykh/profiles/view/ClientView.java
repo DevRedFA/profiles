@@ -4,9 +4,11 @@ import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.*;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.UserError;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -38,7 +40,7 @@ public class ClientView extends VerticalLayout implements View {
 
     private TextField email = new TextField("Email");
 
-    private TextField contactLink = new TextField("Contact link");
+    private TextField vkLink = new TextField("VK link");
 
     private TextArea childrenComments = new TextArea("Children comments");
 
@@ -57,7 +59,7 @@ public class ClientView extends VerticalLayout implements View {
         verticalLayout.addComponent(phone);
         verticalLayout.addComponent(phoneSecond);
         verticalLayout.addComponent(email);
-        verticalLayout.addComponent(contactLink);
+        verticalLayout.addComponent(vkLink);
         verticalLayout.addComponent(address);
         verticalLayout.addComponent(childrenNumber);
         verticalLayout.addComponent(save);
@@ -91,7 +93,7 @@ public class ClientView extends VerticalLayout implements View {
 
                     Utils.setFieldIfNotNull(client::getEmail, email::setValue, s -> s);
 
-                    Utils.setFieldIfNotNull(client::getContactLink, contactLink::setValue, String::valueOf);
+                    Utils.setFieldIfNotNull(client::getVkLink, vkLink::setValue, String::valueOf);
 
                     Utils.setFieldIfNotNull(client::getAddress, address::setValue, s -> s);
 
@@ -120,20 +122,63 @@ public class ClientView extends VerticalLayout implements View {
         ordersGrid.addItemClickListener(this::constructClickListener);
 
         save.addClickListener(clickEvent -> {
+            boolean containsContact = false;
+
             client.setName(name.getValue());
+
             try {
-                client.setPhone(Long.parseLong(phone.getValue()));
-                client.setPhoneSecond(Long.parseLong(phoneSecond.getValue()));
+                if (!StringUtils.isBlank(phone.getValue())) {
+                    client.setPhone(Long.parseLong(phone.getValue()));
+                    containsContact = true;
+                    phone.setComponentError(null);
+                }
+            } catch (NumberFormatException e) {
+                phone.setComponentError(new UserError("Bad format of phone"));
+            }
+
+            try {
+                if (!StringUtils.isBlank(phoneSecond.getValue())) {
+                    client.setPhoneSecond(Long.parseLong(phoneSecond.getValue()));
+                    containsContact = true;
+                    phoneSecond.setComponentError(null);
+                }
+            } catch (NumberFormatException e) {
+                phoneSecond.setComponentError(new UserError("Bad format of second phone"));
+            }
+
+            if (!StringUtils.isBlank(phoneSecond.getValue())) {
                 client.setEmail(email.getValue());
-                client.setContactLink(contactLink.getValue());
+                containsContact = true;
+            }
+
+            if (!StringUtils.isBlank(vkLink.getValue())) {
+                client.setVkLink(vkLink.getValue());
+                containsContact = true;
+            }
+
+            if (!StringUtils.isBlank(address.getValue())) {
                 client.setAddress(address.getValue());
-                client.setChildrenNumber(Integer.parseInt(childrenNumber.getValue()));
-                client.setChildrenComments(childrenComments.getValue());
+            }
+            try {
+                if (!StringUtils.isBlank(childrenNumber.getValue())) {
+                    client.setChildrenNumber(Integer.parseInt(childrenNumber.getValue()));
+                }
+            } catch (NumberFormatException e) {
+                Notification.show("Bad format of children number");
+            }
+
+            client.setChildrenComments(childrenComments.getValue());
+            if (containsContact) {
                 clientService.save(client);
                 getUI().getNavigator().navigateTo(ThingsView.VIEW_NAME + "/message: Client saved");
-            } catch (NumberFormatException e) {
-                Notification.show("Bad format of phone/second phone");
+            } else {
+                email.setComponentError(new UserError("Add email"));
+                vkLink.setComponentError(new UserError("Add VK link"));
+                phone.setComponentError(new UserError("Bad format of phone"));
+                phoneSecond.setComponentError(new UserError("Bad format of second phone"));
+                Notification.show("Add at least one contact info (phone, second phone, email, VK link)");
             }
+
         });
     }
 

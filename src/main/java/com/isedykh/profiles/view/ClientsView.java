@@ -42,7 +42,7 @@ public class ClientsView extends VerticalLayout implements View {
         clientGrid.addColumn(Client::getPhone).setCaption("Phone");
         clientGrid.addColumn(Client::getPhoneSecond).setCaption("Second phone");
         clientGrid.addColumn(Client::getEmail).setCaption("Email");
-        clientGrid.addColumn(Client::getContactLink).setCaption("Contact link");
+        clientGrid.addColumn(Client::getVkLink).setCaption("VK link");
         clientGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
         clientGrid.setHeightByRows(PAGE_SIZE);
 

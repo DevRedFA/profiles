@@ -10,9 +10,9 @@ public class Client implements Identifiable {
 
     private String name;
 
-    private long phone;
+    private Long phone;
 
-    private long phoneSecond;
+    private Long phoneSecond;
 
     private String address;
 
@@ -21,11 +21,11 @@ public class Client implements Identifiable {
         return name;
     }
 
-    private int childrenNumber;
+    private Integer childrenNumber;
 
     private String childrenComments;
 
     private String email;
 
-    private String contactLink;
+    private String vkLink;
 }

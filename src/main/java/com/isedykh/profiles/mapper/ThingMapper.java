@@ -31,15 +31,11 @@ public interface ThingMapper {
     default ThingDto thingToThingDto(Thing thing) {
 
         List<Price> prices = thing.getPrices();
-        final Price[] day = new Price[1];
         final Price[] week = new Price[1];
         final Price[] twoWeeks = new Price[1];
         final Price[] month = new Price[1];
 
         prices.forEach(s -> {
-            if (s.getTerm().equals(Term.DAY)) {
-                day[0] = s;
-            }
             if (s.getTerm().equals(Term.WEEK)) {
                 week[0] = s;
             }
@@ -61,7 +57,6 @@ public interface ThingMapper {
                 .type(thing.getType())
                 .status(thing.getStatus());
 
-        Utils.setFieldIfNotNull(day[0]::getPriceValue, builder::priceForDay, s -> s);
         Utils.setFieldIfNotNull(week[0]::getPriceValue, builder::priceForWeek, s -> s);
         Utils.setFieldIfNotNull(twoWeeks[0]::getPriceValue, builder::priceForTwoWeeks, s -> s);
         Utils.setFieldIfNotNull(month[0]::getPriceValue, builder::priceForMonth, s -> s);

@@ -21,22 +21,18 @@ public class ClientEntity {
     private String name;
 
     @Column(nullable = false)
-    private long phone;
+    private Long phone;
 
-    private long phoneSecond;
+    private Long phoneSecond;
 
     private String address;
 
-    private int childrenNumber;
+    private Integer childrenNumber;
 
     @Column(length = 1024)
     private String childrenComments;
 
     private String email;
 
-    private String contactLink;
-
-//    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "client_id")
-//    private List<OrderEntity> orders;
+    private String vkLink;
 }

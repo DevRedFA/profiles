@@ -40,6 +40,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public void delete(long id) {
+        clientEntityRepository.deleteById(id);
+    }
+
+    @Override
     public Client save(Client client) {
         ClientEntity entity = clientMapper.clientToClientEntity(client);
         ClientEntity save = clientEntityRepository.save(entity);

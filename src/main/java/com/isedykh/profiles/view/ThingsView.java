@@ -3,6 +3,7 @@ package com.isedykh.profiles.view;
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.ThingType;
 import com.isedykh.profiles.service.Client;
+import com.isedykh.profiles.service.Identifiable;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingDtoService;
 import com.vaadin.navigator.View;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Slice;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
@@ -52,6 +54,7 @@ public class ThingsView extends VerticalLayout implements View {
         Grid<ThingDto> thingsGrid = new Grid<>();
 
         buttonSearch.addClickListener(clickEvent -> {
+            // FIXME: 5/20/18 add event with null or empty choise of type
             List<ThingDto> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), stop.getValue());
             thingsGrid.setItems(allThingsByTypeFreeBetween);
 
@@ -64,7 +67,6 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.addColumn(ThingDto::getType).setCaption("Type");
         thingsGrid.addColumn(ThingDto::getDeposit).setCaption("Deposit");
         thingsGrid.addColumn(ThingDto::getStatus).setCaption("Status");
-        thingsGrid.addColumn(ThingDto::getPriceForDay).setCaption("Day");
         thingsGrid.addColumn(ThingDto::getPriceForWeek).setCaption("Week");
         thingsGrid.addColumn(ThingDto::getPriceForTwoWeeks).setCaption("Two weeks");
         thingsGrid.addColumn(ThingDto::getPriceForMonth).setCaption("Month");
@@ -114,6 +116,15 @@ public class ThingsView extends VerticalLayout implements View {
         });
 
         buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(thingsGrid, this::getUI, ThingView.VIEW_NAME));
+
+        buttonDelete.addClickListener(clickEvent -> {
+            Set selectedItems = thingsGrid.getSelectedItems();
+            if (selectedItems.size() == 1) {
+                Identifiable identifiable = Identifiable.class.cast(selectedItems.toArray()[0]);
+                thingService.delete(identifiable.getId());
+                getUI().getPage().reload();
+            }
+        });
 
         addComponent(buttons);
     }

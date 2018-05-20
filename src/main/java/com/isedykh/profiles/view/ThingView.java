@@ -9,12 +9,15 @@ import com.isedykh.profiles.service.Thing;
 import com.isedykh.profiles.service.ThingService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.FileResource;
+import com.vaadin.server.Page;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,55 +27,113 @@ import java.util.Optional;
 @SpringView(name = ThingView.VIEW_NAME)
 public class ThingView extends VerticalLayout implements View {
 
-    public static final String VIEW_NAME = "thing";
+    static final String VIEW_NAME = "thing";
+    public static final String START_POINT = "./";
 
     @Autowired
     private final ThingService thingService;
 
     private Thing thing;
 
-    List<Price> prices;
+    private List<Price> prices;
 
-    private TextField name = new TextField("Name");
+    private final TextField name = new TextField("Name");
 
-    private ComboBox<ThingType> type = new ComboBox<>("Type");
+    private final ComboBox<ThingType> type = new ComboBox<>("Type");
 
-    private ComboBox<ThingStatus> status = new ComboBox<>("Status");
+    private final ComboBox<ThingStatus> status = new ComboBox<>("Status");
 
-    private TextField purchasePrice = new TextField("Purchase price");
+    private final TextField purchasePrice = new TextField("Purchase price");
 
-    private DateField purchaseDate = new DateField("Purchase date");
+    private final DateField purchaseDate = new DateField("Purchase date");
 
-    private TextField deposit = new TextField("Deposit");
+    private final TextField deposit = new TextField("Deposit");
 
-    private TextField comments = new TextField("Comments");
+    private final TextField comments = new TextField("Comments");
 
-    private VerticalLayout verticalLayout = new VerticalLayout();
+//    private TuningDateField tuningDateField = new TuningDateField("Tuning DateField with US holidays");
 
-    private HorizontalLayout horizontalLayout = new HorizontalLayout();
+    private final VerticalLayout details = new VerticalLayout();
 
-    private Grid<Price> pricesGrind = new Grid<>();
+    private final HorizontalLayout fullDetails = new HorizontalLayout();
 
-    private Button buttonAddOrder = new Button("New order");
+    private final HorizontalLayout imageDetails = new HorizontalLayout();
 
-    private Button saveThing = new Button("Save thing");
+    private final Grid<Price> pricesGrind = new Grid<>();
+
+    private final Button buttonAddOrder = new Button("New order");
+
+    private final Button saveThing = new Button("Save thing");
+
+    private final TabSheet tabSheet = new TabSheet();
+
+    private final Image image = new Image();
 
     @PostConstruct
     public void init() {
-        addComponent(new Label("Detail thing view"));
-        verticalLayout.addComponent(name);
-        verticalLayout.addComponent(type);
-        verticalLayout.addComponent(status);
-        verticalLayout.addComponent(purchasePrice);
-        verticalLayout.addComponent(purchaseDate);
-        verticalLayout.addComponent(saveThing);
+
+        details.addComponent(name);
+        details.addComponent(type);
+        details.addComponent(status);
+        details.addComponent(purchasePrice);
+        details.addComponent(deposit);
+        details.addComponent(purchaseDate);
+        details.addComponent(saveThing);
+
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
         pricesGrind.getEditor().setEnabled(true);
-        horizontalLayout.addComponent(verticalLayout);
-        horizontalLayout.addComponent(comments);
-        horizontalLayout.addComponent(pricesGrind);
-        horizontalLayout.addComponent(buttonAddOrder);
-        addComponent(horizontalLayout);
+        fullDetails.addComponent(details);
+        fullDetails.addComponent(comments);
+        fullDetails.addComponent(pricesGrind);
+        fullDetails.addComponent(buttonAddOrder);
+
+        tabSheet.addTab(fullDetails, "Details");
+
+
+        image.setVisible(false);
+
+        class ImageReceiver implements Upload.Receiver, Upload.SucceededListener {
+            private static final long serialVersionUID = -1276759102490466761L;
+
+            private File file;
+
+            public OutputStream receiveUpload(String filename,
+                                              String mimeType) {
+                FileOutputStream fos;
+                try {
+                    file = new File(START_POINT + thing.getName().replace(" ", "_") + "_" + thing.getPurchaseDate().toString());
+                    fos = new FileOutputStream(file);
+                } catch (final java.io.FileNotFoundException e) {
+                    new Notification("Could not open file<br/>",
+                            e.getMessage(),
+                            Notification.Type.ERROR_MESSAGE)
+                            .show(Page.getCurrent());
+                    return null;
+                }
+                return fos;
+            }
+
+            public void uploadSucceeded(Upload.SucceededEvent event) {
+                image.setVisible(true);
+                image.setSource(new FileResource(file));
+                thing.setPathToPhoto(file.getAbsolutePath());
+                thingService.save(thing);
+            }
+        }
+
+        ImageReceiver receiver = new ImageReceiver();
+
+        final Upload upload = new Upload("Upload it here", receiver);
+        upload.setButtonCaption("Start Upload");
+        upload.addSucceededListener(receiver);
+
+        imageDetails.addComponent(image);
+        imageDetails.addComponent(upload);
+        tabSheet.addTab(imageDetails, "Image");
+//        tuningDateField.setDateRange(LocalDate.now(), LocalDate.now().plusDays(5), "Error");
+//        tabSheet.addTab(tuningDateField, "Dates");
+
+        addComponent(tabSheet);
 
         buttonAddOrder.addClickListener(event -> {
             String s = OrderView.VIEW_NAME + "/new/" + thing.getId();
@@ -83,7 +144,6 @@ public class ThingView extends VerticalLayout implements View {
             try {
                 int i = Integer.parseInt(event.getValue()) * 100;
                 prices = new ArrayList<>();
-                prices.add(new Price(null, Term.DAY, (int) (i * Price.DAY_COEFFICIENT / 100)));
                 prices.add(new Price(null, Term.WEEK, (int) (i * Price.WEEK_COEFFICIENT / 100)));
                 prices.add(new Price(null, Term.TWO_WEEKS, (int) (i * Price.TWO_WEEKS_COEFFICIENT / 100)));
                 prices.add(new Price(null, Term.MONTH, (int) (i * Price.MONTH_COEFFICIENT / 100)));
@@ -140,6 +200,8 @@ public class ThingView extends VerticalLayout implements View {
             }
         }
 
+        Utils.setFieldIfNotNull(thing::getPathToPhoto, image::setSource, s -> new FileResource(new File(s)));
+        image.setVisible(true);
         Utils.setFieldIfNotNull(thing::getName, name::setValue, s -> s);
         Utils.setFieldIfNotNull(thing::getPurchasePrice, purchasePrice::setValue, String::valueOf);
         Utils.setFieldIfNotNull(thing::getDeposit, deposit::setValue, String::valueOf);

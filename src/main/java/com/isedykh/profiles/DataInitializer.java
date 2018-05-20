@@ -33,29 +33,26 @@ public class DataInitializer implements ApplicationRunner {
     public void run(ApplicationArguments args) {
 
 
-        //init Thing
-        List<ThingEntity> listThing = getThingEntities();
+//        //init Thing
+//        List<ThingEntity> listThing = getThingEntities();
+//
+//
+//        listThing = updateThings();
+//
+//        //init Prices
+//        initPrices(listThing);
+//
+//        //init Client
+//        List<ClientEntity> listClient = getClientEntities();
+//
+//        listThing = updateThings();
+//
+//
+//        //init Order
+//        List<OrderEntity> orderEntities = getOrderEntities(listThing, listClient);
 
-
-        listThing = updateThings();
-
-        //init Prices
-        initPrices(listThing);
-
-        //init Client
-        List<ClientEntity> listClient = getClientEntities();
-
-        listThing = updateThings();
-
-
-        //init Order
-        List<OrderEntity> orderEntities = getOrderEntities(listThing, listClient);
-
-        // FIXME: 04.05.2018 nullable params in client and others entities
-        // TODO: 5/6/18 Creating and modifying entities.
         // TODO: 5/6/18 images to things profiles
         // TODO: 5/6/18 drag n drop images
-        // TODO: 5/6/18 change things/users/orders to tabs?
         // TODO: 5/6/18 declarative validation in registration form
 
     }
@@ -101,7 +98,7 @@ public class DataInitializer implements ApplicationRunner {
     public List<ClientEntity> getClientEntities() {
         List<ClientEntity> listClient = new ArrayList<>();
         for (int i = 1; i < 26; i++) {
-            listClient.add(new ClientEntity((long) i, "name " + i, i, i, "address " + i,
+            listClient.add(new ClientEntity((long) i, "name " + i, (long) i, (long) i, "address " + i,
                     i, "children comments " + i, "mail" + i + "@mail.com", "contack link " + i));
         }
         return clientEntityRepository.saveAll(listClient);

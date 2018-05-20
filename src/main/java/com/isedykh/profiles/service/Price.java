@@ -10,13 +10,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Price {
 
-    public static final double DAY_COEFFICIENT = 0.15;
+//    public static final double DAY_COEFFICIENT = 0.15;
 
-    public static final double WEEK_COEFFICIENT = 0.25;
+    public static final double WEEK_COEFFICIENT = 0.15;
 
-    public static final double TWO_WEEKS_COEFFICIENT = 0.40;
+    public static final double TWO_WEEKS_COEFFICIENT = 0.2;
 
-    public static final double MONTH_COEFFICIENT = 0.55;
+    public static final double MONTH_COEFFICIENT = 0.35;
+
+//    public static final double NEW_DAY_COEFFICIENT = 0.15;
+
+    public static final double NEW_WEEK_COEFFICIENT = 0.2;
+
+    public static final double NEW_TWO_WEEKS_COEFFICIENT = 0.25;
+
+    public static final double NEW_MONTH_COEFFICIENT = 0.4;
+
 
     private Long id;
 

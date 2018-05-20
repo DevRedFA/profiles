@@ -44,6 +44,8 @@ public class OrderView extends VerticalLayout implements View {
 
     private ComboBox<Price> price = new ComboBox<>("Price");
 
+    private TextField deposit = new TextField("Deposit");
+
     private TextArea comments = new TextArea("Comments");
 
     private VerticalLayout verticalLayout = new VerticalLayout();
@@ -69,6 +71,7 @@ public class OrderView extends VerticalLayout implements View {
         verticalLayout.addComponent(end);
         verticalLayout.addComponent(clientFiled);
         verticalLayout.addComponent(thingField);
+        verticalLayout.addComponent(deposit);
         verticalLayout.addComponent(price);
         verticalLayout.addComponent(save);
 
@@ -97,7 +100,7 @@ public class OrderView extends VerticalLayout implements View {
         clientGrid.addColumn(Client::getPhone).setCaption("Phone");
         clientGrid.addColumn(Client::getPhoneSecond).setCaption("Second phone");
         clientGrid.addColumn(Client::getEmail).setCaption("Email");
-        clientGrid.addColumn(Client::getContactLink).setCaption("Contact link");
+        clientGrid.addColumn(Client::getVkLink).setCaption("Contact link");
         clientGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
         clientGrid.setHeightByRows(6);
 
@@ -156,6 +159,7 @@ public class OrderView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(OrderStatus::values, status::setItems, s -> s);
         Utils.setFieldIfNotNull(order::getPrice, price::setSelectedItem, s -> s);
         Utils.setFieldIfNotNull(order::getThing, price::setItems, Thing::getPrices);
+        Utils.setFieldIfNotNull(order::getThing, deposit::setValue, s -> String.valueOf(s.getDeposit()));
         Utils.setFieldIfNotNull(order::getComments, comments::setValue, s -> s);
 
         if (client != null) {

@@ -31,7 +31,7 @@ public class ThingEntity {
     @Transient
     private byte[] photo;
 
-//    @Column(nullable = false)
+    @Column(length = 1024)
     private String pathToPhoto;
 
     @Enumerated(EnumType.STRING)

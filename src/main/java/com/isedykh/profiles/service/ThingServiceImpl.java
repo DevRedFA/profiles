@@ -1,8 +1,10 @@
 package com.isedykh.profiles.service;
 
+import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.dao.entity.ThingType;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
+import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.mapper.ThingMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,8 @@ public class ThingServiceImpl implements ThingService {
     private final ThingEntityRepository thingEntityRepository;
 
     private final OrderEntityRepository orderEntityRepository;
+
+    private final PriceEntityRepository priceEntityRepository;
 
     private final ThingMapper thingMapper;
 
@@ -84,6 +88,11 @@ public class ThingServiceImpl implements ThingService {
     }
 
     @Override
+    public void delete(long id) {
+        thingEntityRepository.deleteById(id);
+    }
+
+    @Override
     public Page<ThingDto> findAllToDto(Pageable pageable) {
         Page<ThingEntity> all = thingEntityRepository.findAll(pageable);
         List<Thing> things = thingMapper.thingEntitiesToThings(all.getContent());
@@ -94,7 +103,10 @@ public class ThingServiceImpl implements ThingService {
     @Override
     public Thing save(Thing thing) {
         ThingEntity thingEntity = thingMapper.thingToThingEntity(thing);
+        List<PriceEntity> priceEntities = priceEntityRepository.saveAll(thingEntity.getPrices());
+        thingEntity.setPrices(priceEntities);
         ThingEntity save = thingEntityRepository.save(thingEntity);
-        return thingMapper.thingEntityToThing(save);
+        Thing toThing = thingMapper.thingEntityToThing(save);
+        return toThing;
     }
 }

@@ -32,4 +32,9 @@ public class ThingDtoServiceImpl implements ThingDtoService {
     public void delete(ThingDto thingDto) {
 
     }
+
+    @Override
+    public void delete(long id) {
+        thingService.delete(id);
+    }
 }

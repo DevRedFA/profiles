@@ -7,6 +7,7 @@ package com.isedykh.profiles.ui;
 
 import com.isedykh.profiles.view.*;
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewDisplay;
 import com.vaadin.server.VaadinRequest;
@@ -25,6 +26,7 @@ import javax.annotation.PostConstruct;
 @Theme("Demo")
 @SpringUI(path = "/")
 @SpringViewDisplay
+//@Widgetset("AppWidgetset")
 public class MyMainUI extends UI implements ViewDisplay {
 
     @Autowired
