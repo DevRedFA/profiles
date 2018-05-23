@@ -132,16 +132,20 @@ public class OrderView extends VerticalLayout implements View {
             String[] msgs = event.getParameters().split("/");
             if (event.getParameters().contains("new")) {
                 order = new Order();
-                if (msgs.length > 1) {
-                    order.setThing(thingService.getById(Long.parseLong(msgs[1])));
-                }
-                if (msgs.length > 2) {
-                    order.setBegin(LocalDate.parse(msgs[2]));
-                    order.setStop(LocalDate.parse(msgs[3]));
+                for (String msg : msgs) {
+                    if (msg.contains("thing")) {
+                        order.setThing(thingService.getById(Long.parseLong(msg.substring(msg.lastIndexOf("=")+1))));
+                    }
+                    if (msg.contains("begin")) {
+                        order.setBegin(LocalDate.parse(msg.substring(msg.lastIndexOf("=")+1)));
+                    }
+                    if (msg.contains("stop")) {
+                        order.setStop(LocalDate.parse(msg.substring(msg.lastIndexOf("=")+1)));
+                    }
                 }
             } else {
-                int id = Integer.parseInt(event.getParameters());
                 try {
+                    int id = Integer.parseInt(event.getParameters());
                     order = orderService.findById(id);
                     client = order.getClient();
                     // TODO: 04.05.2018 add fast link to clientFiled

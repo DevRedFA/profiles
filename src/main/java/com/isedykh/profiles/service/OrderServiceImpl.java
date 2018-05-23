@@ -38,7 +38,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getThingOrderHistory(Thing thing) {
-        return orderMapper.orderEntitiesToOrders(orderEntityRepository.findAllByThingId(thing.getId()));
+        List<OrderEntity> allByThingId = orderEntityRepository.findAllByThingId(thing.getId());
+        return orderMapper.orderEntitiesToOrders(allByThingId);
     }
 
     @Override

@@ -4,9 +4,7 @@ import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.Term;
 import com.isedykh.profiles.dao.entity.ThingStatus;
 import com.isedykh.profiles.dao.entity.ThingType;
-import com.isedykh.profiles.service.Price;
-import com.isedykh.profiles.service.Thing;
-import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.*;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
@@ -15,13 +13,22 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.vaadin.addon.calendar.Calendar;
+import org.vaadin.addon.calendar.item.BasicItem;
+import org.vaadin.addon.calendar.item.BasicItemProvider;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @SpringView(name = ThingView.VIEW_NAME)
@@ -32,6 +39,9 @@ public class ThingView extends VerticalLayout implements View {
 
     @Autowired
     private final ThingService thingService;
+
+    @Autowired
+    private final OrderService orderService;
 
     private Thing thing;
 
@@ -69,6 +79,21 @@ public class ThingView extends VerticalLayout implements View {
 
     private final Image image = new Image();
 
+    private final Calendar<BasicItem> calendar = new Calendar<>("Calendar");
+
+    private BasicItemProvider<BasicItem> itemProvider = new BasicItemProvider<BasicItem>() {
+        @Override
+        public void setItems(Collection<BasicItem> basicItems) {
+            super.setItems(basicItems);
+        }
+
+        @Override
+        public List<BasicItem> getItems(ZonedDateTime startDate, ZonedDateTime endDate) {
+            return super.getItems(startDate, endDate);
+        }
+
+    };
+
     @PostConstruct
     public void init() {
 
@@ -87,10 +112,12 @@ public class ThingView extends VerticalLayout implements View {
         fullDetails.addComponent(pricesGrind);
         fullDetails.addComponent(buttonAddOrder);
 
-        tabSheet.addTab(fullDetails, "Details");
 
-
+        calendar.setStartDate(ZonedDateTime.now().minusDays(ZonedDateTime.now().getDayOfMonth()));
+        ZonedDateTime nextMonth = ZonedDateTime.now().plusMonths(1);
+        calendar.setEndDate(nextMonth.minusDays(nextMonth.getDayOfMonth() + 1));
         image.setVisible(false);
+
 
         class ImageReceiver implements Upload.Receiver, Upload.SucceededListener {
             private static final long serialVersionUID = -1276759102490466761L;
@@ -129,9 +156,11 @@ public class ThingView extends VerticalLayout implements View {
 
         imageDetails.addComponent(image);
         imageDetails.addComponent(upload);
+
+        tabSheet.addTab(fullDetails, "Details");
+        tabSheet.addTab(calendar, "Dates");
         tabSheet.addTab(imageDetails, "Image");
-//        tuningDateField.setDateRange(LocalDate.now(), LocalDate.now().plusDays(5), "Error");
-//        tabSheet.addTab(tuningDateField, "Dates");
+
 
         addComponent(tabSheet);
 
@@ -194,6 +223,15 @@ public class ThingView extends VerticalLayout implements View {
                 int id = Integer.parseInt(event.getParameters());
                 try {
                     thing = thingService.getById(id);
+                    List<Order> thingOrderHistory = orderService.getThingOrderHistory(thing);
+                    List<BasicItem> items = thingOrderHistory.stream().map(s ->
+                            new BasicItem(s.getStatus().name(), s.getComments(),
+                                    s.getBegin().atStartOfDay(ZoneId.of("Europe/Moscow")),
+                                    s.getStop().atStartOfDay(ZoneId.of("Europe/Moscow"))))
+                            .collect(Collectors.toList());
+                    itemProvider.setItems(items);
+                    calendar.setDataProvider(itemProvider);
+
                 } catch (Exception e) {
                     Notification.show("Thing with such id not found");
                 }

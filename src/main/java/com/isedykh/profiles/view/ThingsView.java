@@ -109,10 +109,17 @@ public class ThingsView extends VerticalLayout implements View {
         buttonNewThing.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
 
         buttonNewOrder.addClickListener(clickEvent -> {
-            String s = OrderView.VIEW_NAME + "/new/"
-                    + thingsGrid.getSelectedItems().toArray(new ThingDto[0])[0].getId()
-                    + "/" + begin.getValue() + "/" + stop.getValue();
-            getUI().getNavigator().navigateTo(s);
+            StringBuilder s = new StringBuilder(OrderView.VIEW_NAME + "/new");
+            if (thingsGrid.getSelectedItems().size() == 1) {
+                s.append("/thing=").append(thingsGrid.getSelectedItems().toArray(new ThingDto[0])[0].getId());
+            }
+            if (begin.getValue() != null) {
+                s.append("/begin=").append(begin.getValue());
+            }
+            if (stop.getValue() != null) {
+                s.append("/stop=").append(stop.getValue());
+            }
+            getUI().getNavigator().navigateTo(s.toString());
         });
 
         buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(thingsGrid, this::getUI, ThingView.VIEW_NAME));
