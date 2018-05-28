@@ -15,6 +15,8 @@ import java.util.function.Supplier;
 
 public class Utils {
 
+    public static final String DD_MM_YYYY = "dd/MM/yyyy";
+
     private Utils() {
     }
 

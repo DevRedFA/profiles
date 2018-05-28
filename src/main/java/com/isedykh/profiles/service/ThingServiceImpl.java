@@ -2,11 +2,12 @@ package com.isedykh.profiles.service;
 
 import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
-import com.isedykh.profiles.dao.entity.ThingType;
+import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.mapper.ThingMapper;
+import com.isedykh.profiles.mapper.ThingTypeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -33,6 +34,8 @@ public class ThingServiceImpl implements ThingService {
 
     private final ThingMapper thingMapper;
 
+    private final ThingTypeMapper thingTypeMapper;
+
     @Override
     public List<Thing> findAll() {
         List<ThingEntity> all = thingEntityRepository.findAll();
@@ -46,13 +49,15 @@ public class ThingServiceImpl implements ThingService {
     }
 
     @Override
-    public List<Thing> getAllThingsByType(ThingType type) {
+    public List<Thing> getAllThingsByType(ThingTypeEntity type) {
         return thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(type));
     }
 
     @Override
     public List<Thing> getAllThingsByTypeFreeBetween(ThingType type, LocalDate begin, LocalDate end) {
-        List<Thing> things = thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(type));
+        ThingTypeEntity typeEntity = thingTypeMapper.thingTypeToThingTypeEntity(type);
+        List<ThingEntity> allByType = thingEntityRepository.findAllByType(typeEntity);
+        List<Thing> things = thingMapper.thingEntitiesToThings(allByType);
         // TODO: 11.05.2018 rework from n+1 db requests to 1 request.
         if (begin == null) {
             begin = LocalDate.of(2100, 1, 1);

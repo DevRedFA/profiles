@@ -5,6 +5,7 @@ import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
+import com.isedykh.profiles.dao.repository.ThingTypeEntityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,10 +17,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @AllArgsConstructor
 public class DataInitializer implements ApplicationRunner {
+
+    private ThingTypeEntityRepository thingTypeEntityRepository;
 
     private ThingEntityRepository thingEntityRepository;
 
@@ -31,25 +35,26 @@ public class DataInitializer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        //init ThingTypes
+        List<ThingTypeEntity> thingTypes = createThingTypes();
+
+        //init Thing
+        List<ThingEntity> listThing = getThingEntities(thingTypes);
 
 
-//        //init Thing
-//        List<ThingEntity> listThing = getThingEntities();
-//
-//
-//        listThing = updateThings();
-//
-//        //init Prices
-//        initPrices(listThing);
-//
-//        //init Client
-//        List<ClientEntity> listClient = getClientEntities();
-//
-//        listThing = updateThings();
-//
-//
-//        //init Order
-//        List<OrderEntity> orderEntities = getOrderEntities(listThing, listClient);
+        listThing = updateThings();
+
+        //init Prices
+        initPrices(listThing);
+
+        //init Client
+        List<ClientEntity> listClient = getClientEntities();
+
+        listThing = updateThings();
+
+
+        //init Order
+        List<OrderEntity> orderEntities = getOrderEntities(listThing, listClient);
 
         // TODO: 5/6/18 images to things profiles
         // TODO: 5/6/18 drag n drop images
@@ -58,17 +63,30 @@ public class DataInitializer implements ApplicationRunner {
     }
 
     @Transactional
+    public List<ThingTypeEntity> createThingTypes() {
+        List<ThingTypeEntity> list = new ArrayList<>();
+        list.add(new ThingTypeEntity(null, "ERGO"));
+        list.add(new ThingTypeEntity(null, "SLEEP_BAG"));
+        list.add(new ThingTypeEntity(null, "CHILD_CARRIER"));
+        list.add(new ThingTypeEntity(null, "CHILD_BIKE_SEAT"));
+        list.add(new ThingTypeEntity(null, "CHILD_BIKE_WITH_HAND"));
+        return thingTypeEntityRepository.saveAll(list);
+    }
+
+
+    @Transactional
     public List<ThingEntity> updateThings() {
         return thingEntityRepository.findAll();
     }
 
     @Transactional
-    public List<ThingEntity> getThingEntities() {
+    public List<ThingEntity> getThingEntities(List<ThingTypeEntity> thingTypes) {
         List<ThingEntity> listThing = new ArrayList<>();
         for (int i = 1; i < 26; i++) {
             listThing.add(new ThingEntity((long) i, "Thing " + i,
                     i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i,
-                    ThingType.ERGO, ThingStatus.FREE, Collections.emptyList(), i, "comments " + i));
+                    thingTypes.get(ThreadLocalRandom.current().nextInt(0, thingTypes.size())),
+                    ThingStatus.FREE, Collections.emptyList(), i, "comments " + i));
         }
         thingEntityRepository.saveAll(listThing);
         return listThing;

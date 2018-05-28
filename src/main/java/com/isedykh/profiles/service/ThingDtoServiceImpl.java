@@ -1,6 +1,6 @@
 package com.isedykh.profiles.service;
 
-import com.isedykh.profiles.dao.entity.ThingType;
+import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.mapper.ThingMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

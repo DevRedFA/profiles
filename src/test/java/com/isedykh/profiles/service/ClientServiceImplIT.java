@@ -6,14 +6,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.format.datetime.joda.DateTimeParser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@ActiveProfiles("test")
-//@DataJpaTest
-@SpringBootTest
-@RequiredArgsConstructor
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.TemporalAccessor;
+
+//@RunWith(SpringRunner.class)
+//@ActiveProfiles("test")
+////@DataJpaTest
+//@SpringBootTest
+//@RequiredArgsConstructor
 //@ContextConfiguration(classes = {ClientServiceImpl.class, PersonEntityRepository.class})
 public class ClientServiceImplIT {
 
@@ -29,7 +37,9 @@ public class ClientServiceImplIT {
     }
 
     @Test
-    public void findByPhone(){}
+    public void findByPhone() throws InterruptedException {
+
+    }
 
     @Test
     public void findByPhoneSecond(){}

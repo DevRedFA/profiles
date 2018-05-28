@@ -3,27 +3,44 @@ package com.isedykh.profiles.view;
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.Term;
 import com.isedykh.profiles.dao.entity.ThingStatus;
-import com.isedykh.profiles.dao.entity.ThingType;
-import com.isedykh.profiles.service.*;
+import com.isedykh.profiles.dao.entity.ThingTypeEntity;
+import com.isedykh.profiles.service.Order;
+import com.isedykh.profiles.service.OrderService;
+import com.isedykh.profiles.service.Price;
+import com.isedykh.profiles.service.Thing;
+import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.ThingType;
+import com.isedykh.profiles.service.ThingTypeService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Page;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.DateField;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Image;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.TextField;
+import com.vaadin.ui.Upload;
+import com.vaadin.ui.VerticalLayout;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.addon.calendar.Calendar;
 import org.vaadin.addon.calendar.item.BasicItem;
 import org.vaadin.addon.calendar.item.BasicItemProvider;
 
 import javax.annotation.PostConstruct;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -39,6 +56,9 @@ public class ThingView extends VerticalLayout implements View {
 
     @Autowired
     private final ThingService thingService;
+
+    @Autowired
+    private final ThingTypeService thingTypeService;
 
     @Autowired
     private final OrderService orderService;
@@ -97,6 +117,8 @@ public class ThingView extends VerticalLayout implements View {
     @PostConstruct
     public void init() {
 
+        purchaseDate.setDateFormat(Utils.DD_MM_YYYY);
+
         details.addComponent(name);
         details.addComponent(type);
         details.addComponent(status);
@@ -112,10 +134,9 @@ public class ThingView extends VerticalLayout implements View {
         fullDetails.addComponent(pricesGrind);
         fullDetails.addComponent(buttonAddOrder);
 
-
-        calendar.setStartDate(ZonedDateTime.now().minusDays(ZonedDateTime.now().getDayOfMonth()));
-        ZonedDateTime nextMonth = ZonedDateTime.now().plusMonths(1);
-        calendar.setEndDate(nextMonth.minusDays(nextMonth.getDayOfMonth() + 1));
+//        calendar.setStartDate(ZonedDateTime.now().minusDays(ZonedDateTime.now().getDayOfMonth()));
+//        ZonedDateTime nextMonth = ZonedDateTime.now().plusMonths(1);
+//        calendar.setEndDate(nextMonth.minusDays(nextMonth.getDayOfMonth() + 1));
         image.setVisible(false);
 
 
@@ -184,6 +205,7 @@ public class ThingView extends VerticalLayout implements View {
         });
 
         saveThing.addClickListener(event -> {
+            boolean readyToSave = false;
             thing.setName(name.getValue());
             thing.setDeposit(Integer.parseInt(deposit.getValue()));
             thing.setPurchaseDate(purchaseDate.getValue());
@@ -195,8 +217,15 @@ public class ThingView extends VerticalLayout implements View {
             }
             status.getSelectedItem().ifPresent(thingStatus -> thing.setStatus(thingStatus));
             thing.setComments(comments.getValue());
-
-            thingService.save(thing);
+            if (!StringUtils.isEmpty(name.getValue())) {
+                readyToSave = true;
+            }
+            if (readyToSave) {
+                thingService.save(thing);
+                Notification.show("Thing saved");
+            } else {
+                Notification.show("Set all required fields: name, thing type");
+            }
         });
 
     }
@@ -246,7 +275,7 @@ public class ThingView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(thing::getPurchaseDate, purchaseDate::setValue, s -> s);
         Utils.setFieldIfNotNull(thing::getComments, comments::setValue, s -> s);
 
-        Utils.setFieldIfNotNull(ThingType::values, type::setItems, s -> s);
+        Utils.setFieldIfNotNull(thingTypeService::findAll, type::setItems, s -> s);
         Utils.setFieldIfNotNull(thing::getType, type::setSelectedItem, s -> s);
 
         Utils.setFieldIfNotNull(ThingStatus::values, status::setItems, s -> s);

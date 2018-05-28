@@ -162,9 +162,14 @@ public class ClientView extends VerticalLayout implements View {
             try {
                 if (!StringUtils.isBlank(childrenNumber.getValue())) {
                     client.setChildrenNumber(Integer.parseInt(childrenNumber.getValue()));
-                }
+            }
             } catch (NumberFormatException e) {
                 Notification.show("Bad format of children number");
+            }
+
+            if (!StringUtils.isBlank(name.getValue())) {
+                containsContact = false;
+                name.setComponentError(new UserError("Name needed"));
             }
 
             client.setChildrenComments(childrenComments.getValue());

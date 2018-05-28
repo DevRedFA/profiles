@@ -1,6 +1,6 @@
 package com.isedykh.profiles.service;
 
-import com.isedykh.profiles.dao.entity.ThingType;
+import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

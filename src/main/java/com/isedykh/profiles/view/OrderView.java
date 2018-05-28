@@ -65,6 +65,9 @@ public class OrderView extends VerticalLayout implements View {
     @PostConstruct
     public void init() {
 
+        begin.setDateFormat(Utils.DD_MM_YYYY);
+        end.setDateFormat(Utils.DD_MM_YYYY);
+
         verticalLayout.addComponent(idField);
         verticalLayout.addComponent(status);
         verticalLayout.addComponent(begin);
@@ -174,7 +177,6 @@ public class OrderView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(order::getThing, thingField::setValue, Thing::getName);
 
         save.addClickListener(clickEvent -> {
-//            order.setId(Long.parseLong(idField.getValue()));
             order.setBegin(begin.getValue());
             order.setStop(end.getValue());
             order.setStatus(status.getSelectedItem().isPresent() ? status.getSelectedItem().get() : order.getStatus());
@@ -182,6 +184,7 @@ public class OrderView extends VerticalLayout implements View {
             order.setPrice(price.getSelectedItem().isPresent() ? price.getSelectedItem().get() : order.getPrice());
             order.setComments(comments.getValue());
             orderService.save(order);
+            Notification.show("Thing saved");
             getUI().getNavigator().navigateTo(OrdersView.VIEW_NAME);
         });
     }

@@ -1,6 +1,6 @@
 package com.isedykh.profiles.service;
 
-import com.isedykh.profiles.dao.entity.ThingType;
+import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,7 +13,7 @@ public interface ThingService extends CrudService<Thing> {
 
     Thing getById(long id);
 
-    List<Thing> getAllThingsByType(ThingType type);
+    List<Thing> getAllThingsByType(ThingTypeEntity type);
 
     List<Thing> getAllThingsByTypeFreeBetween(ThingType type, LocalDate start, LocalDate to);
 

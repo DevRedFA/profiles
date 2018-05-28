@@ -1,11 +1,12 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.dao.entity.ThingType;
-import com.isedykh.profiles.service.Client;
+import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.service.Identifiable;
 import com.isedykh.profiles.service.ThingDto;
 import com.isedykh.profiles.service.ThingDtoService;
+import com.isedykh.profiles.service.ThingType;
+import com.isedykh.profiles.service.ThingTypeService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -29,19 +30,24 @@ public class ThingsView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "things";
     private static final int PAGE_SIZE = 16;
 
+    private HorizontalLayout searchPanel = new HorizontalLayout();
+    private Button buttonSearch = new Button("Search");
+    private DateField begin = new DateField("Begin");
+    private DateField stop = new DateField("End");
+    private ComboBox<ThingType> type = new ComboBox<>("Type");
 
     private final ThingDtoService thingService;
+
+    private final ThingTypeService thingTypeService;
 
     @PostConstruct
     public void init() {
 
-        HorizontalLayout searchPanel = new HorizontalLayout();
+        begin.setDateFormat(Utils.DD_MM_YYYY);
+        
+        stop.setDateFormat(Utils.DD_MM_YYYY);
 
-        Button buttonSearch = new Button("Search");
-        DateField begin = new DateField("Begin");
-        DateField stop = new DateField("End");
-        ComboBox<ThingType> type = new ComboBox<>("Type");
-        Utils.setFieldIfNotNull(ThingType::values, type::setItems, s -> s);
+        Utils.setFieldIfNotNull(thingTypeService::findAll, type::setItems, s -> s);
 
         searchPanel.addComponent(type);
         searchPanel.addComponent(begin);

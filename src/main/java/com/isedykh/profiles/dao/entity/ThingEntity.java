@@ -34,8 +34,8 @@ public class ThingEntity {
     @Column(length = 1024)
     private String pathToPhoto;
 
-    @Enumerated(EnumType.STRING)
-    private ThingType type;
+    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REFRESH},  fetch = FetchType.EAGER)
+    private ThingTypeEntity type;
 
     @Enumerated(EnumType.STRING)
     private ThingStatus status;
