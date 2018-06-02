@@ -1,4 +1,4 @@
-package com.isedykh.profiles.service;
+package com.isedykh.profiles.service.entity;
 
 import lombok.Data;
 

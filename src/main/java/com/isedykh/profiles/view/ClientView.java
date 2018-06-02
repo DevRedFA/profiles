@@ -2,6 +2,8 @@ package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.*;
+import com.isedykh.profiles.service.entity.Client;
+import com.isedykh.profiles.service.entity.Order;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.UserError;

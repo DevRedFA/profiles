@@ -34,13 +34,13 @@ public class ThingEntity {
     @Column(length = 1024)
     private String pathToPhoto;
 
-    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REFRESH},  fetch = FetchType.EAGER)
+    @ManyToOne(cascade={CascadeType.ALL},  fetch = FetchType.EAGER)
     private ThingTypeEntity type;
 
     @Enumerated(EnumType.STRING)
     private ThingStatus status;
 
-    @OneToMany(cascade={CascadeType.PERSIST, CascadeType.REFRESH},  fetch = FetchType.EAGER)
+    @OneToMany(cascade={CascadeType.ALL},  fetch = FetchType.EAGER)
     @JoinColumn(name = "thing_id")
     private List<PriceEntity> prices;
 

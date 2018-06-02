@@ -1,13 +1,7 @@
 package com.isedykh.profiles.mapper;
 
-import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.dao.entity.Term;
-import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.dao.entity.ThingTypeEntity;
-import com.isedykh.profiles.service.Price;
-import com.isedykh.profiles.service.Thing;
-import com.isedykh.profiles.service.ThingDto;
-import com.isedykh.profiles.service.ThingType;
+import com.isedykh.profiles.service.entity.ThingType;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;

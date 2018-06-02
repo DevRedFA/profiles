@@ -1,9 +1,7 @@
 package com.isedykh.profiles.dao.repository;
 
 import com.isedykh.profiles.dao.entity.ClientEntity;
-import com.isedykh.profiles.service.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

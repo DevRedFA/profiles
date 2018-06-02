@@ -1,6 +1,7 @@
-package com.isedykh.profiles.service;
+package com.isedykh.profiles.service.entity;
 
 
+import com.isedykh.profiles.service.Identifiable;
 import lombok.Data;
 
 @Data

@@ -1,7 +1,7 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.service.Client;
+import com.isedykh.profiles.service.entity.Client;
 import com.isedykh.profiles.service.ClientService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;

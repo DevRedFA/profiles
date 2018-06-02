@@ -1,8 +1,10 @@
-package com.isedykh.profiles.service;
+package com.isedykh.profiles.service.impl;
 
 import com.isedykh.profiles.dao.entity.ClientEntity;
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.mapper.ClientMapper;
+import com.isedykh.profiles.service.ClientService;
+import com.isedykh.profiles.service.entity.Client;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

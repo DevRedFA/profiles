@@ -1,6 +1,6 @@
-package com.isedykh.profiles.service;
+package com.isedykh.profiles.service.entity;
 
-import com.isedykh.profiles.dao.entity.Term;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +32,11 @@ public class Price {
     private Term term;
 
     private Integer priceValue;
+
+    public Price(Term term, int purchasePrice) {
+        this.term = term;
+        this.priceValue = purchasePrice * term.getCoefficient();
+    }
 
     @Override
     public String toString() {

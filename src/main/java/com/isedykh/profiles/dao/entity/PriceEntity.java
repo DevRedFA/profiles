@@ -1,5 +1,6 @@
 package com.isedykh.profiles.dao.entity;
 
+import com.isedykh.profiles.service.entity.Term;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,10 +19,15 @@ public class PriceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.ORDINAL)
-    private Term term;
+    @ManyToOne(cascade={CascadeType.ALL},  fetch = FetchType.EAGER)
+    private TermEntity term;
 
     //1 penny step
     @Column(nullable = false)
     private Integer priceValue;
+
+    public PriceEntity(TermEntity term, int purchasePrice) {
+        this.term = term;
+        this.priceValue = purchasePrice * term.getCoefficient();
+    }
 }

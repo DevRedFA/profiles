@@ -1,7 +1,7 @@
 package com.isedykh.profiles.mapper;
 
 import com.isedykh.profiles.dao.entity.OrderEntity;
-import com.isedykh.profiles.service.Order;
+import com.isedykh.profiles.service.entity.Order;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;

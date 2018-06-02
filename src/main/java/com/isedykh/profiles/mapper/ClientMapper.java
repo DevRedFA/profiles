@@ -1,7 +1,7 @@
 package com.isedykh.profiles.mapper;
 
 import com.isedykh.profiles.dao.entity.ClientEntity;
-import com.isedykh.profiles.service.Client;
+import com.isedykh.profiles.service.entity.Client;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;

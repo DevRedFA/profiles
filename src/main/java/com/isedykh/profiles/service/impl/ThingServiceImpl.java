@@ -1,4 +1,4 @@
-package com.isedykh.profiles.service;
+package com.isedykh.profiles.service.impl;
 
 import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
@@ -8,6 +8,9 @@ import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.mapper.ThingMapper;
 import com.isedykh.profiles.mapper.ThingTypeMapper;
+import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.entity.Thing;
+import com.isedykh.profiles.service.entity.ThingType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -97,13 +100,6 @@ public class ThingServiceImpl implements ThingService {
         thingEntityRepository.deleteById(id);
     }
 
-    @Override
-    public Page<ThingDto> findAllToDto(Pageable pageable) {
-        Page<ThingEntity> all = thingEntityRepository.findAll(pageable);
-        List<Thing> things = thingMapper.thingEntitiesToThings(all.getContent());
-        List<ThingDto> thingDtos = things.stream().map(thingMapper::thingToThingDto).collect(Collectors.toList());
-        return new PageImpl<>(thingDtos, all.getPageable(), all.getTotalElements());
-    }
 
     @Override
     public Thing save(Thing thing) {
@@ -111,7 +107,6 @@ public class ThingServiceImpl implements ThingService {
         List<PriceEntity> priceEntities = priceEntityRepository.saveAll(thingEntity.getPrices());
         thingEntity.setPrices(priceEntities);
         ThingEntity save = thingEntityRepository.save(thingEntity);
-        Thing toThing = thingMapper.thingEntityToThing(save);
-        return toThing;
+        return thingMapper.thingEntityToThing(save);
     }
 }

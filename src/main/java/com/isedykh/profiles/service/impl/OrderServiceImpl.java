@@ -1,4 +1,4 @@
-package com.isedykh.profiles.service;
+package com.isedykh.profiles.service.impl;
 
 import com.isedykh.profiles.dao.entity.OrderEntity;
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
@@ -6,6 +6,10 @@ import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.mapper.OrderMapper;
+import com.isedykh.profiles.service.OrderService;
+import com.isedykh.profiles.service.entity.Client;
+import com.isedykh.profiles.service.entity.Order;
+import com.isedykh.profiles.service.entity.Thing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

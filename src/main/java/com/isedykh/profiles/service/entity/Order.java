@@ -1,6 +1,7 @@
-package com.isedykh.profiles.service;
+package com.isedykh.profiles.service.entity;
 
 import com.isedykh.profiles.dao.entity.OrderStatus;
+import com.isedykh.profiles.service.Identifiable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

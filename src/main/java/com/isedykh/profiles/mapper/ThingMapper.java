@@ -1,11 +1,7 @@
 package com.isedykh.profiles.mapper;
 
-import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.dao.entity.Term;
 import com.isedykh.profiles.dao.entity.ThingEntity;
-import com.isedykh.profiles.service.Price;
-import com.isedykh.profiles.service.Thing;
-import com.isedykh.profiles.service.ThingDto;
+import com.isedykh.profiles.service.entity.Thing;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -23,44 +19,4 @@ public interface ThingMapper {
 
     List<Thing> thingEntitiesToThings(List<ThingEntity> thingEntities);
 
-    List<ThingEntity> thingsToThingEntities(List<Thing> thing);
-
-    List<ThingDto> thingsToThingDtos(List<Thing> things);
-
-    //shitty decision, but now have no better idea
-    default ThingDto thingToThingDto(Thing thing) {
-
-        List<Price> prices = thing.getPrices();
-        final Price[] week = new Price[1];
-        final Price[] twoWeeks = new Price[1];
-        final Price[] month = new Price[1];
-
-        prices.forEach(s -> {
-            if (s.getTerm().equals(Term.WEEK)) {
-                week[0] = s;
-            }
-            if (s.getTerm().equals(Term.TWO_WEEKS)) {
-                twoWeeks[0] = s;
-            }
-            if (s.getTerm().equals(Term.MONTH)) {
-                month[0] = s;
-            }
-        });
-
-        ThingDto.ThingDtoBuilder builder = ThingDto.builder().name(thing.getName())
-                .deposit(thing.getDeposit())
-                .id(thing.getId())
-                .pathToPhoto(thing.getPathToPhoto())
-                .photo(thing.getPhoto())
-                .purchaseDate(thing.getPurchaseDate())
-                .purchasePrice(thing.getPurchasePrice())
-                .type(thing.getType())
-                .status(thing.getStatus());
-
-        Utils.setFieldIfNotNull(week[0]::getPriceValue, builder::priceForWeek, s -> s);
-        Utils.setFieldIfNotNull(twoWeeks[0]::getPriceValue, builder::priceForTwoWeeks, s -> s);
-        Utils.setFieldIfNotNull(month[0]::getPriceValue, builder::priceForMonth, s -> s);
-
-        return builder.build();
-    }
-}
+    List<ThingEntity> thingsToThingEntities(List<Thing> thing);}

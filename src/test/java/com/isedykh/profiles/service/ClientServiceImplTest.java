@@ -1,6 +1,7 @@
 package com.isedykh.profiles.service;
 
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
+import com.isedykh.profiles.service.impl.ClientServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;

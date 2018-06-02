@@ -1,11 +1,11 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.service.Identifiable;
-import com.isedykh.profiles.service.ThingDto;
-import com.isedykh.profiles.service.ThingDtoService;
-import com.isedykh.profiles.service.ThingType;
+import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.entity.Term;
+import com.isedykh.profiles.service.entity.Thing;
+import com.isedykh.profiles.service.entity.ThingType;
 import com.isedykh.profiles.service.ThingTypeService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -36,7 +36,7 @@ public class ThingsView extends VerticalLayout implements View {
     private DateField stop = new DateField("End");
     private ComboBox<ThingType> type = new ComboBox<>("Type");
 
-    private final ThingDtoService thingService;
+    private final ThingService thingService;
 
     private final ThingTypeService thingTypeService;
 
@@ -44,7 +44,7 @@ public class ThingsView extends VerticalLayout implements View {
     public void init() {
 
         begin.setDateFormat(Utils.DD_MM_YYYY);
-        
+
         stop.setDateFormat(Utils.DD_MM_YYYY);
 
         Utils.setFieldIfNotNull(thingTypeService::findAll, type::setItems, s -> s);
@@ -56,12 +56,12 @@ public class ThingsView extends VerticalLayout implements View {
         searchPanel.setComponentAlignment(buttonSearch, Alignment.BOTTOM_LEFT);
         addComponent(searchPanel);
 
-        AtomicReference<Page<ThingDto>> thingPage = new AtomicReference<>(thingService.findAll(PageRequest.of(0, PAGE_SIZE)));
-        Grid<ThingDto> thingsGrid = new Grid<>();
+        AtomicReference<Page<Thing>> thingPage = new AtomicReference<>(thingService.findAll(PageRequest.of(0, PAGE_SIZE)));
+        Grid<Thing> thingsGrid = new Grid<>();
 
         buttonSearch.addClickListener(clickEvent -> {
             // FIXME: 5/20/18 add event with null or empty choise of type
-            List<ThingDto> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), stop.getValue());
+            List<Thing> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), stop.getValue());
             thingsGrid.setItems(allThingsByTypeFreeBetween);
 
         });
@@ -69,20 +69,32 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.setSizeFull();
         thingsGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
         thingsGrid.setItems(thingPage.get().getContent());
-        thingsGrid.addColumn(ThingDto::getName).setCaption("Name");
-        thingsGrid.addColumn(ThingDto::getType).setCaption("Type");
-        thingsGrid.addColumn(ThingDto::getDeposit).setCaption("Deposit");
-        thingsGrid.addColumn(ThingDto::getStatus).setCaption("Status");
-        thingsGrid.addColumn(ThingDto::getPriceForWeek).setCaption("Week");
-        thingsGrid.addColumn(ThingDto::getPriceForTwoWeeks).setCaption("Two weeks");
-        thingsGrid.addColumn(ThingDto::getPriceForMonth).setCaption("Month");
+        thingsGrid.addColumn(Thing::getName).setCaption("Name");
+        thingsGrid.addColumn(Thing::getType).setCaption("Type");
+        thingsGrid.addColumn(Thing::getDeposit).setCaption("Deposit");
+        thingsGrid.addColumn(Thing::getStatus).setCaption("Status");
+        thingsGrid.addColumn(s ->
+                s.getPrices()
+                        .stream()
+                        .filter(price -> price.getTerm().equals(new Term("week"))).findFirst().get())
+                .setCaption("Week");
+        thingsGrid.addColumn(s ->
+                s.getPrices()
+                        .stream()
+                        .filter(price -> price.getTerm().equals(new Term("two weeks"))).findFirst().get())
+                .setCaption("two weeks");
+        thingsGrid.addColumn(s ->
+                s.getPrices()
+                        .stream()
+                        .filter(price -> price.getTerm().equals(new Term("month"))).findFirst().get())
+                .setCaption("month");
         thingsGrid.setHeightByRows(PAGE_SIZE);
         addComponent(thingsGrid);
         setExpandRatio(thingsGrid, 1f);
 
 
         buttonSearch.addClickListener(clickEvent -> {
-            List<ThingDto> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), stop.getValue());
+            List<Thing> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), stop.getValue());
             thingsGrid.setItems(allThingsByTypeFreeBetween);
 
         });
@@ -117,7 +129,7 @@ public class ThingsView extends VerticalLayout implements View {
         buttonNewOrder.addClickListener(clickEvent -> {
             StringBuilder s = new StringBuilder(OrderView.VIEW_NAME + "/new");
             if (thingsGrid.getSelectedItems().size() == 1) {
-                s.append("/thing=").append(thingsGrid.getSelectedItems().toArray(new ThingDto[0])[0].getId());
+                s.append("/thing=").append(thingsGrid.getSelectedItems().toArray(new Thing[0])[0].getId());
             }
             if (begin.getValue() != null) {
                 s.append("/begin=").append(begin.getValue());
