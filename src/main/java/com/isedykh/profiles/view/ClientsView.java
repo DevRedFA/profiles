@@ -100,7 +100,7 @@ public class ClientsView extends VerticalLayout implements View {
 
                 collect(Collectors.toList()));
 
-        clientGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
+        clientGrid.addItemClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, ClientView.VIEW_NAME));
 
         buttonSearch.addClickListener(event ->
 
@@ -125,9 +125,9 @@ public class ClientsView extends VerticalLayout implements View {
         buttonPrevious.addClickListener(getPageChangeClickListener(clientPage, Slice::previousPageable, clientGrid,
                 buttonNext, buttonPrevious, clientService, nameFilter, Client::getName));
 
-        buttonNew.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
+        buttonNew.addClickListener(clickEvent -> Utils.getNewClickListenerSupplier(this::getUI, ClientView.VIEW_NAME));
 
-        buttonDetails.addClickListener(clickEvent -> Utils.detailsClickListenerSupplier.accept(clientGrid, this::getUI));
+        buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clientGrid, this::getUI, ClientView.VIEW_NAME));
 
         // TODO: 07.05.2018 add reset of grid
         buttonDelete.addClickListener(getDeleteClickListener(clientGrid, clientService));

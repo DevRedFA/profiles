@@ -2,15 +2,15 @@ package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.dao.entity.ThingStatus;
-import com.isedykh.profiles.service.TermService;
-import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.OrderService;
+import com.isedykh.profiles.service.TermService;
+import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.ThingTypeService;
+import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.entity.Price;
 import com.isedykh.profiles.service.entity.Term;
 import com.isedykh.profiles.service.entity.Thing;
-import com.isedykh.profiles.service.ThingService;
 import com.isedykh.profiles.service.entity.ThingType;
-import com.isedykh.profiles.service.ThingTypeService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
@@ -29,7 +29,6 @@ import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.addon.calendar.Calendar;
 import org.vaadin.addon.calendar.item.BasicItem;
 import org.vaadin.addon.calendar.item.BasicItemProvider;
@@ -80,8 +79,6 @@ public class ThingView extends VerticalLayout implements View {
 
     private final TextField comments = new TextField("Comments");
 
-//    private TuningDateField tuningDateField = new TuningDateField("Tuning DateField with US holidays");
-
     private final VerticalLayout details = new VerticalLayout();
 
     private final HorizontalLayout fullDetails = new HorizontalLayout();
@@ -116,7 +113,7 @@ public class ThingView extends VerticalLayout implements View {
     @PostConstruct
     public void init() {
 
-        purchaseDate.setDateFormat(Utils.DD_MM_YYYY);
+        purchaseDate.setDateFormat(Utils.DATE_FORMAT);
 
         details.addComponent(name);
         details.addComponent(type);
@@ -133,9 +130,6 @@ public class ThingView extends VerticalLayout implements View {
         fullDetails.addComponent(pricesGrind);
         fullDetails.addComponent(buttonAddOrder);
 
-//        calendar.setStartDate(ZonedDateTime.now().minusDays(ZonedDateTime.now().getDayOfMonth()));
-//        ZonedDateTime nextMonth = ZonedDateTime.now().plusMonths(1);
-//        calendar.setEndDate(nextMonth.minusDays(nextMonth.getDayOfMonth() + 1));
         image.setVisible(false);
 
 

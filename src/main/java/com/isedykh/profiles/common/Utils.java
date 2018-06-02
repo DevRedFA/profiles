@@ -8,49 +8,21 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Utils {
 
-    public static final String DD_MM_YYYY = "dd/MM/yyyy";
+    public static final String DATE_FORMAT = "dd/MM/yyyy";
 
     private Utils() {
     }
 
-    private static final BiConsumer<Identifiable, Supplier<UI>>
-            baseClickListenerSupplier = (identifiable, uiSupplier) -> {
-        String state = uiSupplier.get().getNavigator().getState();
-        String s = state.substring(0, state.length() - 1) + "/" + identifiable.getId();
-        uiSupplier.get().getNavigator().navigateTo(s);
-    };
-
-    public static final BiConsumer<Grid<? extends Identifiable>, Supplier<UI>>
-            detailsClickListenerSupplier = (grid, uiSupplier) -> {
-        Set selectedItems = grid.getSelectedItems();
-        if (selectedItems.size() == 1) {
-            Identifiable identifiable = Identifiable.class.cast(selectedItems.toArray()[0]);
-            baseClickListenerSupplier.accept(identifiable, uiSupplier);
-        } else {
-            Notification.show("Please select one option");
-        }
-    };
-
-    public static final BiConsumer<Grid.ItemClick<? extends Identifiable>, Supplier<UI>>
-            detailsDoubleClickListenerSupplier = (clickEvent, uiSupplier) -> {
-        if (clickEvent.getMouseEventDetails().isDoubleClick()) {
-            Identifiable identifiable = clickEvent.getItem();
-            baseClickListenerSupplier.accept(identifiable, uiSupplier);
-        }
-    };
-
     public static void getDetailsDoubleClickListenerSupplier(Grid.ItemClick<? extends Identifiable> clickEvent, Supplier<UI> uiSupplier, String to) {
         if (clickEvent.getMouseEventDetails().isDoubleClick()) {
             Identifiable identifiable = clickEvent.getItem();
-            String s = to + "/" + identifiable.getId();
-            uiSupplier.get().getNavigator().navigateTo(s);
+            uiSupplier.get().getNavigator().navigateTo(to + "/" + identifiable.getId());
         }
     }
 
@@ -58,16 +30,14 @@ public class Utils {
         Set selectedItems = grid.getSelectedItems();
         if (selectedItems.size() == 1) {
             Identifiable identifiable = Identifiable.class.cast(selectedItems.toArray()[0]);
-            String s = to + "/" + identifiable.getId();
-            uiSupplier.get().getNavigator().navigateTo(s);
+            uiSupplier.get().getNavigator().navigateTo(to + "/" + identifiable.getId());
         }
     }
 
-    public static final Consumer<Supplier<UI>> newClickListenerSupplier = uiSupplier -> {
-        String state = uiSupplier.get().getNavigator().getState();
-        String s = state.substring(0, state.length() - 1) + "/new";
-        uiSupplier.get().getNavigator().navigateTo(s);
-    };
+    public static void getNewClickListenerSupplier(Supplier<UI> uiSupplier, String to) {
+        uiSupplier.get().getNavigator().navigateTo(to + "/new");
+    }
+
 
     public static <T> Button.ClickListener getPageChangeClickListener(AtomicReference<Page<T>> page,
                                                                       Function<Page<T>, Pageable> changePageFunction,

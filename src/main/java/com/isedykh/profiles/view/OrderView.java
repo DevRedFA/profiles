@@ -69,8 +69,8 @@ public class OrderView extends VerticalLayout implements View {
     @PostConstruct
     public void init() {
 
-        begin.setDateFormat(Utils.DD_MM_YYYY);
-        end.setDateFormat(Utils.DD_MM_YYYY);
+        begin.setDateFormat(Utils.DATE_FORMAT);
+        end.setDateFormat(Utils.DATE_FORMAT);
 
         verticalLayout.addComponent(idField);
         verticalLayout.addComponent(status);

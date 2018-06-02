@@ -43,9 +43,9 @@ public class ThingsView extends VerticalLayout implements View {
     @PostConstruct
     public void init() {
 
-        begin.setDateFormat(Utils.DD_MM_YYYY);
+        begin.setDateFormat(Utils.DATE_FORMAT);
 
-        stop.setDateFormat(Utils.DD_MM_YYYY);
+        stop.setDateFormat(Utils.DATE_FORMAT);
 
         Utils.setFieldIfNotNull(thingTypeService::findAll, type::setItems, s -> s);
 
@@ -124,7 +124,7 @@ public class ThingsView extends VerticalLayout implements View {
 
         buttonPrevious.addClickListener(getPageChangeClickListener(thingPage, Slice::previousPageable, thingsGrid, buttonNext, buttonPrevious, thingService));
 
-        buttonNewThing.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
+        buttonNewThing.addClickListener(clickEvent -> Utils.getNewClickListenerSupplier(this::getUI, ThingView.VIEW_NAME));
 
         buttonNewOrder.addClickListener(clickEvent -> {
             StringBuilder s = new StringBuilder(OrderView.VIEW_NAME + "/new");

@@ -1,5 +1,6 @@
 package com.isedykh.profiles.service.entity;
 
+import com.isedykh.profiles.service.Identifiable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(of="name")
-public class Term {
+public class Term implements Identifiable {
 
     private Long id;
 

@@ -27,8 +27,4 @@ public class TermEntity {
 
     @Column(nullable = false)
     private Integer coefficient;
-
-    public TermEntity(String name) {
-        this.name = name;
-    }
 }

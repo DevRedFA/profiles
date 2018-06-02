@@ -15,7 +15,7 @@ public interface ThingService extends CrudService<Thing> {
 
     Thing getById(long id);
 
-    List<Thing> getAllThingsByType(ThingTypeEntity type);
+    List<Thing> getAllThingsByType(ThingType type);
 
     List<Thing> getAllThingsByTypeFreeBetween(ThingType type, LocalDate start, LocalDate to);
 

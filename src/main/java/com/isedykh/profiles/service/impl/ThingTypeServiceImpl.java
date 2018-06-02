@@ -23,20 +23,20 @@ public class ThingTypeServiceImpl implements ThingTypeService {
 
     @Override
     public List<ThingType> findAll() {
-        return thingTypeMapper.thingEntitiesTypeToThingTypes(thingTypeEntityRepository.findAll());
+        return thingTypeMapper.thingTypeEntitiesToThingTypes(thingTypeEntityRepository.findAll());
     }
 
     @Override
     public Page<ThingType> findAll(Pageable pageable) {
         Page<ThingTypeEntity> all = thingTypeEntityRepository.findAll(pageable);
-        List<ThingType> thingTypes = thingTypeMapper.thingEntitiesTypeToThingTypes(all.getContent());
+        List<ThingType> thingTypes = thingTypeMapper.thingTypeEntitiesToThingTypes(all.getContent());
         return new PageImpl<>(thingTypes, all.getPageable(), all.getTotalElements());
     }
 
     @Override
     public ThingType save(ThingType thingType) {
         ThingTypeEntity save = thingTypeEntityRepository.save(thingTypeMapper.thingTypeToThingTypeEntity(thingType));
-        return thingTypeMapper.thingEntityTypeToThingType(save);
+        return thingTypeMapper.thingTypeEntityToThingType(save);
     }
 
     @Override
@@ -51,6 +51,6 @@ public class ThingTypeServiceImpl implements ThingTypeService {
 
     @Override
     public ThingType findById(long id) {
-        return thingTypeMapper.thingEntityTypeToThingType(thingTypeEntityRepository.getOne(id));
+        return thingTypeMapper.thingTypeEntityToThingType(thingTypeEntityRepository.getOne(id));
     }
 }

@@ -11,6 +11,4 @@ import java.util.List;
 public interface ThingEntityRepository extends JpaRepository<ThingEntity, Long> {
 
     List<ThingEntity> findAllByType(ThingTypeEntity type);
-
-    List<ThingEntity> findAllByName(String name);
 }

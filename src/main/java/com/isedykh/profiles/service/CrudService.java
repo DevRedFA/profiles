@@ -10,5 +10,4 @@ public interface CrudService<T> {
     void delete(T t);
 
     void delete(long id);
-
 }

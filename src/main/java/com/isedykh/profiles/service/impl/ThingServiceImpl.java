@@ -52,8 +52,9 @@ public class ThingServiceImpl implements ThingService {
     }
 
     @Override
-    public List<Thing> getAllThingsByType(ThingTypeEntity type) {
-        return thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(type));
+    public List<Thing> getAllThingsByType(ThingType type) {
+        ThingTypeEntity thingTypeEntity = thingTypeMapper.thingTypeToThingTypeEntity(type);
+        return thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(thingTypeEntity));
     }
 
     @Override

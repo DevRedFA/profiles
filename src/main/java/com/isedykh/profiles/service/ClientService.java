@@ -18,8 +18,5 @@ public interface ClientService extends CrudService<Client> {
 
     List<Client> findClientByName(String string);
 
-    List<Client> findClientByPhone(long string);
-
     Client findById(long id);
-
 }

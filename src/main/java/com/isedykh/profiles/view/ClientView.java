@@ -169,7 +169,7 @@ public class ClientView extends VerticalLayout implements View {
                 Notification.show("Bad format of children number");
             }
 
-            if (!StringUtils.isBlank(name.getValue())) {
+            if (StringUtils.isBlank(name.getValue())) {
                 containsContact = false;
                 name.setComponentError(new UserError("Name needed"));
             }

@@ -48,7 +48,7 @@ public class OrdersView extends VerticalLayout implements View {
         addComponent(orderGrid);
         setExpandRatio(orderGrid, 1f);
 
-        orderGrid.addItemClickListener(clickEvent -> Utils.detailsDoubleClickListenerSupplier.accept(clickEvent, this::getUI));
+        orderGrid.addItemClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, OrderView.VIEW_NAME));
 
         HorizontalLayout buttons = new HorizontalLayout();
         HorizontalLayout leftButtons = new HorizontalLayout();
@@ -71,9 +71,9 @@ public class OrdersView extends VerticalLayout implements View {
 
         buttonPrevious.addClickListener(getPageChangeClickListener(orderPage, Slice::previousPageable, orderGrid, buttonNext, buttonPrevious, orderService));
 
-        buttonNew.addClickListener(clickEvent -> Utils.newClickListenerSupplier.accept(this::getUI));
+        buttonNew.addClickListener(clickEvent -> Utils.getNewClickListenerSupplier(this::getUI, OrderView.VIEW_NAME));
 
-        buttonDetails.addClickListener(clickEvent -> Utils.detailsClickListenerSupplier.accept(orderGrid, this::getUI));
+        buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(orderGrid, this::getUI, OrderView.VIEW_NAME));
 
         addComponent(buttons);
     }

@@ -9,12 +9,7 @@ import java.util.List;
 @Repository
 public interface ClientEntityRepository extends JpaRepository<ClientEntity, Long> {
 
-//    @Query("select u from client u where u.NAME like %?1")
     List<ClientEntity> findAllByNameContaining(String name);
 
     List<ClientEntity> findAllByPhoneOrPhoneSecond(long phone, long phoneSecond);
-
-//    List<ClientEntity> findAllByOrdersIdIn(List<Long> orderIds);
-
-//    ClientEntity findByOrdersIdIn(Long orderId);
 }
