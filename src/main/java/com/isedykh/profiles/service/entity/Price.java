@@ -1,7 +1,6 @@
 package com.isedykh.profiles.service.entity;
 
 
-import com.isedykh.profiles.service.Identifiable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

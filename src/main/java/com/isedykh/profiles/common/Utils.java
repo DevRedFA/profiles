@@ -1,7 +1,7 @@
 package com.isedykh.profiles.common;
 
 import com.isedykh.profiles.service.CrudService;
-import com.isedykh.profiles.service.Identifiable;
+import com.isedykh.profiles.service.entity.Identifiable;
 import com.vaadin.ui.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

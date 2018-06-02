@@ -2,7 +2,7 @@ package com.isedykh.profiles.service.impl;
 
 import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.dao.repository.ThingTypeEntityRepository;
-import com.isedykh.profiles.mapper.ThingTypeMapper;
+import com.isedykh.profiles.mapper.ThingMapper;
 import com.isedykh.profiles.service.ThingTypeService;
 import com.isedykh.profiles.service.entity.ThingType;
 import lombok.RequiredArgsConstructor;
@@ -19,29 +19,29 @@ public class ThingTypeServiceImpl implements ThingTypeService {
 
     private final ThingTypeEntityRepository thingTypeEntityRepository;
 
-    private final ThingTypeMapper thingTypeMapper;
+    private final ThingMapper thingMapper;
 
     @Override
     public List<ThingType> findAll() {
-        return thingTypeMapper.thingTypeEntitiesToThingTypes(thingTypeEntityRepository.findAll());
+        return thingMapper.thingTypeEntitiesToThingTypes(thingTypeEntityRepository.findAll());
     }
 
     @Override
     public Page<ThingType> findAll(Pageable pageable) {
         Page<ThingTypeEntity> all = thingTypeEntityRepository.findAll(pageable);
-        List<ThingType> thingTypes = thingTypeMapper.thingTypeEntitiesToThingTypes(all.getContent());
+        List<ThingType> thingTypes = thingMapper.thingTypeEntitiesToThingTypes(all.getContent());
         return new PageImpl<>(thingTypes, all.getPageable(), all.getTotalElements());
     }
 
     @Override
     public ThingType save(ThingType thingType) {
-        ThingTypeEntity save = thingTypeEntityRepository.save(thingTypeMapper.thingTypeToThingTypeEntity(thingType));
-        return thingTypeMapper.thingTypeEntityToThingType(save);
+        ThingTypeEntity save = thingTypeEntityRepository.save(thingMapper.thingTypeToThingTypeEntity(thingType));
+        return thingMapper.thingTypeEntityToThingType(save);
     }
 
     @Override
     public void delete(ThingType thingType) {
-        thingTypeEntityRepository.delete(thingTypeMapper.thingTypeToThingTypeEntity(thingType));
+        thingTypeEntityRepository.delete(thingMapper.thingTypeToThingTypeEntity(thingType));
     }
 
     @Override
@@ -51,6 +51,6 @@ public class ThingTypeServiceImpl implements ThingTypeService {
 
     @Override
     public ThingType findById(long id) {
-        return thingTypeMapper.thingTypeEntityToThingType(thingTypeEntityRepository.getOne(id));
+        return thingMapper.thingTypeEntityToThingType(thingTypeEntityRepository.getOne(id));
     }
 }

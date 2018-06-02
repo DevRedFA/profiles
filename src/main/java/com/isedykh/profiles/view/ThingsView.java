@@ -1,7 +1,7 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.service.Identifiable;
+import com.isedykh.profiles.service.entity.Identifiable;
 import com.isedykh.profiles.service.ThingService;
 import com.isedykh.profiles.service.entity.Term;
 import com.isedykh.profiles.service.entity.Thing;

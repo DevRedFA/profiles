@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Data
 @ToString(of = "name")
-public class ThingType implements Identifiable, Nameable {
+public class OrderStatus implements Identifiable, Nameable {
 
     private Long id;
 

@@ -1,7 +1,6 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.dao.entity.ThingStatus;
 import com.isedykh.profiles.service.OrderService;
 import com.isedykh.profiles.service.TermService;
 import com.isedykh.profiles.service.ThingService;
@@ -10,6 +9,7 @@ import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.entity.Price;
 import com.isedykh.profiles.service.entity.Term;
 import com.isedykh.profiles.service.entity.Thing;
+import com.isedykh.profiles.service.entity.ThingStatus;
 import com.isedykh.profiles.service.entity.ThingType;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -227,8 +227,8 @@ public class ThingView extends VerticalLayout implements View {
         if (event.getParameters() != null) {
             if (event.getParameters().contains("new")) {
                 thing = new Thing();
-                thing.setStatus(ThingStatus.FREE);
-                status.setSelectedItem(ThingStatus.FREE);
+                thing.setStatus(thingService.getStatusByName("free"));
+                status.setSelectedItem(thingService.getStatusByName("free"));
 
                 thing.setPurchaseDate(LocalDate.now());
                 purchaseDate.setValue(LocalDate.now());
@@ -243,7 +243,7 @@ public class ThingView extends VerticalLayout implements View {
                     thing = thingService.getById(id);
                     List<Order> thingOrderHistory = orderService.getThingOrderHistory(thing);
                     List<BasicItem> items = thingOrderHistory.stream().map(s ->
-                            new BasicItem(s.getStatus().name(), s.getComments(),
+                            new BasicItem(s.getStatus().getName(), s.getComments(),
                                     s.getBegin().atStartOfDay(ZoneId.of("Europe/Moscow")),
                                     s.getStop().atStartOfDay(ZoneId.of("Europe/Moscow"))))
                             .collect(Collectors.toList());
@@ -267,7 +267,7 @@ public class ThingView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(thingTypeService::findAll, type::setItems, s -> s);
         Utils.setFieldIfNotNull(thing::getType, type::setSelectedItem, s -> s);
 
-        Utils.setFieldIfNotNull(ThingStatus::values, status::setItems, s -> s);
+        Utils.setFieldIfNotNull(thingService::getAllThingStatuses, status::setItems, s -> s);
         Utils.setFieldIfNotNull(thing::getStatus, status::setSelectedItem, s -> s);
 
         Utils.setFieldIfNotNull(thing::getPrices, pricesGrind::setItems, s -> s);

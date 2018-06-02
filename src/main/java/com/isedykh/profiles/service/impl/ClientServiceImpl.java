@@ -60,12 +60,6 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Client> findClientByPhone(long phone) {
-        List<ClientEntity> allByPhone = clientEntityRepository.findAllByPhoneOrPhoneSecond(phone, phone);
-        return clientMapper.clientEntitiesToClients(allByPhone);
-    }
-
-    @Override
     public Client findById(long id) {
         ClientEntity one = clientEntityRepository.getOne(id);
         return clientMapper.clientEntityToClient(one);

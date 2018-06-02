@@ -15,9 +15,8 @@ import javax.persistence.Table;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "thing_types", schema = "public")
-public class ThingTypeEntity {
-
+@Table(name = "thing_statuses", schema = "public")
+public class ThingStatusEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

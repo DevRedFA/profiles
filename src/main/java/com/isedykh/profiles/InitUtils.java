@@ -2,17 +2,19 @@ package com.isedykh.profiles;
 
 import com.isedykh.profiles.dao.entity.ClientEntity;
 import com.isedykh.profiles.dao.entity.OrderEntity;
-import com.isedykh.profiles.dao.entity.OrderStatus;
+import com.isedykh.profiles.dao.entity.OrderStatusEntity;
 import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.dao.entity.TermEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
-import com.isedykh.profiles.dao.entity.ThingStatus;
+import com.isedykh.profiles.dao.entity.ThingStatusEntity;
 import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
+import com.isedykh.profiles.dao.repository.OrderStatusEntityRepository;
 import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.TermEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
+import com.isedykh.profiles.dao.repository.ThingStatusEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingTypeEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,11 +37,15 @@ public class InitUtils {
 
     private final ThingEntityRepository thingEntityRepository;
 
+    private final ThingStatusEntityRepository thingStatusEntityRepository;
+
     private final PriceEntityRepository priceEntityRepository;
 
     private final ClientEntityRepository clientEntityRepository;
 
     private final OrderEntityRepository orderEntityRepository;
+
+    private final OrderStatusEntityRepository orderStatusEntityRepository;
 
     private final TermEntityRepository termEntityRepository;
 
@@ -71,11 +77,13 @@ public class InitUtils {
     @Transactional
     public List<ThingEntity> getThingEntities(List<ThingTypeEntity> thingTypes) {
         List<ThingEntity> listThing = new ArrayList<>();
+        ThingStatusEntity free = thingStatusEntityRepository.save(new ThingStatusEntity(null, "free"));
         for (int i = 1; i < 26; i++) {
+
             listThing.add(new ThingEntity(null, "Thing " + i,
                     i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i,
                     thingTypes.get(ThreadLocalRandom.current().nextInt(thingTypes.size())),
-                    ThingStatus.FREE, Collections.emptyList(), i, "comments " + i));
+                    free, Collections.emptyList(), i, "comments " + i));
         }
         List<ThingEntity> thingEntities = thingEntityRepository.saveAll(listThing);
 //        thingEntities.forEach(s -> s.setType(thingTypes.get(ThreadLocalRandom.current().nextInt(thingTypes.size()))));
@@ -110,15 +118,19 @@ public class InitUtils {
     @Transactional
     public List<OrderEntity> getOrderEntities(List<ThingEntity> listThing, List<ClientEntity> listClient) {
         List<OrderEntity> orderEntities = new ArrayList<>();
+
+        OrderStatusEntity booked = orderStatusEntityRepository.save(new OrderStatusEntity(null, "booked"));
+
         for (int i = 1; i < 26; i++) {
             ThingEntity thing = listThing.get(i - 1);
             ClientEntity client = listClient.get(i - 1);
+
             OrderEntity e = new OrderEntity(null, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(i).atStartOfDay()),
-                    Timestamp.valueOf(LocalDate.now().plusDays(5 + i).atStartOfDay()), OrderStatus.BOOKED, client, thing, thing.getPrices().get(0));
+                    Timestamp.valueOf(LocalDate.now().plusDays(5 + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0));
             orderEntities.add(e);
 
             orderEntities.add(new OrderEntity(null, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(8 + i).atStartOfDay()),
-                    Timestamp.valueOf(LocalDate.now().plusDays(15 + i).atStartOfDay()), OrderStatus.BOOKED, client, thing, thing.getPrices().get(0)));
+                    Timestamp.valueOf(LocalDate.now().plusDays(15 + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0)));
         }
         List<OrderEntity> orderEntityList = orderEntityRepository.saveAll(orderEntities);
         return orderEntityList;

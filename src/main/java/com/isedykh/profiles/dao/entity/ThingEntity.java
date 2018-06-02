@@ -40,8 +40,11 @@ public class ThingEntity {
             nullable = false)
     private ThingTypeEntity type;
 
-    @Enumerated(EnumType.STRING)
-    private ThingStatus status;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "thing_status_id",
+            referencedColumnName = "id",
+            nullable = false)
+    private ThingStatusEntity status;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "thing_id")

@@ -1,10 +1,11 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.dao.entity.OrderStatus;
+import com.isedykh.profiles.dao.entity.OrderStatusEntity;
 import com.isedykh.profiles.service.*;
 import com.isedykh.profiles.service.entity.Client;
 import com.isedykh.profiles.service.entity.Order;
+import com.isedykh.profiles.service.entity.OrderStatus;
 import com.isedykh.profiles.service.entity.Price;
 import com.isedykh.profiles.service.entity.Thing;
 import com.vaadin.navigator.View;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.util.List;
 
 @RequiredArgsConstructor
 @SpringView(name = OrderView.VIEW_NAME)
@@ -163,11 +165,13 @@ public class OrderView extends VerticalLayout implements View {
             }
         }
 
+        List<OrderStatus> allOrderStatuses = orderService.getAllOrderStatuses();
+
         Utils.setFieldIfNotNull(order::getId, idField::setValue, String::valueOf);
         Utils.setFieldIfNotNull(order::getBegin, begin::setValue, s -> s);
         Utils.setFieldIfNotNull(order::getStop, end::setValue, s -> s);
         Utils.setFieldIfNotNull(order::getStatus, status::setSelectedItem, s -> s);
-        Utils.setFieldIfNotNull(OrderStatus::values, status::setItems, s -> s);
+        Utils.setFieldIfNotNull(orderService::getAllOrderStatuses, status::setItems, s -> s);
         Utils.setFieldIfNotNull(order::getPrice, price::setSelectedItem, s -> s);
         Utils.setFieldIfNotNull(order::getThing, price::setItems, Thing::getPrices);
         Utils.setFieldIfNotNull(order::getThing, deposit::setValue, s -> String.valueOf(s.getDeposit()));

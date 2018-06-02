@@ -41,8 +41,11 @@ public class OrderEntity {
     @Column(nullable = false)
     private Timestamp stop;
 
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "order_status_id",
+            referencedColumnName = "id",
+            nullable = false)
+    private OrderStatusEntity status;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "client_id",

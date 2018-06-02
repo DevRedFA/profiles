@@ -3,12 +3,14 @@ package com.isedykh.profiles.service.impl;
 import com.isedykh.profiles.dao.entity.OrderEntity;
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
+import com.isedykh.profiles.dao.repository.OrderStatusEntityRepository;
 import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.mapper.OrderMapper;
 import com.isedykh.profiles.service.OrderService;
 import com.isedykh.profiles.service.entity.Client;
 import com.isedykh.profiles.service.entity.Order;
+import com.isedykh.profiles.service.entity.OrderStatus;
 import com.isedykh.profiles.service.entity.Thing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,6 +33,8 @@ public class OrderServiceImpl implements OrderService {
     private final ThingEntityRepository thingEntityRepository;
 
     private final ClientEntityRepository clientEntityRepository;
+
+    private final OrderStatusEntityRepository orderStatusEntityRepository;
 
     private final OrderMapper orderMapper;
 
@@ -81,5 +85,10 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setThing(thingEntityRepository.save(orderEntity.getThing()));
         orderEntity.setClient(clientEntityRepository.save(orderEntity.getClient()));
         return orderMapper.orderEntityToOrder(orderEntityRepository.save(orderEntity));
+    }
+
+    @Override
+    public List<OrderStatus> getAllOrderStatuses() {
+        return orderMapper.orderStatusEntitiesToOrderStatuses(orderStatusEntityRepository.findAll());
     }
 }

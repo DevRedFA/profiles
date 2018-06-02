@@ -6,10 +6,12 @@ import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
+import com.isedykh.profiles.dao.repository.ThingStatusEntityRepository;
+import com.isedykh.profiles.dao.repository.ThingTypeEntityRepository;
 import com.isedykh.profiles.mapper.ThingMapper;
-import com.isedykh.profiles.mapper.ThingTypeMapper;
 import com.isedykh.profiles.service.ThingService;
 import com.isedykh.profiles.service.entity.Thing;
+import com.isedykh.profiles.service.entity.ThingStatus;
 import com.isedykh.profiles.service.entity.ThingType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -35,9 +37,9 @@ public class ThingServiceImpl implements ThingService {
 
     private final PriceEntityRepository priceEntityRepository;
 
-    private final ThingMapper thingMapper;
+    private final ThingStatusEntityRepository thingStatusEntityRepository;
 
-    private final ThingTypeMapper thingTypeMapper;
+    private final ThingMapper thingMapper;
 
     @Override
     public List<Thing> findAll() {
@@ -53,13 +55,13 @@ public class ThingServiceImpl implements ThingService {
 
     @Override
     public List<Thing> getAllThingsByType(ThingType type) {
-        ThingTypeEntity thingTypeEntity = thingTypeMapper.thingTypeToThingTypeEntity(type);
+        ThingTypeEntity thingTypeEntity = thingMapper.thingTypeToThingTypeEntity(type);
         return thingMapper.thingEntitiesToThings(thingEntityRepository.findAllByType(thingTypeEntity));
     }
 
     @Override
     public List<Thing> getAllThingsByTypeFreeBetween(ThingType type, LocalDate begin, LocalDate end) {
-        ThingTypeEntity typeEntity = thingTypeMapper.thingTypeToThingTypeEntity(type);
+        ThingTypeEntity typeEntity = thingMapper.thingTypeToThingTypeEntity(type);
         List<ThingEntity> allByType = thingEntityRepository.findAllByType(typeEntity);
         List<Thing> things = thingMapper.thingEntitiesToThings(allByType);
         // TODO: 11.05.2018 rework from n+1 db requests to 1 request.
@@ -109,5 +111,15 @@ public class ThingServiceImpl implements ThingService {
         thingEntity.setPrices(priceEntities);
         ThingEntity save = thingEntityRepository.save(thingEntity);
         return thingMapper.thingEntityToThing(save);
+    }
+
+    @Override
+    public List<ThingStatus> getAllThingStatuses() {
+        return thingMapper.thingStatusEntitiesToThingStatuses(thingStatusEntityRepository.findAll());
+    }
+
+    @Override
+    public ThingStatus getStatusByName(String name) {
+        return thingMapper.thingStatusEntityToThingStatus(thingStatusEntityRepository.findByName(name));
     }
 }

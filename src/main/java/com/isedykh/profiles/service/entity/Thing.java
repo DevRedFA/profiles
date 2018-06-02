@@ -1,7 +1,5 @@
 package com.isedykh.profiles.service.entity;
 
-import com.isedykh.profiles.dao.entity.ThingStatus;
-import com.isedykh.profiles.service.Identifiable;
 import lombok.Data;
 
 import java.time.LocalDate;

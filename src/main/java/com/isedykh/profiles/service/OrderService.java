@@ -2,6 +2,7 @@ package com.isedykh.profiles.service;
 
 import com.isedykh.profiles.service.entity.Client;
 import com.isedykh.profiles.service.entity.Order;
+import com.isedykh.profiles.service.entity.OrderStatus;
 import com.isedykh.profiles.service.entity.Thing;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,4 +24,6 @@ public interface OrderService extends CrudService<Order> {
     void delete(Order order);
 
     Order save(Order order);
+
+    List<OrderStatus> getAllOrderStatuses();
 }
