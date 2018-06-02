@@ -19,7 +19,7 @@ public class PriceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade={CascadeType.ALL},  fetch = FetchType.EAGER)
+    @ManyToOne(cascade={CascadeType.ALL},  fetch = FetchType.EAGER, optional = false)
     private TermEntity term;
 
     //1 penny step

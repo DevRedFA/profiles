@@ -74,12 +74,15 @@ public class InitUtils {
         for (int i = 1; i < 26; i++) {
             listThing.add(new ThingEntity(null, "Thing " + i,
                     i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i,
-                    thingTypes.get(ThreadLocalRandom.current().nextInt(0, thingTypes.size())),
+                    thingTypes.get(ThreadLocalRandom.current().nextInt(thingTypes.size())),
                     ThingStatus.FREE, Collections.emptyList(), i, "comments " + i));
         }
-        thingEntityRepository.saveAll(listThing);
-        return listThing;
+        List<ThingEntity> thingEntities = thingEntityRepository.saveAll(listThing);
+//        thingEntities.forEach(s -> s.setType(thingTypes.get(ThreadLocalRandom.current().nextInt(thingTypes.size()))));
+//        List<ThingEntity> thingEntities1 = thingEntityRepository.saveAll(thingEntities);
+        return thingEntities;
     }
+
 
     @Transactional
     public void initPrices(List<ThingEntity> listThing, List<TermEntity> terms) {
@@ -113,9 +116,11 @@ public class InitUtils {
             OrderEntity e = new OrderEntity(null, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(i).atStartOfDay()),
                     Timestamp.valueOf(LocalDate.now().plusDays(5 + i).atStartOfDay()), OrderStatus.BOOKED, client, thing, thing.getPrices().get(0));
             orderEntities.add(e);
+
+            orderEntities.add(new OrderEntity(null, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(8 + i).atStartOfDay()),
+                    Timestamp.valueOf(LocalDate.now().plusDays(15 + i).atStartOfDay()), OrderStatus.BOOKED, client, thing, thing.getPrices().get(0)));
         }
-        orderEntityRepository.saveAll(orderEntities);
-        clientEntityRepository.saveAll(listClient);
-        return orderEntities;
+        List<OrderEntity> orderEntityList = orderEntityRepository.saveAll(orderEntities);
+        return orderEntityList;
     }
 }

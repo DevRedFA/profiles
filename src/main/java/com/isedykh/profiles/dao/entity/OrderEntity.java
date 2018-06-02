@@ -30,19 +30,19 @@ public class OrderEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "client_id",
             referencedColumnName = "id",
             nullable = false)
     private ClientEntity client;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(optional = false)
     @JoinColumn(name = "thing_id",
             referencedColumnName = "id",
             nullable = false)
     private ThingEntity thing;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(optional = false)
     @JoinColumn(name = "price_id",
             referencedColumnName = "id",
             nullable = false)
