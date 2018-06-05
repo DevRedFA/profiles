@@ -25,6 +25,7 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 import lombok.RequiredArgsConstructor;
@@ -91,6 +92,10 @@ public class ThingView extends VerticalLayout implements View {
 
     private final Button saveThing = new Button("Save thing");
 
+    private final Button addThingType = new Button("Add new type");
+
+    private final Button addThingStatus = new Button("Add new status");
+
     private final TabSheet tabSheet = new TabSheet();
 
     private final Image image = new Image();
@@ -129,6 +134,8 @@ public class ThingView extends VerticalLayout implements View {
         fullDetails.addComponent(comments);
         fullDetails.addComponent(pricesGrind);
         fullDetails.addComponent(buttonAddOrder);
+        fullDetails.addComponent(addThingType);
+        fullDetails.addComponent(addThingStatus);
 
         image.setVisible(false);
 
@@ -182,6 +189,12 @@ public class ThingView extends VerticalLayout implements View {
             String s = OrderView.VIEW_NAME + "/new/" + thing.getId();
             getUI().getNavigator().navigateTo(s);
         });
+
+        addThingType.addClickListener(event -> {
+            WindowTemplate<ThingType> sub = new WindowTemplate<>(ThingType.class, thingTypeService);
+            UI.getCurrent().addWindow(sub);
+        });
+
 
         purchasePrice.addValueChangeListener(event -> {
             try {

@@ -4,10 +4,14 @@ import lombok.Data;
 import lombok.ToString;
 
 @Data
-@ToString(of = "name")
 public class ThingStatus implements Identifiable, Nameable {
 
     private Long id;
 
     private String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
