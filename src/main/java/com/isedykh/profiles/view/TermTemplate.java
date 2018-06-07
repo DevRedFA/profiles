@@ -1,37 +1,37 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.service.CrudService;
-import com.isedykh.profiles.service.entity.Nameable;
+import com.isedykh.profiles.service.entity.Term;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-public class WindowTemplate<T extends Nameable> extends Window {
+public class TermTemplate extends Window {
 
     private TextField nameField = new TextField("Enter new name");
+    private TextField coefficientField = new TextField("Enter coefficient");
     private VerticalLayout layout = new VerticalLayout();
 
-    public WindowTemplate(Class<T> clazz, CrudService<T> crudService) {
+    public TermTemplate(CrudService<Term> crudService) {
         super("Name:");
         center();
         Button saveButton = new Button("Save", event -> {
-            try {
-                T t = clazz.newInstance();
-                t.setName(nameField.getValue());
-                crudService.save(t);
-                getUI().getPage().reload();
-            } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
+            Term term = new Term();
+            term.setName(nameField.getValue());
+            double coeffInDouble = Double.parseDouble(coefficientField.getValue());
+            term.setCoefficient((int) (coeffInDouble * 100));
+            crudService.save(term);
+            getUI().getPage().reload();
             close();
         });
-        layout.addComponentsAndExpand(nameField,
+        layout.addComponentsAndExpand(nameField, coefficientField,
                 saveButton);
-        layout.setHeight(10f,Unit.EM);
+        layout.setHeight(14f,Unit.EM);
 //        layout.setComponentAlignment(saveButton, Alignment.BOTTOM_RIGHT);
         setClosable(true);
+
         setResizable(true);
         setContent(layout);
     }

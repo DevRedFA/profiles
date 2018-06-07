@@ -11,6 +11,7 @@ import com.isedykh.profiles.service.entity.Term;
 import com.isedykh.profiles.service.entity.Thing;
 import com.isedykh.profiles.service.entity.ThingStatus;
 import com.isedykh.profiles.service.entity.ThingType;
+import com.isedykh.profiles.service.ThingStatusService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
@@ -58,6 +59,8 @@ public class ThingView extends VerticalLayout implements View {
 
     private final ThingTypeService thingTypeService;
 
+    private final ThingStatusService thingStatusService;
+
     private final OrderService orderService;
 
     private final TermService termService;
@@ -95,6 +98,8 @@ public class ThingView extends VerticalLayout implements View {
     private final Button addThingType = new Button("Add new type");
 
     private final Button addThingStatus = new Button("Add new status");
+
+    private final Button addTerm = new Button("Add new term");
 
     private final TabSheet tabSheet = new TabSheet();
 
@@ -136,6 +141,7 @@ public class ThingView extends VerticalLayout implements View {
         fullDetails.addComponent(buttonAddOrder);
         fullDetails.addComponent(addThingType);
         fullDetails.addComponent(addThingStatus);
+        fullDetails.addComponent(addTerm);
 
         image.setVisible(false);
 
@@ -195,6 +201,15 @@ public class ThingView extends VerticalLayout implements View {
             UI.getCurrent().addWindow(sub);
         });
 
+        addThingStatus.addClickListener(event -> {
+            WindowTemplate<ThingStatus> sub = new WindowTemplate<>(ThingStatus.class, thingStatusService);
+            UI.getCurrent().addWindow(sub);
+        });
+
+        addTerm.addClickListener(event -> {
+            TermTemplate sub = new TermTemplate(termService);
+            UI.getCurrent().addWindow(sub);
+        });
 
         purchasePrice.addValueChangeListener(event -> {
             try {
@@ -246,10 +261,6 @@ public class ThingView extends VerticalLayout implements View {
                 thing.setPurchaseDate(LocalDate.now());
                 purchaseDate.setValue(LocalDate.now());
 
-//                prices = new ArrayList<>();
-//                List<Term> all = termService.findAll();
-//                all.forEach(term -> prices.add(new Price(term, 0)));
-//                pricesGrind.setItems(prices);
             } else {
                 int id = Integer.parseInt(event.getParameters());
                 try {
@@ -270,23 +281,21 @@ public class ThingView extends VerticalLayout implements View {
         }
 
         Utils.setFieldIfNotNull(thing::getPathToPhoto, image::setSource, s -> new FileResource(new File(s)));
-        image.setVisible(true);
         Utils.setFieldIfNotNull(thing::getName, name::setValue, s -> s);
         Utils.setFieldIfNotNull(thing::getPurchasePrice, purchasePrice::setValue, String::valueOf);
         Utils.setFieldIfNotNull(thing::getDeposit, deposit::setValue, String::valueOf);
         Utils.setFieldIfNotNull(thing::getPurchaseDate, purchaseDate::setValue, s -> s);
         Utils.setFieldIfNotNull(thing::getComments, comments::setValue, s -> s);
-
         Utils.setFieldIfNotNull(thingTypeService::findAll, type::setItems, s -> s);
         Utils.setFieldIfNotNull(thing::getType, type::setSelectedItem, s -> s);
-
         Utils.setFieldIfNotNull(thingService::getAllThingStatuses, status::setItems, s -> s);
         Utils.setFieldIfNotNull(thing::getStatus, status::setSelectedItem, s -> s);
-
         Utils.setFieldIfNotNull(thing::getPrices, pricesGrind::setItems, s -> s);
 
+        image.setVisible(true);
+
         pricesGrind.addColumn(Price::getTerm).setCaption("Terms");
-        pricesGrind.addColumn(Price::getPriceValue).setCaption("Price");
+        pricesGrind.addColumn(price -> price.getPriceValue() / 100).setCaption("Price");
         pricesGrind.setHeightByRows(4);
     }
 }

@@ -57,9 +57,8 @@ public class DataInitializer implements ApplicationRunner {
         //init Order
         List<OrderEntity> orderEntities = initUtils.getOrderEntities(listThing, listClient);
 
-        // TODO: 5/6/18 images to things profiles
-        // TODO: 5/6/18 drag n drop images
         // TODO: 5/6/18 declarative validation in registration form
-
+        // TODO: 07.06.2018 removing items now doesnt work
+        // TODO: 07.06.2018 Autoset up for deposit?
     }
 }

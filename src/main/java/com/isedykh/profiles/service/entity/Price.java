@@ -30,7 +30,7 @@ public class Price implements Identifiable {
 
     public Price(Term term, int purchasePrice) {
         this.term = term;
-        this.priceValue = purchasePrice * term.getCoefficient();
+        this.priceValue = purchasePrice * term.getCoefficient() /100;
     }
 
     @Override

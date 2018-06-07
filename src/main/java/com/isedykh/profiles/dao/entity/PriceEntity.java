@@ -35,6 +35,6 @@ public class PriceEntity {
 
     public PriceEntity(TermEntity term, int purchasePrice) {
         this.term = term;
-        this.priceValue = purchasePrice * term.getCoefficient();
+        this.priceValue = purchasePrice * term.getCoefficient()/100;
     }
 }

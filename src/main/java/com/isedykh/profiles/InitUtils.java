@@ -86,8 +86,6 @@ public class InitUtils {
                     free, Collections.emptyList(), i, "comments " + i));
         }
         List<ThingEntity> thingEntities = thingEntityRepository.saveAll(listThing);
-//        thingEntities.forEach(s -> s.setType(thingTypes.get(ThreadLocalRandom.current().nextInt(thingTypes.size()))));
-//        List<ThingEntity> thingEntities1 = thingEntityRepository.saveAll(thingEntities);
         return thingEntities;
     }
 

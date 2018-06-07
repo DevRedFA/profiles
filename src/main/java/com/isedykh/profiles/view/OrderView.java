@@ -100,6 +100,7 @@ public class OrderView extends VerticalLayout implements View {
                 thingField.setValue(thing.getName());
                 price.setItems(thing.getPrices());
                 price.setSelectedItem(thing.getPrices().get(0));
+                deposit.setValue(String.valueOf(thing.getDeposit()));
             }
         });
 
@@ -188,7 +189,6 @@ public class OrderView extends VerticalLayout implements View {
             order.setBegin(begin.getValue());
             order.setStop(end.getValue());
             order.setStatus(status.getSelectedItem().isPresent() ? status.getSelectedItem().get() : order.getStatus());
-            // FIXME: 08.05.2018 Change cents to rubles
             order.setPrice(price.getSelectedItem().isPresent() ? price.getSelectedItem().get() : order.getPrice());
             order.setComments(comments.getValue());
             orderService.save(order);

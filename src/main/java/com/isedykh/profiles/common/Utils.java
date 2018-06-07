@@ -73,13 +73,14 @@ public class Utils {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> Button.ClickListener getDeleteClickListener(Grid<T> grid,
+    public static <T> Button.ClickListener getDeleteClickListener(Grid<T> grid,Supplier<UI> uiSupplier,
                                                                   CrudService<T> crudService) {
         return clickEvent -> {
             Set selectedItems = grid.getSelectedItems();
             if (selectedItems.size() == 1) {
                 crudService.delete((T) (selectedItems.toArray()[0]));
             }
+            uiSupplier.get().getPage().reload();
         };
     }
 

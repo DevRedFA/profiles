@@ -129,8 +129,7 @@ public class ClientsView extends VerticalLayout implements View {
 
         buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clientGrid, this::getUI, ClientView.VIEW_NAME));
 
-        // TODO: 07.05.2018 add reset of grid
-        buttonDelete.addClickListener(getDeleteClickListener(clientGrid, clientService));
+        buttonDelete.addClickListener(getDeleteClickListener(clientGrid,this::getUI, clientService));
 
         addComponent(searchPanel);
 
