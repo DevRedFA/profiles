@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static com.isedykh.profiles.common.Utils.PAGE_SIZE;
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 
 @RequiredArgsConstructor
@@ -28,7 +29,6 @@ import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 public class ThingsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "things";
-    private static final int PAGE_SIZE = 16;
 
     private HorizontalLayout searchPanel = new HorizontalLayout();
     private Button buttonSearch = new Button("Search");
@@ -73,21 +73,6 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.addColumn(Thing::getType).setCaption("Type");
         thingsGrid.addColumn(Thing::getDeposit).setCaption("Deposit");
         thingsGrid.addColumn(Thing::getStatus).setCaption("Status");
-        thingsGrid.addColumn(s ->
-                s.getPrices()
-                        .stream()
-                        .filter(price -> price.getTerm().equals(new Term("week"))).findFirst().get())
-                .setCaption("Week");
-        thingsGrid.addColumn(s ->
-                s.getPrices()
-                        .stream()
-                        .filter(price -> price.getTerm().equals(new Term("two weeks"))).findFirst().get())
-                .setCaption("two weeks");
-        thingsGrid.addColumn(s ->
-                s.getPrices()
-                        .stream()
-                        .filter(price -> price.getTerm().equals(new Term("month"))).findFirst().get())
-                .setCaption("month");
         thingsGrid.setHeightByRows(PAGE_SIZE);
         addComponent(thingsGrid);
         setExpandRatio(thingsGrid, 1f);

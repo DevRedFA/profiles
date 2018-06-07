@@ -17,18 +17,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Page;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.DateField;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Image;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.Upload;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.vaadin.addon.calendar.Calendar;
@@ -85,9 +74,15 @@ public class ThingView extends VerticalLayout implements View {
 
     private final VerticalLayout details = new VerticalLayout();
 
+    private final VerticalLayout priceDetails = new VerticalLayout();
+
     private final HorizontalLayout fullDetails = new HorizontalLayout();
 
     private final HorizontalLayout imageDetails = new HorizontalLayout();
+
+    private final HorizontalLayout typeDetails = new HorizontalLayout();
+
+    private final HorizontalLayout statusDetails = new HorizontalLayout();
 
     private final Grid<Price> pricesGrind = new Grid<>();
 
@@ -126,22 +121,30 @@ public class ThingView extends VerticalLayout implements View {
         purchaseDate.setDateFormat(Utils.DATE_FORMAT);
 
         details.addComponent(name);
-        details.addComponent(type);
-        details.addComponent(status);
+
+        details.addComponent(typeDetails);
+        typeDetails.addComponent(type);
+        typeDetails.addComponent(addThingType);
+        typeDetails.setComponentAlignment(addThingType, Alignment.BOTTOM_CENTER);
+
+        details.addComponent(statusDetails);
+        statusDetails.addComponent(status);
+        statusDetails.addComponent(addThingStatus);
+        statusDetails.setComponentAlignment(addThingStatus, Alignment.BOTTOM_CENTER);
+
         details.addComponent(purchasePrice);
         details.addComponent(deposit);
         details.addComponent(purchaseDate);
+        details.addComponent(comments);
         details.addComponent(saveThing);
+        details.addComponent(buttonAddOrder);
 
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
         pricesGrind.getEditor().setEnabled(true);
         fullDetails.addComponent(details);
-        fullDetails.addComponent(comments);
-        fullDetails.addComponent(pricesGrind);
-        fullDetails.addComponent(buttonAddOrder);
-        fullDetails.addComponent(addThingType);
-        fullDetails.addComponent(addThingStatus);
-        fullDetails.addComponent(addTerm);
+        fullDetails.addComponent(priceDetails);
+        priceDetails.addComponent(pricesGrind);
+        priceDetails.addComponent(addTerm);
 
         image.setVisible(false);
 
@@ -192,7 +195,7 @@ public class ThingView extends VerticalLayout implements View {
         addComponent(tabSheet);
 
         buttonAddOrder.addClickListener(event -> {
-            String s = OrderView.VIEW_NAME + "/new/" + thing.getId();
+            String s = OrderView.VIEW_NAME + "/new/thing=" + thing.getId();
             getUI().getNavigator().navigateTo(s);
         });
 
@@ -241,7 +244,7 @@ public class ThingView extends VerticalLayout implements View {
                 readyToSave = true;
             }
             if (readyToSave) {
-                thingService.save(thing);
+                thing = thingService.save(thing);
                 Notification.show("Thing saved");
             } else {
                 Notification.show("Set all required fields: name, thing type");
@@ -282,7 +285,7 @@ public class ThingView extends VerticalLayout implements View {
 
         Utils.setFieldIfNotNull(thing::getPathToPhoto, image::setSource, s -> new FileResource(new File(s)));
         Utils.setFieldIfNotNull(thing::getName, name::setValue, s -> s);
-        Utils.setFieldIfNotNull(thing::getPurchasePrice, purchasePrice::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(thing::getPurchasePrice, purchasePrice::setValue, price -> String.valueOf(price / 100));
         Utils.setFieldIfNotNull(thing::getDeposit, deposit::setValue, String::valueOf);
         Utils.setFieldIfNotNull(thing::getPurchaseDate, purchaseDate::setValue, s -> s);
         Utils.setFieldIfNotNull(thing::getComments, comments::setValue, s -> s);

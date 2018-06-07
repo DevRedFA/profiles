@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
+import static com.isedykh.profiles.common.Utils.PAGE_SIZE;
 import static com.isedykh.profiles.common.Utils.getDeleteClickListener;
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 
@@ -27,7 +28,6 @@ import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 public class ClientsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "clients";
-    private static final int PAGE_SIZE = 16;
 
     private ClientService clientService;
 

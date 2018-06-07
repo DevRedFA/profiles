@@ -32,7 +32,6 @@ import java.util.concurrent.ThreadLocalRandom;
 @RequiredArgsConstructor
 public class InitUtils {
 
-
     private final ThingTypeEntityRepository thingTypeEntityRepository;
 
     private final ThingEntityRepository thingEntityRepository;

@@ -16,6 +16,8 @@ public class Utils {
 
     public static final String DATE_FORMAT = "dd/MM/yyyy";
 
+    public static final int PAGE_SIZE = 15;
+
     private Utils() {
     }
 

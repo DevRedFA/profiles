@@ -12,10 +12,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 
 import javax.annotation.PostConstruct;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static com.isedykh.profiles.common.Utils.PAGE_SIZE;
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 
 @AllArgsConstructor
@@ -23,16 +25,14 @@ import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 public class OrdersView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "orders";
-    public static final int PAGE_SIZE = 17;
+
 
     private OrderService orderService;
-
-    private ClientService clientService;
 
     @PostConstruct
     public void init() {
 
-        AtomicReference<Page<Order>> orderPage = new AtomicReference<>(orderService.findAll(PageRequest.of(0, PAGE_SIZE)));
+        AtomicReference<Page<Order>> orderPage = new AtomicReference<>(orderService.findAll(PageRequest.of(0, PAGE_SIZE, Sort.Direction.DESC, "id")));
         Grid<Order> orderGrid = new Grid<>();
         orderGrid.setSizeFull();
         orderGrid.setSelectionMode(Grid.SelectionMode.SINGLE);

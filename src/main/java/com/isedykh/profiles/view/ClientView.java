@@ -23,10 +23,8 @@ public class ClientView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "client";
 
-    @Autowired
     private final ClientService clientService;
 
-    @Autowired
     private final OrderService orderService;
 
     private Client client;
@@ -65,17 +63,20 @@ public class ClientView extends VerticalLayout implements View {
         verticalLayout.addComponent(vkLink);
         verticalLayout.addComponent(address);
         verticalLayout.addComponent(childrenNumber);
+        verticalLayout.addComponent(childrenComments);
         verticalLayout.addComponent(save);
 
         horizontalLayout.addComponent(verticalLayout);
-        horizontalLayout.addComponent(childrenComments);
+        horizontalLayout.addComponent(ordersGrid);
+        horizontalLayout.setExpandRatio(verticalLayout, 1f);
+        horizontalLayout.setExpandRatio(ordersGrid, 3f);
 
         addComponent(new Label("Detail client view"));
         addComponent(horizontalLayout);
-        addComponent(ordersGrid);
+
         ordersGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
         ordersGrid.setSizeFull();
-        setExpandRatio(ordersGrid, 1f);
+        setExpandRatio(horizontalLayout, 1f);
 
     }
 

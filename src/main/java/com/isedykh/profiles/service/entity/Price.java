@@ -30,11 +30,11 @@ public class Price implements Identifiable {
 
     public Price(Term term, int purchasePrice) {
         this.term = term;
-        this.priceValue = purchasePrice * term.getCoefficient() /100;
+        this.priceValue = purchasePrice * term.getCoefficient() / 100;
     }
 
     @Override
     public String toString() {
-        return term + ", " + priceValue / 100 + "," + priceValue % 100;
+        return term + ": " + priceValue / 100;
     }
 }

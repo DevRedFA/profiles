@@ -14,10 +14,15 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.isedykh.profiles.common.Utils.PAGE_SIZE;
 
 @RequiredArgsConstructor
 @SpringView(name = OrderView.VIEW_NAME)
@@ -25,14 +30,13 @@ public class OrderView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "order";
 
-    @Autowired
     private final OrderService orderService;
 
-    @Autowired
     private final ClientService clientService;
 
-    @Autowired
     private final ThingService thingService;
+
+    private final OrderStatusService orderStatusService;
 
     private Order order;
 
@@ -58,24 +62,43 @@ public class OrderView extends VerticalLayout implements View {
 
     private VerticalLayout grids = new VerticalLayout();
 
-    Grid<Thing> thingsGrid = new Grid<>();
+    private Grid<Thing> thingsGrid = new Grid<>();
 
-    Grid<Client> clientGrid = new Grid<>();
+    private Grid<Client> clientGrid = new Grid<>();
 
     private HorizontalLayout horizontalLayout = new HorizontalLayout();
 
+    private final HorizontalLayout statusDetails = new HorizontalLayout();
+
     private Button save = new Button("Save");
 
-    Client client;
+    private Button addOrderStatus = new Button("Add order status");
+
+    private Client client;
 
     @PostConstruct
     public void init() {
+
+        HorizontalLayout searchClientPanel = new HorizontalLayout();
+
+        TextField nameField = new TextField("Name");
+
+        Button buttonSearch = new Button("Search");
+        searchClientPanel.addComponent(nameField);
+        searchClientPanel.addComponent(buttonSearch);
+        searchClientPanel.setComponentAlignment(buttonSearch, Alignment.BOTTOM_LEFT);
+
 
         begin.setDateFormat(Utils.DATE_FORMAT);
         end.setDateFormat(Utils.DATE_FORMAT);
 
         verticalLayout.addComponent(idField);
-        verticalLayout.addComponent(status);
+
+        verticalLayout.addComponent(statusDetails);
+        statusDetails.addComponent(status);
+        statusDetails.addComponent(addOrderStatus);
+        statusDetails.setComponentAlignment(addOrderStatus, Alignment.BOTTOM_CENTER);
+
         verticalLayout.addComponent(begin);
         verticalLayout.addComponent(end);
         verticalLayout.addComponent(clientFiled);
@@ -83,6 +106,7 @@ public class OrderView extends VerticalLayout implements View {
         verticalLayout.addComponent(deposit);
         verticalLayout.addComponent(price);
         verticalLayout.addComponent(save);
+
 
         grids.addComponent(thingsGrid);
         thingsGrid.setItems(thingService.findAll());
@@ -104,7 +128,9 @@ public class OrderView extends VerticalLayout implements View {
             }
         });
 
+        grids.addComponent(searchClientPanel);
         grids.addComponent(clientGrid);
+
         clientGrid.setItems(clientService.findAll());
         clientGrid.addColumn(Client::getName).setCaption("Name");
         clientGrid.addColumn(Client::getPhone).setCaption("Phone");
@@ -120,6 +146,23 @@ public class OrderView extends VerticalLayout implements View {
                 clientFiled.setValue(client.getName());
                 order.setClient(client);
             }
+        });
+
+        buttonSearch.addClickListener(event -> {
+            String value = nameField.getValue();
+            List<Client> clientByName;
+            if (!value.isEmpty()) {
+                clientByName = new ArrayList<>(clientService.findClientByName(value));
+            } else {
+                clientByName = clientService.findAll();
+            }
+            clientGrid.setItems(clientByName);
+        });
+
+
+        addOrderStatus.addClickListener(event -> {
+            WindowTemplate<OrderStatus> sub = new WindowTemplate<>(OrderStatus.class, orderStatusService);
+            UI.getCurrent().addWindow(sub);
         });
 
         grids.setExpandRatio(clientGrid, 1f);
@@ -144,13 +187,13 @@ public class OrderView extends VerticalLayout implements View {
                 order = new Order();
                 for (String msg : msgs) {
                     if (msg.contains("thing")) {
-                        order.setThing(thingService.getById(Long.parseLong(msg.substring(msg.lastIndexOf("=")+1))));
+                        order.setThing(thingService.getById(Long.parseLong(msg.substring(msg.lastIndexOf("=") + 1))));
                     }
                     if (msg.contains("begin")) {
-                        order.setBegin(LocalDate.parse(msg.substring(msg.lastIndexOf("=")+1)));
+                        order.setBegin(LocalDate.parse(msg.substring(msg.lastIndexOf("=") + 1)));
                     }
                     if (msg.contains("stop")) {
-                        order.setStop(LocalDate.parse(msg.substring(msg.lastIndexOf("=")+1)));
+                        order.setStop(LocalDate.parse(msg.substring(msg.lastIndexOf("=") + 1)));
                     }
                 }
             } else {
