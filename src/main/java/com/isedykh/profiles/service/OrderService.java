@@ -15,6 +15,8 @@ public interface OrderService extends CrudService<Order> {
 
     List<Order> getThingOrderHistory(Thing thing);
 
+    List<Order> getThingOrderHistory(long thingId);
+
     List<Order> getClientOrderHistory(Client client);
 
     Page<Order> findAll(Pageable pageable);
@@ -26,4 +28,6 @@ public interface OrderService extends CrudService<Order> {
     Order save(Order order);
 
     List<OrderStatus> getAllOrderStatuses();
+
+    void delete(List<Order> list);
 }

@@ -1,8 +1,10 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
+import com.isedykh.profiles.service.OrderService;
 import com.isedykh.profiles.service.entity.Identifiable;
 import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.entity.Term;
 import com.isedykh.profiles.service.entity.Thing;
 import com.isedykh.profiles.service.entity.ThingType;
@@ -39,6 +41,8 @@ public class ThingsView extends VerticalLayout implements View {
     private final ThingService thingService;
 
     private final ThingTypeService thingTypeService;
+
+    private final OrderService orderService;
 
     @PostConstruct
     public void init() {
@@ -131,6 +135,8 @@ public class ThingsView extends VerticalLayout implements View {
             Set selectedItems = thingsGrid.getSelectedItems();
             if (selectedItems.size() == 1) {
                 Identifiable identifiable = Identifiable.class.cast(selectedItems.toArray()[0]);
+                List<Order> thingOrderHistory = orderService.getThingOrderHistory(identifiable.getId());
+                orderService.delete(thingOrderHistory);
                 thingService.delete(identifiable.getId());
                 getUI().getPage().reload();
             }

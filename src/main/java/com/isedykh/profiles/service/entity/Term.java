@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(of="name")
+//@EqualsAndHashCode(of="name")
 public class Term implements Identifiable, Nameable {
 
     private Long id;

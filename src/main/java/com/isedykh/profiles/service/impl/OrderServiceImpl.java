@@ -51,6 +51,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getThingOrderHistory(long thingId) {
+        List<OrderEntity> allByThingId = orderEntityRepository.findAllByThingId(thingId);
+        return orderMapper.orderEntitiesToOrders(allByThingId);
+    }
+
+    @Override
     public List<Order> getClientOrderHistory(Client client) {
         return orderMapper.orderEntitiesToOrders(orderEntityRepository.findAllByClientId(client.getId()));
     }
@@ -70,6 +76,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void delete(long id) {
         orderEntityRepository.deleteById(id);
+    }
+
+    @Override
+    public void delete(List<Order> list) {
+        List<OrderEntity> orderEntities = orderMapper.ordersToOrderEntities(list);
+        orderEntityRepository.deleteAll(orderEntities);
     }
 
     @Override

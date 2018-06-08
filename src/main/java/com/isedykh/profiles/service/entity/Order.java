@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDate;
 
 @Data
-@EqualsAndHashCode(exclude = {"id"})
+//@EqualsAndHashCode(exclude = {"id"})
 public class Order implements Identifiable {
 
     private Long id;

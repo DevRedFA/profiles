@@ -2,6 +2,7 @@ package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.ClientService;
+import com.isedykh.profiles.service.entity.Identifiable;
 import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.OrderService;
 import com.vaadin.navigator.View;
@@ -15,6 +16,8 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.isedykh.profiles.common.Utils.PAGE_SIZE;
@@ -74,6 +77,15 @@ public class OrdersView extends VerticalLayout implements View {
         buttonNew.addClickListener(clickEvent -> Utils.getNewClickListenerSupplier(this::getUI, OrderView.VIEW_NAME));
 
         buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(orderGrid, this::getUI, OrderView.VIEW_NAME));
+
+        buttonDelete.addClickListener(clickEvent -> {
+            Set selectedItems = orderGrid.getSelectedItems();
+            if (selectedItems.size() == 1) {
+                Identifiable identifiable = Identifiable.class.cast(selectedItems.toArray()[0]);
+                orderService.delete(identifiable.getId());
+                getUI().getPage().reload();
+            }
+        });
 
         addComponent(buttons);
     }
