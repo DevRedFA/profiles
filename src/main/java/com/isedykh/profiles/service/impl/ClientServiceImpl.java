@@ -55,7 +55,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> findClientByName(String name) {
-        List<ClientEntity> allByName = clientEntityRepository.findAllByNameContaining(name);
+        List<ClientEntity> allByName = clientEntityRepository.findAllByNameContainingIgnoreCase(name);
         return clientMapper.clientEntitiesToClients(allByName);
     }
 

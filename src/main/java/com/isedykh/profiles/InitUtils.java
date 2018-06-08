@@ -80,7 +80,7 @@ public class InitUtils {
         for (int i = 1; i < 26; i++) {
 
             listThing.add(new ThingEntity(null, "Thing " + i,
-                    i * 100, LocalDate.now(), null, "c:/pathToPhoto_" + i,
+                    i * 100, LocalDate.now(), null, null,
                     thingTypes.get(ThreadLocalRandom.current().nextInt(thingTypes.size())),
                     free, Collections.emptyList(), i, "comments " + i));
         }

@@ -40,7 +40,7 @@ public class OrderView extends VerticalLayout implements View {
 
     private Order order;
 
-    private TextField idField = new TextField("Id");
+    private Label idField = new Label("Id:");
 
     private ComboBox<OrderStatus> status = new ComboBox<>("Status");
 
@@ -62,11 +62,15 @@ public class OrderView extends VerticalLayout implements View {
 
     private VerticalLayout grids = new VerticalLayout();
 
-    private Grid<Thing> thingsGrid = new Grid<>();
+//    private Grid<Thing> thingsGrid = new Grid<>();
 
     private Grid<Client> clientGrid = new Grid<>();
 
     private HorizontalLayout horizontalLayout = new HorizontalLayout();
+
+    private HorizontalLayout datesLayout = new HorizontalLayout();
+
+    private HorizontalLayout searchClientPanel = new HorizontalLayout();
 
     private final HorizontalLayout statusDetails = new HorizontalLayout();
 
@@ -74,20 +78,22 @@ public class OrderView extends VerticalLayout implements View {
 
     private Button addOrderStatus = new Button("Add order status");
 
+    private TextField nameField = new TextField("Name");
+
+    private Button buttonSearch = new Button("Search");
+
+    private Button addNewClient = new Button("New client");
+
     private Client client;
 
     @PostConstruct
     public void init() {
 
-        HorizontalLayout searchClientPanel = new HorizontalLayout();
-
-        TextField nameField = new TextField("Name");
-
-        Button buttonSearch = new Button("Search");
         searchClientPanel.addComponent(nameField);
         searchClientPanel.addComponent(buttonSearch);
         searchClientPanel.setComponentAlignment(buttonSearch, Alignment.BOTTOM_LEFT);
-
+        searchClientPanel.addComponent(addNewClient);
+        searchClientPanel.setComponentAlignment(addNewClient, Alignment.BOTTOM_LEFT);
 
         begin.setDateFormat(Utils.DATE_FORMAT);
         end.setDateFormat(Utils.DATE_FORMAT);
@@ -99,37 +105,46 @@ public class OrderView extends VerticalLayout implements View {
         statusDetails.addComponent(addOrderStatus);
         statusDetails.setComponentAlignment(addOrderStatus, Alignment.BOTTOM_CENTER);
 
-        verticalLayout.addComponent(begin);
-        verticalLayout.addComponent(end);
+        verticalLayout.addComponent(datesLayout);
+        datesLayout.addComponent(begin);
+        datesLayout.addComponent(end);
         verticalLayout.addComponent(clientFiled);
         verticalLayout.addComponent(thingField);
         verticalLayout.addComponent(deposit);
         verticalLayout.addComponent(price);
+        verticalLayout.addComponent(comments);
         verticalLayout.addComponent(save);
+        comments.setWidth("100%");
 
 
-        grids.addComponent(thingsGrid);
-        thingsGrid.setItems(thingService.findAll());
-        thingsGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
-        thingsGrid.addColumn(Thing::getName).setCaption("Name");
-        thingsGrid.addColumn(Thing::getType).setCaption("Type");
-        thingsGrid.addColumn(Thing::getDeposit).setCaption("Deposit");
-        thingsGrid.addColumn(Thing::getStatus).setCaption("Status");
-        thingsGrid.setHeightByRows(6);
-
-        thingsGrid.addItemClickListener(clickListener -> {
-            if (clickListener.getMouseEventDetails().isDoubleClick()) {
-                Thing thing = clickListener.getItem();
-                order.setThing(thing);
-                thingField.setValue(thing.getName());
-                price.setItems(thing.getPrices());
-                price.setSelectedItem(thing.getPrices().get(0));
-                deposit.setValue(String.valueOf(thing.getDeposit()));
-            }
+        addNewClient.addClickListener(event -> {
+            ClientTemplate sub = new ClientTemplate(clientService);
+            UI.getCurrent().addWindow(sub);
         });
+
+//        grids.addComponent(thingsGrid);
+//        thingsGrid.setItems(thingService.findAll());
+//        thingsGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
+//        thingsGrid.addColumn(Thing::getName).setCaption("Name");
+//        thingsGrid.addColumn(Thing::getType).setCaption("Type");
+//        thingsGrid.addColumn(Thing::getDeposit).setCaption("Deposit");
+//        thingsGrid.addColumn(Thing::getStatus).setCaption("Status");
+//        thingsGrid.setHeightByRows(6);
+
+//        thingsGrid.addItemClickListener(clickListener -> {
+//            if (clickListener.getMouseEventDetails().isDoubleClick()) {
+//                Thing thing = clickListener.getItem();
+//                order.setThing(thing);
+//                thingField.setValue(thing.getName());
+//                price.setItems(thing.getPrices());
+//                price.setSelectedItem(thing.getPrices().get(0));
+//                deposit.setValue(String.valueOf(thing.getDeposit()));
+//            }
+//        });
 
         grids.addComponent(searchClientPanel);
         grids.addComponent(clientGrid);
+        clientGrid.setWidth("100%");
 
         clientGrid.setItems(clientService.findAll());
         clientGrid.addColumn(Client::getName).setCaption("Name");
@@ -138,7 +153,7 @@ public class OrderView extends VerticalLayout implements View {
         clientGrid.addColumn(Client::getEmail).setCaption("Email");
         clientGrid.addColumn(Client::getVkLink).setCaption("Contact link");
         clientGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
-        clientGrid.setHeightByRows(6);
+        clientGrid.setHeightByRows(12);
 
         clientGrid.addItemClickListener(clickListener -> {
             if (clickListener.getMouseEventDetails().isDoubleClick()) {
@@ -165,16 +180,19 @@ public class OrderView extends VerticalLayout implements View {
             UI.getCurrent().addWindow(sub);
         });
 
-        grids.setExpandRatio(clientGrid, 1f);
-        grids.setExpandRatio(thingsGrid, 1f);
+//        grids.setExpandRatio(clientGrid, 1f);
+//        grids.setExpandRatio(thingsGrid, 1f);
+        grids.setWidth("100%");
 
         horizontalLayout.addComponent(verticalLayout);
-        horizontalLayout.addComponent(comments);
+//        horizontalLayout.addComponent(comments);
         horizontalLayout.addComponent(grids);
-        horizontalLayout.setExpandRatio(grids, 1f);
+        horizontalLayout.setExpandRatio(verticalLayout, 1f);
+        horizontalLayout.setExpandRatio(grids, 3f);
 
-        addComponent(new Label("Detail order view"));
+//        addComponent(new Label("Detail order view"));
         addComponent(horizontalLayout);
+        horizontalLayout.setWidth("100%");
         setExpandRatio(horizontalLayout, 1f);
     }
 
@@ -209,9 +227,8 @@ public class OrderView extends VerticalLayout implements View {
             }
         }
 
-        List<OrderStatus> allOrderStatuses = orderService.getAllOrderStatuses();
 
-        Utils.setFieldIfNotNull(order::getId, idField::setValue, String::valueOf);
+        Utils.setFieldIfNotNull(order::getId, idField::setValue, s -> "ID: " + s);
         Utils.setFieldIfNotNull(order::getBegin, begin::setValue, s -> s);
         Utils.setFieldIfNotNull(order::getStop, end::setValue, s -> s);
         Utils.setFieldIfNotNull(order::getStatus, status::setSelectedItem, s -> s);
@@ -235,7 +252,7 @@ public class OrderView extends VerticalLayout implements View {
             order.setPrice(price.getSelectedItem().isPresent() ? price.getSelectedItem().get() : order.getPrice());
             order.setComments(comments.getValue());
             orderService.save(order);
-            Notification.show("Thing saved");
+            Notification.show("Order saved");
             getUI().getNavigator().navigateTo(OrdersView.VIEW_NAME);
         });
     }

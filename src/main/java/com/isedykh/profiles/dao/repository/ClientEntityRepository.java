@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ClientEntityRepository extends JpaRepository<ClientEntity, Long> {
 
-    List<ClientEntity> findAllByNameContaining(String name);
+    List<ClientEntity> findAllByNameContainingIgnoreCase(String name);
 
     List<ClientEntity> findAllByPhoneOrPhoneSecond(long phone, long phoneSecond);
 }

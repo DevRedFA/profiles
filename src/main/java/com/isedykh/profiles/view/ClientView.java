@@ -66,12 +66,20 @@ public class ClientView extends VerticalLayout implements View {
         verticalLayout.addComponent(childrenComments);
         verticalLayout.addComponent(save);
 
+        name.setWidth("100%");
+        phone.setWidth("100%");
+        phoneSecond.setWidth("100%");
+        email.setWidth("100%");
+        vkLink.setWidth("100%");
+        address.setWidth("100%");
+        childrenNumber.setWidth("100%");
+        childrenComments.setWidth("100%");
+        verticalLayout.setWidth("100%");
         horizontalLayout.addComponent(verticalLayout);
         horizontalLayout.addComponent(ordersGrid);
         horizontalLayout.setExpandRatio(verticalLayout, 1f);
         horizontalLayout.setExpandRatio(ordersGrid, 3f);
-
-        addComponent(new Label("Detail client view"));
+        horizontalLayout.setWidth("100%");
         addComponent(horizontalLayout);
 
         ordersGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
@@ -179,7 +187,7 @@ public class ClientView extends VerticalLayout implements View {
             client.setChildrenComments(childrenComments.getValue());
             if (containsContact) {
                 clientService.save(client);
-                getUI().getNavigator().navigateTo(ThingsView.VIEW_NAME + "/message: Client saved");
+                getUI().getNavigator().navigateTo(ClientsView.VIEW_NAME + "/message: Client saved");
             } else {
                 email.setComponentError(new UserError("Add email"));
                 vkLink.setComponentError(new UserError("Add VK link"));

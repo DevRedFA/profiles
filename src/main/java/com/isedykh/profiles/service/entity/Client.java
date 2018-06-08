@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Data
 @ToString(of = "name")
-public class Client implements Identifiable {
+public class Client implements Identifiable, Nameable {
 
     private Long id;
 

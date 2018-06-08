@@ -70,19 +70,25 @@ public class ThingView extends VerticalLayout implements View {
 
     private final TextField deposit = new TextField("Deposit");
 
-    private final TextField comments = new TextField("Comments");
+    private final TextArea comments = new TextArea("Comments");
 
-    private final VerticalLayout details = new VerticalLayout();
+    private final VerticalLayout thingDetails = new VerticalLayout();
 
     private final VerticalLayout priceDetails = new VerticalLayout();
 
     private final HorizontalLayout fullDetails = new HorizontalLayout();
 
-    private final HorizontalLayout imageDetails = new HorizontalLayout();
+    private final VerticalLayout imageDetails = new VerticalLayout();
 
     private final HorizontalLayout typeDetails = new HorizontalLayout();
 
     private final HorizontalLayout statusDetails = new HorizontalLayout();
+
+    private final HorizontalLayout priceDepositDetails = new HorizontalLayout();
+
+    private final HorizontalLayout nameDateDetails = new HorizontalLayout();
+
+    private final HorizontalLayout buttonsLayout = new HorizontalLayout();
 
     private final Grid<Price> pricesGrind = new Grid<>();
 
@@ -120,32 +126,39 @@ public class ThingView extends VerticalLayout implements View {
 
         purchaseDate.setDateFormat(Utils.DATE_FORMAT);
 
-        details.addComponent(name);
+        thingDetails.addComponent(nameDateDetails);
+        nameDateDetails.addComponent(name);
+        nameDateDetails.addComponent(purchaseDate);
 
-        details.addComponent(typeDetails);
+        thingDetails.addComponent(typeDetails);
         typeDetails.addComponent(type);
         typeDetails.addComponent(addThingType);
         typeDetails.setComponentAlignment(addThingType, Alignment.BOTTOM_CENTER);
 
-        details.addComponent(statusDetails);
+        thingDetails.addComponent(statusDetails);
         statusDetails.addComponent(status);
         statusDetails.addComponent(addThingStatus);
         statusDetails.setComponentAlignment(addThingStatus, Alignment.BOTTOM_CENTER);
 
-        details.addComponent(purchasePrice);
-        details.addComponent(deposit);
-        details.addComponent(purchaseDate);
-        details.addComponent(comments);
-        details.addComponent(saveThing);
-        details.addComponent(buttonAddOrder);
-
+        thingDetails.addComponent(priceDepositDetails);
+        priceDepositDetails.addComponent(purchasePrice);
+        priceDepositDetails.addComponent(deposit);
+        thingDetails.addComponent(comments);
+        thingDetails.addComponent(buttonsLayout);
+        buttonsLayout.addComponent(saveThing);
+        buttonsLayout.addComponent(buttonAddOrder);
+        buttonsLayout.setWidth("100%");
+        thingDetails.setWidth("100%");
+//        thingDetails.setHeight("100%");
+        comments.setWidth("100%");
+        comments.setHeight(10, Unit.EX);
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
         pricesGrind.getEditor().setEnabled(true);
-        fullDetails.addComponent(details);
+        fullDetails.addComponent(thingDetails);
         fullDetails.addComponent(priceDetails);
         priceDetails.addComponent(pricesGrind);
         priceDetails.addComponent(addTerm);
-
+        fullDetails.setWidth("100%");
         image.setVisible(false);
 
 
@@ -186,15 +199,19 @@ public class ThingView extends VerticalLayout implements View {
 
         imageDetails.addComponent(image);
         imageDetails.addComponent(upload);
-
+        fullDetails.addComponent(imageDetails);
+        fullDetails.setExpandRatio(thingDetails, 2f);
+        fullDetails.setExpandRatio(priceDetails, 2f);
+        fullDetails.setExpandRatio(imageDetails, 3f);
         tabSheet.addTab(fullDetails, "Details");
         tabSheet.addTab(calendar, "Dates");
-        tabSheet.addTab(imageDetails, "Image");
+//        tabSheet.addTab(imageDetails, "Image");
 
 
         addComponent(tabSheet);
 
         buttonAddOrder.addClickListener(event -> {
+            saveThing();
             String s = OrderView.VIEW_NAME + "/new/thing=" + thing.getId();
             getUI().getNavigator().navigateTo(s);
         });
@@ -228,29 +245,33 @@ public class ThingView extends VerticalLayout implements View {
         });
 
         saveThing.addClickListener(event -> {
-            boolean readyToSave = false;
-            thing.setName(name.getValue());
-            thing.setDeposit(Integer.parseInt(deposit.getValue()));
-            thing.setPurchaseDate(purchaseDate.getValue());
-            Optional<ThingType> selectedItem = type.getSelectedItem();
-            if (selectedItem.isPresent()) {
-                thing.setType(selectedItem.get());
-            } else {
-                Notification.show("Choose thing type");
-            }
-            status.getSelectedItem().ifPresent(thingStatus -> thing.setStatus(thingStatus));
-            thing.setComments(comments.getValue());
-            if (!StringUtils.isEmpty(name.getValue())) {
-                readyToSave = true;
-            }
-            if (readyToSave) {
-                thing = thingService.save(thing);
-                Notification.show("Thing saved");
-            } else {
-                Notification.show("Set all required fields: name, thing type");
-            }
+            saveThing();
         });
 
+    }
+
+    private void saveThing() {
+        boolean readyToSave = false;
+        thing.setName(name.getValue());
+        thing.setDeposit(Integer.parseInt(deposit.getValue()));
+        thing.setPurchaseDate(purchaseDate.getValue());
+        Optional<ThingType> selectedItem = type.getSelectedItem();
+        if (selectedItem.isPresent()) {
+            thing.setType(selectedItem.get());
+        } else {
+            Notification.show("Choose thing type");
+        }
+        status.getSelectedItem().ifPresent(thingStatus -> thing.setStatus(thingStatus));
+        thing.setComments(comments.getValue());
+        if (!StringUtils.isEmpty(name.getValue())) {
+            readyToSave = true;
+        }
+        if (readyToSave) {
+            thing = thingService.save(thing);
+            Notification.show("Thing saved");
+        } else {
+            Notification.show("Set all required fields: name, thing type");
+        }
     }
 
     @Override

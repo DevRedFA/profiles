@@ -53,11 +53,11 @@ public class MyMainUI extends UI implements ViewDisplay {
         navigationBar.addComponent(createNavigationButton("Things", ThingsView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("Clients", ClientsView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("Orders", OrdersView.VIEW_NAME));
+//        navigationBar.addComponent(new Label("Procaton storage client"));
 //		navigationBar.addComponent(new Button("Logout", e -> vaadinSecurity.logout()));
 
         final VerticalLayout root = new VerticalLayout();
         root.setSizeFull();
-        root.addComponents(new Label("Procaton storage client"));
         root.addComponent(navigationBar);
         root.addComponent(springViewDisplay);
         root.setExpandRatio(springViewDisplay, 1.0f);
