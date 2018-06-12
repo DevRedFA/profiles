@@ -42,7 +42,6 @@ import java.util.stream.Collectors;
 public class ThingView extends VerticalLayout implements View {
 
     static final String VIEW_NAME = "thing";
-    public static final String START_POINT = "./";
 
     private final ThingService thingService;
 
@@ -171,7 +170,7 @@ public class ThingView extends VerticalLayout implements View {
                                               String mimeType) {
                 FileOutputStream fos;
                 try {
-                    file = new File(START_POINT + thing.getName().replace(" ", "_") + "_" + thing.getPurchaseDate().toString());
+                    file = new File(Utils.START_POINT + thing.getName().replace(" ", "_") + "_" + thing.getPurchaseDate().toString());
                     fos = new FileOutputStream(file);
                 } catch (final java.io.FileNotFoundException e) {
                     new Notification("Could not open file<br/>",

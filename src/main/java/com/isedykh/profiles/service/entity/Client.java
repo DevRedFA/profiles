@@ -4,8 +4,9 @@ package com.isedykh.profiles.service.entity;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
-@ToString(of = "name")
 public class Client implements Identifiable, Nameable {
 
     private Long id;
@@ -15,6 +16,10 @@ public class Client implements Identifiable, Nameable {
     private Long phone;
 
     private Long phoneSecond;
+
+    private List<byte[]> photos;
+
+    private List<String> pathsToPhoto;
 
     private String address;
 

@@ -106,7 +106,7 @@ public class InitUtils {
     public List<ClientEntity> getClientEntities() {
         List<ClientEntity> listClient = new ArrayList<>();
         for (int i = 1; i < 26; i++) {
-            listClient.add(new ClientEntity(null, "name " + i, (long) i, (long) i, "address " + i,
+            listClient.add(new ClientEntity(null, "name " + i, (long) i, null, Collections.emptyList(), (long) i, "address " + i,
                     i, "children comments " + i, "mail" + i + "@mail.com", "contack link " + i));
         }
         return clientEntityRepository.saveAll(listClient);

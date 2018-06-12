@@ -8,6 +8,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -23,19 +24,21 @@ import static com.isedykh.profiles.common.Utils.getDeleteClickListener;
 import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 
 //@Secured({"ROLE_ADMIN"})
-@AllArgsConstructor
+@RequiredArgsConstructor
 @SpringView(name = ClientsView.VIEW_NAME)
 public class ClientsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "clients";
 
-    private ClientService clientService;
+    private final ClientService clientService;
+
+    private Grid<Client> clientGrid = new Grid<>();
 
     @PostConstruct
     public void init() {
 
         AtomicReference<Page<Client>> clientPage = new AtomicReference<>(clientService.findAll(PageRequest.of(0, PAGE_SIZE)));
-        Grid<Client> clientGrid = new Grid<>();
+
         clientGrid.setSizeFull();
         clientGrid.setItems(clientPage.get().getContent());
         clientGrid.addColumn(Client::getName).setCaption("Name");

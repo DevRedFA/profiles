@@ -18,6 +18,8 @@ public class Utils {
 
     public static final int PAGE_SIZE = 15;
 
+    public static final String START_POINT = "./";
+
     private Utils() {
     }
 

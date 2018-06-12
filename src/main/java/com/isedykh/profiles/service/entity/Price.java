@@ -30,7 +30,9 @@ public class Price implements Identifiable {
 
     public Price(Term term, int purchasePrice) {
         this.term = term;
-        this.priceValue = purchasePrice * term.getCoefficient() / 100;
+        int actualPrice = purchasePrice * term.getCoefficient() / 100;
+
+        this.priceValue = (actualPrice / 5000) * 5000;
     }
 
     @Override
