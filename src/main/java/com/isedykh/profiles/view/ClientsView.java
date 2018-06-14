@@ -1,17 +1,17 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.service.entity.Client;
 import com.isedykh.profiles.service.ClientService;
+import com.isedykh.profiles.service.entity.Client;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
+import org.springframework.security.access.annotation.Secured;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -19,11 +19,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-import static com.isedykh.profiles.common.Utils.PAGE_SIZE;
-import static com.isedykh.profiles.common.Utils.getDeleteClickListener;
-import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
+import static com.isedykh.profiles.common.Utils.*;
 
-//@Secured({"ROLE_ADMIN"})
+@Secured({"ROLE_ADMIN"})
 @RequiredArgsConstructor
 @SpringView(name = ClientsView.VIEW_NAME)
 public class ClientsView extends VerticalLayout implements View {
@@ -97,17 +95,12 @@ public class ClientsView extends VerticalLayout implements View {
         });
 
         List<Client> content = clientPage.get().getContent();
-        nameFilter.setItems(content.stream().
-
-                map(Client::getName).
-
-                collect(Collectors.toList()));
-
+        nameFilter.setItems(content.stream()
+                .map(Client::getName)
+                .collect(Collectors.toList()));
         clientGrid.addItemClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, ClientView.VIEW_NAME));
 
-        buttonSearch.addClickListener(event ->
-
-        {
+        buttonSearch.addClickListener(event -> {
             String value = nameField.getValue();
             List<Client> clientByName = new ArrayList<>();
             if (!value.isEmpty()) {
@@ -132,7 +125,7 @@ public class ClientsView extends VerticalLayout implements View {
 
         buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clientGrid, this::getUI, ClientView.VIEW_NAME));
 
-        buttonDelete.addClickListener(getDeleteClickListener(clientGrid,this::getUI, clientService));
+        buttonDelete.addClickListener(getDeleteClickListener(clientGrid, this::getUI, clientService));
 
         addComponent(searchPanel);
 
@@ -144,9 +137,7 @@ public class ClientsView extends VerticalLayout implements View {
 
     }
 
-
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
     }
 }

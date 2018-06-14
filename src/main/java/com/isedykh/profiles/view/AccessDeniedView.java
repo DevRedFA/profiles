@@ -11,7 +11,6 @@ import com.vaadin.ui.themes.ValoTheme;
 
 import javax.annotation.PostConstruct;
 
-@SpringComponent
 @UIScope
 @SpringView
 public class AccessDeniedView extends VerticalLayout implements View {
@@ -22,7 +21,7 @@ public class AccessDeniedView extends VerticalLayout implements View {
 
     @PostConstruct
     public void init() {
-        Label label = new Label("this is AccessDeniedView.");
+        Label label = new Label("Access Denied.");
         label.addStyleName(ValoTheme.LABEL_FAILURE);
         addComponent(label);
     }

@@ -2,13 +2,12 @@ package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.OrderService;
-import com.isedykh.profiles.service.entity.Identifiable;
 import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.ThingTypeService;
+import com.isedykh.profiles.service.entity.Identifiable;
 import com.isedykh.profiles.service.entity.Order;
-import com.isedykh.profiles.service.entity.Term;
 import com.isedykh.profiles.service.entity.Thing;
 import com.isedykh.profiles.service.entity.ThingType;
-import com.isedykh.profiles.service.ThingTypeService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
@@ -80,7 +79,6 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.setHeightByRows(PAGE_SIZE);
         addComponent(thingsGrid);
         setExpandRatio(thingsGrid, 1f);
-
 
         buttonSearch.addClickListener(clickEvent -> {
             List<Thing> allThingsByTypeFreeBetween = thingService.getAllThingsByTypeFreeBetween(type.getSelectedItem().get(), begin.getValue(), stop.getValue());

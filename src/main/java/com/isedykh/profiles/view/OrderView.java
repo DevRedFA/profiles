@@ -1,28 +1,21 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.dao.entity.OrderStatusEntity;
-import com.isedykh.profiles.service.*;
-import com.isedykh.profiles.service.entity.Client;
-import com.isedykh.profiles.service.entity.Order;
-import com.isedykh.profiles.service.entity.OrderStatus;
-import com.isedykh.profiles.service.entity.Price;
-import com.isedykh.profiles.service.entity.Thing;
+import com.isedykh.profiles.service.ClientService;
+import com.isedykh.profiles.service.OrderService;
+import com.isedykh.profiles.service.OrderStatusService;
+import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.entity.*;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.isedykh.profiles.common.Utils.PAGE_SIZE;
 
 @RequiredArgsConstructor
 @SpringView(name = OrderView.VIEW_NAME)
@@ -61,8 +54,6 @@ public class OrderView extends VerticalLayout implements View {
     private VerticalLayout verticalLayout = new VerticalLayout();
 
     private VerticalLayout grids = new VerticalLayout();
-
-//    private Grid<Thing> thingsGrid = new Grid<>();
 
     private Grid<Client> clientGrid = new Grid<>();
 
@@ -122,26 +113,6 @@ public class OrderView extends VerticalLayout implements View {
             UI.getCurrent().addWindow(sub);
         });
 
-//        grids.addComponent(thingsGrid);
-//        thingsGrid.setItems(thingService.findAll());
-//        thingsGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
-//        thingsGrid.addColumn(Thing::getName).setCaption("Name");
-//        thingsGrid.addColumn(Thing::getType).setCaption("Type");
-//        thingsGrid.addColumn(Thing::getDeposit).setCaption("Deposit");
-//        thingsGrid.addColumn(Thing::getStatus).setCaption("Status");
-//        thingsGrid.setHeightByRows(6);
-
-//        thingsGrid.addItemClickListener(clickListener -> {
-//            if (clickListener.getMouseEventDetails().isDoubleClick()) {
-//                Thing thing = clickListener.getItem();
-//                order.setThing(thing);
-//                thingField.setValue(thing.getName());
-//                price.setItems(thing.getPrices());
-//                price.setSelectedItem(thing.getPrices().get(0));
-//                deposit.setValue(String.valueOf(thing.getDeposit()));
-//            }
-//        });
-
         grids.addComponent(searchClientPanel);
         grids.addComponent(clientGrid);
         clientGrid.setWidth("100%");
@@ -180,17 +151,13 @@ public class OrderView extends VerticalLayout implements View {
             UI.getCurrent().addWindow(sub);
         });
 
-//        grids.setExpandRatio(clientGrid, 1f);
-//        grids.setExpandRatio(thingsGrid, 1f);
         grids.setWidth("100%");
 
         horizontalLayout.addComponent(verticalLayout);
-//        horizontalLayout.addComponent(comments);
         horizontalLayout.addComponent(grids);
         horizontalLayout.setExpandRatio(verticalLayout, 1f);
         horizontalLayout.setExpandRatio(grids, 3f);
 
-//        addComponent(new Label("Detail order view"));
         addComponent(horizontalLayout);
         horizontalLayout.setWidth("100%");
         setExpandRatio(horizontalLayout, 1f);

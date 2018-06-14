@@ -67,7 +67,7 @@ dependencies {
     compile 'com.vaadin:vaadin-spring-boot-starter'
     compile('org.springframework.boot:spring-boot-starter-web')
     compile 'org.vaadin.spring.extensions:vaadin-spring-ext-boot'
-//	compile 'org.vaadin.spring.extensions:vaadin-spring-ext-security'
+	compile 'org.vaadin.spring.extensions:vaadin-spring-ext-security'
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
@@ -79,7 +79,7 @@ dependencyManagement {
     dependencies {
         dependency("com.vaadin:vaadin-spring-boot-starter:${vaadinSpringVersion}")
         dependency("org.vaadin.spring.extensions:vaadin-spring-ext-boot:${vaadin4SpringVersion}")
-//		dependency("org.vaadin.spring.extensions:vaadin-spring-ext-security:${vaadin4SpringVersion}")
+		dependency("org.vaadin.spring.extensions:vaadin-spring-ext-security:${vaadin4SpringVersion}")
 //		dependency("org.hibernate:hibernate-validator:4.3.1.Final")
 //		dependency("javax.validation:validation-api:1.0.0.GA")
     }

@@ -14,11 +14,11 @@ logging:
 ###
 spring:
   profiles:
-    active: Postgresql
+    active: Postgresql, userData, testData
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
     properties:
       hibernate:
         temp:

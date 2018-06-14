@@ -16,7 +16,13 @@ import com.isedykh.profiles.dao.repository.TermEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingStatusEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingTypeEntityRepository;
+import com.isedykh.profiles.security.Role;
+import com.isedykh.profiles.security.User;
+import com.isedykh.profiles.security.UserRepository;
+import com.isedykh.profiles.security.type.RoleType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -47,6 +53,28 @@ public class InitUtils {
     private final OrderStatusEntityRepository orderStatusEntityRepository;
 
     private final TermEntityRepository termEntityRepository;
+
+    private final UserRepository userRepository;
+
+    private final  PasswordEncoder passwordEncoder;
+
+    @Transactional
+    public void createUser() {
+        Arrays.stream(RoleType.values()).forEach(x -> {
+
+            User user = new User();
+            user.setUsername("procaton");
+            user.setPassword(passwordEncoder.encode("16051991"));
+
+            Role role = new Role();
+            role.setType(x);
+            role.setUser(user);
+
+            user.setRoles(Collections.singletonList(role));
+            userRepository.save(user);
+        });
+    }
+
 
     @Transactional
     public List<TermEntity> createTerms() {

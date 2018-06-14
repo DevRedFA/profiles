@@ -2,7 +2,6 @@ package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.service.CrudService;
 import com.isedykh.profiles.service.entity.Term;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
@@ -12,7 +11,6 @@ public class TermTemplate extends Window {
 
     private TextField nameField = new TextField("Enter new name");
     private TextField coefficientField = new TextField("Enter coefficient");
-    private VerticalLayout layout = new VerticalLayout();
 
     public TermTemplate(CrudService<Term> crudService) {
         super("Name:");
@@ -26,10 +24,10 @@ public class TermTemplate extends Window {
             getUI().getPage().reload();
             close();
         });
+        VerticalLayout layout = new VerticalLayout();
         layout.addComponentsAndExpand(nameField, coefficientField,
                 saveButton);
         layout.setHeight(14f,Unit.EM);
-//        layout.setComponentAlignment(saveButton, Alignment.BOTTOM_RIGHT);
         setClosable(true);
 
         setResizable(true);

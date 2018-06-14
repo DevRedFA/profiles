@@ -11,7 +11,6 @@ import com.vaadin.ui.themes.ValoTheme;
 
 import javax.annotation.PostConstruct;
 
-@SpringComponent
 @UIScope
 @SpringView
 public class ErrorView extends VerticalLayout implements View {

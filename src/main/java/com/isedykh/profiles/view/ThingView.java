@@ -148,7 +148,6 @@ public class ThingView extends VerticalLayout implements View {
         buttonsLayout.addComponent(buttonAddOrder);
         buttonsLayout.setWidth("100%");
         thingDetails.setWidth("100%");
-//        thingDetails.setHeight("100%");
         comments.setWidth("100%");
         comments.setHeight(10, Unit.EX);
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
@@ -170,7 +169,8 @@ public class ThingView extends VerticalLayout implements View {
                                               String mimeType) {
                 FileOutputStream fos;
                 try {
-                    file = new File(Utils.START_POINT + thing.getName().replace(" ", "_") + "_" + thing.getPurchaseDate().toString());
+                    file = new File(Utils.START_POINT + thing.getName().replace(" ", "_")
+                            + "_" + thing.getPurchaseDate().toString());
                     fos = new FileOutputStream(file);
                 } catch (final java.io.FileNotFoundException e) {
                     new Notification("Could not open file<br/>",
@@ -204,7 +204,6 @@ public class ThingView extends VerticalLayout implements View {
         fullDetails.setExpandRatio(imageDetails, 3f);
         tabSheet.addTab(fullDetails, "Details");
         tabSheet.addTab(calendar, "Dates");
-//        tabSheet.addTab(imageDetails, "Image");
 
 
         addComponent(tabSheet);
