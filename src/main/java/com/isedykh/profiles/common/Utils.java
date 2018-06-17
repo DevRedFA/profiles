@@ -2,7 +2,10 @@ package com.isedykh.profiles.common;
 
 import com.isedykh.profiles.service.CrudService;
 import com.isedykh.profiles.service.entity.Identifiable;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.UI;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -77,10 +80,10 @@ public class Utils {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> Button.ClickListener getDeleteClickListener(Grid<T> grid,Supplier<UI> uiSupplier,
+    public static <T> Button.ClickListener getDeleteClickListener(Grid<T> grid, Supplier<UI> uiSupplier,
                                                                   CrudService<T> crudService) {
         return clickEvent -> {
-            Set selectedItems = grid.getSelectedItems();
+            Set<T> selectedItems = grid.getSelectedItems();
             if (selectedItems.size() == 1) {
                 crudService.delete((T) (selectedItems.toArray()[0]));
             }

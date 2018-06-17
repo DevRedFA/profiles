@@ -8,6 +8,7 @@ import com.isedykh.profiles.dao.entity.TermEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.dao.entity.ThingStatusEntity;
 import com.isedykh.profiles.dao.entity.ThingTypeEntity;
+import com.isedykh.profiles.dao.entity.UserEntity;
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderStatusEntityRepository;
@@ -16,12 +17,10 @@ import com.isedykh.profiles.dao.repository.TermEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingStatusEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingTypeEntityRepository;
-import com.isedykh.profiles.security.Role;
-import com.isedykh.profiles.security.User;
-import com.isedykh.profiles.security.UserRepository;
+import com.isedykh.profiles.dao.entity.RoleEntity;
+import com.isedykh.profiles.dao.repository.UserRepository;
 import com.isedykh.profiles.security.type.RoleType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -62,16 +61,16 @@ public class InitUtils {
     public void createUser() {
         Arrays.stream(RoleType.values()).forEach(x -> {
 
-            User user = new User();
-            user.setUsername("procaton");
-            user.setPassword(passwordEncoder.encode("16051991"));
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUsername("procaton");
+            userEntity.setPassword(passwordEncoder.encode("16051991"));
 
-            Role role = new Role();
-            role.setType(x);
-            role.setUser(user);
+            RoleEntity roleEntity = new RoleEntity();
+            roleEntity.setType(x);
+            roleEntity.setUser(userEntity);
 
-            user.setRoles(Collections.singletonList(role));
-            userRepository.save(user);
+            userEntity.setRoles(Collections.singletonList(roleEntity));
+            userRepository.save(userEntity);
         });
     }
 

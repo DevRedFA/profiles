@@ -1,5 +1,6 @@
 package com.isedykh.profiles.security;
 
+import com.isedykh.profiles.dao.entity.UserEntity;
 import com.isedykh.profiles.security.type.RoleType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,9 +14,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by daesungkim on 2017. 5. 11..
- */
 @SuppressWarnings("unchecked")
 public final class SecurityContextUtils implements Serializable {
 
@@ -42,13 +40,13 @@ public final class SecurityContextUtils implements Serializable {
         return hasRole;
     }
 
-    public static User getUser() {
+    public static UserEntity getUser() {
         Authentication authentication = authentication();
         if(authentication==null) {
-            return new User();
+            return new UserEntity();
         }
-        User user = (User)authentication.getPrincipal();
-        return user;
+        UserEntity userEntity = (UserEntity)authentication.getPrincipal();
+        return userEntity;
     }
 
     public static List<RoleType> getRoleTypes() {

@@ -1,30 +1,33 @@
-package com.isedykh.profiles.security;
+package com.isedykh.profiles.dao.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by basakpie on 2017. 5. 11..
- */
+
 @Entity
 @Data
 @Table(name = "users", schema = "public")
-//@EntityListeners(value = AuditingEntityListener.class)
-public class User implements Serializable {
+public class UserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(Long id) {
+    public UserEntity(Long id) {
         this.id = id;
     }
 
@@ -37,15 +40,15 @@ public class User implements Serializable {
     private String password;
 
     @CreatedDate
-    @Type(type="java.sql.Timestamp")
+    @Type(type = "java.sql.Timestamp")
     @Column(updatable = false)
     private Date createdDate;
 
     @CreatedDate
-    @Type(type="java.sql.Timestamp")
+    @Type(type = "java.sql.Timestamp")
     @Column(updatable = false)
     private Date lastModifiedDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Role> roles;
+    private List<RoleEntity> roles;
 }

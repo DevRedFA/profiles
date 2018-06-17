@@ -2,9 +2,6 @@ package com.isedykh.profiles.security;
 
 import org.springframework.security.core.AuthenticationException;
 
-/**
- * Created by basakpie on 2017. 5. 11..
- */
 public class SecurityContextNotFoundException extends AuthenticationException {
 
     public SecurityContextNotFoundException(String msg, Throwable t) {
