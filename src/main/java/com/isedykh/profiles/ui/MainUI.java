@@ -27,7 +27,7 @@ public class MainUI extends UI implements ViewDisplay {
 
     private final SpringViewProvider springViewProvider;
 
-    private final VaadinSecurity vaadinSecurity;
+//    private final VaadinSecurity vaadinSecurity;
 
     private Panel springViewDisplay;
 
@@ -44,7 +44,7 @@ public class MainUI extends UI implements ViewDisplay {
         navigationBar.addComponent(createNavigationButton("Things", ThingsView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("Clients", ClientsView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("Orders", OrdersView.VIEW_NAME));
-        navigationBar.addComponent(new Button("Logout", e -> vaadinSecurity.logout()));
+//        navigationBar.addComponent(new Button("Logout", e -> vaadinSecurity.logout()));
         final VerticalLayout root = new VerticalLayout();
         root.setSizeFull();
         root.addComponent(navigationBar);

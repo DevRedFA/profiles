@@ -12,13 +12,14 @@ logging:
 ###
 #   Database Settings
 ###
+#profiles: securityOn, userData, testData
 spring:
   profiles:
-    active: Postgresql, userData, testData
+    active:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     properties:
       hibernate:
         temp:

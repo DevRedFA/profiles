@@ -1,4 +1,4 @@
-package com.isedykh.profiles;
+package com.isedykh.profiles.common;
 
 import com.isedykh.profiles.dao.entity.ClientEntity;
 import com.isedykh.profiles.dao.entity.OrderEntity;
@@ -52,28 +52,6 @@ public class InitUtils {
     private final OrderStatusEntityRepository orderStatusEntityRepository;
 
     private final TermEntityRepository termEntityRepository;
-
-    private final UserRepository userRepository;
-
-    private final  PasswordEncoder passwordEncoder;
-
-    @Transactional
-    public void createUser() {
-        Arrays.stream(RoleType.values()).forEach(x -> {
-
-            UserEntity userEntity = new UserEntity();
-            userEntity.setUsername("procaton");
-            userEntity.setPassword(passwordEncoder.encode("16051991"));
-
-            RoleEntity roleEntity = new RoleEntity();
-            roleEntity.setType(x);
-            roleEntity.setUser(userEntity);
-
-            userEntity.setRoles(Collections.singletonList(roleEntity));
-            userRepository.save(userEntity);
-        });
-    }
-
 
     @Transactional
     public List<TermEntity> createTerms() {

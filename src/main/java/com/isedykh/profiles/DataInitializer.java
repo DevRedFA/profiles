@@ -1,5 +1,6 @@
 package com.isedykh.profiles;
 
+import com.isedykh.profiles.common.InitUtils;
 import com.isedykh.profiles.dao.entity.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
@@ -44,7 +45,5 @@ public class DataInitializer implements ApplicationRunner {
         List<OrderEntity> orderEntities = initUtils.getOrderEntities(listThing, listClient);
 
         // TODO: 5/6/18 declarative validation in registration form
-        // TODO: 07.06.2018 removing items now doesnt work
-        // TODO: 07.06.2018 Autoset up for deposit?
     }
 }
