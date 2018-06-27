@@ -24,6 +24,7 @@ import static com.isedykh.profiles.common.Utils.*;
 @Secured({"ROLE_ADMIN"})
 @RequiredArgsConstructor
 @SpringView(name = ClientsView.VIEW_NAME)
+@SuppressWarnings({"squid:MaximumInheritanceDepth", "squid:S2160"})
 public class ClientsView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "clients";
@@ -139,5 +140,6 @@ public class ClientsView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
+        // do nothing
     }
 }

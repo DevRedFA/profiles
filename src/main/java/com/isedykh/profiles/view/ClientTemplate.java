@@ -7,12 +7,13 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-public class ClientTemplate extends Window {
+@SuppressWarnings({"squid:MaximumInheritanceDepth", "squid:S2160"})
+class ClientTemplate extends Window {
 
     private TextField nameField = new TextField("Enter new name");
     private TextField phoneField = new TextField("Enter phone");
 
-    public ClientTemplate(CrudService<Client> crudService) {
+    ClientTemplate(CrudService<Client> crudService) {
         super("New Client");
         center();
         Button saveButton = new Button("Save", event -> {

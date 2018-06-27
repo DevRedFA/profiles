@@ -4,6 +4,7 @@ import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.OrderService;
 import com.isedykh.profiles.service.TermService;
 import com.isedykh.profiles.service.ThingService;
+import com.isedykh.profiles.service.ThingStatusService;
 import com.isedykh.profiles.service.ThingTypeService;
 import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.entity.Price;
@@ -11,13 +12,25 @@ import com.isedykh.profiles.service.entity.Term;
 import com.isedykh.profiles.service.entity.Thing;
 import com.isedykh.profiles.service.entity.ThingStatus;
 import com.isedykh.profiles.service.entity.ThingType;
-import com.isedykh.profiles.service.ThingStatusService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Page;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.DateField;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Image;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.TextArea;
+import com.vaadin.ui.TextField;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.Upload;
+import com.vaadin.ui.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.vaadin.addon.calendar.Calendar;
@@ -30,9 +43,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -108,16 +119,6 @@ public class ThingView extends VerticalLayout implements View {
     private final Calendar<BasicItem> calendar = new Calendar<>("Calendar");
 
     private BasicItemProvider<BasicItem> itemProvider = new BasicItemProvider<BasicItem>() {
-        @Override
-        public void setItems(Collection<BasicItem> basicItems) {
-            super.setItems(basicItems);
-        }
-
-        @Override
-        public List<BasicItem> getItems(ZonedDateTime startDate, ZonedDateTime endDate) {
-            return super.getItems(startDate, endDate);
-        }
-
     };
 
     @PostConstruct
@@ -239,12 +240,11 @@ public class ThingView extends VerticalLayout implements View {
                 thing.setPrices(prices);
                 thing.setPurchasePrice(purchasePriceInCents);
             } catch (NumberFormatException ignored) {
+                // ignoring exception
             }
         });
 
-        saveThing.addClickListener(event -> {
-            saveThing();
-        });
+        saveThing.addClickListener(event -> saveThing());
 
     }
 

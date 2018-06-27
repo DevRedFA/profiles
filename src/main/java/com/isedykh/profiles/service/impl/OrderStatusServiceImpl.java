@@ -3,7 +3,6 @@ package com.isedykh.profiles.service.impl;
 import com.isedykh.profiles.dao.entity.OrderStatusEntity;
 import com.isedykh.profiles.dao.repository.OrderStatusEntityRepository;
 import com.isedykh.profiles.mapper.OrderMapper;
-import com.isedykh.profiles.mapper.ThingMapper;
 import com.isedykh.profiles.service.OrderStatusService;
 import com.isedykh.profiles.service.entity.OrderStatus;
 import lombok.RequiredArgsConstructor;
@@ -18,40 +17,40 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderStatusServiceImpl implements OrderStatusService {
 
-    private final OrderStatusEntityRepository OrderStatusEntityRepository;
+    private final OrderStatusEntityRepository orderStatusEntityRepository;
 
     private final OrderMapper orderMapper;
 
     @Override
     public List<OrderStatus> findAll() {
-        return orderMapper.orderStatusEntitiesToOrderStatuses(OrderStatusEntityRepository.findAll());
+        return orderMapper.orderStatusEntitiesToOrderStatuses(orderStatusEntityRepository.findAll());
     }
 
     @Override
     public Page<OrderStatus> findAll(Pageable pageable) {
-        Page<OrderStatusEntity> all = OrderStatusEntityRepository.findAll(pageable);
-        List<OrderStatus> OrderStatuses = orderMapper.orderStatusEntitiesToOrderStatuses(all.getContent());
-        return new PageImpl<>(OrderStatuses, all.getPageable(), all.getTotalElements());
+        Page<OrderStatusEntity> all = orderStatusEntityRepository.findAll(pageable);
+        List<OrderStatus> orderStatuses = orderMapper.orderStatusEntitiesToOrderStatuses(all.getContent());
+        return new PageImpl<>(orderStatuses, all.getPageable(), all.getTotalElements());
     }
 
     @Override
     public OrderStatus save(OrderStatus orderStatus) {
-        OrderStatusEntity save = OrderStatusEntityRepository.save(orderMapper.orderStatusToOrderStatusEntity(orderStatus));
+        OrderStatusEntity save = orderStatusEntityRepository.save(orderMapper.orderStatusToOrderStatusEntity(orderStatus));
         return orderMapper.orderStatusEntityToOrderStatus(save);
     }
 
     @Override
     public void delete(OrderStatus orderStatus) {
-        OrderStatusEntityRepository.delete(orderMapper.orderStatusToOrderStatusEntity(orderStatus));
+        orderStatusEntityRepository.delete(orderMapper.orderStatusToOrderStatusEntity(orderStatus));
     }
 
     @Override
     public void delete(long id) {
-        OrderStatusEntityRepository.deleteById(id);
+        orderStatusEntityRepository.deleteById(id);
     }
 
     @Override
     public OrderStatus findById(long id) {
-        return orderMapper.orderStatusEntityToOrderStatus(OrderStatusEntityRepository.getOne(id));
+        return orderMapper.orderStatusEntityToOrderStatus(orderStatusEntityRepository.getOne(id));
     }
 }

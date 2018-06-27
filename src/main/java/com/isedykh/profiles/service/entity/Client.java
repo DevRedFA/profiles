@@ -2,7 +2,6 @@ package com.isedykh.profiles.service.entity;
 
 
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.List;
 

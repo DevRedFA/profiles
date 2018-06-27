@@ -26,6 +26,7 @@ public class RoleEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public RoleEntity() {
+        // TODO: 27.06.2018 check if needed
     }
 
     @Id

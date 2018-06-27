@@ -2,7 +2,6 @@ package com.isedykh.profiles.view;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.spring.annotation.SpringComponent;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Label;
@@ -13,10 +12,12 @@ import javax.annotation.PostConstruct;
 
 @UIScope
 @SpringView
+@SuppressWarnings({"squid:MaximumInheritanceDepth"})
 public class AccessDeniedView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
+        // do nothing
     }
 
     @PostConstruct

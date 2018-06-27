@@ -8,20 +8,14 @@ import com.isedykh.profiles.dao.entity.TermEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.dao.entity.ThingStatusEntity;
 import com.isedykh.profiles.dao.entity.ThingTypeEntity;
-import com.isedykh.profiles.dao.entity.UserEntity;
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderStatusEntityRepository;
-import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.TermEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingStatusEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingTypeEntityRepository;
-import com.isedykh.profiles.dao.entity.RoleEntity;
-import com.isedykh.profiles.dao.repository.UserRepository;
-import com.isedykh.profiles.security.type.RoleType;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -42,8 +36,6 @@ public class InitUtils {
     private final ThingEntityRepository thingEntityRepository;
 
     private final ThingStatusEntityRepository thingStatusEntityRepository;
-
-    private final PriceEntityRepository priceEntityRepository;
 
     private final ClientEntityRepository clientEntityRepository;
 
@@ -89,8 +81,7 @@ public class InitUtils {
                     thingTypes.get(ThreadLocalRandom.current().nextInt(thingTypes.size())),
                     free, Collections.emptyList(), i, "comments " + i));
         }
-        List<ThingEntity> thingEntities = thingEntityRepository.saveAll(listThing);
-        return thingEntities;
+        return thingEntityRepository.saveAll(listThing);
     }
 
 
@@ -128,13 +119,12 @@ public class InitUtils {
             ClientEntity client = listClient.get(i - 1);
 
             OrderEntity e = new OrderEntity(null, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(i).atStartOfDay()),
-                    Timestamp.valueOf(LocalDate.now().plusDays(5 + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0));
+                    Timestamp.valueOf(LocalDate.now().plusDays(5L + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0));
             orderEntities.add(e);
 
-            orderEntities.add(new OrderEntity(null, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(8 + i).atStartOfDay()),
-                    Timestamp.valueOf(LocalDate.now().plusDays(15 + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0)));
+            orderEntities.add(new OrderEntity(null, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(8L + i).atStartOfDay()),
+                    Timestamp.valueOf(LocalDate.now().plusDays(15L + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0)));
         }
-        List<OrderEntity> orderEntityList = orderEntityRepository.saveAll(orderEntities);
-        return orderEntityList;
+        return orderEntityRepository.saveAll(orderEntities);
     }
 }

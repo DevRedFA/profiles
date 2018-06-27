@@ -172,13 +172,13 @@ public class OrderView extends VerticalLayout implements View {
                 order = new Order();
                 for (String msg : msgs) {
                     if (msg.contains("thing")) {
-                        order.setThing(thingService.getById(Long.parseLong(msg.substring(msg.lastIndexOf("=") + 1))));
+                        order.setThing(thingService.getById(Long.parseLong(msg.substring(msg.lastIndexOf('=') + 1))));
                     }
                     if (msg.contains("begin")) {
-                        order.setBegin(LocalDate.parse(msg.substring(msg.lastIndexOf("=") + 1)));
+                        order.setBegin(LocalDate.parse(msg.substring(msg.lastIndexOf('=') + 1)));
                     }
                     if (msg.contains("stop")) {
-                        order.setStop(LocalDate.parse(msg.substring(msg.lastIndexOf("=") + 1)));
+                        order.setStop(LocalDate.parse(msg.substring(msg.lastIndexOf('=') + 1)));
                     }
                 }
             } else {

@@ -1095,7 +1095,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.3.1";
+	content: "8.1.8";
 }
 
 .v-widget {
@@ -2278,61 +2278,6 @@ div.v-layout.v-horizontal.v-widget {
 	content: "!";
 }
 
-.Demo .v-errorindicator-info {
-	color: #00a7f5;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.Demo .v-errorindicator-info:before {
-	content: "!";
-}
-
-.Demo .v-errorindicator-warning {
-	color: #fc9c00;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.Demo .v-errorindicator-warning:before {
-	content: "!";
-}
-
-.Demo .v-errorindicator-error {
-	color: #ed473b;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.Demo .v-errorindicator-error:before {
-	content: "!";
-}
-
-.Demo .v-errorindicator-critical {
-	color: #fa007d;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.Demo .v-errorindicator-critical:before {
-	content: "!";
-}
-
-.Demo .v-errorindicator-system {
-	color: #bb00ff;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.Demo .v-errorindicator-system:before {
-	content: "!";
-}
-
 .Demo .v-required-field-indicator {
 	color: #ed473b;
 	padding: 0 0.2em;
@@ -2410,26 +2355,6 @@ div.v-layout.v-horizontal.v-widget {
 .Demo .v-tooltip .v-errormessage h2:only-child {
 	font: inherit;
 	line-height: inherit;
-}
-
-.Demo .v-tooltip .v-errormessage-info {
-	color: #00a7f5;
-}
-
-.Demo .v-tooltip .v-errormessage-warning {
-	color: #fc9c00;
-}
-
-.Demo .v-tooltip .v-errormessage-error {
-	color: #ed473b;
-}
-
-.Demo .v-tooltip .v-errormessage-critical {
-	color: #fa007d;
-}
-
-.Demo .v-tooltip .v-errormessage-system {
-	color: #bb00ff;
 }
 
 .Demo .v-tooltip .v-tooltip-text {
@@ -3687,61 +3612,6 @@ div.v-layout.v-horizontal.v-widget {
 .Demo .v-filterselect-error .v-filterselect-button {
 	color: #ed473b;
 	border-color: #ed473b;
-}
-
-.Demo .v-filterselect-error-info .v-filterselect-input {
-	border-color: #00a7f5 !important;
-	background: #fafdff;
-	color: #195774;
-}
-
-.Demo .v-filterselect-error-info .v-filterselect-button {
-	color: #00a7f5;
-	border-color: #00a7f5;
-}
-
-.Demo .v-filterselect-error-warning .v-filterselect-input {
-	border-color: #fc9c00 !important;
-	background: #fffdfa;
-	color: #745119;
-}
-
-.Demo .v-filterselect-error-warning .v-filterselect-button {
-	color: #fc9c00;
-	border-color: #fc9c00;
-}
-
-.Demo .v-filterselect-error-error .v-filterselect-input {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
-}
-
-.Demo .v-filterselect-error-error .v-filterselect-button {
-	color: #ed473b;
-	border-color: #ed473b;
-}
-
-.Demo .v-filterselect-error-critical .v-filterselect-input {
-	border-color: #fa007d !important;
-	background: #fffafc;
-	color: #741947;
-}
-
-.Demo .v-filterselect-error-critical .v-filterselect-button {
-	color: #fa007d;
-	border-color: #fa007d;
-}
-
-.Demo .v-filterselect-error-system .v-filterselect-input {
-	border-color: #bb00ff !important;
-	background: #fefaff;
-	color: #5c1974;
-}
-
-.Demo .v-filterselect-error-system .v-filterselect-button {
-	color: #bb00ff;
-	border-color: #bb00ff;
 }
 
 .Demo .v-filterselect-suggestpopup {
@@ -5774,36 +5644,6 @@ div.v-layout.v-horizontal.v-widget {
 	color: #6c2621;
 }
 
-.Demo .v-textfield-error-info {
-	border-color: #00a7f5 !important;
-	background: #fafdff;
-	color: #195774;
-}
-
-.Demo .v-textfield-error-warning {
-	border-color: #fc9c00 !important;
-	background: #fffdfa;
-	color: #745119;
-}
-
-.Demo .v-textfield-error-error {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
-}
-
-.Demo .v-textfield-error-critical {
-	border-color: #fa007d !important;
-	background: #fffafc;
-	color: #741947;
-}
-
-.Demo .v-textfield-error-system {
-	border-color: #bb00ff !important;
-	background: #fefaff;
-	color: #5c1974;
-}
-
 .Demo .v-textfield-borderless {
 	border: none;
 	border-radius: 0;
@@ -6548,61 +6388,6 @@ div.v-layout.v-horizontal.v-widget {
 .Demo .v-datefield-error .v-datefield-button {
 	color: #ed473b;
 	border-color: #ed473b;
-}
-
-.Demo .v-datefield-error-info .v-datefield-textfield {
-	border-color: #00a7f5 !important;
-	background: #fafdff;
-	color: #195774;
-}
-
-.Demo .v-datefield-error-info .v-datefield-button {
-	color: #00a7f5;
-	border-color: #00a7f5;
-}
-
-.Demo .v-datefield-error-warning .v-datefield-textfield {
-	border-color: #fc9c00 !important;
-	background: #fffdfa;
-	color: #745119;
-}
-
-.Demo .v-datefield-error-warning .v-datefield-button {
-	color: #fc9c00;
-	border-color: #fc9c00;
-}
-
-.Demo .v-datefield-error-error .v-datefield-textfield {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
-}
-
-.Demo .v-datefield-error-error .v-datefield-button {
-	color: #ed473b;
-	border-color: #ed473b;
-}
-
-.Demo .v-datefield-error-critical .v-datefield-textfield {
-	border-color: #fa007d !important;
-	background: #fffafc;
-	color: #741947;
-}
-
-.Demo .v-datefield-error-critical .v-datefield-button {
-	color: #fa007d;
-	border-color: #fa007d;
-}
-
-.Demo .v-datefield-error-system .v-datefield-textfield {
-	border-color: #bb00ff !important;
-	background: #fefaff;
-	color: #5c1974;
-}
-
-.Demo .v-datefield-error-system .v-datefield-button {
-	color: #bb00ff;
-	border-color: #bb00ff;
 }
 
 .Demo .v-datefield-full {
@@ -9101,30 +8886,6 @@ div.v-layout.v-horizontal.v-widget {
 	color: inherit;
 }
 
-.Demo .v-window-closebox:focus::after {
-	content: "";
-	position: absolute;
-	top: 6px;
-	right: 6px;
-	bottom: 6px;
-	left: 2px;
-	border-radius: 4px;
-	-webkit-box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
-	box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
-}
-
-.Demo .v-window-maximizebox:focus::after, .Demo .v-window-restorebox:focus::after {
-	content: "";
-	position: absolute;
-	top: 6px;
-	right: 2px;
-	bottom: 6px;
-	left: 6px;
-	border-radius: 4px;
-	-webkit-box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
-	box-shadow: 0 0 0 2px rgba(25, 125, 225, 0.5);
-}
-
 .Demo .v-window-closebox {
 	padding-right: 4px;
 	border-radius: 0 4px 0 4px;
@@ -9152,10 +8913,6 @@ div.v-layout.v-horizontal.v-widget {
 	width: 37px;
 	padding-right: 0;
 	border-bottom-left-radius: 4px;
-}
-
-.Demo .v-window-closebox-disabled  + .v-window-closebox:focus::after, .Demo .v-window-resizebox-disabled  + .v-window-closebox:focus::after, .Demo .v-window-restorebox-disabled  + .v-window-closebox:focus::after, .Demo .v-window-maximizebox-disabled  + .v-window-closebox:focus::after {
-	left: 6px;
 }
 
 .Demo .v-window-maximizebox:before {
@@ -13504,36 +13261,6 @@ div.v-layout.v-horizontal.v-widget {
 	border-color: #ed473b !important;
 	background: #fffbfb;
 	color: #6c2621;
-}
-
-.Demo .v-select-twincol-error-info .v-select-twincol-options, .Demo .v-select-twincol-error-info .v-select-twincol-selections {
-	border-color: #00a7f5 !important;
-	background: #fafdff;
-	color: #195774;
-}
-
-.Demo .v-select-twincol-error-warning .v-select-twincol-options, .Demo .v-select-twincol-error-warning .v-select-twincol-selections {
-	border-color: #fc9c00 !important;
-	background: #fffdfa;
-	color: #745119;
-}
-
-.Demo .v-select-twincol-error-error .v-select-twincol-options, .Demo .v-select-twincol-error-error .v-select-twincol-selections {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
-}
-
-.Demo .v-select-twincol-error-critical .v-select-twincol-options, .Demo .v-select-twincol-error-critical .v-select-twincol-selections {
-	border-color: #fa007d !important;
-	background: #fffafc;
-	color: #741947;
-}
-
-.Demo .v-select-twincol-error-system .v-select-twincol-options, .Demo .v-select-twincol-error-system .v-select-twincol-selections {
-	border-color: #bb00ff !important;
-	background: #fefaff;
-	color: #5c1974;
 }
 
 .Demo .v-select select {

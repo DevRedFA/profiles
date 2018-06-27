@@ -1,6 +1,10 @@
 package com.isedykh.profiles.ui;
 
-import com.isedykh.profiles.view.*;
+import com.isedykh.profiles.view.AccessDeniedView;
+import com.isedykh.profiles.view.ClientsView;
+import com.isedykh.profiles.view.ErrorView;
+import com.isedykh.profiles.view.OrdersView;
+import com.isedykh.profiles.view.ThingsView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewDisplay;
@@ -9,10 +13,14 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.spring.navigator.SpringNavigator;
 import com.vaadin.spring.navigator.SpringViewProvider;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import lombok.RequiredArgsConstructor;
-import org.vaadin.spring.security.VaadinSecurity;
 
 import javax.annotation.PostConstruct;
 
@@ -20,14 +28,13 @@ import javax.annotation.PostConstruct;
 @Theme("Demo")
 @SpringUI(path = "/")
 @SpringViewDisplay
+@SuppressWarnings("squid:S2160")
 @RequiredArgsConstructor
 public class MainUI extends UI implements ViewDisplay {
 
     private final SpringNavigator springNavigator;
 
     private final SpringViewProvider springViewProvider;
-
-//    private final VaadinSecurity vaadinSecurity;
 
     private Panel springViewDisplay;
 
@@ -44,7 +51,6 @@ public class MainUI extends UI implements ViewDisplay {
         navigationBar.addComponent(createNavigationButton("Things", ThingsView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("Clients", ClientsView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("Orders", OrdersView.VIEW_NAME));
-//        navigationBar.addComponent(new Button("Logout", e -> vaadinSecurity.logout()));
         final VerticalLayout root = new VerticalLayout();
         root.setSizeFull();
         root.addComponent(navigationBar);

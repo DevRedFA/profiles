@@ -18,7 +18,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         final UserEntity userEntity = userRepository.findByUsername(username);
         if(userEntity ==null) {
             throw new UsernameNotFoundException("Username Not Found Exception : " + username);

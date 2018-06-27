@@ -7,7 +7,6 @@ import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingStatusEntityRepository;
-import com.isedykh.profiles.dao.repository.ThingTypeEntityRepository;
 import com.isedykh.profiles.mapper.ThingMapper;
 import com.isedykh.profiles.service.ThingService;
 import com.isedykh.profiles.service.entity.Thing;

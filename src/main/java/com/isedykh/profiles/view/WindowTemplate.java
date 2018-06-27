@@ -7,11 +7,12 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-public class WindowTemplate<T extends Nameable> extends Window {
+@SuppressWarnings("squid:S2160")
+class WindowTemplate<T extends Nameable> extends Window {
 
     private TextField nameField = new TextField("Enter new name");
 
-    public WindowTemplate(Class<T> clazz, CrudService<T> crudService) {
+    WindowTemplate(Class<T> clazz, CrudService<T> crudService) {
         super("Name:");
         center();
         Button saveButton = new Button("Save", event -> {

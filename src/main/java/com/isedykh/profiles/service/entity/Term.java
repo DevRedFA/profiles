@@ -1,12 +1,10 @@
 package com.isedykh.profiles.service.entity;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-//@EqualsAndHashCode(of="name")
 public class Term implements Identifiable, Nameable {
 
     private Long id;

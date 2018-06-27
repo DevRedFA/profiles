@@ -30,7 +30,7 @@ public class DataInitializer implements ApplicationRunner {
         List<ThingEntity> listThing = initUtils.getThingEntities(thingTypes);
 
 
-        listThing = initUtils.updateThings();
+//        listThing = initUtils.updateThings();
 
         //init Prices
         initUtils.initPrices(listThing, terms);

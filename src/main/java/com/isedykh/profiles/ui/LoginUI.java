@@ -16,6 +16,7 @@ import org.vaadin.spring.security.shared.VaadinSharedSecurity;
  */
 @SpringUI(path = "/login")
 @Theme("Demo")
+@SuppressWarnings("squid:S2160")
 public class LoginUI extends UI {
 
     @Autowired
@@ -64,7 +65,8 @@ public class LoginUI extends UI {
             loginLayout.setComponentAlignment(loggedOutLabel, Alignment.BOTTOM_CENTER);
         }
 
-        loginLayout.addComponent(loginFailedLabel = new Label());
+        loginFailedLabel = new Label();
+        loginLayout.addComponent(loginFailedLabel);
         loginLayout.setComponentAlignment(loginFailedLabel, Alignment.BOTTOM_CENTER);
         loginFailedLabel.setSizeUndefined();
         loginFailedLabel.addStyleName(ValoTheme.LABEL_FAILURE);

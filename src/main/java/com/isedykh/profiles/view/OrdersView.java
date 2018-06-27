@@ -1,7 +1,6 @@
 package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
-import com.isedykh.profiles.service.ClientService;
 import com.isedykh.profiles.service.entity.Identifiable;
 import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.OrderService;
@@ -69,7 +68,6 @@ public class OrdersView extends VerticalLayout implements View {
         buttons.setSizeFull();
         buttons.setComponentAlignment(buttonDelete, Alignment.MIDDLE_RIGHT);
         buttonPrevious.setEnabled(false);
-
         buttonNext.addClickListener(getPageChangeClickListener(orderPage, Slice::nextPageable, orderGrid, buttonNext, buttonPrevious, orderService));
 
         buttonPrevious.addClickListener(getPageChangeClickListener(orderPage, Slice::previousPageable, orderGrid, buttonNext, buttonPrevious, orderService));

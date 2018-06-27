@@ -4,8 +4,6 @@ import com.isedykh.profiles.dao.entity.ThingStatusEntity;
 import com.isedykh.profiles.dao.repository.ThingStatusEntityRepository;
 import com.isedykh.profiles.mapper.ThingMapper;
 import com.isedykh.profiles.service.ThingStatusService;
-import com.isedykh.profiles.service.ThingStatusService;
-import com.isedykh.profiles.service.entity.ThingStatus;
 import com.isedykh.profiles.service.entity.ThingStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

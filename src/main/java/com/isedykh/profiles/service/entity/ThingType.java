@@ -1,7 +1,6 @@
 package com.isedykh.profiles.service.entity;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 public class ThingType implements Identifiable, Nameable {

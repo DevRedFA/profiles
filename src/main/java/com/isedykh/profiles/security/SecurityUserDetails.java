@@ -34,16 +34,6 @@ public class SecurityUserDetails extends UserEntity implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
-        return super.getUsername();
-    }
-
-    @Override
-    public String getPassword() {
-        return super.getPassword();
-    }
-
-    @Override
     public boolean isAccountNonExpired() {
         return true;
     }

@@ -25,6 +25,7 @@ import static com.isedykh.profiles.common.Utils.START_POINT;
 
 @RequiredArgsConstructor
 @SpringView(name = ClientView.VIEW_NAME)
+@SuppressWarnings({"squid:MaximumInheritanceDepth", "squid:S2160"})
 public class ClientView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "client";
@@ -182,7 +183,7 @@ public class ClientView extends VerticalLayout implements View {
         }
 
 
-        picturesGrid.addColumn(s -> s.substring(s.lastIndexOf("/"))).setCaption("File name");
+        picturesGrid.addColumn(s -> s.substring(s.lastIndexOf('/'))).setCaption("File name");
 
         picturesGrid.addItemClickListener(clickEvent -> {
             if (clickEvent.getMouseEventDetails().isDoubleClick()) {
