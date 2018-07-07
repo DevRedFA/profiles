@@ -11,6 +11,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.*;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
@@ -79,7 +80,13 @@ public class OrderView extends VerticalLayout implements View {
         save.addClickListener(clickEvent -> {
             order.setBegin(begin.getValue());
             order.setStop(end.getValue());
-            order.setActualPrice(Integer.valueOf(actualPriceField.getValue()) * 100);
+            if (!StringUtils.isEmpty(actualPriceField.getValue())) {
+                order.setActualPrice(Integer.valueOf(actualPriceField.getValue()) * 100);
+            } else {
+                order.setActualPrice(price.getSelectedItem().isPresent() ?
+                        price.getSelectedItem().get().getPriceValue()
+                        : order.getPrice().getPriceValue());
+            }
             order.setStatus(status.getSelectedItem().isPresent() ? status.getSelectedItem().get() : order.getStatus());
             order.setPrice(price.getSelectedItem().isPresent() ? price.getSelectedItem().get() : order.getPrice());
             order.setComments(comments.getValue());
@@ -95,6 +102,7 @@ public class OrderView extends VerticalLayout implements View {
         comments.setWidth("100%");
 
         clientGrid.setHeightByRows(12);
+        clientGrid.setItems(clientService.findAll());
         clientGrid.addItemClickListener(clickListener -> {
             if (clickListener.getMouseEventDetails().isDoubleClick()) {
                 client = clickListener.getItem();

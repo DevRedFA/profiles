@@ -27,4 +27,6 @@ public interface ThingService extends CrudService<Thing> {
     List<ThingStatus> getAllThingStatuses();
 
     ThingStatus getStatusByName(String name);
+
+    long countAllActualPrices(Thing thing);
 }

@@ -1,5 +1,6 @@
 package com.isedykh.profiles.service.impl;
 
+import com.isedykh.profiles.dao.entity.OrderEntity;
 import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
 import com.isedykh.profiles.dao.entity.ThingTypeEntity;
@@ -120,5 +121,11 @@ public class ThingServiceImpl implements ThingService {
     @Override
     public ThingStatus getStatusByName(String name) {
         return thingMapper.thingStatusEntityToThingStatus(thingStatusEntityRepository.findByName(name));
+    }
+
+    @Override
+    public long countAllActualPrices(Thing thing) {
+        List<OrderEntity> allByThingId = orderEntityRepository.findAllByThingId(thing.getId());
+        return allByThingId.stream().mapToLong(OrderEntity::getActualPrice).sum();
     }
 }

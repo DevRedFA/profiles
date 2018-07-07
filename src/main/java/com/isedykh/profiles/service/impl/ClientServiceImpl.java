@@ -4,6 +4,7 @@ import com.isedykh.profiles.dao.entity.ClientEntity;
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.mapper.ClientMapper;
 import com.isedykh.profiles.service.ClientService;
+import com.isedykh.profiles.service.OrderService;
 import com.isedykh.profiles.service.entity.Client;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,8 @@ public class ClientServiceImpl implements ClientService {
 
     private ClientEntityRepository clientEntityRepository;
 
+    private OrderService orderService;
+
     private ClientMapper clientMapper;
 
     @Override
@@ -37,6 +40,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void delete(Client client) {
+        orderService.deleteByClient(client);
         ClientEntity entity = clientMapper.clientToClientEntity(client);
         clientEntityRepository.delete(entity);
     }

@@ -85,6 +85,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void deleteByClient(Client client) {
+        List<OrderEntity> allByClientId = orderEntityRepository.findAllByClientId(client.getId());
+        orderEntityRepository.deleteAll(allByClientId);
+    }
+
+    @Override
     public Order update(Order order) {
         OrderEntity orderEntity = orderMapper.orderToOrderEntity(order);
         return orderMapper.orderEntityToOrder(orderEntityRepository.save(orderEntity));

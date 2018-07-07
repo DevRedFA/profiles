@@ -24,6 +24,7 @@ import com.vaadin.ui.DateField;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TextArea;
@@ -77,6 +78,7 @@ public class ThingView extends VerticalLayout implements View {
     private final Image image = new Image();
     private final Calendar<BasicItem> calendar = new Calendar<>("Calendar");
     private final Grid<Order> ordersGrid = getOrderGridWithSettings();
+    private final Label actualPriceSum = new Label("Actual prices sum: ");
 
     @PostConstruct
     public void init() {
@@ -180,6 +182,7 @@ public class ThingView extends VerticalLayout implements View {
         thingDetails.addComponent(statusDetails);
         thingDetails.addComponent(priceDepositDetails);
         thingDetails.addComponent(comments);
+        thingDetails.addComponent(actualPriceSum);
         thingDetails.addComponent(buttonsLayout);
         thingDetails.setWidth("100%");
 
@@ -284,6 +287,7 @@ public class ThingView extends VerticalLayout implements View {
                     itemProvider.setItems(items);
                     calendar.setDataProvider(itemProvider);
                     ordersGrid.setItems(orderService.getThingOrderHistory(thing));
+                    actualPriceSum.setValue("Actual prices sum: "+ thingService.countAllActualPrices(thing)/100);
                 } catch (Exception e) {
                     Notification.show("Thing with such id not found");
                 }
