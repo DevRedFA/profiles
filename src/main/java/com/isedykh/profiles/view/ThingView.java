@@ -48,119 +48,58 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.isedykh.profiles.view.ViewUtils.getOrderGridWithSettings;
+
 @RequiredArgsConstructor
 @SpringView(name = ThingView.VIEW_NAME)
+@SuppressWarnings({"squid:S1948", "squid:MaximumInheritanceDepth", "squid:S2160"})
 public class ThingView extends VerticalLayout implements View {
 
     static final String VIEW_NAME = "thing";
 
     private final ThingService thingService;
-
     private final ThingTypeService thingTypeService;
-
     private final ThingStatusService thingStatusService;
-
     private final OrderService orderService;
-
     private final TermService termService;
 
     private Thing thing;
-
     private List<Price> prices;
 
     private final TextField name = new TextField("Name");
-
     private final ComboBox<ThingType> type = new ComboBox<>("Type");
-
     private final ComboBox<ThingStatus> status = new ComboBox<>("Status");
-
     private final TextField purchasePrice = new TextField("Purchase price");
-
     private final DateField purchaseDate = new DateField("Purchase date");
-
     private final TextField deposit = new TextField("Deposit");
-
     private final TextArea comments = new TextArea("Comments");
-
-    private final VerticalLayout thingDetails = new VerticalLayout();
-
-    private final VerticalLayout priceDetails = new VerticalLayout();
-
-    private final HorizontalLayout fullDetails = new HorizontalLayout();
-
-    private final VerticalLayout imageDetails = new VerticalLayout();
-
-    private final HorizontalLayout typeDetails = new HorizontalLayout();
-
-    private final HorizontalLayout statusDetails = new HorizontalLayout();
-
-    private final HorizontalLayout priceDepositDetails = new HorizontalLayout();
-
-    private final HorizontalLayout nameDateDetails = new HorizontalLayout();
-
-    private final HorizontalLayout buttonsLayout = new HorizontalLayout();
-
     private final Grid<Price> pricesGrind = new Grid<>();
-
-    private final Button buttonAddOrder = new Button("New order");
-
-    private final Button saveThing = new Button("Save thing");
-
-    private final Button addThingType = new Button("Add new type");
-
-    private final Button addThingStatus = new Button("Add new status");
-
-    private final Button addTerm = new Button("Add new term");
-
-    private final TabSheet tabSheet = new TabSheet();
-
     private final Image image = new Image();
-
     private final Calendar<BasicItem> calendar = new Calendar<>("Calendar");
-
-    private BasicItemProvider<BasicItem> itemProvider = new BasicItemProvider<BasicItem>() {
-    };
+    private final Grid<Order> ordersGrid = getOrderGridWithSettings();
 
     @PostConstruct
     public void init() {
 
         purchaseDate.setDateFormat(Utils.DATE_FORMAT);
 
-        thingDetails.addComponent(nameDateDetails);
-        nameDateDetails.addComponent(name);
-        nameDateDetails.addComponent(purchaseDate);
+        Button buttonAddOrder = new Button("New order");
+        buttonAddOrder.addClickListener(event -> {
+            saveThing();
+            String s = OrderView.VIEW_NAME + "/new/thing=" + thing.getId();
+            getUI().getNavigator().navigateTo(s);
+        });
 
-        thingDetails.addComponent(typeDetails);
-        typeDetails.addComponent(type);
-        typeDetails.addComponent(addThingType);
-        typeDetails.setComponentAlignment(addThingType, Alignment.BOTTOM_CENTER);
-
-        thingDetails.addComponent(statusDetails);
-        statusDetails.addComponent(status);
-        statusDetails.addComponent(addThingStatus);
-        statusDetails.setComponentAlignment(addThingStatus, Alignment.BOTTOM_CENTER);
-
-        thingDetails.addComponent(priceDepositDetails);
-        priceDepositDetails.addComponent(purchasePrice);
-        priceDepositDetails.addComponent(deposit);
-        thingDetails.addComponent(comments);
-        thingDetails.addComponent(buttonsLayout);
-        buttonsLayout.addComponent(saveThing);
-        buttonsLayout.addComponent(buttonAddOrder);
-        buttonsLayout.setWidth("100%");
-        thingDetails.setWidth("100%");
         comments.setWidth("100%");
         comments.setHeight(10, Unit.EX);
+
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
         pricesGrind.getEditor().setEnabled(true);
-        fullDetails.addComponent(thingDetails);
-        fullDetails.addComponent(priceDetails);
-        priceDetails.addComponent(pricesGrind);
-        priceDetails.addComponent(addTerm);
-        fullDetails.setWidth("100%");
+
         image.setVisible(false);
 
 
+        // TODO: 07.07.2018 Extract from Client and Thing view
         class ImageReceiver implements Upload.Receiver, Upload.SucceededListener {
             private static final long serialVersionUID = -1276759102490466761L;
 
@@ -197,38 +136,83 @@ public class ThingView extends VerticalLayout implements View {
         upload.setButtonCaption("Start Upload");
         upload.addSucceededListener(receiver);
 
-        imageDetails.addComponent(image);
-        imageDetails.addComponent(upload);
-        fullDetails.addComponent(imageDetails);
-        fullDetails.setExpandRatio(thingDetails, 2f);
-        fullDetails.setExpandRatio(priceDetails, 2f);
-        fullDetails.setExpandRatio(imageDetails, 3f);
-        tabSheet.addTab(fullDetails, "Details");
-        tabSheet.addTab(calendar, "Dates");
+        HorizontalLayout nameDateDetails = new HorizontalLayout();
+        nameDateDetails.addComponent(name);
+        nameDateDetails.addComponent(purchaseDate);
 
-
-        addComponent(tabSheet);
-
-        buttonAddOrder.addClickListener(event -> {
-            saveThing();
-            String s = OrderView.VIEW_NAME + "/new/thing=" + thing.getId();
-            getUI().getNavigator().navigateTo(s);
-        });
-
+        Button addThingType = new Button("Add new type");
         addThingType.addClickListener(event -> {
             WindowTemplate<ThingType> sub = new WindowTemplate<>(ThingType.class, thingTypeService);
             UI.getCurrent().addWindow(sub);
         });
 
+        HorizontalLayout typeDetails = new HorizontalLayout();
+        typeDetails.addComponent(type);
+        typeDetails.addComponent(addThingType);
+        typeDetails.setComponentAlignment(addThingType, Alignment.BOTTOM_CENTER);
+
+        Button addThingStatus = new Button("Add new status");
         addThingStatus.addClickListener(event -> {
             WindowTemplate<ThingStatus> sub = new WindowTemplate<>(ThingStatus.class, thingStatusService);
             UI.getCurrent().addWindow(sub);
         });
 
+        HorizontalLayout statusDetails = new HorizontalLayout();
+        statusDetails.addComponent(status);
+        statusDetails.addComponent(addThingStatus);
+        statusDetails.setComponentAlignment(addThingStatus, Alignment.BOTTOM_CENTER);
+
+        HorizontalLayout priceDepositDetails = new HorizontalLayout();
+        priceDepositDetails.addComponent(purchasePrice);
+        priceDepositDetails.addComponent(deposit);
+
+        Button saveThing = new Button("Save thing");
+        saveThing.addClickListener(event -> saveThing());
+
+        HorizontalLayout buttonsLayout = new HorizontalLayout();
+        buttonsLayout.addComponent(saveThing);
+        buttonsLayout.addComponent(buttonAddOrder);
+        buttonsLayout.setWidth("100%");
+
+        VerticalLayout thingDetails = new VerticalLayout();
+        thingDetails.addComponent(nameDateDetails);
+        thingDetails.addComponent(typeDetails);
+        thingDetails.addComponent(statusDetails);
+        thingDetails.addComponent(priceDepositDetails);
+        thingDetails.addComponent(comments);
+        thingDetails.addComponent(buttonsLayout);
+        thingDetails.setWidth("100%");
+
+        Button addTerm = new Button("Add new term");
         addTerm.addClickListener(event -> {
             TermTemplate sub = new TermTemplate(termService);
             UI.getCurrent().addWindow(sub);
         });
+
+        VerticalLayout priceDetails = new VerticalLayout();
+        priceDetails.addComponent(pricesGrind);
+        priceDetails.addComponent(addTerm);
+
+        VerticalLayout imageDetails = new VerticalLayout();
+        imageDetails.addComponent(image);
+        imageDetails.addComponent(upload);
+
+        HorizontalLayout fullDetails = new HorizontalLayout();
+        fullDetails.addComponent(thingDetails);
+        fullDetails.addComponent(priceDetails);
+        fullDetails.addComponent(imageDetails);
+        fullDetails.setExpandRatio(thingDetails, 2f);
+        fullDetails.setExpandRatio(priceDetails, 2f);
+        fullDetails.setExpandRatio(imageDetails, 3f);
+        fullDetails.setWidth("100%");
+
+        TabSheet tabSheet = new TabSheet();
+        tabSheet.addTab(fullDetails, "Details");
+        tabSheet.addTab(calendar, "Dates");
+        tabSheet.addTab(ordersGrid, "Orders");
+
+        ordersGrid.addItemClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, OrderView.VIEW_NAME));
+
 
         purchasePrice.addValueChangeListener(event -> {
             try {
@@ -244,7 +228,9 @@ public class ThingView extends VerticalLayout implements View {
             }
         });
 
-        saveThing.addClickListener(event -> saveThing());
+
+        addComponent(tabSheet);
+
 
     }
 
@@ -293,9 +279,11 @@ public class ThingView extends VerticalLayout implements View {
                                     s.getBegin().atStartOfDay(ZoneId.of("Europe/Moscow")),
                                     s.getStop().atStartOfDay(ZoneId.of("Europe/Moscow"))))
                             .collect(Collectors.toList());
+                    BasicItemProvider<BasicItem> itemProvider = new BasicItemProvider<BasicItem>() {
+                    };
                     itemProvider.setItems(items);
                     calendar.setDataProvider(itemProvider);
-
+                    ordersGrid.setItems(orderService.getThingOrderHistory(thing));
                 } catch (Exception e) {
                     Notification.show("Thing with such id not found");
                 }

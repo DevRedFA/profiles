@@ -7,14 +7,14 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-@SuppressWarnings("squid:S2160")
+@SuppressWarnings({"squid:S1948", "squid:MaximumInheritanceDepth", "squid:S2160"})
 class WindowTemplate<T extends Nameable> extends Window {
 
-    private TextField nameField = new TextField("Enter new name");
 
     WindowTemplate(Class<T> clazz, CrudService<T> crudService) {
         super("Name:");
         center();
+        TextField nameField = new TextField("Enter new name");
         Button saveButton = new Button("Save", event -> {
             try {
                 T t = clazz.newInstance();
@@ -29,7 +29,7 @@ class WindowTemplate<T extends Nameable> extends Window {
         VerticalLayout layout = new VerticalLayout();
         layout.addComponentsAndExpand(nameField,
                 saveButton);
-        layout.setHeight(10f,Unit.EM);
+        layout.setHeight(10f, Unit.EM);
         setClosable(true);
         setResizable(true);
         setContent(layout);

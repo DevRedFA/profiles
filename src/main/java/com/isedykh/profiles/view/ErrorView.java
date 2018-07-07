@@ -12,7 +12,7 @@ import javax.annotation.PostConstruct;
 
 @UIScope
 @SpringView
-@SuppressWarnings("squid:MaximumInheritanceDepth")
+@SuppressWarnings({"squid:S1948","squid:MaximumInheritanceDepth","squid:S2160"})
 public class ErrorView extends VerticalLayout implements View {
 
     @Override
@@ -22,7 +22,7 @@ public class ErrorView extends VerticalLayout implements View {
 
     @PostConstruct
     void init() {
-        Label label = new Label("Hello, this is the 'error view' loaded if no view is matched based on URL.");
+        Label label = new Label("Ooops, something went wrong. Sorry!");
         label.addStyleName(ValoTheme.LABEL_FAILURE);
         addComponent(label);
     }

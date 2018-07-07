@@ -119,11 +119,11 @@ public class InitUtils {
             ClientEntity client = listClient.get(i - 1);
 
             OrderEntity e = new OrderEntity(null, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(i).atStartOfDay()),
-                    Timestamp.valueOf(LocalDate.now().plusDays(5L + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0));
+                    Timestamp.valueOf(LocalDate.now().plusDays(5L + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0), null);
             orderEntities.add(e);
 
             orderEntities.add(new OrderEntity(null, "Order comments " + i, Timestamp.valueOf(LocalDate.now().plusDays(8L + i).atStartOfDay()),
-                    Timestamp.valueOf(LocalDate.now().plusDays(15L + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0)));
+                    Timestamp.valueOf(LocalDate.now().plusDays(15L + i).atStartOfDay()), booked, client, thing, thing.getPrices().get(0), null));
         }
         return orderEntityRepository.saveAll(orderEntities);
     }

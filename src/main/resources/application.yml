@@ -15,11 +15,11 @@ logging:
 #profiles: securityOn, userData, testData
 spring:
   profiles:
-    active: securityOn, userData
+    active:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         temp:

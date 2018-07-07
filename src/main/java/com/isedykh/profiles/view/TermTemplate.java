@@ -7,14 +7,15 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-public class TermTemplate extends Window {
+@SuppressWarnings({"squid:S1948","squid:MaximumInheritanceDepth","squid:S2160"})
+class TermTemplate extends Window {
 
-    private TextField nameField = new TextField("Enter new name");
-    private TextField coefficientField = new TextField("Enter coefficient");
-
-    public TermTemplate(CrudService<Term> crudService) {
+    TermTemplate(CrudService<Term> crudService) {
         super("Name:");
         center();
+
+        TextField nameField = new TextField("Enter new name");
+        TextField coefficientField = new TextField("Enter coefficient");
         Button saveButton = new Button("Save", event -> {
             Term term = new Term();
             term.setName(nameField.getValue());

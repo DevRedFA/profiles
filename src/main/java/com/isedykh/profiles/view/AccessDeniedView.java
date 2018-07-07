@@ -12,7 +12,7 @@ import javax.annotation.PostConstruct;
 
 @UIScope
 @SpringView
-@SuppressWarnings({"squid:MaximumInheritanceDepth"})
+@SuppressWarnings({"squid:S1948","squid:MaximumInheritanceDepth","squid:S2160"})
 public class AccessDeniedView extends VerticalLayout implements View {
 
     @Override

@@ -61,4 +61,6 @@ public class OrderEntity {
             referencedColumnName = "id",
             nullable = false)
     private PriceEntity price;
+
+    private Integer actualPrice;
 }

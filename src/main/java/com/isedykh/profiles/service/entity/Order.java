@@ -22,4 +22,6 @@ public class Order implements Identifiable {
     private Price price;
 
     private String comments;
+
+    private Integer actualPrice;
 }
