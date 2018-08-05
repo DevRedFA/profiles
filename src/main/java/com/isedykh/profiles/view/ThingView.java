@@ -4,13 +4,11 @@ import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.OrderService;
 import com.isedykh.profiles.service.TermService;
 import com.isedykh.profiles.service.ThingService;
-import com.isedykh.profiles.service.ThingStatusService;
 import com.isedykh.profiles.service.ThingTypeService;
 import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.entity.Price;
 import com.isedykh.profiles.service.entity.Term;
 import com.isedykh.profiles.service.entity.Thing;
-import com.isedykh.profiles.service.entity.ThingStatus;
 import com.isedykh.profiles.service.entity.ThingType;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -34,20 +32,18 @@ import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.vaadin.addon.calendar.Calendar;
-import org.vaadin.addon.calendar.item.BasicItem;
-import org.vaadin.addon.calendar.item.BasicItemProvider;
+import org.tltv.gantt.Gantt;
+import org.tltv.gantt.client.shared.Step;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.isedykh.profiles.view.ViewUtils.getOrderGridWithSettings;
 
@@ -60,23 +56,21 @@ public class ThingView extends VerticalLayout implements View {
 
     private final ThingService thingService;
     private final ThingTypeService thingTypeService;
-    private final ThingStatusService thingStatusService;
     private final OrderService orderService;
     private final TermService termService;
 
     private Thing thing;
     private List<Price> prices;
+    private Gantt gantt;
 
     private final TextField name = new TextField("Name");
     private final ComboBox<ThingType> type = new ComboBox<>("Type");
-    private final ComboBox<ThingStatus> status = new ComboBox<>("Status");
     private final TextField purchasePrice = new TextField("Purchase price");
     private final DateField purchaseDate = new DateField("Purchase date");
     private final TextField deposit = new TextField("Deposit");
     private final TextArea comments = new TextArea("Comments");
     private final Grid<Price> pricesGrind = new Grid<>();
     private final Image image = new Image();
-    private final Calendar<BasicItem> calendar = new Calendar<>("Calendar");
     private final Grid<Order> ordersGrid = getOrderGridWithSettings();
     private final Label actualPriceSum = new Label("Actual prices sum: ");
 
@@ -153,17 +147,6 @@ public class ThingView extends VerticalLayout implements View {
         typeDetails.addComponent(addThingType);
         typeDetails.setComponentAlignment(addThingType, Alignment.BOTTOM_CENTER);
 
-        Button addThingStatus = new Button("Add new status");
-        addThingStatus.addClickListener(event -> {
-            WindowTemplate<ThingStatus> sub = new WindowTemplate<>(ThingStatus.class, thingStatusService);
-            UI.getCurrent().addWindow(sub);
-        });
-
-        HorizontalLayout statusDetails = new HorizontalLayout();
-        statusDetails.addComponent(status);
-        statusDetails.addComponent(addThingStatus);
-        statusDetails.setComponentAlignment(addThingStatus, Alignment.BOTTOM_CENTER);
-
         HorizontalLayout priceDepositDetails = new HorizontalLayout();
         priceDepositDetails.addComponent(purchasePrice);
         priceDepositDetails.addComponent(deposit);
@@ -179,7 +162,6 @@ public class ThingView extends VerticalLayout implements View {
         VerticalLayout thingDetails = new VerticalLayout();
         thingDetails.addComponent(nameDateDetails);
         thingDetails.addComponent(typeDetails);
-        thingDetails.addComponent(statusDetails);
         thingDetails.addComponent(priceDepositDetails);
         thingDetails.addComponent(comments);
         thingDetails.addComponent(actualPriceSum);
@@ -211,8 +193,8 @@ public class ThingView extends VerticalLayout implements View {
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.addTab(fullDetails, "Details");
-        tabSheet.addTab(calendar, "Dates");
         tabSheet.addTab(ordersGrid, "Orders");
+
 
         ordersGrid.addItemClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, OrderView.VIEW_NAME));
 
@@ -233,8 +215,6 @@ public class ThingView extends VerticalLayout implements View {
 
 
         addComponent(tabSheet);
-
-
     }
 
     private void saveThing() {
@@ -248,7 +228,6 @@ public class ThingView extends VerticalLayout implements View {
         } else {
             Notification.show("Choose thing type");
         }
-        status.getSelectedItem().ifPresent(thingStatus -> thing.setStatus(thingStatus));
         thing.setComments(comments.getValue());
         if (!StringUtils.isEmpty(name.getValue())) {
             readyToSave = true;
@@ -266,9 +245,6 @@ public class ThingView extends VerticalLayout implements View {
         if (event.getParameters() != null) {
             if (event.getParameters().contains("new")) {
                 thing = new Thing();
-                thing.setStatus(thingService.getStatusByName("free"));
-                status.setSelectedItem(thingService.getStatusByName("free"));
-
                 thing.setPurchaseDate(LocalDate.now());
                 purchaseDate.setValue(LocalDate.now());
 
@@ -277,17 +253,14 @@ public class ThingView extends VerticalLayout implements View {
                 try {
                     thing = thingService.getById(id);
                     List<Order> thingOrderHistory = orderService.getThingOrderHistory(thing);
-                    List<BasicItem> items = thingOrderHistory.stream().map(s ->
-                            new BasicItem(s.getStatus().getName(), s.getComments(),
-                                    s.getBegin().atStartOfDay(ZoneId.of("Europe/Moscow")),
-                                    s.getStop().atStartOfDay(ZoneId.of("Europe/Moscow"))))
-                            .collect(Collectors.toList());
-                    BasicItemProvider<BasicItem> itemProvider = new BasicItemProvider<BasicItem>() {
-                    };
-                    itemProvider.setItems(items);
-                    calendar.setDataProvider(itemProvider);
+                    thingOrderHistory.forEach(order -> {
+                        Step step = new Step(order.getStatus().getName());
+                        step.setStartDate(Date.valueOf(order.getBegin()));
+                        step.setEndDate(Date.valueOf(order.getStop()));
+                        gantt.addStep(step);
+                    });
                     ordersGrid.setItems(orderService.getThingOrderHistory(thing));
-                    actualPriceSum.setValue("Actual prices sum: "+ thingService.countAllActualPrices(thing)/100);
+                    actualPriceSum.setValue("Actual prices sum: " + thingService.countAllActualPrices(thing) / 100);
                 } catch (Exception e) {
                     Notification.show("Thing with such id not found");
                 }
@@ -302,8 +275,6 @@ public class ThingView extends VerticalLayout implements View {
         Utils.setFieldIfNotNull(thing::getComments, comments::setValue, s -> s);
         Utils.setFieldIfNotNull(thingTypeService::findAll, type::setItems, s -> s);
         Utils.setFieldIfNotNull(thing::getType, type::setSelectedItem, s -> s);
-        Utils.setFieldIfNotNull(thingService::getAllThingStatuses, status::setItems, s -> s);
-        Utils.setFieldIfNotNull(thing::getStatus, status::setSelectedItem, s -> s);
         Utils.setFieldIfNotNull(thing::getPrices, pricesGrind::setItems, s -> s);
 
         image.setVisible(true);

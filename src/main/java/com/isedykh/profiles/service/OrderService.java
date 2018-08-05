@@ -4,6 +4,7 @@ import com.isedykh.profiles.service.entity.Client;
 import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.entity.OrderStatus;
 import com.isedykh.profiles.service.entity.Thing;
+import com.isedykh.profiles.service.entity.ThingType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -18,6 +19,8 @@ public interface OrderService extends CrudService<Order> {
     List<Order> getThingOrderHistory(long thingId);
 
     List<Order> getClientOrderHistory(Client client);
+
+    List<Order> getAllOrdersWithThingType(ThingType thingType);
 
     Page<Order> findAll(Pageable pageable);
 

@@ -1,18 +1,4 @@
 /**
- * A list of colors for custom event colors. Can be an empty list of you don't 
- * need any custom event colors.
- * 
- * @example javascript
- * // Java code
- * // 'event' is an instance of EditableCalendarEvent
- * event.setStyleName("color1"); // 1st color in the list
- * event.setStyleName("color2"); // 2nd color in the list
- * // etc.
- * 
- * @group calendar
- */
-
-/**
  * Checks if a list contains a certain value.
  * 
  * @param {list} $list - the list to check
@@ -1645,517 +1631,241 @@ div.v-layout.v-horizontal.v-widget {
 	vertical-align: top;
 }
 
-.Demo .v-calendar-month-day-scrollable {
-	overflow-y: scroll;
+.v-ie8 .gantt .month.even, .v-ie8 .gantt .day.even {
+	background-color: #adadad;
 }
 
-.Demo .v-calendar-week-wrapper {
-	position: relative;
+.Demo .gantt {
+	background: #fff;
 	overflow: hidden;
 }
 
-.Demo .v-calendar-current-time {
-	position: absolute;
-	left: 0;
-	width: 100%;
-	height: 1px;
-	background: red;
-	z-index: 2;
+.Demo .gantt .timeline {
+	overflow: hidden;
+	position: relative;
 }
 
-.Demo .v-calendar-event-resizetop, .Demo .v-calendar-event-resizebottom {
-	position: absolute;
-	height: 5%;
-	min-height: 3px;
-	width: 100%;
-	z-index: 1;
+.Demo .gantt .year, .Demo .gantt .month, .Demo .gantt .day {
+	padding-left: 2px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	border-right: 1px solid #A9A9A9;
+	background-color: #d0d0d0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 
-.Demo .v-calendar-event-resizetop {
-	cursor: row-resize;
-	top: 0;
+.Demo .gantt .year.spacer, .Demo .gantt .month.spacer, .Demo .gantt .day.spacer {
+	padding-left: 0px;
 }
 
-.Demo .v-calendar-event-resizebottom {
-	cursor: row-resize;
-	bottom: 0;
+.Demo .gantt .month:nth-of-type(even), .Demo .gantt .day:nth-of-type(even) {
+	background-color: #ddd;
 }
 
-.Demo .v-calendar-header-month td:first-child {
-	padding-left: 20px;
+.Demo .gantt .col.even {
+	background-color: #ccc;
 }
 
-.Demo .v-calendar-month-sizedheight .v-calendar-month-day {
-	height: 100px;
-}
-
-.Demo .v-calendar-month-sizedwidth .v-calendar-month-day {
-	width: 100px;
-}
-
-.Demo .v-calendar-header-month-Hsized .v-calendar-header-day {
-	width: 101px;
-}
-
-.Demo .v-calendar-header-month-Hsized td:first-child {
-	padding-left: 21px;
-}
-
-.Demo .v-calendar-header-day-Hsized {
-	width: 200px;
-}
-
-.Demo .v-calendar-week-numbers-Vsized .v-calendar-week-number {
-	height: 100px;
-	line-height: 100px;
-}
-
-.Demo .v-calendar-week-wrapper-Vsized {
-	height: 400px;
-	overflow-x: hidden !important;
-}
-
-.Demo .v-calendar-times-Vsized .v-calendar-time {
-	height: 38px;
-}
-
-.Demo .v-calendar-times-Hsized .v-calendar-time {
-	width: 42px;
-}
-
-.Demo .v-calendar-day-times-Vsized .v-datecellslot, .Demo .v-calendar-day-times-Vsized .v-datecellslot-even {
-	height: 18px;
-}
-
-.Demo .v-calendar-day-times-Hsized, .Demo .v-calendar-day-times-Hsized .v-datecellslot, .Demo .v-calendar-day-times-Hsized .v-datecellslot-even {
-	width: 200px;
-}
-
-.Demo .v-calendar-header-day {
-	font-weight: 400;
+.Demo .gantt .col {
+	height: 100%;
+	float: left;
+	overflow: hidden;
+	border-right: 1px solid #A9A9A9;
+	background-color: #ddd;
+	font-size: 10px;
 	text-align: center;
-	padding: 7px 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-.Demo .v-calendar-header-week .v-calendar-back, .Demo .v-calendar-header-week .v-calendar-next {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	-ms-appearance: none;
-	-o-appearance: none;
-	appearance: none;
+.Demo .gantt .col.w {
+	text-align: left;
+}
+
+.Demo .gantt .col.weekend {
+	background-color: #ccc;
+}
+
+.Demo .gantt .row {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+	height: 15px;
+	-ms-flex-pack: justify;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.Demo .gantt .gantt-container {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background: #eee;
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj4KICAgIDxzdG9wIG9mZnNldD0iMSUiIHN0b3AtY29sb3I9IiNjY2NjY2MiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQtdWNnZy1nZW5lcmF0ZWQyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjElIiBzdG9wLWNvbG9yPSIjY2NjY2NjIiBzdG9wLW9wYWNpdHk9IjAiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZDEpIiAvPgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZDIpIiAvPgo8L3N2Zz4=);
+	background: -webkit-gradient(linear, left top, right top, color-stop(1px, #eee), color-stop(0, transparent)), -webkit-gradient(linear, left top, left bottom, color-stop(1px, #eee), color-stop(0, transparent));
+	background: -webkit-linear-gradient(#eee 1px, transparent 0px), -webkit-linear-gradient(0deg, #eee 1px, transparent 0px);
+	background: -moz-linear-gradient(#eee 1px, transparent 0px), -moz-linear-gradient(0deg, #eee 1px, transparent 0px);
+	background: -ms-linear-gradient(0deg, #eee 1.1px, transparent 0px), -ms-linear-gradient(90deg, #eee 1.1px, transparent 0px);
+	background: -o-linear-gradient(#eee 1px, transparent 0px), -o-linear-gradient(90deg, #eee 1px, transparent 0px);
+	background: linear, 0deg, #eee 1px, transparent 0px, linear, 90deg, #eee 1.1px, transparent 0px;
+	background-attachment: local;
+}
+
+.Demo .gantt .gantt-content {
 	background: transparent;
-	border: none;
-	padding: 0;
-	margin: 0;
-	cursor: pointer;
-	outline: none;
-	color: inherit;
-	opacity: 0.5;
-	filter: alpha(opacity=50) ;
-}
-
-.Demo .v-calendar-header-week .v-calendar-back:focus, .Demo .v-calendar-header-week .v-calendar-next:focus {
-	outline: none;
-}
-
-.Demo .v-calendar-header-week .v-calendar-back:hover, .Demo .v-calendar-header-week .v-calendar-next:hover {
-	opacity: 1;
-	filter: none ;
-}
-
-.Demo .v-calendar-header-week .v-calendar-back:active, .Demo .v-calendar-header-week .v-calendar-next:active {
-	opacity: 0.5;
-	filter: alpha(opacity=50) ;
-}
-
-.Demo .v-calendar-header-week .v-calendar-back:before {
-	font-family: ThemeIcons;
-	content: "\f053";
-}
-
-.Demo .v-calendar-header-week .v-calendar-next:before {
-	font-family: ThemeIcons;
-	content: "\f054";
-}
-
-.Demo .v-calendar-month {
-	outline: none;
 	overflow: hidden;
-}
-
-.Demo .v-calendar-month td {
-	vertical-align: top;
-}
-
-.Demo .v-calendar-week-number {
-	cursor: pointer;
-	width: 20px;
-	text-align: center;
-	font-size: 0.8em;
-	opacity: 0.5;
-	filter: alpha(opacity=50) ;
-}
-
-.Demo .v-calendar-week-number:hover {
-	opacity: 1;
-	filter: none ;
-}
-
-.Demo .v-calendar-month-day {
-	outline: none;
-	box-sizing: border-box;
-	line-height: 1.2;
-}
-
-.Demo .v-calendar-bottom-spacer, .Demo .v-calendar-spacer, .Demo .v-calendar-bottom-spacer-empty {
-	height: 19px;
-	margin-bottom: 3px;
-}
-
-.Demo .v-calendar-bottom-spacer {
-	font-size: 0.8em;
-	padding: 0 5px;
-	cursor: pointer;
-}
-
-.Demo .v-calendar-bottom-spacer:hover {
-	color: #197de1;
-}
-
-.Demo .v-calendar-day-number {
-	line-height: 25px;
-	font-size: 16px;
-	text-align: right;
-	margin: 0 5px;
-	white-space: nowrap;
-	border-top: 1px solid #f2f2f2;
-	cursor: pointer;
-}
-
-.Demo .v-calendar-day-number:hover {
-	color: #197de1;
-}
-
-.Demo .v-calendar-month-day-today {
-	background: #eef3f8;
-}
-
-.Demo .v-calendar-month-day-today .v-calendar-day-number {
-	font-weight: 400;
-	color: #197de1;
-	border-top: 2px solid #197de1;
-	line-height: 24px;
-	margin: 0;
-	padding: 0 5px;
-}
-
-.Demo .v-calendar-month-day-selected {
-	background-color: #e3edf7;
-}
-
-.Demo .v-calendar-month-day-dragemphasis {
-	background-color: #a8a8a8;
-}
-
-.Demo .v-calendar-month-day-scrollable {
-	overflow-y: scroll;
-}
-
-.Demo .v-calendar-weekly-longevents {
-	margin-left: 50px;
-	border-bottom: 3px solid #e0e0e0;
-}
-
-.Demo .v-calendar-weekly-longevents .v-calendar-event-all-day {
-	height: 22px;
-	line-height: 1.6;
-	margin-bottom: 3px;
-}
-
-.Demo .v-calendar-header-week td {
-	vertical-align: middle !important;
-}
-
-.Demo .v-calendar-header-week .v-calendar-header-day {
-	cursor: pointer;
-}
-
-.Demo .v-calendar-times {
-	width: 50px;
-	font-size: 0.77em;
-	line-height: 1;
-	white-space: nowrap;
-}
-
-.Demo .v-calendar-time {
-	text-align: right;
-	padding-right: 9px;
-	margin-top: -6px;
-	padding-bottom: 6px;
-}
-
-.Demo .v-calendar-day-times, .Demo .v-calendar-day-times-today {
-	outline: none;
-	border-right: 1px solid transparent;
-}
-
-.Demo .v-calendar-day-times:focus, .Demo .v-calendar-day-times-today:focus {
-	outline: none;
-}
-
-.Demo .v-calendar .v-datecellslot, .Demo .v-calendar .v-datecellslot-even {
-	border-top: 1px solid #dfdfdf;
-}
-
-.Demo .v-calendar .v-datecellslot:first-child, .Demo .v-calendar .v-datecellslot-even:first-child {
-	border-top-color: transparent;
-}
-
-.Demo .v-calendar .v-datecellslot {
-	border-top-style: dotted;
-}
-
-.Demo .v-calendar .v-datecellslot, .Demo .v-calendar .v-datecellslot-even {
-	margin-right: 5px;
-}
-
-.Demo .v-calendar-current-time {
-	background: #197de1;
-	line-height: 1px;
-	pointer-events: none;
-	opacity: 0.5;
-	filter: alpha(opacity=50) ;
-}
-
-.Demo .v-calendar-current-time:before {
-	content: "\2022";
-	color: #197de1;
-	font-size: 22px;
-	margin-left: -0.07em;
-}
-
-.Demo .v-calendar .v-daterange {
 	position: relative;
+	width: 100%;
+	height: 100%;
 }
 
-.Demo .v-calendar .v-daterange:before {
-	content: "";
+.Demo .gantt .bar {
 	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: -1px;
-	left: 0;
-	background: #197de1;
-	opacity: 0.5;
-	filter: alpha(opacity=50) ;
-	border-radius: 4px 4px 0 0;
+	height: 30px;
+	z-index: 1;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	touch-action: pan-y;
+	-ms-touch-action: pan-y;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 2px 0 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
+	-moz-box-shadow: 2px 0 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
+	box-shadow: 2px 0 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
 }
 
-.Demo .v-calendar .v-daterange  + .v-daterange {
-	border-color: transparent;
+.Demo .gantt .bar.has-sub-steps:hover  > .bar-label {
+	width: 100%;
+	padding-left: 3px;
+	background-color: rgba(246, 255, 99, 0.3);
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	transform: translate(0, -27px);
+	-webkit-transform: translate(0, -27px);
+	-o-transform: translate(0, -27px);
+	-moz-transform: translate(0, -27px);
 }
 
-.Demo .v-calendar .v-daterange  + .v-daterange:before {
-	border-radius: 0;
+.Demo .gantt .bar.has-sub-steps:hover  > .bar-label:hover {
+	cursor: move;
 }
 
-.Demo .v-calendar-event {
-	font-size: 0.85em;
-	overflow: hidden;
-	cursor: pointer;
-	outline: none;
-	border-radius: 4px;
+.Demo .gantt .bar.has-sub-steps:hover  > .bar-label:hover  ~ .bar-progress {
+	display: block;
 }
 
-.Demo .v-calendar-event:focus {
-	outline: none;
+.Demo .gantt .bar.has-sub-steps {
+	background-color: rgba(246, 255, 99, 0.3) !important;
 }
 
-.Demo .v-calendar-event-month {
-	padding: 0 5px;
-	box-sizing: border-box;
-	margin-bottom: 3px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	height: 19px;
-	line-height: 19px;
-}
-
-.Demo .v-calendar-event-month .v-calendar-event-time {
-	float: right;
-	font-size: 0.9em;
-	line-height: 19px;
-	opacity: 0.5;
-	filter: alpha(opacity=50) ;
-}
-
-.Demo .v-calendar-event-month:before {
-	content: "\25cf";
-	margin-right: 0.2em;
-}
-
-.Demo .v-calendar-event-all-day {
-	padding: 0 5px;
-	box-sizing: border-box;
-	height: 19px;
-	line-height: 19px;
-	border-radius: 0;
-	margin-left: -1px;
-	white-space: nowrap;
-}
-
-.Demo .v-calendar-event-all-day:before {
-	content: "";
-}
-
-.Demo .v-calendar-event-start {
-	overflow: visible;
-	margin-left: 0;
-}
-
-.Demo .v-calendar-event-start.v-calendar-event-continued-to, .Demo .v-calendar-event-start.v-calendar-event-end {
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.Demo .v-calendar-event-start {
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px;
-	margin-left: 5px;
-}
-
-.Demo .v-calendar-event-end {
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-	margin-right: 5px;
-}
-
-.Demo .v-calendar-event-caption {
-	font-weight: 500;
-	line-height: 1.2;
-	padding: 5px 0;
+.Demo .gantt .bar.has-sub-steps  > .bar-label {
 	position: absolute;
-	overflow: hidden;
-	right: 9px;
-	left: 5px;
+	max-width: 100%;
+}
+
+.Demo .gantt .bar.has-sub-steps  > .bar-progress {
+	z-index: 2;
 	bottom: 0;
-	top: 0;
+	display: none;
 }
 
-.Demo .v-calendar-event-caption span {
-	font-weight: 300;
+.Demo .gantt .bar-label {
+	text-overflow: ellipsis;
 	white-space: nowrap;
+	overflow: hidden;
+	margin: 3px;
 }
 
-.Demo .v-calendar-week-wrapper .v-calendar-event {
-	overflow: visible;
+.Demo .gantt .bar-progress {
+	position: absolute;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	overflow: hidden;
 }
 
-.Demo .v-calendar-week-wrapper .v-calendar-event-content {
-	margin-top: -1px;
-	border-radius: 5px;
-	border: 1px solid #fafafa;
-	padding-top: 3px;
-	margin-right: 5px;
+.Demo .gantt .bar-progress .v-progressbar-wrapper, .Demo .gantt .bar-progress .v-progressbar-indicator {
+	min-width: auto;
 }
 
-.Demo .v-calendar-event-month:before {
-	color: #00ace0;
+.Demo .gantt .bar.moving {
+	background: orange;
+	cursor: move;
+	z-index: 3;
 }
 
-.Demo .v-calendar-event-all-day {
-	background-color: #c8eaf4;
-	background-color: rgba(200, 234, 244, 0.8);
-	color: #00ace0;
+.Demo .gantt .bar.resizing {
+	background: orange;
+	cursor: e-resize;
+	z-index: 3;
 }
 
-.Demo .v-calendar-week-wrapper .v-calendar-event {
-	color: #00ace0;
+.Demo .gantt .bar.invalid {
+	visibility: hidden;
 }
 
-.Demo .v-calendar-week-wrapper .v-calendar-event .v-calendar-event-content {
-	background-color: #c8eaf4;
-	background-color: rgba(200, 234, 244, 0.8);
+.Demo .gantt .mv-el {
+	position: absolute;
+	top: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	height: 100%;
+	z-index: 2;
+	background: transparent;
+	border-left: 1px dashed #ddd;
+	border-right: 1px dashed #ddd;
 }
 
-.Demo .v-calendar-event-month[class*="color2"]:before {
-	color: #2d9f19;
+.Demo .gantt .arrow .start-p, .Demo .gantt .arrow .end-p {
+	fill: #005fff;
+	stroke: #0019ff;
 }
 
-.Demo .v-calendar-event-all-day[class*="color2"] {
-	background-color: #d1e7cd;
-	background-color: rgba(209, 231, 205, 0.8);
-	color: #2d9f19;
+.Demo .gantt .arrow .start-p:hover, .Demo .gantt .arrow .end-p:hover {
+	fill: orange;
+	stroke: orange;
 }
 
-.Demo .v-calendar-week-wrapper .v-calendar-event[class*="color2"] {
-	color: #2d9f19;
+.Demo .gantt .select-target-step {
+	touch-action: none;
+	-ms-touch-action: none;
 }
 
-.Demo .v-calendar-week-wrapper .v-calendar-event[class*="color2"] .v-calendar-event-content {
-	background-color: #d1e7cd;
-	background-color: rgba(209, 231, 205, 0.8);
+.Demo .gantt .select-target-step .bar:hover {
+	background: orange !important;
 }
 
-.Demo .v-calendar-event-month[class*="color3"]:before {
-	color: #d18100;
-}
-
-.Demo .v-calendar-event-all-day[class*="color3"] {
-	background-color: #f1e1c8;
-	background-color: rgba(241, 225, 200, 0.8);
-	color: #d18100;
-}
-
-.Demo .v-calendar-week-wrapper .v-calendar-event[class*="color3"] {
-	color: #d18100;
-}
-
-.Demo .v-calendar-week-wrapper .v-calendar-event[class*="color3"] .v-calendar-event-content {
-	background-color: #f1e1c8;
-	background-color: rgba(241, 225, 200, 0.8);
-}
-
-.Demo .v-calendar-event-month[class*="color4"]:before {
-	color: #ce3812;
-}
-
-.Demo .v-calendar-event-all-day[class*="color4"] {
-	background-color: #f1d3cb;
-	background-color: rgba(241, 211, 203, 0.8);
-	color: #ce3812;
-}
-
-.Demo .v-calendar-week-wrapper .v-calendar-event[class*="color4"] {
-	color: #ce3812;
-}
-
-.Demo .v-calendar-week-wrapper .v-calendar-event[class*="color4"] .v-calendar-event-content {
-	background-color: #f1d3cb;
-	background-color: rgba(241, 211, 203, 0.8);
-}
-
-.Demo .v-calendar-event-month[class*="color5"]:before {
-	color: #2d55cd;
-}
-
-.Demo .v-calendar-event-all-day[class*="color5"] {
-	background-color: #d1d9f1;
-	background-color: rgba(209, 217, 241, 0.8);
-	color: #2d55cd;
-}
-
-.Demo .v-calendar-week-wrapper .v-calendar-event[class*="color5"] {
-	color: #2d55cd;
-}
-
-.Demo .v-calendar-week-wrapper .v-calendar-event[class*="color5"] .v-calendar-event-content {
-	background-color: #d1d9f1;
-	background-color: rgba(209, 217, 241, 0.8);
-}
-
-.Demo .v-calendar.v-disabled * {
-	cursor: default;
+.Demo .gantt svg.bg-grid {
+	position: absolute;
+	overflow: hidden;
+	top: 0;
+	z-index: 0;
+	background: transparent;
 }
 
 .Demo.v-app, .Demo.v-app-loading {
@@ -15305,4 +15015,86 @@ div.v-layout.v-horizontal.v-widget {
 	display: inline-block;
 	width: 19px;
 	overflow: hidden;
+}
+
+.Demo .gantt {
+	background: #fafafa;
+}
+
+.Demo .gantt .year, .Demo .gantt .month, .Demo .gantt .day {
+	border-right: none;
+	background-color: #e0e0e0;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.Demo .gantt .year:nth-of-type(even) {
+	background-color: #d9d9d9;
+}
+
+.Demo .gantt .month:nth-of-type(even) {
+	background-color: #d4d4d4;
+}
+
+.Demo .gantt .day:nth-of-type(even) {
+	background-color: #d4d4d4;
+}
+
+.Demo .gantt .col.even {
+	background-color: #d4d4d4;
+}
+
+.Demo .gantt .col {
+	border-right: none;
+	background-color: #e0e0e0;
+	font-size: 14px;
+}
+
+.Demo .gantt .col.weekend {
+	background-color: #d4d4d4;
+}
+
+.Demo .gantt .row {
+	height: 24px;
+}
+
+.Demo .gantt .gantt-container {
+	background: #e0e0e0;
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj4KICAgIDxzdG9wIG9mZnNldD0iMSUiIHN0b3AtY29sb3I9IiNjY2NjY2MiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQtdWNnZy1nZW5lcmF0ZWQyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjElIiBzdG9wLWNvbG9yPSIjY2NjY2NjIiBzdG9wLW9wYWNpdHk9IjAiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZDEpIiAvPgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZDIpIiAvPgo8L3N2Zz4=);
+	background: -webkit-gradient(linear, left top, right top, color-stop(1px, #e0e0e0), color-stop(0, transparent)), -webkit-gradient(linear, left top, left bottom, color-stop(1px, #e0e0e0), color-stop(0, transparent));
+	background: -webkit-linear-gradient(#e0e0e0 1px, transparent 0px), -webkit-linear-gradient(0deg, #e0e0e0 1px, transparent 0px);
+	background: -moz-linear-gradient(#e0e0e0 1px, transparent 0px), -moz-linear-gradient(0deg, #e0e0e0 1px, transparent 0px);
+	background: -ms-linear-gradient(0deg, #e0e0e0 1.1px, transparent 0px), -ms-linear-gradient(90deg, #e0e0e0 1.1px, transparent 0px);
+	background: -o-linear-gradient(#e0e0e0 1px, transparent 0px), -o-linear-gradient(90deg, #e0e0e0 1px, transparent 0px);
+	background: linear, 0deg, #e0e0e0 1px, transparent 0px, linear, 90deg, #e0e0e0 1.1px, transparent 0px;
+	background-attachment: local;
+}
+
+.Demo .gantt .gantt-content {
+	background: transparent;
+}
+
+.Demo .gantt .bar {
+	height: 37px;
+	border-radius: 4px;
+	box-shadow: 0 2px 3px v-shade;
+	color: #464646;
+}
+
+.Demo .gantt .bar.moving {
+	background: #197de1;
+}
+
+.Demo .gantt .bar.resizing {
+	background: #197de1;
+}
+
+.Demo .gantt .mv-el {
+	background: transparent;
+	border-left: 1px dashed #adadad;
+	border-right: 1px dashed #adadad;
+}
+
+.Demo .gantt .select-target-step .bar:hover {
+	background: #197de1 !important;
 }

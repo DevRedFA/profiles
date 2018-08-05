@@ -1,10 +1,8 @@
 package com.isedykh.profiles.mapper;
 
 import com.isedykh.profiles.dao.entity.ThingEntity;
-import com.isedykh.profiles.dao.entity.ThingStatusEntity;
 import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.service.entity.Thing;
-import com.isedykh.profiles.service.entity.ThingStatus;
 import com.isedykh.profiles.service.entity.ThingType;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -32,13 +30,4 @@ public interface ThingMapper {
     List<ThingType> thingTypeEntitiesToThingTypes(List<ThingTypeEntity> thingTypeEntity);
 
     List<ThingTypeEntity> thingTypesToThingTypeEntities(List<ThingType> thingType);
-
-    ThingStatus thingStatusEntityToThingStatus(ThingStatusEntity thingTypeEntity);
-
-    ThingStatusEntity thingStatusToThingStatusEntity(ThingStatus thingType);
-
-    List<ThingStatus> thingStatusEntitiesToThingStatuses(List<ThingStatusEntity> thingTypeEntity);
-
-    List<ThingStatusEntity> thinStatusesToThingStatusEntities(List<ThingStatus> thingType);
-
 }

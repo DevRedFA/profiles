@@ -7,11 +7,9 @@ import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.PriceEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
-import com.isedykh.profiles.dao.repository.ThingStatusEntityRepository;
 import com.isedykh.profiles.mapper.ThingMapper;
 import com.isedykh.profiles.service.ThingService;
 import com.isedykh.profiles.service.entity.Thing;
-import com.isedykh.profiles.service.entity.ThingStatus;
 import com.isedykh.profiles.service.entity.ThingType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -36,8 +34,6 @@ public class ThingServiceImpl implements ThingService {
     private final OrderEntityRepository orderEntityRepository;
 
     private final PriceEntityRepository priceEntityRepository;
-
-    private final ThingStatusEntityRepository thingStatusEntityRepository;
 
     private final ThingMapper thingMapper;
 
@@ -111,16 +107,6 @@ public class ThingServiceImpl implements ThingService {
         thingEntity.setPrices(priceEntities);
         ThingEntity save = thingEntityRepository.save(thingEntity);
         return thingMapper.thingEntityToThing(save);
-    }
-
-    @Override
-    public List<ThingStatus> getAllThingStatuses() {
-        return thingMapper.thingStatusEntitiesToThingStatuses(thingStatusEntityRepository.findAll());
-    }
-
-    @Override
-    public ThingStatus getStatusByName(String name) {
-        return thingMapper.thingStatusEntityToThingStatus(thingStatusEntityRepository.findByName(name));
     }
 
     @Override

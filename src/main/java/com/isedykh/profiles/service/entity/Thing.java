@@ -22,8 +22,6 @@ public class Thing implements Identifiable {
 
     private ThingType type;
 
-    private ThingStatus status;
-
     private List<Price> prices;
 
     private int deposit;

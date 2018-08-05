@@ -12,6 +12,7 @@ import com.isedykh.profiles.service.entity.Client;
 import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.entity.OrderStatus;
 import com.isedykh.profiles.service.entity.Thing;
+import com.isedykh.profiles.service.entity.ThingType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -59,6 +60,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getClientOrderHistory(Client client) {
         return orderMapper.orderEntitiesToOrders(orderEntityRepository.findAllByClientId(client.getId()));
+    }
+
+    @Override
+    public List<Order> getAllOrdersWithThingType(ThingType thingType) {
+        return orderMapper.orderEntitiesToOrders(
+                orderEntityRepository.findAllByThing_type_name(thingType.getName()));
     }
 
     @Override

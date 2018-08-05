@@ -1,9 +1,15 @@
 @import "addons.scss";
-@import "demo.scss";
+//@import "demo.scss";
+@import "../valo/valo";
+@import "../../../VAADIN/addons/gantt/gantt-valo.scss";
 
 /* This file prefixes all rules with the theme name to avoid causing conflicts with other themes. */
 /* The actual styles should be defined in demo.scss */
 .Demo {
   @include addons;
-  @include demo;
+  @include valo;
+
+  //@include demo;
+  @include gantt-valo;
+
 }

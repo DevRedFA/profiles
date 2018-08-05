@@ -57,9 +57,9 @@ dependencies {
     compile('org.mapstruct:mapstruct:1.2.0.Final')
     compile('org.mapstruct:mapstruct-jdk8:1.2.0.Final')
 
-    compile 'org.vaadin.blackbluegl:calendar-component:2.0-BETA3'
-
-//    compile 'org.vaadin.addons:tuning-datefield:0.20.0-vaadin8'
+//    compile 'org.vaadin.blackbluegl:calendar-component:2.0-BETA3'
+    compile 'org.tltv.gantt:gantt-addon:1.0.3'
+    //    compile 'org.vaadin.addons:tuning-datefield:0.20.0-vaadin8'
 
     compile('org.modelmapper:modelmapper:1.1.3')
 

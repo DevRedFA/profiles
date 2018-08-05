@@ -6,14 +6,12 @@ import com.isedykh.profiles.dao.entity.OrderStatusEntity;
 import com.isedykh.profiles.dao.entity.PriceEntity;
 import com.isedykh.profiles.dao.entity.TermEntity;
 import com.isedykh.profiles.dao.entity.ThingEntity;
-import com.isedykh.profiles.dao.entity.ThingStatusEntity;
 import com.isedykh.profiles.dao.entity.ThingTypeEntity;
 import com.isedykh.profiles.dao.repository.ClientEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderEntityRepository;
 import com.isedykh.profiles.dao.repository.OrderStatusEntityRepository;
 import com.isedykh.profiles.dao.repository.TermEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingEntityRepository;
-import com.isedykh.profiles.dao.repository.ThingStatusEntityRepository;
 import com.isedykh.profiles.dao.repository.ThingTypeEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,8 +32,6 @@ public class InitUtils {
     private final ThingTypeEntityRepository thingTypeEntityRepository;
 
     private final ThingEntityRepository thingEntityRepository;
-
-    private final ThingStatusEntityRepository thingStatusEntityRepository;
 
     private final ClientEntityRepository clientEntityRepository;
 
@@ -73,13 +69,12 @@ public class InitUtils {
     @Transactional
     public List<ThingEntity> getThingEntities(List<ThingTypeEntity> thingTypes) {
         List<ThingEntity> listThing = new ArrayList<>();
-        ThingStatusEntity free = thingStatusEntityRepository.save(new ThingStatusEntity(null, "free"));
         for (int i = 1; i < 26; i++) {
 
             listThing.add(new ThingEntity(null, "Thing " + i,
                     i * 100, LocalDate.now(), null, null,
                     thingTypes.get(ThreadLocalRandom.current().nextInt(thingTypes.size())),
-                    free, Collections.emptyList(), i, "comments " + i));
+                    Collections.emptyList(), i, "comments " + i));
         }
         return thingEntityRepository.saveAll(listThing);
     }

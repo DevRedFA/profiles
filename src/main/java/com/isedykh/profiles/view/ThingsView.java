@@ -52,7 +52,6 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.addColumn(Thing::getName).setCaption("Name");
         thingsGrid.addColumn(Thing::getType).setCaption("Type");
         thingsGrid.addColumn(Thing::getDeposit).setCaption("Deposit");
-        thingsGrid.addColumn(Thing::getStatus).setCaption("Status");
         thingsGrid.setHeightByRows(PAGE_SIZE);
         thingsGrid.addItemClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, ThingView.VIEW_NAME));
 
@@ -73,6 +72,7 @@ public class ThingsView extends VerticalLayout implements View {
         buttonPrevious.addClickListener(getPageChangeClickListener(thingPage, Slice::previousPageable, thingsGrid, buttonNext, buttonPrevious, thingService));
 
         buttonNewThing.addClickListener(clickEvent -> Utils.getNewClickListenerSupplier(this::getUI, ThingView.VIEW_NAME));
+
 
         DateField begin = new DateField("Begin");
         begin.setDateFormat(Utils.DATE_FORMAT);
