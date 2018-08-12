@@ -22,7 +22,7 @@ apply plugin: "com.devsoap.plugin.vaadin"
 
 
 group = 'com.isedykh'
-version = '0.0.2-SNAPSHOT'
+version = '0.0.3-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -50,16 +50,13 @@ vaadinAddon {
 
 dependencies {
     compile('org.projectlombok:lombok')
-//	compile('com.h2database:h2')
     runtime('org.postgresql:postgresql')
     compile('org.apache.commons:commons-lang3')
     compile('org.mapstruct:mapstruct-processor:1.2.0.Final')
     compile('org.mapstruct:mapstruct:1.2.0.Final')
     compile('org.mapstruct:mapstruct-jdk8:1.2.0.Final')
 
-//    compile 'org.vaadin.blackbluegl:calendar-component:2.0-BETA3'
     compile 'org.tltv.gantt:gantt-addon:1.0.3'
-    //    compile 'org.vaadin.addons:tuning-datefield:0.20.0-vaadin8'
 
     compile('org.modelmapper:modelmapper:1.1.3')
 
@@ -80,16 +77,11 @@ dependencyManagement {
         dependency("com.vaadin:vaadin-spring-boot-starter:${vaadinSpringVersion}")
         dependency("org.vaadin.spring.extensions:vaadin-spring-ext-boot:${vaadin4SpringVersion}")
 		dependency("org.vaadin.spring.extensions:vaadin-spring-ext-security:${vaadin4SpringVersion}")
-//		dependency("org.hibernate:hibernate-validator:4.3.1.Final")
-//		dependency("javax.validation:validation-api:1.0.0.GA")
     }
 }
 
 bootJar  {
     baseName = 'ProfilesApplicaton'
     version = version
-//    manifest {
-//        attributes 'Main-Class': 'com.isedykh.profiles.ProfilesApplication'
-//    }
 }
 

@@ -117,19 +117,21 @@ public class GanttOrdersView extends VerticalLayout implements View {
         Map<Thing, List<Order>> collect = orders.stream().collect(Collectors.groupingBy(Order::getThing));
         collect.forEach((thing, thingOrders) ->
         {
-            Step step = new Step("____" + thing.getName());
+            Step step = new Step("");
+            step.setDescription(thing.getName());
             SubStep initSubStep = new SubStep("init");
             initSubStep.setStartDate(Date.valueOf(LocalDate.now().minusMonths(1).minusDays(1)));
             initSubStep.setEndDate(Date.valueOf(LocalDate.now().minusMonths(1)));
 
             SubStep endSubStep = new SubStep("end");
-            endSubStep.setStartDate(Date.valueOf(LocalDate.now().plusMonths(3)));
-            endSubStep.setEndDate(Date.valueOf(LocalDate.now().plusMonths(3).plusDays(1)));
+            endSubStep.setStartDate(Date.valueOf(LocalDate.now().plusMonths(3).plusDays(1)));
+            endSubStep.setEndDate(Date.valueOf(LocalDate.now().plusMonths(3).plusDays(2)));
 
 
             List<SubStep> subSteps = thingOrders.stream().map(order -> {
                 SubStep subStep = new SubStep("Order id: " + order.getId());
                 subStep.setStartDate(Date.valueOf(order.getBegin()));
+                subStep.setDescription(getOrderDescription(order));
                 subStep.setEndDate(Date.valueOf(order.getStop()));
                 return subStep;
             }).collect(Collectors.toList());
@@ -141,5 +143,12 @@ public class GanttOrdersView extends VerticalLayout implements View {
         });
 
         return steps;
+    }
+
+    private String getOrderDescription(Order order) {
+        return "Id: " + order.getId() + System.lineSeparator() +
+                "Thing: " + order.getThing().getName() + System.lineSeparator() +
+                "Client: " + order.getClient().getName() + System.lineSeparator() +
+                "Start: " + order.getBegin() + " End: " + order.getStop();
     }
 }

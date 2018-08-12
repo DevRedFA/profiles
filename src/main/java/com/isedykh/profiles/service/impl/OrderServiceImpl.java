@@ -98,6 +98,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void closeOrder(Long id) {
+        OrderEntity one = orderEntityRepository.getOne(id);
+        orderStatusEntityRepository.findAll().stream()
+                .filter(status -> "Завершен".equals(status.getName()))
+                .findAny()
+                .ifPresent(one::setStatus);
+        orderEntityRepository.save(one);
+    }
+
+    @Override
     public Order update(Order order) {
         OrderEntity orderEntity = orderMapper.orderToOrderEntity(order);
         return orderMapper.orderEntityToOrder(orderEntityRepository.save(orderEntity));

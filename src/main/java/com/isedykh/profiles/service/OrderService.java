@@ -35,4 +35,6 @@ public interface OrderService extends CrudService<Order> {
     void delete(List<Order> list);
 
     void deleteByClient(Client client);
+
+    void closeOrder(Long id);
 }

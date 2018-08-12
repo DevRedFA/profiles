@@ -28,7 +28,7 @@ import static com.isedykh.profiles.view.ViewUtils.getOrderGridWithSettings;
 
 @AllArgsConstructor
 @SpringView(name = OrdersView.VIEW_NAME)
-@SuppressWarnings({"squid:S1948","squid:MaximumInheritanceDepth","squid:S2160"})
+@SuppressWarnings({"squid:S1948", "squid:MaximumInheritanceDepth", "squid:S2160"})
 public class OrdersView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "orders";
@@ -51,9 +51,10 @@ public class OrdersView extends VerticalLayout implements View {
         Button buttonPrevious = new Button("Previous");
         Button buttonDetails = new Button("Details");
         Button buttonNew = new Button("New");
+        Button buttonClose = new Button("Close");
         Button buttonDelete = new Button("Delete");
 
-        HorizontalLayout buttons = getButtonsLayout(buttonDelete, buttonPrevious, buttonDetails, buttonNew, buttonNext);
+        HorizontalLayout buttons = getButtonsLayout(buttonDelete, buttonPrevious, buttonDetails, buttonNew, buttonNext, buttonClose);
 
         buttonNext.addClickListener(getPageChangeClickListener(orderPage, Slice::nextPageable, orderGrid, buttonNext, buttonPrevious, orderService));
 
@@ -63,10 +64,19 @@ public class OrdersView extends VerticalLayout implements View {
 
         buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(orderGrid, this::getUI, OrderView.VIEW_NAME));
 
+        buttonClose.addClickListener(clickEvent -> {
+            Set selectedItems = orderGrid.getSelectedItems();
+            if (selectedItems.size() == 1) {
+                Identifiable identifiable = (Identifiable) selectedItems.toArray()[0];
+                orderService.closeOrder(identifiable.getId());
+                getUI().getPage().reload();
+            }
+        });
+
         buttonDelete.addClickListener(clickEvent -> {
             Set selectedItems = orderGrid.getSelectedItems();
             if (selectedItems.size() == 1) {
-                Identifiable identifiable = Identifiable.class.cast(selectedItems.toArray()[0]);
+                Identifiable identifiable = (Identifiable) selectedItems.toArray()[0];
                 orderService.delete(identifiable.getId());
                 getUI().getPage().reload();
             }
@@ -77,6 +87,6 @@ public class OrdersView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-      // do nothing
+        // do nothing
     }
 }
