@@ -32,14 +32,11 @@ import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.tltv.gantt.Gantt;
-import org.tltv.gantt.client.shared.Step;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +58,6 @@ public class ThingView extends VerticalLayout implements View {
 
     private Thing thing;
     private List<Price> prices;
-    private Gantt gantt;
 
     private final TextField name = new TextField("Name");
     private final ComboBox<ThingType> type = new ComboBox<>("Type");
@@ -252,13 +248,6 @@ public class ThingView extends VerticalLayout implements View {
                 int id = Integer.parseInt(event.getParameters());
                 try {
                     thing = thingService.getById(id);
-                    List<Order> thingOrderHistory = orderService.getThingOrderHistory(thing);
-                    thingOrderHistory.forEach(order -> {
-                        Step step = new Step(order.getStatus().getName());
-                        step.setStartDate(Date.valueOf(order.getBegin()));
-                        step.setEndDate(Date.valueOf(order.getStop()));
-                        gantt.addStep(step);
-                    });
                     ordersGrid.setItems(orderService.getThingOrderHistory(thing));
                     actualPriceSum.setValue("Actual prices sum: " + thingService.countAllActualPrices(thing) / 100);
                 } catch (Exception e) {

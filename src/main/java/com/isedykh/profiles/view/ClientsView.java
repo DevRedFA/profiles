@@ -74,8 +74,8 @@ public class ClientsView extends VerticalLayout implements View {
             clientGrid.setItems(clientByName);
         });
 
-        buttonPrevious.addClickListener(getPageChangeClickListener(clientPage, Slice::nextPageable, clientGrid,
-                buttonPrevious, buttonPrevious, clientService, nameFilter, Client::getName));
+        buttonNext.addClickListener(getPageChangeClickListener(clientPage, Slice::nextPageable, clientGrid,
+                buttonNext, buttonPrevious, clientService, nameFilter, Client::getName));
 
         buttonPrevious.addClickListener(getPageChangeClickListener(clientPage, Slice::previousPageable, clientGrid,
                 buttonNext, buttonPrevious, clientService, nameFilter, Client::getName));
