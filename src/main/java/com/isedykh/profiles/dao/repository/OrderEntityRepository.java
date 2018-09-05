@@ -13,6 +13,5 @@ public interface OrderEntityRepository extends JpaRepository<OrderEntity, Long> 
 
     List<OrderEntity> findAllByClientId(long clientId);
 
-
     List<OrderEntity> findAllByThing_type_name(String thingTypeName);
 }

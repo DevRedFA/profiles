@@ -1,5 +1,4 @@
 package com.isedykh.profiles.configuration;
-//
 
 import com.isedykh.profiles.security.SecurityUserDetailsService;
 import com.vaadin.spring.annotation.EnableVaadin;
@@ -94,5 +93,4 @@ public class VaadinSpringConfiguration extends WebSecurityConfigurerAdapter {
                                                                                  VaadinRedirectStrategy vaadinRedirectStrategy) {
         return new VaadinUrlAuthenticationSuccessHandler(httpService, vaadinRedirectStrategy, "/#!things");
     }
-
 }

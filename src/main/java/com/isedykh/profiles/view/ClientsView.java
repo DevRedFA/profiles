@@ -17,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
-import org.springframework.security.access.annotation.Secured;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -31,7 +30,6 @@ import static com.isedykh.profiles.common.Utils.getPageChangeClickListener;
 import static com.isedykh.profiles.view.ViewUtils.getButtonsLayout;
 import static com.isedykh.profiles.view.ViewUtils.getClientGridWithSettings;
 
-@Secured({"ROLE_ADMIN"})
 @RequiredArgsConstructor
 @SpringView(name = ClientsView.VIEW_NAME)
 @SuppressWarnings({"squid:S1948", "squid:MaximumInheritanceDepth", "squid:S2160"})
@@ -85,6 +83,10 @@ public class ClientsView extends VerticalLayout implements View {
         buttonDetails.addClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clientGrid, this::getUI, ClientView.VIEW_NAME));
 
         buttonDelete.addClickListener(getDeleteClickListener(clientGrid, this::getUI, clientService));
+
+        buttonNext.setEnabled(clientPage.get().hasNext());
+
+        buttonPrevious.setEnabled(clientPage.get().hasPrevious());
 
         List<Client> content = clientPage.get().getContent();
         nameFilter.setItems(content.stream()

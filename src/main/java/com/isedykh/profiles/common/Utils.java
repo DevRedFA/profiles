@@ -36,7 +36,7 @@ public class Utils {
     public static void getDetailsDoubleClickListenerSupplier(Grid<? extends Identifiable> grid, Supplier<UI> uiSupplier, String to) {
         Set selectedItems = grid.getSelectedItems();
         if (selectedItems.size() == 1) {
-            Identifiable identifiable = Identifiable.class.cast(selectedItems.toArray()[0]);
+            Identifiable identifiable = (Identifiable) selectedItems.toArray()[0];
             uiSupplier.get().getNavigator().navigateTo(to + "/" + identifiable.getId());
         }
     }

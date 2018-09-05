@@ -54,8 +54,6 @@ public class OrdersView extends VerticalLayout implements View {
         Button buttonClose = new Button("Close");
         Button buttonDelete = new Button("Delete");
 
-        HorizontalLayout buttons = getButtonsLayout(buttonDelete, buttonPrevious, buttonDetails, buttonNew, buttonNext, buttonClose);
-
         buttonNext.addClickListener(getPageChangeClickListener(orderPage, Slice::nextPageable, orderGrid, buttonNext, buttonPrevious, orderService));
 
         buttonPrevious.addClickListener(getPageChangeClickListener(orderPage, Slice::previousPageable, orderGrid, buttonNext, buttonPrevious, orderService));
@@ -81,6 +79,12 @@ public class OrdersView extends VerticalLayout implements View {
                 getUI().getPage().reload();
             }
         });
+
+        buttonNext.setEnabled(orderPage.get().hasNext());
+
+        buttonPrevious.setEnabled(orderPage.get().hasPrevious());
+
+        HorizontalLayout buttons = getButtonsLayout(buttonDelete, buttonPrevious, buttonDetails, buttonNew, buttonNext, buttonClose);
 
         addComponent(buttons);
     }

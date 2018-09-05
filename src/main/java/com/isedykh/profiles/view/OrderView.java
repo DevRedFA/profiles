@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.isedykh.profiles.common.Utils.setFieldIfNotNull;
 import static com.isedykh.profiles.view.ViewUtils.getClientGridWithSettings;
 
 @RequiredArgsConstructor
@@ -177,22 +178,22 @@ public class OrderView extends VerticalLayout implements View {
             }
         }
 
-        Utils.setFieldIfNotNull(order::getId, idField::setValue, s -> "ID: " + s);
-        Utils.setFieldIfNotNull(order::getBegin, begin::setValue, s -> s);
-        Utils.setFieldIfNotNull(order::getStop, end::setValue, s -> s);
-        Utils.setFieldIfNotNull(order::getStatus, status::setSelectedItem, s -> s);
-        Utils.setFieldIfNotNull(orderService::getAllOrderStatuses, status::setItems, s -> s);
-        Utils.setFieldIfNotNull(order::getPrice, price::setSelectedItem, s -> s);
-        Utils.setFieldIfNotNull(order::getThing, price::setItems, Thing::getPrices);
-        Utils.setFieldIfNotNull(order::getActualPrice, actualPriceField::setValue, s -> String.valueOf(s / 100));
-        Utils.setFieldIfNotNull(order::getThing, deposit::setValue, s -> String.valueOf(s.getDeposit()));
-        Utils.setFieldIfNotNull(order::getComments, comments::setValue, s -> s);
+        setFieldIfNotNull(order::getId, idField::setValue, s -> "ID: " + s);
+        setFieldIfNotNull(order::getBegin, begin::setValue, s -> s);
+        setFieldIfNotNull(order::getStop, end::setValue, s -> s);
+        setFieldIfNotNull(order::getStatus, status::setSelectedItem, s -> s);
+        setFieldIfNotNull(orderService::getAllOrderStatuses, status::setItems, s -> s);
+        setFieldIfNotNull(order::getPrice, price::setSelectedItem, s -> s);
+        setFieldIfNotNull(order::getThing, price::setItems, Thing::getPrices);
+        setFieldIfNotNull(order::getActualPrice, actualPriceField::setValue, s -> String.valueOf(s / 100));
+        setFieldIfNotNull(order::getThing, deposit::setValue, s -> String.valueOf(s.getDeposit()));
+        setFieldIfNotNull(order::getComments, comments::setValue, s -> s);
 
         if (client != null) {
-            Utils.setFieldIfNotNull(client::getName, clientFiled::setValue, s -> s);
+            setFieldIfNotNull(client::getName, clientFiled::setValue, s -> s);
         }
 
-        Utils.setFieldIfNotNull(order::getThing, thingField::setValue, Thing::getName);
+        setFieldIfNotNull(order::getThing, thingField::setValue, Thing::getName);
     }
 
     private void parseRequestParams(String[] msgs) {

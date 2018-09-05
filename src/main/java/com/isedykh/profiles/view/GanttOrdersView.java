@@ -2,8 +2,6 @@ package com.isedykh.profiles.view;
 
 import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.OrderService;
-import com.isedykh.profiles.service.TermService;
-import com.isedykh.profiles.service.ThingService;
 import com.isedykh.profiles.service.ThingTypeService;
 import com.isedykh.profiles.service.entity.Order;
 import com.isedykh.profiles.service.entity.Thing;
@@ -38,16 +36,13 @@ public class GanttOrdersView extends VerticalLayout implements View {
 
     public static final String VIEW_NAME = "ganttOrders";
 
-    private final ThingService thingService;
     private final ThingTypeService thingTypeService;
     private final OrderService orderService;
-    private final TermService termService;
 
     private Gantt gantt;
 
     @PostConstruct
     public void init() {
-
 
         ComboBox<ThingType> type = new ComboBox<>("Type");
         Utils.setFieldIfNotNull(thingTypeService::findAll, type::setItems, s -> s);
@@ -73,20 +68,9 @@ public class GanttOrdersView extends VerticalLayout implements View {
         searchPanel.setComponentAlignment(buttonSearch, Alignment.BOTTOM_LEFT);
 
         gantt = new Gantt();
-
-//        gantt.setWidth(100, Unit.PERCENTAGE);
-//        gantt.setHeight(500, Unit.PIXELS);
-
-
         gantt.setSizeFull();
-//        gantt.setWidth(100, Unit.PERCENTAGE);
-//        gantt.setHeight(500, Unit.PIXELS);
-
-
         addComponent(searchPanel);
         addComponent(gantt);
-
-
     }
 
     @Override
@@ -104,7 +88,6 @@ public class GanttOrdersView extends VerticalLayout implements View {
         gantt.setResolution(Resolution.Day);
         gantt.setResizableSteps(false);
         gantt.setMovableSteps(false);
-
     }
 
     private void addOrdersToGantt(ThingType type) {

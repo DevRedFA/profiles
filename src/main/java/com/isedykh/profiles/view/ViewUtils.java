@@ -6,13 +6,12 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
+import lombok.experimental.UtilityClass;
 
 import static com.isedykh.profiles.common.Utils.PAGE_SIZE;
 
+@UtilityClass
 class ViewUtils {
-
-    private ViewUtils() {
-    }
 
     static HorizontalLayout getButtonsLayout(Button buttonDelete, Button... buttons) {
         HorizontalLayout buttonsLayout = new HorizontalLayout();

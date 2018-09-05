@@ -1,6 +1,5 @@
 package com.isedykh.profiles.view;
 
-import com.isedykh.profiles.common.Utils;
 import com.isedykh.profiles.service.ClientService;
 import com.isedykh.profiles.service.OrderService;
 import com.isedykh.profiles.service.entity.Client;
@@ -33,6 +32,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static com.isedykh.profiles.common.Utils.START_POINT;
+import static com.isedykh.profiles.common.Utils.getDetailsDoubleClickListenerSupplier;
+import static com.isedykh.profiles.common.Utils.setFieldIfNotNull;
 import static com.isedykh.profiles.view.ViewUtils.getOrderGridWithSettings;
 
 @RequiredArgsConstructor
@@ -66,7 +67,7 @@ public class ClientView extends VerticalLayout implements View {
     @PostConstruct
     public void init() {
 
-        ordersGrid.addItemClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, OrderView.VIEW_NAME));
+        ordersGrid.addItemClickListener(clickEvent -> getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, OrderView.VIEW_NAME));
         ordersGrid.setHeightByRows(10);
 
         picturesGrid.addColumn(s -> s.substring(s.lastIndexOf('/'))).setCaption("File name");
@@ -93,7 +94,6 @@ public class ClientView extends VerticalLayout implements View {
 
             if (!StringUtils.isBlank(phoneSecond.getValue())) {
                 client.setEmail(email.getValue());
-
             }
 
             if (!StringUtils.isBlank(vkLink.getValue())) {
@@ -210,7 +210,8 @@ public class ClientView extends VerticalLayout implements View {
                                           String mimeType) {
             FileOutputStream fos;
             try {
-                file = new File(START_POINT + client.getName().replace(" ", "_") + "_" + client.getPathsToPhoto().size());
+                file = new File(START_POINT + client.getName().replace(" ", "_")
+                        + "_" + client.getPathsToPhoto().size());
                 fos = new FileOutputStream(file);
             } catch (final java.io.FileNotFoundException e) {
                 new Notification("Could not open file",
@@ -238,17 +239,17 @@ public class ClientView extends VerticalLayout implements View {
                 int id = Integer.parseInt(event.getParameters());
                 try {
                     client = clientService.findById(id);
-                    Utils.setFieldIfNotNull(client::getName, name::setValue, s -> s);
-                    Utils.setFieldIfNotNull(client::getPhone, phone::setValue, String::valueOf);
-                    Utils.setFieldIfNotNull(client::getPhoneSecond, phoneSecond::setValue, String::valueOf);
-                    Utils.setFieldIfNotNull(client::getEmail, email::setValue, s -> s);
-                    Utils.setFieldIfNotNull(client::getVkLink, vkLink::setValue, String::valueOf);
-                    Utils.setFieldIfNotNull(client::getAddress, address::setValue, s -> s);
-                    Utils.setFieldIfNotNull(client::getChildrenNumber, childrenNumber::setValue, String::valueOf);
-                    Utils.setFieldIfNotNull(client::getChildrenComments, childrenComments::setValue, s -> s);
+                    setFieldIfNotNull(client::getName, name::setValue, s -> s);
+                    setFieldIfNotNull(client::getPhone, phone::setValue, String::valueOf);
+                    setFieldIfNotNull(client::getPhoneSecond, phoneSecond::setValue, String::valueOf);
+                    setFieldIfNotNull(client::getEmail, email::setValue, s -> s);
+                    setFieldIfNotNull(client::getVkLink, vkLink::setValue, String::valueOf);
+                    setFieldIfNotNull(client::getAddress, address::setValue, s -> s);
+                    setFieldIfNotNull(client::getChildrenNumber, childrenNumber::setValue, String::valueOf);
+                    setFieldIfNotNull(client::getChildrenComments, childrenComments::setValue, s -> s);
                     List<Order> clientOrderHistory = orderService.getClientOrderHistory(client);
-                    Utils.setFieldIfNotNull(clientOrderHistory::stream, ordersGrid::setItems, s -> s);
-                    Utils.setFieldIfNotNull(client::getPathsToPhoto, picturesGrid::setItems, s -> s);
+                    setFieldIfNotNull(clientOrderHistory::stream, ordersGrid::setItems, s -> s);
+                    setFieldIfNotNull(client::getPathsToPhoto, picturesGrid::setItems, s -> s);
                 } catch (Exception e) {
                     Notification.show("Client with such id not found");
                 }

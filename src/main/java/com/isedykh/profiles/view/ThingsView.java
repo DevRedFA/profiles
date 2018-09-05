@@ -65,14 +65,15 @@ public class ThingsView extends VerticalLayout implements View {
         Button buttonNewOrder = new Button("New order");
         Button buttonDelete = new Button("Delete");
 
-        HorizontalLayout buttons = getButtonsLayout(buttonDelete, buttonPrevious, buttonDetails, buttonNewThing, buttonNewOrder, buttonNext);
-
         buttonNext.addClickListener(getPageChangeClickListener(thingPage, Slice::nextPageable, thingsGrid, buttonNext, buttonPrevious, thingService));
 
         buttonPrevious.addClickListener(getPageChangeClickListener(thingPage, Slice::previousPageable, thingsGrid, buttonNext, buttonPrevious, thingService));
 
         buttonNewThing.addClickListener(clickEvent -> Utils.getNewClickListenerSupplier(this::getUI, ThingView.VIEW_NAME));
 
+        buttonNext.setEnabled(thingPage.get().hasNext());
+
+        buttonPrevious.setEnabled(thingPage.get().hasPrevious());
 
         DateField begin = new DateField("Begin");
         begin.setDateFormat(Utils.DATE_FORMAT);
@@ -99,7 +100,7 @@ public class ThingsView extends VerticalLayout implements View {
         buttonDelete.addClickListener(clickEvent -> {
             Set selectedItems = thingsGrid.getSelectedItems();
             if (selectedItems.size() == 1) {
-                Identifiable identifiable = Identifiable.class.cast(selectedItems.toArray()[0]);
+                Identifiable identifiable = (Identifiable) selectedItems.toArray()[0];
                 List<Order> thingOrderHistory = orderService.getThingOrderHistory(identifiable.getId());
                 orderService.delete(thingOrderHistory);
                 thingService.delete(identifiable.getId());
@@ -122,6 +123,8 @@ public class ThingsView extends VerticalLayout implements View {
         searchPanel.addComponent(stop);
         searchPanel.addComponent(buttonSearch);
         searchPanel.setComponentAlignment(buttonSearch, Alignment.BOTTOM_LEFT);
+
+        HorizontalLayout buttons = getButtonsLayout(buttonDelete, buttonPrevious, buttonDetails, buttonNewThing, buttonNewOrder, buttonNext);
 
         addComponent(searchPanel);
         addComponent(thingsGrid);
