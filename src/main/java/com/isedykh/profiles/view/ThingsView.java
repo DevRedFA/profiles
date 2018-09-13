@@ -51,7 +51,8 @@ public class ThingsView extends VerticalLayout implements View {
         thingsGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
         thingsGrid.addColumn(Thing::getName).setCaption("Name");
         thingsGrid.addColumn(Thing::getType).setCaption("Type");
-        thingsGrid.addColumn(Thing::getDeposit).setCaption("Deposit");
+        thingsGrid.addColumn(thing -> thing.getPurchasePrice()/100).setCaption("Purchase Price");
+        thingsGrid.addColumn(thing -> thingService.countAllActualPrices(thing)/100).setCaption("Earned");
         thingsGrid.setHeightByRows(PAGE_SIZE);
         thingsGrid.addItemClickListener(clickEvent -> Utils.getDetailsDoubleClickListenerSupplier(clickEvent, this::getUI, ThingView.VIEW_NAME));
 

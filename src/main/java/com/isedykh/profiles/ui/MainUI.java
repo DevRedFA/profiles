@@ -5,6 +5,7 @@ import com.isedykh.profiles.view.ClientsView;
 import com.isedykh.profiles.view.ErrorView;
 import com.isedykh.profiles.view.GanttOrdersView;
 import com.isedykh.profiles.view.OrdersView;
+import com.isedykh.profiles.view.TermsView;
 import com.isedykh.profiles.view.ThingsView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
@@ -53,6 +54,7 @@ public class MainUI extends UI implements ViewDisplay {
         navigationBar.addComponent(createNavigationButton("Clients", ClientsView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("Orders", OrdersView.VIEW_NAME));
         navigationBar.addComponent(createNavigationButton("Gantt Orders", GanttOrdersView.VIEW_NAME));
+        navigationBar.addComponent(createNavigationButton("Terms", TermsView.VIEW_NAME));
         final VerticalLayout root = new VerticalLayout();
         root.setSizeFull();
         root.addComponent(navigationBar);

@@ -86,7 +86,6 @@ public class ThingView extends VerticalLayout implements View {
         comments.setHeight(10, Unit.EX);
 
         pricesGrind.setSelectionMode(Grid.SelectionMode.SINGLE);
-        pricesGrind.getEditor().setEnabled(true);
 
         image.setVisible(false);
 
@@ -164,15 +163,8 @@ public class ThingView extends VerticalLayout implements View {
         thingDetails.addComponent(buttonsLayout);
         thingDetails.setWidth("100%");
 
-        Button addTerm = new Button("Add new term");
-        addTerm.addClickListener(event -> {
-            TermTemplate sub = new TermTemplate(termService);
-            UI.getCurrent().addWindow(sub);
-        });
-
         VerticalLayout priceDetails = new VerticalLayout();
         priceDetails.addComponent(pricesGrind);
-        priceDetails.addComponent(addTerm);
 
         VerticalLayout imageDetails = new VerticalLayout();
         imageDetails.addComponent(image);

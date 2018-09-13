@@ -22,7 +22,7 @@ apply plugin: "com.devsoap.plugin.vaadin"
 
 
 group = 'com.isedykh'
-version = '0.0.4-SNAPSHOT'
+version = '0.0.5-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
